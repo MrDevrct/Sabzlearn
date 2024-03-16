@@ -130,7 +130,8 @@ export default function Header() {
                         )
                       }
                     >
-                      <span className="mobile-menu__link flex items-center justify-between font-danaMedium">
+                    <span className={`mobile-menu__link flex items-center justify-between font-danaMedium ${
+                        hoveredItem === menuItem.title ? "mobile-menu__link--open" : "" }`}>
                         {menuItem.title}
                         <IoIosArrowBack
                           className={`${
@@ -142,7 +143,7 @@ export default function Header() {
                         <ul className="rounded-[0.75rem] bg-[#f3f4f6] p-2 text-[1rem] font-danaLight mt-4">
                           {getFilteredItems(menuItem.title).map((item) => (
                             <li key={item.id} className="py-2">
-                              <a href={`/course/${item.name}`}>{item.title}</a>
+                              <a href={`/course/${item.name}`}>اموزش  {item.name}</a>
                             </li>
                           ))}
                         </ul>

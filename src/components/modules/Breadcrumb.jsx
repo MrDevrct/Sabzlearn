@@ -1,30 +1,29 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { HiOutlineHome } from "react-icons/hi2";
+import "../../css/ElementProprety/Breadcrumb.css";
 
 export default function Breadcrumb({ links }) {
   return (
     <>
-      <ol
-        className="flex items-center whitespace-nowrap py-4 px-2 mb-4 bg-white rounded-[1rem] shadow-sm"
-        aria-label="Breadcrumb"
-      >
-        <HiOutlineHome className="text-[24px] mr-4 text-gray-500" />
-
-        {links.map((link, index) => (
-          <li className="inline-flex items-center" key={index}>
+      <div className="breadcrumb">
+        {links.map((link) => (
+          <div className="breadcrumb__item" key={link.id}>
             <Link
-              className="flex items-center font-danaLight text-xl text-gray-500"
+              className="flex items-center font-danaLight text-xl"
               to={link.to}
             >
-              {index !== links.length ? (
+              {link.title}
+
+              {link.id !== links.length ? (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
                   height="16"
                   fill="black"
-                  className="bi bi-chevron-left flex-shrink-0 mx-2 overflow-visible size-6 text-gray-400 dark:text-neutral-600"
+                  class="bi bi-chevron-left "
                   viewBox="0 0 16 16"
+                  className="flex-shrink-0 overflow-visible size-6 text-gray-400"
                 >
                   <path
                     fillRule="evenodd"
@@ -32,12 +31,10 @@ export default function Breadcrumb({ links }) {
                   />
                 </svg>
               ) : null}
-
-              {link.title}
             </Link>
-          </li>
+          </div>
         ))}
-      </ol>
+      </div>
     </>
   );
 }
