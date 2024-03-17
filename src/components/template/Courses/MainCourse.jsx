@@ -12,6 +12,9 @@ import Breadcrumb from "../../modules/Categoreis/Breadcrumb";
 // icon
 import { HiOutlineAcademicCap } from "react-icons/hi2";
 import { LuHome } from "react-icons/lu";
+import { HiUsers } from "react-icons/hi2";
+import { HiOutlineClipboardDocument } from "react-icons/hi2";
+import { IoIosStar } from "react-icons/io";
 
 // icon course details box
 import { BsInfoCircle } from "react-icons/bs";
@@ -102,6 +105,7 @@ export default function CourseView() {
 
         {/* <!-- course info and video  --> */}
         <section className="grid lg:grid-cols-2 lg:gap-5 gap-4 mt-8 bg-white lg:bg-transparent p-5 rounded-[2rem]">
+
           {/* <!-- course description and title -->  */}
           <div className="flex flex-col justify-between order-2 lg:order-1">
             <div>
@@ -213,22 +217,82 @@ export default function CourseView() {
           </div>
 
           {/* <!-- Students & Rating & Progress --> */}
-          <div className="col-span-12 lg:col-span-4 space-y-8">
+          <aside className="col-span-12 lg:col-span-4 space-y-8">
+
             {/* student and complite course */}
-            <div className="bg-white dark:bg-darker rounded-2xl p-4.5 sm:p-5">
-              <div className="flex gap-x-4"></div>
-              <div className="mt-3.5 sm:mt-5">
-                <div className="flex items-center justify-between font-danaDemiBold text-sm sm:text-base mb-3">
+            <div className="bg-white rounded-2xl p-5 sm:p-5">
+              <div className="flex gap-x-4">
+                <div className="flex flex-col sm:flex-row items-center text-center md:text-right gap-y-1 gap-x-3 flex-grow pt-3.5 pb-3 sm:px-3.5 sm:py-2.5 bg-gray-100 rounded-xl">
+                  <HiUsers className="w-10 h-10 md:w-11 md:h-11 text-green-500" />
+                  <div>
+                    <span className="block font-bold text-sm md:text-base">
+                      1978
+                    </span>
+                    <span className="block text-sm opacity-70">دانشجو</span>
+                  </div>
+                </div>
+
+                <div className="flex flex-col sm:flex-row items-center text-center md:text-right gap-y-1 gap-x-3 flex-grow pt-3.5 pb-3 sm:px-3.5 sm:py-2.5 bg-gray-100 rounded-xl">
+                  <IoIosStar className="w-10 h-10 md:w-11 md:h-11 text-orange-400" />
+                  <div>
+                    <span className="block font-bold text-sm md:text-base">
+                      5.0
+                    </span>
+                    <span className="block text-sm opacity-70">رضایت</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-3 sm:mt-6">
+                <div className="flex items-center justify-between font-danaDemibold text-sm sm:text-base mb-3">
                   <span>درصد تکمیل دوره</span>
                   <span>100%</span>
                 </div>
-                <div role="progressbar"></div>
+                <progress
+                  value="100"
+                  max="100"
+                  className="block h-[1rem] w-full "
+                  dir="ltr"
+                ></progress>
               </div>
             </div>
 
-            <div></div>
-            <div></div>
-          </div>
+            {/* !<-- Course teacher --> */}
+            <div className="bg-white dark:bg-darker rounded-2xl pt-6 px-5 pb-5 sm:py-8 md:px-5 text-center">
+              <img
+                class="block mb-4 mx-auto object-cover rounded-full"
+                width="90"
+                height="90"
+                src="https://secure.gravatar.com/avatar/5872841a47b10069777793cbce83eacf?s=96&amp;d=mm&amp;r=g"
+                alt="حمیدرضا عبادی"
+              />
+              <span className="font-danaDemibold text-lg">
+                حمیدرضا عبادی | مدرس دوره
+              </span>
+              <p className="mt-2"></p>
+              <a
+                href="https://sabzlearn.ir/teacher/HamidrezaEbadi"
+                class="button-primary button-lg button-outline mx-auto my-4 py-2"
+              >
+                مشاهده پروفایل من
+              </a>
+            </div>
+
+            {/* !<-- Course short Link --> */}
+            <div className="hidden lg:block bg-white dark:bg-darker rounded-2xl py-6 px-8 text-center">
+              <span class="font-danaDemibold text-lg">لینک کوتاه آموزش</span>
+              <div className="flex items-center justify-between gap-x-3 py-5 px-6 mt-5 bg-sky-50 text-sky-500 border border-dashed border-sky-500 rounded-lg">
+                <button>
+                  <HiOutlineClipboardDocument className="text-[30px]"/>
+                </button>
+                <span className="font-danaMedium text-lg w-64 text-ltr text-left truncate">
+                  https://sabzlearn.ir/?p=84
+                </span>
+              </div>
+            </div>
+
+          </aside>
+
         </section>
       </div>
     </main>

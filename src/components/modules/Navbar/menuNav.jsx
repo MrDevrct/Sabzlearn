@@ -4,7 +4,6 @@ import apiRequest from "../../../services/Axios/config";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowBack } from "react-icons/io";
 
-
 export default function MenuNav({ platform }) {
   const [menu, setMenu] = useState([]);
   const [items, setItems] = useState([]);
@@ -44,11 +43,22 @@ export default function MenuNav({ platform }) {
               onMouseLeave={() => setHoveredItem(null)}
             >
               <div className="flex item-center">
-                <Link to={`/category/${menuItem.path}`}>
-                  <span className="flex items-center justify-center cursor-pointer text-[#3F3F46] lg:mb-2 mb-0">
-                    {menuItem.title}
-                  </span>
-                </Link>
+
+                {/* !<-- Articles Path root */}
+                {menuItem.path === "articles" ? (
+                  <Link to={`/${menuItem.path}`}>
+                    <span className="flex items-center justify-center cursor-pointer text-[#3F3F46] lg:mb-2 mb-0">
+                      {menuItem.title}
+                    </span>
+                  </Link>
+                ) : (
+                  <Link to={`/category/${menuItem.path}`}>
+                    <span className="flex items-center justify-center cursor-pointer text-[#3F3F46] lg:mb-2 mb-0">
+                      {menuItem.title}
+                    </span>
+                  </Link>
+                )}
+
                 <IoIosArrowDown className="hidden mt-1 mr-1 lg:block" />
               </div>
               {hoveredItem === menuItem.title && (

@@ -7,6 +7,8 @@ import HeaderCategories from "../Category/HeaderCategories";
 import SortBox from "../../modules/Categoreis/SortBox";
 import FilterBox from "../../modules/Categoreis/FilterBox";
 import SearchBox from "../../modules/Categoreis/SearchBox";
+import { LuArrowUpDown } from "react-icons/lu";
+
 
 export default function Courses() {
   const location = useLocation();
@@ -69,18 +71,29 @@ export default function Courses() {
           <div className="col-span-full lg:col-span-4 xl:col-span-3 lg:sticky top-6 space-y-6">
             <form className="space-y-6">
               {/* <!-- search box --> */}
-              <SearchBox/>
+              <SearchBox placeholder="جستجو بین دورها" />
 
               {/* <!-- toggle filters --> */}
-              <FilterBox operator="دوره های رایگان"/>
-              <FilterBox operator="دوره های پیش فروش"/>
+              <FilterBox operator="دوره های رایگان" />
+              <FilterBox operator="دوره های پیش فروش" />
+              <FilterBox operator="دوره های خریداری شده " />
             </form>
           </div>
 
-
           <section className="col-span-full lg:col-span-8 xl:col-span-9 order-1 lg:order-2">
-          {/* <!-- sort in courses --> */} 
-            <SortBox/>
+            {/* <!-- sort in courses --> */}
+            <div className="hidden lg:flex items-center gap-x-6 px-5 mb-8 h-16 bg-white shadow-normal rounded-xl">
+              <div className="flex items-center shrink-0 gap-x-2 px-4">
+                <LuArrowUpDown className="text-[25px]" />
+                <span className="font-danaMedium">مرتب سازی بر اساس :</span>
+              </div>
+              <div className="flex items-center font-danaLight gap-x-2 lg:gap-x-8 h-full">
+                <SortBox sortName="همه دورها" />
+                <SortBox sortName="ارزان ترین" />
+                <SortBox sortName="گران ترین" />
+                <SortBox sortName="پر مخاطب ها" />
+              </div>
+            </div>
 
             {/* <!-- courses --> */}
             <div className="posts_wrap grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-7 sm:px-0 px-2">

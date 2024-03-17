@@ -20,7 +20,7 @@ export default function LastArticl() {
           title="مقاله ها"
           desc="پیش به سوی ارتقای مهارت ها"
           btnTitle="مشاهده همه مقالات"
-          path='/category/blog'
+          path='/articls'
           spanColor="bg-yellow-500"
         />
 

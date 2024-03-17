@@ -46,6 +46,7 @@
     --tw-text-opacity: 1;
     color: rgb(255 255 255 / var(--tw-text-opacity));
 }
+
 .only-icon {
     aspect-ratio: 1 / 1;
     padding-left: 0;
@@ -89,3 +90,12 @@
     --tw-text-opacity: 1;
     color: rgb(14 165 233 / var(--tw-text-opacity));
 }
+
+.button-primary.button-outline {
+    --tw-border-opacity: 1;
+    border-color: rgb(34 197 94 / var(--tw-border-opacity));
+    background-color: initial;
+    --tw-text-opacity: 1;
+    color: rgb(34 197 94 / var(--tw-text-opacity));
+}
+

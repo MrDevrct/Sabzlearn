@@ -4,7 +4,7 @@ import NotFound from './pages/notFound';
 import Courses from './pages/courses';
 import Course from './pages/course';
 import Category from './pages/category';
-import Articls from './pages/articls'
+import Articles from './pages/articls'
 import Login from './pages/login'
 
 const router = [
@@ -20,7 +20,7 @@ const router = [
     },
     {
         name: 'NotFound',
-        path: '/*',
+        path: '*',
         component: NotFound
     },
     {
@@ -39,9 +39,9 @@ const router = [
         component: Category
     },
     {
-        name: 'Articls',
-        path: '/articls',
-        component: Articls
+        name: 'Articles',
+        path: '/articles',
+        component: Articles
     },
     {
         name: 'Login',

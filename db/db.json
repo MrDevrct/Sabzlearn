@@ -261,7 +261,7 @@
     },
     {
       "id": 6,
-      "path": "blog",
+      "path": "articles",
       "title": "مقالات",
       "items": [
         { "id": 1, "path": "#", "name": "ربات تلگرام" },
