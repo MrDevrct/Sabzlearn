@@ -23,7 +23,7 @@ export default function MenuNav({ platform }) {
         console.error("Error fetching data:", error);
       }
     };
-
+    
     fetchData();
   }, []);
 
