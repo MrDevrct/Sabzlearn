@@ -50,7 +50,7 @@ export default function articl() {
         />
 
         {/* boxs roadmap */}
-        <div className="w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-7">
+        <div className="w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-7 sm:px-0 px-2">
           {roadmap.map((roadmap) => (
             <div
               className="overflow-hidden rounded-2xl sm:h-[12rem] h-[8rem]"

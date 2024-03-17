@@ -4,9 +4,10 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCourses } from "../../../services/Redux/actions";
 import apiRequest from "../../../services/Axios/config";
+
 // component
-import CourseDetailBox from "../../modules/CourseDetailBox";
-import Breadcrumb from "../../modules/Breadcrumb";
+import CourseDetailBox from "../../modules/CourseInfo/CourseDetailBox";
+import Breadcrumb from "../../modules/Categoreis/Breadcrumb";
 
 // icon
 import { HiOutlineAcademicCap } from "react-icons/hi2";
@@ -73,37 +74,35 @@ export default function CourseView() {
   return (
     <main className="mt-8 sm:mt-10">
       <div className="container">
-        {/*  Breadcrumb */}
-        <div>
-          <Breadcrumb
-            links={[
-              {
-                id: 1,
-                title: <LuHome className="text-[25px] mb-2" />,
-                to: "/",
-              },
-              {
-                id: 2,
-                title: "دوره ها",
-                to: "/courses",
-              },
-              {
-                id: 3,
-                title: `${courseInfo.category}`,
-                to: `/category/${categoryPath}`,
-              },
-              {
-                id: 4,
-                title: `${courseInfo.title}`,
-                to: `/course/${courseInfo.name}`,
-              },
-            ]}
-          />
-        </div>
+        {/* <!-- Breadcrumb --> */}
+        <Breadcrumb
+          links={[
+            {
+              id: 1,
+              title: <LuHome className="text-[25px] text-gray-400 ml-2" />,
+              to: "/",
+            },
+            {
+              id: 2,
+              title: "دوره ها",
+              to: "/courses",
+            },
+            {
+              id: 3,
+              title: `${courseInfo.category}`,
+              to: `/category/${categoryPath}`,
+            },
+            {
+              id: 4,
+              title: `${courseInfo.title}`,
+              to: `/course/${courseInfo.name}`,
+            },
+          ]}
+        />
 
-        {/* course info and video  */}
+        {/* <!-- course info and video  --> */}
         <section className="grid lg:grid-cols-2 lg:gap-5 gap-4 mt-8 bg-white lg:bg-transparent p-5 rounded-[2rem]">
-          {/* course description and title  */}
+          {/* <!-- course description and title -->  */}
           <div className="flex flex-col justify-between order-2 lg:order-1">
             <div>
               <h1 className="font-danaDemibold text-[1.375rem]/8 sm:text-[1.625rem]/10 mb-4">
@@ -122,7 +121,7 @@ export default function CourseView() {
                   <HiOutlineAcademicCap className="text-[30px]" />
                   ثبت نام در دوره
                 </a>
-                <div className="flex items-end gap-x-2.5">
+                <div className="flex items-center justify-between gap-x-2 mb-3">
                   {courseInfo.price !== "رایگان" ? (
                     <>
                       <span className="text-green-500 text-2xl ml-1 font-IRANSNumber">
@@ -135,7 +134,7 @@ export default function CourseView() {
                       />
                     </>
                   ) : (
-                    <span className="text-green-500 font-danaDemibold text-2xl mb-4 lg:mb-0">
+                    <span className="text-green-500 font-danaDemibold text-2xl mt-2 lg:mb-0">
                       رایگان!{" "}
                     </span>
                   )}
@@ -144,7 +143,7 @@ export default function CourseView() {
             </div>
           </div>
 
-          {/* course image */}
+          {/* <!-- course video  --> */}
           <div className="overflow-hidden rounded-2xl order-1 lg:order-2 xl:h-[370px]">
             <video
               src=""
@@ -158,6 +157,7 @@ export default function CourseView() {
 
         {/* course details */}
         <section className="grid grid-cols-12 gap-6 sm:gap-7 mt-7 lg:mt-20">
+          {/* <!-- details box & desciption --> */}
           <div className="col-span-12 lg:col-span-8">
             {/* course box details */}
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
@@ -177,7 +177,7 @@ export default function CourseView() {
               <CourseDetailBox
                 icon={<RxCalendar />}
                 title="آخرین بروزرسانی"
-                text="1402/12/22"
+                text={courseInfo.time}
               />
               {/* item 4 */}
               <CourseDetailBox
@@ -201,9 +201,7 @@ export default function CourseView() {
 
             {/* Description */}
             <div className="bg-white dark:bg-darker rounded-2xl p-4.5 sm:p-5 mt-8">
-              <div>
-                title
-              </div>
+              <div>title</div>
               <div>
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                 Sapiente pariatur, dicta soluta unde earum temporibus animi
@@ -212,6 +210,24 @@ export default function CourseView() {
               </div>
               <button>Shoe More</button>
             </div>
+          </div>
+
+          {/* <!-- Students & Rating & Progress --> */}
+          <div className="col-span-12 lg:col-span-4 space-y-8">
+            {/* student and complite course */}
+            <div className="bg-white dark:bg-darker rounded-2xl p-4.5 sm:p-5">
+              <div className="flex gap-x-4"></div>
+              <div className="mt-3.5 sm:mt-5">
+                <div className="flex items-center justify-between font-danaDemiBold text-sm sm:text-base mb-3">
+                  <span>درصد تکمیل دوره</span>
+                  <span>100%</span>
+                </div>
+                <div role="progressbar"></div>
+              </div>
+            </div>
+
+            <div></div>
+            <div></div>
           </div>
         </section>
       </div>

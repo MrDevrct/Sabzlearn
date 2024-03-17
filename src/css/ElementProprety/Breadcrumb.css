@@ -13,12 +13,11 @@
 }
 
 .breadcrumb__item {
-    position: relative;
     display: flex;
     height: 100%;
     flex-shrink: 0;
-    padding-left: 1rem;
-    padding-right: 28px;
+    padding-left: 10px;
+    padding-right: 8px;
 }
 
 .breadcrumb__item:first-child {

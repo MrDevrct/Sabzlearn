@@ -16,3 +16,8 @@ export const fetchCourses = () => {
     }
   };
 };
+
+export const setOpenMenu = (OpenMenu) => ({
+  type: 'SET_OPENMENU',
+  payload: OpenMenu
+});

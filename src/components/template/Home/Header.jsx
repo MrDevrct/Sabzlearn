@@ -5,7 +5,7 @@ export default function Header() {
   return (
     <section className="lg:mt-12 relative" dir="ltr">
       <div className="container">
-        <div className="flex items-center justify-center flex-wrap lg:flex-nowrap lg:justify-between gap-y-8 sm:text-right text-center">
+        <div className="flex items-center justify-center flex-wrap lg:flex-nowrap lg:justify-between gap-y-8 lg:text-right text-center">
 
           {/* text and btn header */}
           <div className="relative w-full sm:w-auto order-2 lg:order-2">

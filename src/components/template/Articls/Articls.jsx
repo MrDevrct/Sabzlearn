@@ -23,7 +23,7 @@ export default function LastArticl() {
           path="/category/blog"
         />
         {/* articl boxs */}
-        <div className="grid grid-rows-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+        <div className="w-fit grid grid-rows-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-7 sm:px-0 px-2">
           {articl.map((articl) => (
             <ArticlBox key={articl.id} {...articl} />
           ))}

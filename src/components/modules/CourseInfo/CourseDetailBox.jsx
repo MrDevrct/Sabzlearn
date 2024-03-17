@@ -7,9 +7,9 @@ export default function CourseDetailBox({icon , title, text}) {
       {icon}
       </div>
 
-      <div class="space-y-0.5 sm:space-y-1">
-        <span class="block font-danaDemibold text-sm sm:text-base">{title}</span>
-        <span class="block font-danaLight text-sm opacity-70">{text}</span>
+      <div className="space-y-0.5 sm:space-y-1">
+        <span className="block font-danaDemibold text-sm sm:text-base">{title}</span>
+        <span className="block font-danaLight text-sm opacity-70">{text}</span>
       </div>
     </div>
   );

@@ -44,7 +44,7 @@ export default function AboutUs() {
 
   return (
     <section className="sm:mt-[8rem] mt-[6rem]">
-      <div className="w-full container">
+      <div className="w-fit container">
         {/* title page */}
         <SectionHeader
           title="ما چه کمکی بهتون میکنیم؟"
@@ -54,7 +54,7 @@ export default function AboutUs() {
 
         {/* about us box */}
         <div className="container">
-          <div className="w-fit grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-7 cursor-default">
+          <div className="w-fit grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-7 cursor-default sm:px-0 px-2">
             {AboutUs.map((value) => (
               <AboutUsBox key={value.id} {...value} />
             ))}
