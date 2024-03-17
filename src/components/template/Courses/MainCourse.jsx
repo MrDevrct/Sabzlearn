@@ -105,7 +105,6 @@ export default function CourseView() {
 
         {/* <!-- course info and video  --> */}
         <section className="grid lg:grid-cols-2 lg:gap-5 gap-4 mt-8 bg-white lg:bg-transparent p-5 rounded-[2rem]">
-
           {/* <!-- course description and title -->  */}
           <div className="flex flex-col justify-between order-2 lg:order-1">
             <div>
@@ -218,7 +217,6 @@ export default function CourseView() {
 
           {/* <!-- Students & Rating & Progress --> */}
           <aside className="col-span-12 lg:col-span-4 space-y-8">
-
             {/* student and complite course */}
             <div className="bg-white rounded-2xl p-5 sm:p-5">
               <div className="flex gap-x-4">
@@ -243,36 +241,48 @@ export default function CourseView() {
                 </div>
               </div>
 
+              {/* !<-- ProgressBar -->  */}
               <div className="mt-3 sm:mt-6">
+                {/* !<-- Progressbar completion percentage --> */}
                 <div className="flex items-center justify-between font-danaDemibold text-sm sm:text-base mb-3">
                   <span>درصد تکمیل دوره</span>
-                  <span>100%</span>
+                  <span>20%</span>
                 </div>
-                <progress
-                  value="100"
-                  max="100"
-                  className="block h-[1rem] w-full "
+
+                {/* !<-- Progress -->  */}
+                <div
+                  className="flex w-full h-4 bg-gray-200 rounded-full overflow-hidden dark:bg-gray-700"
+                  role="progressbar"
+                  aria-valuenow="25"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
                   dir="ltr"
-                ></progress>
+                >
+                  <div
+                    className="flex flex-col justify-center rounded-full overflow-hidden bg-[#22c55e] text-xs text-white text-center whitespace-nowrap transition duration-500"
+                    style={{ width: "20%" }}
+                  ></div>
+                </div>
               </div>
+
             </div>
 
             {/* !<-- Course teacher --> */}
             <div className="bg-white dark:bg-darker rounded-2xl pt-6 px-5 pb-5 sm:py-8 md:px-5 text-center">
               <img
-                class="block mb-4 mx-auto object-cover rounded-full"
+                className="block mb-4 mx-auto object-cover rounded-full"
                 width="90"
                 height="90"
                 src="https://secure.gravatar.com/avatar/5872841a47b10069777793cbce83eacf?s=96&amp;d=mm&amp;r=g"
-                alt="حمیدرضا عبادی"
+                alt={courseInfo.teacher}
               />
               <span className="font-danaDemibold text-lg">
-                حمیدرضا عبادی | مدرس دوره
+                {courseInfo.teacher}  | مدرس دوره
               </span>
               <p className="mt-2"></p>
               <a
                 href="https://sabzlearn.ir/teacher/HamidrezaEbadi"
-                class="button-primary button-lg button-outline mx-auto my-4 py-2"
+                className="button-primary button-lg button-outline mx-auto my-4 py-2"
               >
                 مشاهده پروفایل من
               </a>
@@ -280,10 +290,10 @@ export default function CourseView() {
 
             {/* !<-- Course short Link --> */}
             <div className="hidden lg:block bg-white dark:bg-darker rounded-2xl py-6 px-8 text-center">
-              <span class="font-danaDemibold text-lg">لینک کوتاه آموزش</span>
+              <span className="font-danaDemibold text-lg">لینک کوتاه آموزش</span>
               <div className="flex items-center justify-between gap-x-3 py-5 px-6 mt-5 bg-sky-50 text-sky-500 border border-dashed border-sky-500 rounded-lg">
                 <button>
-                  <HiOutlineClipboardDocument className="text-[30px]"/>
+                  <HiOutlineClipboardDocument className="text-[30px]" />
                 </button>
                 <span className="font-danaMedium text-lg w-64 text-ltr text-left truncate">
                   https://sabzlearn.ir/?p=84
@@ -292,7 +302,6 @@ export default function CourseView() {
             </div>
 
           </aside>
-
         </section>
       </div>
     </main>

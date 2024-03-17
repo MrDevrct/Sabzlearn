@@ -33,7 +33,9 @@ export default function MenuNav({ platform }) {
 
   return (
     <>
+      {/* !<-- desktop categories --> */}
       {platform === "desktop" && (
+      // {/* !<-- list categories --> */}
         <ul className="hidden lg:flex lg:mt-2 gap-x-0 lg:gap-x-6 font-danaMedium">
           {menu.map((menuItem) => (
             <div
@@ -61,6 +63,8 @@ export default function MenuNav({ platform }) {
 
                 <IoIosArrowDown className="hidden mt-1 mr-1 lg:block" />
               </div>
+              
+              {/* !<-- items list categories --> */}
               {hoveredItem === menuItem.title && (
                 <div
                   className="absolute w-[15rem] right-0 bg-white rounded-[18px] px-5 py-2 cursor-pointer shadow-sm z-10"
@@ -79,7 +83,10 @@ export default function MenuNav({ platform }) {
           ))}
         </ul>
       )}
+
+      {/* !<-- mobile categories --> */}
       {platform === "mobile" && (
+      // {/* !<-- list categories --> */}
         <ul className="mobile-menu">
           {menu.map((menuItem) => (
             <li
@@ -104,6 +111,8 @@ export default function MenuNav({ platform }) {
                   }`}
                 />
               </span>
+
+              {/* !<-- items list categories --> */}
               {hoveredItem === menuItem.title && (
                 <ul className="rounded-[0.75rem] bg-[#f3f4f6] p-2 text-[1rem] font-danaLight mt-4">
                   {getFilteredItems(menuItem.title).map((item) => (

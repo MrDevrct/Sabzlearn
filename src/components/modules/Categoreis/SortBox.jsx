@@ -1,14 +1,12 @@
 import React from "react";
 
-export default function SortBox({ sortName }) {
+export default function SortBox({ sortName, onSortChange }) {
   return (
-    <a
-      href=""
-      data-id="default"
+    <button
       className="sort-btn font-danaLight"
-      role="button"
+      onClick={() => onSortChange(sortName)}
     >
       {sortName}
-    </a>
+    </button>
   );
 }

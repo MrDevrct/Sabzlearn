@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { HiOutlineUser , HiOutlineUsers } from "react-icons/hi2";
+import { HiOutlineUser, HiOutlineUsers } from "react-icons/hi2";
 import { FaStarHalfAlt } from "react-icons/fa";
 
 export default function CardBox(props) {
@@ -35,7 +35,7 @@ export default function CardBox(props) {
       <div className="flex-grow px-4.5 pt-4 pb-3 px-2">
         <h4 className="font-danaDemibold text-[17px] line-clamp-2 mb-3 px-[12px]">
           <a href={`/course/${props.name}`} className="hover:text-black">
-           {props.title}
+            {props.title}
           </a>
         </h4>
         <p className="text-[16px] font-danaLight line-clamp-2 cursor-text opacity-70 px-[12px]">
@@ -47,7 +47,7 @@ export default function CardBox(props) {
       <div className="px-4 pb-3">
         <div className="flex justify-between gap-2.5 text-slate-500 dark:text-white/70 text-sm pb-3">
           <div className="flex items-center gap-x-1 hover:text-green-500 transition-colors">
-            <HiOutlineUser className="text-[18px]"/>
+            <HiOutlineUser className="text-[18px]" />
             <a
               href="https://sabzlearn.ir/teacher/moein123"
               className="font-danaLight text-[18px] mt-1 hover:text-green-500"
@@ -59,7 +59,7 @@ export default function CardBox(props) {
             <span className="font-IRANSNumber mt-1">
               {transformedNum(props.satisfaction)}
             </span>
-            <FaStarHalfAlt className="text-[20px]"/>
+            <FaStarHalfAlt className="text-[20px]" />
           </div>
         </div>
 
@@ -68,14 +68,20 @@ export default function CardBox(props) {
         {/* price and participants */}
         <div className="flex items-center justify-between mt-2">
           <div className="flex gap-x-2 mt-2">
-            <HiOutlineUsers className="text-[20px]"/>
+            <HiOutlineUsers className="text-[20px]" />
             <span className="flex items-center text-slate-500 dark:text-white/70 text-sm font-IRANSNumber mt-[2px]">
               {props.participants}
             </span>
           </div>
 
           <div className="flex flex-row items-center mt-2">
-            {props.price !== "رایگان" ? (
+            {props.price === 0 ? (
+              <>
+                <span className="text-green-500 font-danaDemibold text-lg">
+                  رایگان!{" "}
+                </span>
+              </>
+            ) : (
               <>
                 <span className="text-green-500 text-xl ml-1 font-IRANSNumber">
                   {addCommas(props.price)}{" "}
@@ -86,10 +92,6 @@ export default function CardBox(props) {
                   alt="toman-icon"
                 />
               </>
-            ) : (
-              <span className="text-green-500 font-danaDemibold text-lg">
-                رایگان!{" "}
-              </span>
             )}
           </div>
         </div>

@@ -8,45 +8,70 @@ import "../../../css/ElementProprety/Input.css";
 import FilterBox from "../../modules/Categoreis/FilterBox";
 import SearchBox from "../../modules/Categoreis/SearchBox";
 import { LuArrowUpDown } from "react-icons/lu";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCourses } from "../../../services/Redux/actions";
+
 
 
 export default function Category() {
+  const dispatch = useDispatch();
+  const dataCourses = useSelector((state) => state.courses);
+  const [coursesInfo, setCoursesInfo] = useState([]);
   const { categoryName } = useParams();
   const [courseCount, setCourseCount] = useState(0);
   const [categoryTitle, setCategoryTitle] = useState("");
-  const [courses, setCourses] = useState([]);
+  useEffect(() => {
+    dispatch(fetchCourses());
+  }, [dispatch]);
+
+  useEffect(() => {
+    setCoursesInfo(dataCourses);
+  }, [dataCourses]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Fetch courses
-        const coursesResponse = await apiRequest("/courses");
-        const courses = coursesResponse.data;
-
         // Fetch category data for the specified path
         const categoriesResponse = await apiRequest("/Categories");
         const category = categoriesResponse.data;
         const selectedCategory = category.find(
           (category) => category.path === categoryName
         );
-
+  
         // Set category title
         if (selectedCategory) {
           setCategoryTitle(selectedCategory.title);
           // set count courses
-          const filteredCourses = courses.filter(
+          const filteredCourses = dataCourses.filter(
             (course) => course.category === selectedCategory.title
           );
-          setCourses(filteredCourses);
+          setCoursesInfo(filteredCourses);
           setCourseCount(filteredCourses.length);
         }
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
+  
+    if (categoryName) {
+      fetchData();
+    }
+  }, [categoryName, dataCourses]);
 
-    fetchData();
-  }, [categoryName]);
+  const handleSortChange = (sortName) => {
+    let sortedCourses = [...dataCourses];
+    if (sortName === "ارزان ترین") {
+      sortedCourses.sort((a, b) => a.price - b.price);
+    } else if (sortName === "گران ترین") {
+      sortedCourses.sort((a, b) => b.price - a.price);
+    } else if (sortName === "پر مخاطب ها") {
+      sortedCourses.sort((a, b) => b.participants - a.participants);
+    } else {
+      sortedCourses = dataCourses
+    }
+    setCoursesInfo(sortedCourses);
+  };
+  
 
   return (
     // section categories
@@ -82,16 +107,16 @@ export default function Category() {
                 <span className="font-danaMedium">مرتب سازی بر اساس :</span>
               </div>
               <div className="flex items-center font-danaLight gap-x-2 lg:gap-x-8 h-full">
-                <SortBox sortName="همه دورها" />
-                <SortBox sortName="ارزان ترین" />
-                <SortBox sortName="گران ترین" />
-                <SortBox sortName="پر مخاطب ها" />
+                <SortBox sortName="همه دورها" onSortChange={handleSortChange} />
+                <SortBox sortName="ارزان ترین" onSortChange={handleSortChange} />
+                <SortBox sortName="گران ترین" onSortChange={handleSortChange} />
+                <SortBox sortName="پر مخاطب ها" onSortChange={handleSortChange} />
               </div>
             </div>
 
             {/* <!-- courses --> */}
             <div className="posts_wrap grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-7">
-              {courses.map((course) => (
+              {coursesInfo.map((course) => (
                 <CourseBox key={course.id} {...course} />
               ))}
             </div>

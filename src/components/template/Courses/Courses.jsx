@@ -49,6 +49,20 @@ export default function Courses() {
     setCoursesInfo(filteredCourses);
   }, [location.search, dataCourses, categoryName]);
 
+  const handleSortChange = (sortName) => {
+    let sortedCourses = [...dataCourses];
+    if (sortName === "ارزان ترین") {
+      sortedCourses.sort((a, b) => a.price - b.price);
+    } else if (sortName === "گران ترین") {
+      sortedCourses.sort((a, b) => b.price - a.price);
+    } else if (sortName === "پر مخاطب ها") {
+      sortedCourses.sort((a, b) => b.participants - a.participants);
+    } else {
+      sortedCourses = dataCourses;
+    }
+    setCoursesInfo(sortedCourses);
+  };
+  
   return (
     <main className="mt-20">
       <div className="w-fit container">
@@ -88,25 +102,26 @@ export default function Courses() {
                 <span className="font-danaMedium">مرتب سازی بر اساس :</span>
               </div>
               <div className="flex items-center font-danaLight gap-x-2 lg:gap-x-8 h-full">
-                <SortBox sortName="همه دورها" />
-                <SortBox sortName="ارزان ترین" />
-                <SortBox sortName="گران ترین" />
-                <SortBox sortName="پر مخاطب ها" />
+                <SortBox sortName="همه دورها" onSortChange={handleSortChange} />
+                <SortBox sortName="ارزان ترین" onSortChange={handleSortChange} />
+                <SortBox sortName="گران ترین" onSortChange={handleSortChange} />
+                <SortBox sortName="پر مخاطب ها" onSortChange={handleSortChange} />
               </div>
             </div>
 
             {/* <!-- courses --> */}
-            <div className="posts_wrap grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-7 sm:px-0 px-2">
-              {coursesInfo.length > 0 ? (
-                coursesInfo.map((course) => (
-                  <CourseBox key={course.id} {...course} />
-                ))
-              ) : (
-                <Link to="/courses">
-                  <button>برگشت به صفحه محصولاتی</button>
-                </Link>
-              )}
-            </div>
+              <div className="posts_wrap grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-7 sm:px-0 px-2">
+                {coursesInfo.length > 0 ? (
+                  coursesInfo.map((course) => (
+                    <CourseBox key={course.id} {...course} />
+                  ))
+                ) : (
+                  <Link to="/courses">
+                    <button>برگشت به صفحه محصولاتی</button>
+                  </Link>
+                )}
+              </div>
+
           </section>
         </section>
       </div>
