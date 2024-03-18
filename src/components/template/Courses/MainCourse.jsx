@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCourses } from "../../../services/Redux/actions";
 import apiRequest from "../../../services/Axios/config";
+import moment from "jalali-moment";
 
 // component
 import CourseDetailBox from "../../modules/CourseInfo/CourseDetailBox";
@@ -26,6 +27,12 @@ import { HiOutlineBriefcase } from "react-icons/hi2";
 import { HiOutlineUsers } from "react-icons/hi2";
 import { RxCalendar } from "react-icons/rx";
 import { CiClock2 } from "react-icons/ci";
+
+function formatDate(isoString) {
+  const dateObject = new Date(isoString);
+  const jalaliDate = moment(dateObject).locale("fa").format("YYYY/MM/DD");
+  return jalaliDate;
+}
 
 export default function CourseView() {
   const dispatch = useDispatch();
@@ -76,9 +83,11 @@ export default function CourseView() {
   const addCommas = (num) => {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
+  
+  const formattedDate = formatDate(courseInfo.time);
 
   return (
-    <main className="mt-8 sm:mt-10">
+    <main className="mt-8 sm:mt-10 px-2">
       <div className="container">
         {/* <!-- Breadcrumb --> */}
         <Breadcrumb
@@ -128,19 +137,19 @@ export default function CourseView() {
                   ثبت نام در دوره
                 </a>
                 <div className="flex items-center justify-between gap-x-2 mb-3">
-                  {courseInfo.price !== "رایگان" ? (
+                  {courseInfo.price !== 0 ? (
                     <>
                       <span className="text-green-500 text-2xl ml-1 font-IRANSNumber">
                         {addCommas(courseInfo.price)}{" "}
                       </span>
                       <img
                         src="../../../public/toman.svg"
-                        className="w-8 h-8"
+                        className="hidden sm:block w-8 h-8"
                         alt="toman-icon"
                       />
                     </>
                   ) : (
-                    <span className="text-green-500 font-danaDemibold text-2xl mt-2 lg:mb-0">
+                    <span className="hidden sm:block text-green-500 font-danaDemibold text-2xl mt-2 lg:mb-0">
                       رایگان!{" "}
                     </span>
                   )}
@@ -183,7 +192,7 @@ export default function CourseView() {
               <CourseDetailBox
                 icon={<RxCalendar />}
                 title="آخرین بروزرسانی"
-                text={courseInfo.time}
+                text={formattedDate}
               />
               {/* item 4 */}
               <CourseDetailBox

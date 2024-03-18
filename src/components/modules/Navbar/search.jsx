@@ -17,70 +17,73 @@ export default function Input({ platform }) {
   const searchHandler = (event) => {
     if (event.keyCode === 13) {
       if (search.trim()) {
-
         navigate(`/courses/search?q=${search}`);
-        if (platform === "mobile") { toggleMenu() }
-
+        if (platform === "mobile") {
+          toggleMenu();
+        }
       } else if (!search.trim()) {
-
         navigate(`/courses`);
-        if (platform === "mobile") { toggleMenu() }
-
+        if (platform === "mobile") {
+          toggleMenu();
+        }
       }
     }
   };
 
   const searchBtnHandler = () => {
     if (search.trim()) {
-
       navigate(`/courses/search?q=${search}`);
-      if (platform === "mobile") { toggleMenu() }
-
+      if (platform === "mobile") {
+        toggleMenu();
+      }
     } else if (!search.trim()) {
-
       navigate(`/courses`);
-      if (platform === "mobile") { toggleMenu() }
-
+      if (platform === "mobile") {
+        toggleMenu();
+      }
     }
   };
 
   return (
     <>
-    {/* search box in desktop */}
+      {/* search box in desktop */}
       {platform === "desktop" && (
-        <div className="hidden lg:block">
+        <div className="relative group hidden lg:block">
           <div className="hidden xl:block">
-            <div className="relative h-13 block">
+            <label className="relative h-[52px] block">
               <input
-                className="bg-gray-100 text-slate-500 text-sm font-danaMedium rounded-full pr-4 pl-12 xl:w-[20rem] h-[56px] text-right"
                 type="text"
+                className="bg-gray-100 text-slate-500 text-sm font-danaMedium rounded-full xl:w-80 h-full text-right"
                 placeholder="چیو میخوای یاد بگیری؟"
                 onKeyDown={searchHandler}
                 onChange={() => setSearch(event.target.value)}
+                style={{ paddingRight: "1rem"}}
               />
               <button
-                className="absolute left-5 top-0 bottom-0 w-7 h-7 my-auto text-slate-500"
+                className="absolute left-2 top-0 bottom-1 w-6 h-6 my-auto text-slate-500"
                 onClick={searchBtnHandler}
               >
                 <CiSearch className="text-[30px]" />
               </button>
-            </div>
+            </label>
           </div>
         </div>
       )}
 
-    {/* search box in mobile */}
+      {/* search box in mobile */}
       {platform === "mobile" && (
         <div className="relative h-13 block mt-4">
           <input
-            className="bg-gray-100 text-slate-500 text-sm font-danaMedium rounded-full pr-4 pl-12 h-[40px] text-right"
+            className="bg-gray-100 text-slate-500 text-sm font-danaMedium rounded-full w-full h-[40px] text-right"
             type="text"
             placeholder="چیو میخوای یاد بگیری؟"
             onKeyDown={searchHandler}
-            onChange={() => setSearch(event.target.value)}
+            onChange={(event) => setSearch(event.target.value)}
+            style={{ paddingRight: "1rem", paddingLeft: "3rem" }}
           />
+
           <button
-            className="absolute left-3 top-0 bottom-0 w-7 h-7 my-auto text-slate-500"
+            className="absolute left-2 top-0 bottom-0 w-7 h-7 my-auto text-slate-500"
             onClick={searchBtnHandler}
           >
             <CiSearch className="text-[26px] mb-1" />

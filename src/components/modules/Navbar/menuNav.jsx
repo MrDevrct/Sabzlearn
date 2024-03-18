@@ -37,10 +37,6 @@ export default function MenuNav({ platform }) {
     return items.filter((course) => course.category === category);
   };
 
-  useEffect(() => {
-    console.log(articles);
-  }, [articles]);
-
   return (
     <>
       {/* !<-- desktop categories --> */}
