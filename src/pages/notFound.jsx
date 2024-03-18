@@ -7,14 +7,14 @@ export default function notFound() {
       <div className="mt-3">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="w-full sm:h-[640px]"
+          className="w-full sm:h-[640px]"
           width="685"
           viewBox="0 0 685 674.318"
         >
           <defs>
             <linearGradient
               id="linear-gradient"
-              class="text-pink-500 dark:text-rose-500"
+              className="text-pink-500 dark:text-rose-500"
               x1="0.764"
               x2="0.5"
               y2="0.895"
@@ -29,7 +29,7 @@ export default function notFound() {
             </linearGradient>
             <linearGradient
               id="linear-gradient-2"
-              class="text-pink-500 dark:text-rose-500"
+              className="text-pink-500 dark:text-rose-500"
               x1="0.764"
               x2="0.5"
               y2="0.895"
@@ -53,13 +53,13 @@ export default function notFound() {
                 <path
                   d="M-13325.467-2517.587l15.16-68.677-33.306-8.269-65.921,54.437-6.432,29.171,55.355,12.174-6.661,24.806,28.481,7.121,7.581-25.266,17.915,3.9,6.2-24.347Z"
                   transform="translate(13415.965 2594.533)"
-                  class="text-zinc-700 dark:text-white"
+                  className="text-zinc-700 dark:text-white"
                   fill="currentColor"
                 ></path>
                 <path
                   d="M-13352.934-2555.017l-18.2,15.195-1.943,7.774,22.085,5.654,6.537-25.973Z"
                   transform="translate(13418.809 2597.154)"
-                  class="text-gray-100 dark:text-gray"
+                  className="text-gray-100 dark:text-gray"
                   fill="currentColor"
                 ></path>
               </g>
@@ -67,13 +67,13 @@ export default function notFound() {
                 <path
                   d="M55.895,0C94.488,0,111.79,27.29,111.79,69.253s-20.258,69.253-55.895,69.253S0,109.754,0,69.253,17.3,0,55.895,0Z"
                   transform="translate(0 5.851) rotate(-3)"
-                  class="text-zinc-700 dark:text-white"
+                  className="text-zinc-700 dark:text-white"
                   fill="currentColor"
                 ></path>
                 <path
                   d="M24.177,0C40.87,0,48.354,16.11,48.354,40.882S39.592,81.765,24.177,81.765,0,64.791,0,40.882,7.484,0,24.177,0Z"
                   transform="translate(33.159 33.589) rotate(-3)"
-                  class="text-gray-100 dark:text-gray"
+                  className="text-gray-100 dark:text-gray"
                   fill="currentColor"
                 ></path>
               </g>
@@ -81,13 +81,13 @@ export default function notFound() {
                 <path
                   d="M90.5,76.946l15.16-68.677L72.354,0,6.432,54.437,0,83.607,55.356,95.781,48.7,120.588l28.481,7.12,7.58-25.266,17.915,3.9L108.874,82Z"
                   transform="translate(0 0)"
-                  class="text-zinc-700 dark:text-white"
+                  className="text-zinc-700 dark:text-white"
                   fill="currentColor"
                 ></path>
                 <path
                   d="M20.142,0,1.943,15.195,0,22.969l22.086,5.654L28.623,2.65Z"
                   transform="translate(45.734 42.137)"
-                  class="text-gray-100 dark:text-gray"
+                  className="text-gray-100 dark:text-gray"
                   fill="currentColor"
                 ></path>
               </g>
@@ -95,12 +95,12 @@ export default function notFound() {
                 <path
                   d="M7.363,33.532,13.252,0,0,32.626Z"
                   transform="translate(272.522 14.195)"
-                  class="text-sky-500 dark:text-secondary"
+                  className="text-sky-500 dark:text-secondary"
                   fill="currentColor"
                 ></path>
                 <g
                   transform="translate(180.483 46.684)"
-                  class="text-white dark:text-gray-800"
+                  className="text-white dark:text-gray-800"
                   fill="currentColor"
                 >
                   <path
@@ -116,12 +116,12 @@ export default function notFound() {
                 <path
                   d="M168.5,38.08,129.673,22.151,83.627,9.458,35.1,1.493,0,0V10.951L169.991,49.28Z"
                   transform="translate(175.156 88.964)"
-                  class="text-gray-100 dark:text-gray"
+                  className="text-gray-100 dark:text-gray"
                   fill="currentColor"
                 ></path>
                 <g
                   transform="translate(403.792 138.256) rotate(103)"
-                  class="text-sky-500 dark:text-secondary"
+                  className="text-sky-500 dark:text-secondary"
                   fill="currentColor"
                   stroke="#0ea5e9"
                   stroke-width="2"
@@ -164,7 +164,7 @@ export default function notFound() {
                 </g>
                 <g
                   transform="translate(329.838 142.85) rotate(103)"
-                  class="text-gray-100 dark:text-gray"
+                  className="text-gray-100 dark:text-gray"
                   fill="currentColor"
                   stroke="#3f3f46"
                   stroke-width="2"
@@ -186,7 +186,7 @@ export default function notFound() {
                 </g>
                 <g
                   transform="translate(278.842 0)"
-                  class="text-gray-100 dark:text-gray"
+                  className="text-gray-100 dark:text-gray"
                   fill="currentColor"
                   stroke="#0ea5e9"
                   stroke-width="2"
@@ -216,7 +216,7 @@ export default function notFound() {
               cy="5"
               r="5"
               transform="translate(1233 273.812)"
-              class="text-sky-500 dark:text-secondary"
+              className="text-sky-500 dark:text-secondary"
               fill="currentColor"
             ></circle>
             <circle
@@ -238,7 +238,7 @@ export default function notFound() {
               cy="4.5"
               r="4.5"
               transform="translate(740 628.812)"
-              class="text-sky-500 dark:text-secondary"
+              className="text-sky-500 dark:text-secondary"
               fill="currentColor"
             ></circle>
             <circle
@@ -260,7 +260,7 @@ export default function notFound() {
               cy="4.5"
               r="4.5"
               transform="translate(580 292.812)"
-              class="text-sky-500 dark:text-secondary"
+              className="text-sky-500 dark:text-secondary"
               fill="currentColor"
             ></circle>
             <circle
@@ -282,7 +282,7 @@ export default function notFound() {
               cy="4.5"
               r="4.5"
               transform="translate(801 505.812)"
-              class="text-sky-500 dark:text-secondary"
+              className="text-sky-500 dark:text-secondary"
               fill="currentColor"
             ></circle>
           </g>
