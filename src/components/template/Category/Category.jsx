@@ -12,7 +12,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchCourses } from "../../../services/Redux/actions";
 
 
-
 export default function Category() {
   const dispatch = useDispatch();
   const dataCourses = useSelector((state) => state.courses);
@@ -20,6 +19,9 @@ export default function Category() {
   const { categoryName } = useParams();
   const [courseCount, setCourseCount] = useState(0);
   const [categoryTitle, setCategoryTitle] = useState("");
+  const [sortSelected, setSortSelected] = useState(null);
+  const [active, setActive] = useState(null);
+
   useEffect(() => {
     dispatch(fetchCourses());
   }, [dispatch]);
@@ -46,6 +48,7 @@ export default function Category() {
             (course) => course.category === selectedCategory.title
           );
           setCoursesInfo(filteredCourses);
+          setSortSelected(filteredCourses);
           setCourseCount(filteredCourses.length);
         }
       } catch (error) {
@@ -59,7 +62,7 @@ export default function Category() {
   }, [categoryName, dataCourses]);
 
   const handleSortChange = (sortName) => {
-    let sortedCourses = [...dataCourses];
+    let sortedCourses = [...coursesInfo];
     if (sortName === "ارزان ترین") {
       sortedCourses.sort((a, b) => a.price - b.price);
     } else if (sortName === "گران ترین") {
@@ -67,9 +70,11 @@ export default function Category() {
     } else if (sortName === "پر مخاطب ها") {
       sortedCourses.sort((a, b) => b.participants - a.participants);
     } else {
-      sortedCourses = dataCourses
+      sortedCourses = sortSelected;
     }
+
     setCoursesInfo(sortedCourses);
+    setActive(sortName);
   };
   
 
@@ -107,10 +112,10 @@ export default function Category() {
                 <span className="font-danaMedium">مرتب سازی بر اساس :</span>
               </div>
               <div className="flex items-center font-danaLight gap-x-2 lg:gap-x-8 h-full">
-                <SortBox sortName="همه دورها" onSortChange={handleSortChange} />
-                <SortBox sortName="ارزان ترین" onSortChange={handleSortChange} />
-                <SortBox sortName="گران ترین" onSortChange={handleSortChange} />
-                <SortBox sortName="پر مخاطب ها" onSortChange={handleSortChange} />
+                <SortBox sortName="همه دورها" onSortChange={handleSortChange} active={active === "همه دورها"} />
+                <SortBox sortName="ارزان ترین" onSortChange={handleSortChange} active={active === "ارزان ترین"} />
+                <SortBox sortName="گران ترین" onSortChange={handleSortChange} active={active === "گران ترین"} />
+                <SortBox sortName="پر مخاطب ها" onSortChange={handleSortChange} active={active === "پر مخاطب ها"} />
               </div>
             </div>
 

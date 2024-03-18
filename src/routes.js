@@ -4,8 +4,9 @@ import NotFound from './pages/notFound';
 import Courses from './pages/courses';
 import Course from './pages/course';
 import Category from './pages/category';
-import Articles from './pages/articls'
-import Login from './pages/login'
+import Articles from './pages/articls';
+import Login from './pages/login';
+import Register from './pages/register';
 
 const router = [
     {
@@ -47,6 +48,11 @@ const router = [
         name: 'Login',
         path: '/login',
         component: Login
+    },
+    {
+        name: 'Signup',
+        path: '/register',
+        component: Register
     }
 ]
 

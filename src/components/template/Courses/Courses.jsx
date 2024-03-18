@@ -17,6 +17,7 @@ export default function Courses() {
   const [coursesInfo, setCoursesInfo] = useState([]);
   const { categoryName } = useParams();
   const [searchValue, setSearchValue] = useState(""); // افزودن متغیر searchQuery
+  const [active, setActive] = useState(null);
 
   useEffect(() => {
     dispatch(fetchCourses());
@@ -61,6 +62,7 @@ export default function Courses() {
       sortedCourses = dataCourses;
     }
     setCoursesInfo(sortedCourses);
+    setActive(sortName)
   };
   
   return (
@@ -102,10 +104,10 @@ export default function Courses() {
                 <span className="font-danaMedium">مرتب سازی بر اساس :</span>
               </div>
               <div className="flex items-center font-danaLight gap-x-2 lg:gap-x-8 h-full">
-                <SortBox sortName="همه دورها" onSortChange={handleSortChange} />
-                <SortBox sortName="ارزان ترین" onSortChange={handleSortChange} />
-                <SortBox sortName="گران ترین" onSortChange={handleSortChange} />
-                <SortBox sortName="پر مخاطب ها" onSortChange={handleSortChange} />
+                <SortBox sortName="همه دورها" onSortChange={handleSortChange} active={active === "همه دورها"} />
+                <SortBox sortName="ارزان ترین" onSortChange={handleSortChange} active={active === "ارزان ترین"} />
+                <SortBox sortName="گران ترین" onSortChange={handleSortChange} active={active === "گران ترین"} />
+                <SortBox sortName="پر مخاطب ها" onSortChange={handleSortChange} active={active === "پر مخاطب ها"} />
               </div>
             </div>
 

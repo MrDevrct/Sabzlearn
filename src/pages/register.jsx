@@ -24,19 +24,33 @@ export default function Login() {
 
         {/* page Body  */}
         <div className="max-w-[330px] w-full pt-5 pb-6 px-6 text-center bg-white dark:bg-darker rounded-2xl">
-          <h4 className="font-danaDemibold text-xl mb-4 sm:mb-4.5">ورود با ایمیل</h4>
+          <h4 className="font-danaDemibold text-xl mb-4 sm:mb-4.5">عضویت</h4>
 
           <p class="mb-5">
-            قبلا ثبت نام نکرده اید؟
+            قبلا ثبت نام کرده اید؟
             <a
-              href="/register"
+              href="/login"
               class="font-danaDemiBold text-green-500"
             >
-              عضویت
+              وارد شوید
             </a>
           </p>
 
           <form className="user-data__form space-y-5">
+            <div class="relative">
+              <input
+                type="text"
+                class="user-data__username form-input has-icon"
+                placeholder="نام کاربری"
+              />
+            </div>
+            <div class="relative">
+              <input
+                type="text"
+                class="user-data__username form-input has-icon"
+                placeholder="شماره موبایل"
+              />
+            </div>
             <div class="relative">
               <input
                 type="email"
