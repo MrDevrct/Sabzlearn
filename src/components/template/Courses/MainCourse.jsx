@@ -15,6 +15,9 @@ import { LuHome } from "react-icons/lu";
 import { HiUsers } from "react-icons/hi2";
 import { HiOutlineClipboardDocument } from "react-icons/hi2";
 import { IoIosStar } from "react-icons/io";
+import { IoDocumentText } from "react-icons/io5";
+import { MdOutlineKeyboardArrowDown } from "react-icons/md";
+import { HiAcademicCap } from "react-icons/hi";
 
 // icon course details box
 import { BsInfoCircle } from "react-icons/bs";
@@ -203,15 +206,116 @@ export default function CourseView() {
             </div>
 
             {/* Description */}
-            <div className="bg-white dark:bg-darker rounded-2xl p-4.5 sm:p-5 mt-8">
-              <div>title</div>
-              <div>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Sapiente pariatur, dicta soluta unde earum temporibus animi
-                voluptatem blanditiis cum, quod culpa porro! Deleniti nihil, qui
-                aliquam ratione tenetur quibusdam rem.
+            <div className="bg-white rounded-2xl p-5 sm:p-5 mt-8">
+              {/* title description */}
+              <div className="flex items-center gap-x-2 mb-5 sm:mb-6 relative">
+                <span className="absolute -right-6 sm:-right-[26px] block w-2 h-[34px] md:h-9.5 bg-amber-400 rounded-r-sm "></span>
+                <span className="hidden md:inline-block text-amber-400 text-[30px]">
+                  <IoDocumentText />
+                </span>
+                <h3 className="font-danaDemibold text-xl md:text-2xl">
+                  توضیحات
+                </h3>
               </div>
-              <button>Shoe More</button>
+              {/* text description */}
+              <div className="relative overflow-hidden">
+                <div className="course-content max-w-none max-h-[800px] leading-10 font-danaLight text-[16px]">
+                  <p>
+                    حقیقت تلخ شماره ۱: درصد زیادی از افرادی که یک مسیر رو شروع
+                    میکنن. درنهایت شکست میخورن و نتیجه ای نمیگیرن
+                  </p>
+                  <p>
+                    حقیفت تلخ شماره ۲: افرادی که از حقیقت اول جان سالم به در
+                    بردن هم درصد کمی شون پول و رشد کمال خوبی رو تجربه میکنن!
+                  </p>
+                  <p>
+                    میخواید باهاتون رو راست باشم؟ همین بازیگرای هالیوود. چند
+                    درصدشون سیاهی لشکرن و چند درصدشون سوپر استار؟ یا اصلا جای
+                    دوری نریم. چند نفر از اطرافیان تون رو میشناسید که کاسب هستن
+                    و از بین اون کاسب ها چند نفر واقعا اوضاع خفنی داره؟ طبعا همه
+                    میدونیم که تعداد این افراد بسیار بسیار کمه و در دنیای برنامه
+                    نویسی. در بخش بازار کار هم اوضاع مستثنی از این نیست. اگر
+                    نخواهیم نگاه سوسیالیستی به مسائل داشته باشیم. اینگونه که همه
+                    مون بهتره فقیر باشیم و کسی لازم نکرده به جایگاه های بالاتر
+                    برسه. باید قبول کنیم که از بین هزاران برنامه نویسی که بصورت
+                    کارمندی کار میکنن. تعداد کمی شون دستمزد های بالایی میگیرن.
+                    تعداد کمی شون در رده های بالاتر مشغول فعالیتن
+                  </p>
+                  <p>
+                    برای مثال: شما ممکنه با برنامه نویس ایرانیی ملاقات کنید که
+                    در عین خوشحالی بگه که من ساعتی تقریبا ۱۷۰ هزار تومان(نسبت به
+                    دلار ۵۰ هزار تومانی) دستمزد میگیرم. اما آیا میدونستید که
+                    تعداد اندکی از این برنامه نویس ها هستن که دو یا سه یا حتی
+                    پنج برابر بیشتر از مبلغ ذکر شده دستمزدشونه؟ شاید در
+                    تصوراتتون برای چنین افراد. آدم هایی بیاد که قطعا بالای ۳۰
+                    ساله برنامه نویس هستن. اما نه جانم! مسئله این نیست که شما
+                    سابقه بسیار بسیار خفنی داشته باشی. مسئله اینه که چقدر شناخت
+                    از کارفرما جماعت داری!
+                  </p>
+                  <p>
+                    فکت: فریلنسر موفق فردی نیست که با هزاران کارفرما در ارتباطه.
+                    بلکه فردیه که با شبکه سازی درست و اصولی تونسته با چند
+                    کارفرمای خردمند ارتباط برقرار کنه و با ارائه خدمات با کیفیت
+                    به اونها و معرفی شدنش به دیگران. این شبکه رو گسترش بده و
+                    گسترش شبکه با کیفیت == پول با کیفیت تر
+                  </p>
+                  <p>&nbsp;</p>
+                  <p>
+                    اما سوال اصلی اینجاست که چطور باید به چنین افرادی چنگ زد؟
+                    چطور باید شناسایی شون کرد؟ چطور باید کار کنیم تا سعادت کار
+                    با کارفرمای خردمندی نصیب مون بشه که بجای غرغرای الکی سر هر
+                    پروژه. چک و چونه های وقت تلف کننده بیاد و تسک رو تعریف کنه و
+                    کار رو براش انجام بدیم و هزینه مون هم واریز بشه و هر دو به
+                    زندگی مون برسیم؟
+                  </p>
+                  <p>&nbsp;</p>
+                  <p>
+                    اصولا شما از هر فریلنسری این سوال رو بپرسی ممکنه پاسخ های
+                    متفاوتی رو بهتون بده. اما اگر این سوال رو از یک کارفرمایی که
+                    با فریلنسر های مختلف کار کرده باشه بپرسید چی؟ قطعا کیفیت
+                    پاسخ دهی بسیار بالاتر و فراتر از انتظاراتتونه. همونطور که
+                    شما در زمان کودکی و نوجوانی به جواب این سوال که اخلاق مامان
+                    باباها توی فلان مدل شرایط به چه شکله رو نمیتونستی از طریق
+                    پرس و جو از دوستان نزدیکت برسی و بلکه باید از یک پدر و مادر
+                    متشخص چنین مواردی رو میپرسیدی. بحث شناخت کارفرما ها هم به
+                    همین شکل هست
+                  </p>
+                  <p>&nbsp;</p>
+                  <p>
+                    و این چالش. سر آغاز تولید یک خدمت جدید از سبزلرن برای شما
+                    عزیزانه. در این دوره آموزشی. من:قدیر یلمه. بنیانگذار پلتفرم
+                    سبزلرن همراه شما هستم تا تجربیاتم رو در راستای ارتقای جایگاه
+                    شغلی شما. به اشتراک بزارم
+                  </p>
+                  <p>&nbsp;</p>
+                  <p>
+                    شما با شرکت در دوره مستر فریلنس. قرار هست که از زاویه دید یک
+                    کارفرما. به مسئله فریلنسری نگاه کنید. نقاط قوت و ضعف اونهارو
+                    بدست بیارید و نقاط قوت و ضعف خودتون رو بهبود ببخشید تا در یک
+                    رابطه تجاری پرسود. پارتنر های خوبی برای هم باشید
+                  </p>
+                </div>
+                <div></div>
+              </div>
+
+              <button className="button-xl button-primary w-full sm:w-auto mx-auto mt-5">
+                <span>مشاهده بیشتر مطلب</span>
+                <MdOutlineKeyboardArrowDown className="text-[30px]" />
+              </button>
+            </div>
+
+            {/* <!-- Headlines --> */}
+            <div className="bg-white rounded-2xl p-5 sm:p-5 mt-8">
+              <div className="flex items-center gap-x-3 mb-6 sm:mb-7 relative">
+                <span className="absolute -right-6 sm:-right-[26px] block w-1.5 h-[34px] md:h-9.5 bg-sky-500 rounded-r-sm"></span>
+                <span className="hidden md:inline-block text-sky-500 text-[30px]"><HiAcademicCap /></span>
+                <h3 className="font-danaDemibold text-xl md:text-2xl">سرفصل ها</h3>
+              </div>
+
+              <div className="space-y-4 md:space-y-5">
+
+              </div>
+
             </div>
           </div>
 
@@ -264,7 +368,6 @@ export default function CourseView() {
                   ></div>
                 </div>
               </div>
-
             </div>
 
             {/* !<-- Course teacher --> */}
@@ -277,7 +380,7 @@ export default function CourseView() {
                 alt={courseInfo.teacher}
               />
               <span className="font-danaDemibold text-lg">
-                {courseInfo.teacher}  | مدرس دوره
+                {courseInfo.teacher} | مدرس دوره
               </span>
               <p className="mt-2"></p>
               <a
@@ -290,7 +393,9 @@ export default function CourseView() {
 
             {/* !<-- Course short Link --> */}
             <div className="hidden lg:block bg-white dark:bg-darker rounded-2xl py-6 px-8 text-center">
-              <span className="font-danaDemibold text-lg">لینک کوتاه آموزش</span>
+              <span className="font-danaDemibold text-lg">
+                لینک کوتاه آموزش
+              </span>
               <div className="flex items-center justify-between gap-x-3 py-5 px-6 mt-5 bg-sky-50 text-sky-500 border border-dashed border-sky-500 rounded-lg">
                 <button>
                   <HiOutlineClipboardDocument className="text-[30px]" />
@@ -300,7 +405,6 @@ export default function CourseView() {
                 </span>
               </div>
             </div>
-
           </aside>
         </section>
       </div>

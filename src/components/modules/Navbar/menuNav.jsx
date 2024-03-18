@@ -8,6 +8,7 @@ export default function MenuNav({ platform }) {
   const [menu, setMenu] = useState([]);
   const [items, setItems] = useState([]);
   const [hoveredItem, setHoveredItem] = useState(null);
+  const [articles, setArticles] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -18,12 +19,17 @@ export default function MenuNav({ platform }) {
 
         const coursesResponse = await apiRequest("/courses");
         const courses = coursesResponse.data;
+
+        const articlesResponse = await apiRequest("/articles");
+        const articles = articlesResponse.data;
+
+        setArticles(articles);
         setItems(courses);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
-    
+
     fetchData();
   }, []);
 
@@ -31,11 +37,15 @@ export default function MenuNav({ platform }) {
     return items.filter((course) => course.category === category);
   };
 
+  useEffect(() => {
+    console.log(articles);
+  }, [articles]);
+
   return (
     <>
       {/* !<-- desktop categories --> */}
       {platform === "desktop" && (
-      // {/* !<-- list categories --> */}
+        // {/* !<-- list categories --> */}
         <ul className="hidden lg:flex lg:mt-2 gap-x-0 lg:gap-x-6 font-danaMedium">
           {menu.map((menuItem) => (
             <div
@@ -45,7 +55,6 @@ export default function MenuNav({ platform }) {
               onMouseLeave={() => setHoveredItem(null)}
             >
               <div className="flex item-center">
-
                 {/* !<-- Articles Path root */}
                 {menuItem.path === "articles" ? (
                   <Link to={`/${menuItem.path}`}>
@@ -63,20 +72,34 @@ export default function MenuNav({ platform }) {
 
                 <IoIosArrowDown className="hidden mt-1 mr-1 lg:block" />
               </div>
-              
+
               {/* !<-- items list categories --> */}
               {hoveredItem === menuItem.title && (
                 <div
                   className="absolute w-[15rem] right-0 bg-white rounded-[18px] px-5 py-2 cursor-pointer shadow-sm z-10"
                   onMouseLeave={() => setHoveredItem(null)}
                 >
-                  {getFilteredItems(menuItem.title).map((item) => (
-                    <Link key={item.id} to={`/course/${item.name}`}>
-                      <div className="text-xl font-danaLight text-slate-500 py-1 my-2 text-right hover:text-[#2bce56] line-clamp-1">
-                        {item.title}
-                      </div>
-                    </Link>
-                  ))}
+                  {hoveredItem === "مقالات" ? (
+                    <>
+                      {articles.map((article) => (
+                        <Link key={article.id} to={`/course/${article.path}`}>
+                          <div className="text-[15px] font-danaLight text-slate-500 py-1 my-2 text-right hover:text-[#2bce56] line-clamp-1">
+                            {article.title}
+                          </div>
+                        </Link>
+                      ))}
+                    </>
+                  ) : (
+                    <>
+                      {getFilteredItems(menuItem.title).map((item) => (
+                        <Link key={item.id} to={`/course/${item.name}`}>
+                          <div className="text-[15px] font-danaLight text-slate-500 py-1 my-2 text-right hover:text-[#2bce56] line-clamp-1">
+                            {item.title}
+                          </div>
+                        </Link>
+                      ))}
+                    </>
+                  )}
                 </div>
               )}
             </div>
@@ -86,7 +109,7 @@ export default function MenuNav({ platform }) {
 
       {/* !<-- mobile categories --> */}
       {platform === "mobile" && (
-      // {/* !<-- list categories --> */}
+        // {/* !<-- list categories --> */}
         <ul className="mobile-menu">
           {menu.map((menuItem) => (
             <li
@@ -113,13 +136,28 @@ export default function MenuNav({ platform }) {
               </span>
 
               {/* !<-- items list categories --> */}
+
               {hoveredItem === menuItem.title && (
                 <ul className="rounded-[0.75rem] bg-[#f3f4f6] p-2 text-[1rem] font-danaLight mt-4">
-                  {getFilteredItems(menuItem.title).map((item) => (
-                    <li key={item.id} className="py-2">
-                      <a href={`/course/${item.name}`}>اموزش {item.name}</a>
-                    </li>
-                  ))}
+                  {hoveredItem === "مقالات" ? (
+                    <>
+                      {articles.map((article) => (
+                        <li key={article.id} className="py-2">
+                          <a href={`/articles/${article.path}`}>
+                            {article.title}
+                          </a>
+                        </li>
+                      ))}
+                    </>
+                  ) : (
+                    <>
+                      {getFilteredItems(menuItem.title).map((item) => (
+                        <li key={item.id} className="py-2">
+                          <a href={`/course/${item.name}`}>اموزش {item.name}</a>
+                        </li>
+                      ))}
+                    </>
+                  )}
                 </ul>
               )}
             </li>
