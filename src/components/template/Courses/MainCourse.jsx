@@ -19,6 +19,9 @@ import { IoIosStar } from "react-icons/io";
 import { IoDocumentText } from "react-icons/io5";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { HiAcademicCap } from "react-icons/hi";
+import { IoIosArrowDown } from "react-icons/io";
+import { ImPlay2 } from "react-icons/im";
+
 
 // icon course details box
 import { BsInfoCircle } from "react-icons/bs";
@@ -83,7 +86,7 @@ export default function CourseView() {
   const addCommas = (num) => {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
-  
+
   const formattedDate = formatDate(courseInfo.time);
 
   return (
@@ -317,14 +320,55 @@ export default function CourseView() {
             <div className="bg-white rounded-2xl p-5 sm:p-5 mt-8">
               <div className="flex items-center gap-x-3 mb-6 sm:mb-7 relative">
                 <span className="absolute -right-6 sm:-right-[26px] block w-1.5 h-[34px] md:h-9.5 bg-sky-500 rounded-r-sm"></span>
-                <span className="hidden md:inline-block text-sky-500 text-[30px]"><HiAcademicCap /></span>
-                <h3 className="font-danaDemibold text-xl md:text-2xl">سرفصل ها</h3>
+                <span className="hidden md:inline-block text-sky-500 text-[30px]">
+                  <HiAcademicCap />
+                </span>
+                <h3 className="font-danaDemibold text-xl md:text-2xl">
+                  سرفصل ها
+                </h3>
               </div>
-
               <div className="space-y-4 md:space-y-5">
+                {courseInfo.session.map((course) => (
+                  <div className="overflow-hidden rounded-[0.75rem] bg-[#f3f4f6]">
+                    <div className="topic__head flex cursor-pointer items-center justify-between gap-x-5 md:gap-x-20 p-4 md:p-4 transition duration-150 ease-in py-2">
+                      <span className="inline-block font-danaDemibold lg:line-clamp-3 transition-colors">
+                        {course.name}
+                      </span>
+                      <div className="flex items-center gap-x-3 shrink-0">
+                        <div className="hidden lg:flex items-center gap-x-1.5 text-sm text-slate-500 dark:text-white child:transition-colors">
+                          <span>3 جلسه</span>
+                          <span className="topic__time-dot block w-1 h-1 bg-slate-500/50 dark:bg-white/50 rounded-full"></span>
+                          <span>14 دقیقه</span>
+                        </div>
+                        <IoIosArrowDown />
+                      </div>
+                    </div>
+                    {course.Episode.map((episode) => (
+                      <div className="topic__body">
+                        <div className="flex items-start justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-4 py-5 group">
 
+                          <div className="flex items-start flex-grow gap-x-2.5 md:gap-x-3.5 child:transition-colors">
+                            <div className="flex items-center justify-center w-8 h-6 md:h-7 text-sm font-danaDemiBold bg-white group-hover:bg-green-500 group-hover:text-white rounded">
+                              {episode.id}
+                            </div>
+                            <a
+                              href={episode.path}
+                              className="inline-block lg:max-w-3/4 text-sm md:text-base group-hover:text-green-500"
+                            >
+                              {episode.name}
+                            </a>
+                          </div>
+
+                          <div className="flex items-center gap-x-1.5 mr-auto text-gray-600 group-hover:text-green-500 child:transition-colors">
+                            <span className="text-sm md:text-base">03:54</span>
+                            <ImPlay2/>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ))}
               </div>
-
             </div>
           </div>
 
