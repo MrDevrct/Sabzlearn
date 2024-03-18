@@ -7,14 +7,33 @@ import SortBox from "../../modules/Categoreis/SortBox";
 import { LuArrowUpDown } from "react-icons/lu";
 
 
-export default function LastArticl() {
+export default function Articl() {
   const [articl, setArticl] = useState([]);
+  const [defulte, setDefulte] = useState([]);
+  const [active, setActive] = useState(null);
+
   useEffect(() => {
     apiRequest("/articles").then((response) => {
       const articl = response.data;
       setArticl(articl);
+      setDefulte(articl)
     });
   }, []);
+
+  const handleSortChange = (sortName) => {
+    let sortedArticles = [...articl];
+    if (sortName === "جدیدترین") {
+      sortedArticles.sort((a, b) => new Date(b.time) - new Date(a.time));
+    } else if (sortName === "قدیمی ترین") {
+      sortedArticles.sort((a, b) => new Date(a.time) - new Date(b.time));
+    } else if (sortName === "پر نظر ها") {
+      sortedArticles.sort((a, b) => b.participants - a.participants);
+    } else {
+      sortedArticles = defulte;
+    }
+    setArticl(sortedArticles);
+    setActive(sortName)
+  };
 
   return (
     <main className="mt-20">
@@ -46,10 +65,10 @@ export default function LastArticl() {
                 <span className="font-danaMedium">مرتب سازی بر اساس :</span>
               </div>
               <div className="flex items-center font-danaLight gap-x-2 lg:gap-x-8 h-full">
-                <SortBox sortName="عادی" />
-                <SortBox sortName="جدیدترین" />
-                <SortBox sortName="قدیمی ترین" />
-                <SortBox sortName="پر نظر ها" />
+                <SortBox sortName="عادی"  onSortChange={handleSortChange} active={ active === "عادی"}/>
+                <SortBox sortName="جدیدترین"  onSortChange={handleSortChange} active={ active === "جدیدترین"}/>
+                <SortBox sortName="قدیمی ترین"  onSortChange={handleSortChange} active={ active === "قدیمی ترین"}/>
+                <SortBox sortName="پر نظر ها"  onSortChange={handleSortChange} active={ active === "پر نظر ها"}/>
               </div>
             </div>
 

@@ -39,13 +39,12 @@
       "time": "2024-02-21T11:30",
       "category": "فرانت اند",
       "session": [
-        {
-          "id": 1,
-          "name": "معرفی",
-          "Episode": [
-            {"id":1 , "name": "" , "path":""}
-          ]
-        }
+        { "id": 1, "name": "مقدماتی", "Episode": [
+          { "id": 1, "name": "کتابخانه ها به چه کاری می آیند" , "description": "" , "path": "/"},
+          { "id": 2, "name": "کتابخانه ها ایا در بهبود و غملکرد تاثیر دارند" , "description": "" , "path": "/"}
+
+        ] },
+        { "id": 2, "name": "پیش نیاز ها", "Episode": [] }
       ]
     },
 
@@ -63,7 +62,14 @@
       "timeMin": "45",
       "time": "2024-02-11T02:30",
       "category": "فرانت اند",
-      "session": [{ "id": 1, "name": "مقدماتی", "Episode": [] }]
+      "session": [
+        { "id": 1, "name": "مقدماتی", "Episode": [
+          { "id": 1, "name": "کتابخانه ها به چه کاری می آیند" , "description": "" , "path": "/"},
+          { "id": 2, "name": "کتابخانه ها ایا در بهبود و غملکرد تاثیر دارند" , "description": "" , "path": "/"}
+
+        ] },
+        { "id": 2, "name": "پیش نیاز ها", "Episode": [] }
+      ]
     },
 
     {
@@ -81,7 +87,12 @@
       "time": "2024-01-01T02:00",
       "category": "ارتقا مهارت",
       "session": [
-        { "id": 1, "name": "مقدماتی", "Episode": [] }
+        { "id": 1, "name": "مقدماتی", "Episode": [
+          { "id": 1, "name": "کتابخانه ها به چه کاری می آیند" , "description": "" , "path": "/"},
+          { "id": 2, "name": "کتابخانه ها ایا در بهبود و غملکرد تاثیر دارند" , "description": "" , "path": "/"}
+
+        ] },
+        { "id": 2, "name": "پیش نیاز ها", "Episode": [] }
       ],
       "comment": []
     },
@@ -101,7 +112,13 @@
       "time": "2024-02-01T10:30",
       "category": "فرانت اند",
       "session": [
-        { "id": 1, "name": "مقدماتی", "Episode": [] }]
+        { "id": 1, "name": "مقدماتی", "Episode": [
+          { "id": 1, "name": "کتابخانه ها به چه کاری می آیند" , "description": "" , "path": "/"},
+          { "id": 2, "name": "کتابخانه ها ایا در بهبود و غملکرد تاثیر دارند" , "description": "" , "path": "/"}
+
+        ] },
+        { "id": 2, "name": "پیش نیاز ها", "Episode": [] }
+      ]
     },
 
     {
@@ -118,7 +135,14 @@
       "timeMin": "00",
       "time": "2024-01-30T12:30",
       "category": "امنیت",
-      "session": [{ "id": 1, "name": "مقدماتی", "Episode": [] }]
+      "session": [
+        { "id": 1, "name": "مقدماتی", "Episode": [
+          { "id": 1, "name": "کتابخانه ها به چه کاری می آیند" , "description": "" , "path": "/"},
+          { "id": 2, "name": "کتابخانه ها ایا در بهبود و غملکرد تاثیر دارند" , "description": "" , "path": "/"}
+
+        ] },
+        { "id": 2, "name": "پیش نیاز ها", "Episode": [] }
+      ]
     },
 
     {
@@ -135,7 +159,14 @@
       "timeMin": "00",
       "time": "2024-02-21T11:30",
       "category": "فرانت اند",
-      "session": [{ "id": 1, "name": "مقدماتی", "Episode": [] }]
+      "session": [
+        { "id": 1, "name": "مقدماتی", "Episode": [
+          { "id": 1, "name": "کتابخانه ها به چه کاری می آیند" , "description": "" , "path": "/"},
+          { "id": 2, "name": "کتابخانه ها ایا در بهبود و غملکرد تاثیر دارند" , "description": "" , "path": "/"}
+
+        ] },
+        { "id": 2, "name": "پیش نیاز ها", "Episode": [] }
+      ]
     },
 
     {
@@ -152,7 +183,14 @@
       "timeMin": "45",
       "time": "2024-02-11T02:30",
       "category": "پی اچ پی",
-      "session": [{ "id": 1, "name": "مقدماتی", "Episode": [] }]
+      "session": [
+        { "id": 1, "name": "مقدماتی", "Episode": [
+          { "id": 1, "name": "کتابخانه ها به چه کاری می آیند" , "description": "" , "path": "/"},
+          { "id": 2, "name": "کتابخانه ها ایا در بهبود و غملکرد تاثیر دارند" , "description": "" , "path": "/"}
+
+        ] },
+        { "id": 2, "name": "پیش نیاز ها", "Episode": [] }
+      ]
     },
 
     {
@@ -169,7 +207,14 @@
       "timeMin": "30",
       "time": "2024-01-01T02:00",
       "category": "پی اچ پی",
-      "session": [{ "id": 1, "name": "مقدماتی", "Episode": [] }]
+      "session": [
+        { "id": 1, "name": "مقدماتی", "Episode": [
+          { "id": 1, "name": "کتابخانه ها به چه کاری می آیند" , "description": "" , "path": "/"},
+          { "id": 2, "name": "کتابخانه ها ایا در بهبود و غملکرد تاثیر دارند" , "description": "" , "path": "/"}
+
+        ] },
+        { "id": 2, "name": "پیش نیاز ها", "Episode": [] }
+      ]
     },
 
     {
@@ -186,7 +231,14 @@
       "timeMin": "15",
       "time": "2024-02-01T10:30",
       "category": "امنیت",
-      "session": [{ "id": 1, "name": "مقدماتی", "Episode": [] }]
+      "session": [
+        { "id": 1, "name": "مقدماتی", "Episode": [
+          { "id": 1, "name": "کتابخانه ها به چه کاری می آیند" , "description": "" , "path": "/"},
+          { "id": 2, "name": "کتابخانه ها ایا در بهبود و غملکرد تاثیر دارند" , "description": "" , "path": "/"}
+
+        ] },
+        { "id": 2, "name": "پیش نیاز ها", "Episode": [] }
+      ]
     },
 
     {
@@ -203,7 +255,14 @@
       "timeMin": "30",
       "time": "2024-01-01T02:00",
       "category": "امنیت",
-      "session": [{ "id": 1, "name": "مقدماتی", "Episode": [] }]
+      "session": [
+        { "id": 1, "name": "مقدماتی", "Episode": [
+          { "id": 1, "name": "کتابخانه ها به چه کاری می آیند" , "description": "" , "path": "/"},
+          { "id": 2, "name": "کتابخانه ها ایا در بهبود و غملکرد تاثیر دارند" , "description": "" , "path": "/"}
+
+        ] },
+        { "id": 2, "name": "پیش نیاز ها", "Episode": [] }
+      ]
     },
 
     {
@@ -220,7 +279,14 @@
       "timeMin": "15",
       "time": "2024-02-01T10:30",
       "category": "امنیت",
-      "session": [{ "id": 1, "name": "مقدماتی", "Episode": [] }]
+      "session": [
+        { "id": 1, "name": "مقدماتی", "Episode": [
+          { "id": 1, "name": "کتابخانه ها به چه کاری می آیند" , "description": "" , "path": "/"},
+          { "id": 2, "name": "کتابخانه ها ایا در بهبود و غملکرد تاثیر دارند" , "description": "" , "path": "/"}
+
+        ] },
+        { "id": 2, "name": "پیش نیاز ها", "Episode": [] }
+      ]
     }
   ],
 
@@ -287,24 +353,27 @@
       "title": "بهترین مفسرهای پایتون",
       "desc": "اگر آموزش جاوا اسکریپت را دنبال کرده باشید حتما می‌دانید که یکی از بخش‌های جدانشدنی و مهم در زبان‌های برنامه نویسی، عملگرها (Operators) هستند. با استفاده از عملگرها می‌توانید محاسبات…",
       "teacher": "سعید راد",
-      "time": "2024-01-01T02:00",
-      "img": "https://sabzlearn.ir/wp-content/uploads/2024/03/best-Python-interpreters0-768x461.webp"
+      "time": "2022-01-01T02:00",
+      "img": "https://sabzlearn.ir/wp-content/uploads/2024/03/best-Python-interpreters0-768x461.webp",
+      "participants": 2000
     },
     {
       "id": 2,
       "title": "جاوا اسکریپت چیست؟",
       "desc": "جاوا اسکریپت چیست؟ ممکن است اولین باری باشد که با این کلمه مواجه شده باشید یا اینکه دنبال این باشید که اطلاعات خودتان را افزایش دهید و درک کاملی از…",
       "teacher": "سعید راد",
-      "time": "2024-01-01T02:00",
-      "img": "https://sabzlearn.ir/wp-content/uploads/2021/10/what-is-javascript-0-768x461.webp"
+      "time": "2023-01-01T02:00",
+      "img": "https://sabzlearn.ir/wp-content/uploads/2021/10/what-is-javascript-0-768x461.webp",
+      "participants": 8000
     },
     {
       "id": 3,
       "title": "عملگر های جاوا اسکریپت",
       "desc": "اگر آموزش جاوا اسکریپت را دنبال کرده باشید حتما می‌دانید که یکی از بخش‌های جدانشدنی و مهم در زبان‌های برنامه نویسی، عملگرها (Operators) هستند. با استفاده از عملگرها می‌توانید محاسبات…",
       "teacher": "سعید راد",
-      "time": "2024-01-01T02:00",
-      "img": "https://sabzlearn.ir/wp-content/uploads/2021/02/javascripts-oprators-768x461.webp"
+      "time": "2024-02-01T02:00",
+      "img": "https://sabzlearn.ir/wp-content/uploads/2021/02/javascripts-oprators-768x461.webp",
+      "participants": 500
     },
     {
       "id": 4,
@@ -312,7 +381,8 @@
       "desc": "برنامه نویسی در حوزه طراحی وب همواره دارای چالش‌های متعددی است که توسعه دهندگان همواره با آنها سروکار دارند. یکی از مشکلاتی که هر از مدتی برای این افراد پیش…",
       "teacher": "سعید راد",
       "time": "2024-01-01T02:00",
-      "img": "https://sabzlearn.ir/wp-content/uploads/2021/09/the-difference-between-bootstrap-4-and-5-768x461.webp"
+      "img": "https://sabzlearn.ir/wp-content/uploads/2021/09/the-difference-between-bootstrap-4-and-5-768x461.webp",
+      "participants": 12000
     }
   ]
 }

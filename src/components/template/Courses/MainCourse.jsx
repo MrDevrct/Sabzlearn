@@ -22,7 +22,6 @@ import { HiAcademicCap } from "react-icons/hi";
 import { IoIosArrowDown } from "react-icons/io";
 import { ImPlay2 } from "react-icons/im";
 
-
 // icon course details box
 import { BsInfoCircle } from "react-icons/bs";
 import { CiVideoOn } from "react-icons/ci";
@@ -43,6 +42,7 @@ export default function CourseView() {
   const params = useParams();
   const [courseInfo, setCourseInfo] = useState(null);
   const [categoryPath, setCategoryPath] = useState(null);
+  const [hoveredItem, setHoveredItem] = useState(null);
 
   // Fetch courses on component mount
   useEffect(() => {
@@ -329,43 +329,65 @@ export default function CourseView() {
               </div>
               <div className="space-y-4 md:space-y-5">
                 {courseInfo.session.map((course) => (
-                  <div className="overflow-hidden rounded-[0.75rem] bg-[#f3f4f6]">
-                    <div className="topic__head flex cursor-pointer items-center justify-between gap-x-5 md:gap-x-20 p-4 md:p-4 transition duration-150 ease-in py-2">
+                  <div
+                    className="overflow-hidden rounded-[0.75rem] bg-[#f3f4f6]"
+                    key={course.id}
+                  >
+                    <div
+                      className={`topic__head flex cursor-pointer items-center justify-between gap-x-5 md:gap-x-20 p-4 md:p-4 transition duration-150 ease-in py-2 ${hoveredItem === course.name ? 'bg-slate-700 text-white' : ''}`}
+                      onClick={() =>
+                        setHoveredItem(
+                          hoveredItem === course.name ? null : course.name
+                        )
+                      }
+                    >
                       <span className="inline-block font-danaDemibold lg:line-clamp-3 transition-colors">
                         {course.name}
                       </span>
                       <div className="flex items-center gap-x-3 shrink-0">
-                        <div className="hidden lg:flex items-center gap-x-1.5 text-sm text-slate-500 dark:text-white child:transition-colors">
+                        <div className={`hidden lg:flex items-center gap-x-1.5 text-sm ${hoveredItem === course.name ? "text-whi" : "text-slate-500"} child:transition-colors`}> 
                           <span>3 جلسه</span>
-                          <span className="topic__time-dot block w-1 h-1 bg-slate-500/50 dark:bg-white/50 rounded-full"></span>
+                          <span className={`topic__time-dot block w-1 h-1 ${hoveredItem === course.name ? "bg-white" : "bg-slate-500/50"} rounded-full`}></span>
                           <span>14 دقیقه</span>
                         </div>
-                        <IoIosArrowDown />
+                        <IoIosArrowDown className={hoveredItem === course.name ? `rotate-180`: ''}/>
                       </div>
                     </div>
-                    {course.Episode.map((episode) => (
-                      <div className="topic__body">
-                        <div className="flex items-start justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-4 py-5 group">
-
-                          <div className="flex items-start flex-grow gap-x-2.5 md:gap-x-3.5 child:transition-colors">
-                            <div className="flex items-center justify-center w-8 h-6 md:h-7 text-sm font-danaDemiBold bg-white group-hover:bg-green-500 group-hover:text-white rounded">
-                              {episode.id}
+                    {hoveredItem === course.name && (
+                      <>
+                        {course.Episode.length > 0 ? (
+                          // اگر آرایه حاوی آیتم‌ها بود
+                          course.Episode.map((episode) => (
+                            <div className="topic__body" key={episode.id}>
+                              <div className="flex items-start justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-4 py-5 group">
+                                <div className="flex items-start flex-grow gap-x-2.5 md:gap-x-3.5 child:transition-colors">
+                                  <div className="flex items-center justify-center w-8 h-6 md:h-7 text-sm font-danaDemiBold bg-white group-hover:bg-green-500 group-hover:text-white rounded">
+                                    {episode.id}
+                                  </div>
+                                  <a
+                                    href={episode.path}
+                                    className="inline-block lg:max-w-3/4 text-sm md:text-base group-hover:text-green-500"
+                                  >
+                                    {episode.name}
+                                  </a>
+                                </div>
+                                <div className="flex items-center gap-x-1.5 mr-auto text-gray-600 group-hover:text-green-500 child:transition-colors">
+                                  <span className="text-sm md:text-base">
+                                    03:54
+                                  </span>
+                                  <ImPlay2 />
+                                </div>
+                              </div>
                             </div>
-                            <a
-                              href={episode.path}
-                              className="inline-block lg:max-w-3/4 text-sm md:text-base group-hover:text-green-500"
-                            >
-                              {episode.name}
-                            </a>
+                          ))
+                        ) : (
+                          // اگر آرایه خالی بود
+                          <div className="text-gray-500 p-4">
+                            هنوز دوره ای قرار داده نشده است .
                           </div>
-
-                          <div className="flex items-center gap-x-1.5 mr-auto text-gray-600 group-hover:text-green-500 child:transition-colors">
-                            <span className="text-sm md:text-base">03:54</span>
-                            <ImPlay2/>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
+                        )}
+                      </>
+                    )}
                   </div>
                 ))}
               </div>

@@ -2,9 +2,9 @@ import Home from './pages/home';
 import Search from './pages/search';
 import NotFound from './pages/notFound';
 import Courses from './pages/courses';
-import Course from './pages/course';
+import courseInfo from './pages/courseInfo';
 import Category from './pages/category';
-import Articles from './pages/articls';
+import Articles from './pages/articles';
 import Login from './pages/login';
 import Register from './pages/register';
 
@@ -25,9 +25,9 @@ const router = [
         component: NotFound
     },
     {
-        name: 'Course',
+        name: 'Course-Info',
         path: '/course/:courseName',
-        component: Course
+        component: courseInfo
     },
     {
         name: 'Courses',
