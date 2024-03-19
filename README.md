@@ -4,7 +4,9 @@ This template provides a minimal setup to get React working in Vite with HMR and
 
 Currently, two official plugins are available:
 
-<h2>Install Packegs</h2>
+<h2>Get Started</h2>
+get Packegs
+```bash
 # npm i
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
