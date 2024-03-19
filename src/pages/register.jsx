@@ -7,7 +7,7 @@ export default function Login() {
       <main className="flex justify-center items-center flex-col relative px-4 py-6 min-h-screen">
         {/* logo sabzlearn  */}
         <a
-          href="https://sabzlearn.ir"
+          href="/"
           class="flex items-center gap-x-3.5 mb-10"
         >
           <img

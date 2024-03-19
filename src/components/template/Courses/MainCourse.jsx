@@ -164,12 +164,13 @@ export default function CourseView() {
           {/* <!-- course video  --> */}
           <div className="overflow-hidden rounded-2xl order-1 lg:order-2 xl:h-[370px]">
             <video
-              src=""
+              src="https://tech.sabzlearn.ir/uploads/ce01010101it/next/Next001-intro.mp4?h=W8dWbT0KKRXcxEXOVXztbw&amp;t=1710900103"
               poster={courseInfo.img}
               className="w-full h-full object-cover"
               alt="آموزش جامع webpack"
               controls
-            ></video>
+            >
+            </video>
           </div>
         </section>
 
@@ -231,10 +232,16 @@ export default function CourseView() {
               </div>
               {/* text description */}
               <div className="relative overflow-hidden">
-                <div className="course-content max-w-none max-h-[800px] leading-10 font-danaLight text-[16px]">
+                <div className="course-content max-w-none max-h-[800px] leading-10 font-danaLight text-[16px] space-y-2">
                   <p>
                     حقیقت تلخ شماره ۱: درصد زیادی از افرادی که یک مسیر رو شروع
                     میکنن. درنهایت شکست میخورن و نتیجه ای نمیگیرن
+                  </p>
+                  <p>
+                  <img 
+                  src={courseInfo.ProjectCourseImg}
+                  loading="lazy"
+                  className="w-full rounded-[25px] p-2"/>
                   </p>
                   <p>
                     حقیفت تلخ شماره ۲: افرادی که از حقیقت اول جان سالم به در
