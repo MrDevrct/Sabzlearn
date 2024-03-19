@@ -207,7 +207,7 @@ export default function CourseView() {
               <CourseDetailBox
                 icon={<HiOutlineBriefcase />}
                 title="پیش نیاز"
-                text="تسلط به فرانت اند"
+                text={` تسلط به ${courseInfo.category}`}
               />
               {/* item 6 */}
               <CourseDetailBox
@@ -346,7 +346,7 @@ export default function CourseView() {
                       </span>
                       <div className="flex items-center gap-x-3 shrink-0">
                         <div className={`hidden lg:flex items-center gap-x-1.5 text-sm ${hoveredItem === course.name ? "text-whi" : "text-slate-500"} child:transition-colors`}> 
-                          <span>3 جلسه</span>
+                          <span>{course.Episode.length} جلسه</span>
                           <span className={`topic__time-dot block w-1 h-1 ${hoveredItem === course.name ? "bg-white" : "bg-slate-500/50"} rounded-full`}></span>
                           <span>14 دقیقه</span>
                         </div>
@@ -403,7 +403,7 @@ export default function CourseView() {
                   <HiUsers className="w-10 h-10 md:w-11 md:h-11 text-green-500" />
                   <div>
                     <span className="block font-bold text-sm md:text-base">
-                      1978
+                      {courseInfo.participants}
                     </span>
                     <span className="block text-sm opacity-70">دانشجو</span>
                   </div>
@@ -413,7 +413,7 @@ export default function CourseView() {
                   <IoIosStar className="w-10 h-10 md:w-11 md:h-11 text-orange-400" />
                   <div>
                     <span className="block font-bold text-sm md:text-base">
-                      5.0
+                      {courseInfo.satisfaction}
                     </span>
                     <span className="block text-sm opacity-70">رضایت</span>
                   </div>
