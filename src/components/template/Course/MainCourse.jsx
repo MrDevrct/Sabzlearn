@@ -21,6 +21,7 @@ import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { HiAcademicCap } from "react-icons/hi";
 import { IoIosArrowDown } from "react-icons/io";
 import { ImPlay2 } from "react-icons/im";
+import { HiSparkles } from "react-icons/hi2";
 
 // icon course details box
 import { BsInfoCircle } from "react-icons/bs";
@@ -43,6 +44,7 @@ export default function CourseView() {
   const [courseInfo, setCourseInfo] = useState(null);
   const [categoryPath, setCategoryPath] = useState(null);
   const [hoveredItem, setHoveredItem] = useState(null);
+  const [showFullContent, setShowFullContent] = useState(false);
 
   // Fetch courses on component mount
   useEffect(() => {
@@ -88,6 +90,11 @@ export default function CourseView() {
   };
 
   const formattedDate = formatDate(courseInfo.time);
+
+  const handlerShowFullContent = () => {
+    setShowFullContent(!showFullContent);
+    console.log(showFullContent);
+  };
 
   return (
     <main className="mt-8 sm:mt-10 px-2">
@@ -169,8 +176,7 @@ export default function CourseView() {
               className="w-full h-full object-cover"
               alt="آموزش جامع webpack"
               controls
-            >
-            </video>
+            ></video>
           </div>
         </section>
 
@@ -232,16 +238,21 @@ export default function CourseView() {
               </div>
               {/* text description */}
               <div className="relative overflow-hidden">
-                <div className="course-content max-w-none max-h-[800px] leading-10 font-danaLight text-[16px] space-y-2">
+                <div
+                  className={`course-content max-w-none ${
+                    showFullContent ? "max-h-full" : "max-h-[800px]"
+                  } leading-10 font-danaLight text-[16px] space-y-2`}
+                >
                   <p>
                     حقیقت تلخ شماره ۱: درصد زیادی از افرادی که یک مسیر رو شروع
                     میکنن. درنهایت شکست میخورن و نتیجه ای نمیگیرن
                   </p>
                   <p>
-                  <img 
-                  src={courseInfo.ProjectCourseImg}
-                  loading="lazy"
-                  className="w-full rounded-[25px] p-2"/>
+                    <img
+                      src={courseInfo.ProjectCourseImg}
+                      loading="lazy"
+                      className="w-full rounded-[25px] p-2"
+                    />
                   </p>
                   <p>
                     حقیفت تلخ شماره ۲: افرادی که از حقیقت اول جان سالم به در
@@ -313,17 +324,61 @@ export default function CourseView() {
                     بدست بیارید و نقاط قوت و ضعف خودتون رو بهبود ببخشید تا در یک
                     رابطه تجاری پرسود. پارتنر های خوبی برای هم باشید
                   </p>
+                  <p>
+                    میخواید باهاتون رو راست باشم؟ همین بازیگرای هالیوود. چند
+                    درصدشون سیاهی لشکرن و چند درصدشون سوپر استار؟ یا اصلا جای
+                    دوری نریم. چند نفر از اطرافیان تون رو میشناسید که کاسب هستن
+                    و از بین اون کاسب ها چند نفر واقعا اوضاع خفنی داره؟ طبعا همه
+                    میدونیم که تعداد این افراد بسیار بسیار کمه و در دنیای برنامه
+                    نویسی. در بخش بازار کار هم اوضاع مستثنی از این نیست. اگر
+                    نخواهیم نگاه سوسیالیستی به مسائل داشته باشیم. اینگونه که همه
+                    مون بهتره فقیر باشیم و کسی لازم نکرده به جایگاه های بالاتر
+                    برسه. باید قبول کنیم که از بین هزاران برنامه نویسی که بصورت
+                    کارمندی کار میکنن. تعداد کمی شون دستمزد های بالایی میگیرن.
+                    تعداد کمی شون در رده های بالاتر مشغول فعالیتن
+                  </p>
+                  <p>
+                    برای مثال: شما ممکنه با برنامه نویس ایرانیی ملاقات کنید که
+                    در عین خوشحالی بگه که من ساعتی تقریبا ۱۷۰ هزار تومان(نسبت به
+                    دلار ۵۰ هزار تومانی) دستمزد میگیرم. اما آیا میدونستید که
+                    تعداد اندکی از این برنامه نویس ها هستن که دو یا سه یا حتی
+                    پنج برابر بیشتر از مبلغ ذکر شده دستمزدشونه؟ شاید در
+                    تصوراتتون برای چنین افراد. آدم هایی بیاد که قطعا بالای ۳۰
+                    ساله برنامه نویس هستن. اما نه جانم! مسئله این نیست که شما
+                    سابقه بسیار بسیار خفنی داشته باشی. مسئله اینه که چقدر شناخت
+                    از کارفرما جماعت داری!
+                  </p>
+                  <p>
+                    فکت: فریلنسر موفق فردی نیست که با هزاران کارفرما در ارتباطه.
+                    بلکه فردیه که با شبکه سازی درست و اصولی تونسته با چند
+                    کارفرمای خردمند ارتباط برقرار کنه و با ارائه خدمات با کیفیت
+                    به اونها و معرفی شدنش به دیگران. این شبکه رو گسترش بده و
+                    گسترش شبکه با کیفیت == پول با کیفیت تر
+                  </p>
                 </div>
-                <div></div>
+                <div
+                  className={`course-content-shadow ${
+                    showFullContent ? "hidden" : "block"
+                  } absolute bottom-0 right-0 left-0 h-[160px] bg-gradient-to-t from-white dark:from-darker from-0% via-white/[55%] dark:via-darker/[55%] via-70% to-white/0 dark:to-darker/0 to-100%`}
+                ></div>
               </div>
 
-              <button className="button-xl button-primary w-full sm:w-auto mx-auto mt-5">
-                <span>مشاهده بیشتر مطلب</span>
-                <MdOutlineKeyboardArrowDown className="text-[30px]" />
+              <button
+                className="button-xl button-primary w-full sm:w-auto mx-auto mt-5"
+                onClick={handlerShowFullContent}
+              >
+                <span>
+                  {showFullContent ? "مشاهده کمتر مطلب" : "مشاهده بیشتر مطلب"}
+                </span>
+                <MdOutlineKeyboardArrowDown
+                  className={`${
+                    showFullContent ? "rotate-180" : ""
+                  } text-[30px]`}
+                />
               </button>
             </div>
 
-            {/* <!-- Headlines --> */}
+            {/* !<-- Headlines --> */}
             <div className="bg-white rounded-2xl p-5 sm:p-5 mt-8">
               <div className="flex items-center gap-x-3 mb-6 sm:mb-7 relative">
                 <span className="absolute -right-6 sm:-right-[26px] block w-1.5 h-[34px] md:h-9.5 bg-sky-500 rounded-r-sm"></span>
@@ -341,7 +396,11 @@ export default function CourseView() {
                     key={course.id}
                   >
                     <div
-                      className={`topic__head flex cursor-pointer items-center justify-between gap-x-5 md:gap-x-20 p-4 md:p-4 transition duration-150 ease-in py-2 ${hoveredItem === course.name ? 'bg-slate-700 text-white' : ''}`}
+                      className={`topic__head flex cursor-pointer items-center justify-between gap-x-5 md:gap-x-20 p-4 md:p-4 transition duration-150 ease-in py-2 ${
+                        hoveredItem === course.name
+                          ? "bg-slate-700 text-white"
+                          : ""
+                      }`}
                       onClick={() =>
                         setHoveredItem(
                           hoveredItem === course.name ? null : course.name
@@ -352,12 +411,28 @@ export default function CourseView() {
                         {course.name}
                       </span>
                       <div className="flex items-center gap-x-3 shrink-0">
-                        <div className={`hidden lg:flex items-center gap-x-1.5 text-sm ${hoveredItem === course.name ? "text-whi" : "text-slate-500"} child:transition-colors`}> 
+                        <div
+                          className={`hidden lg:flex items-center gap-x-1.5 text-sm ${
+                            hoveredItem === course.name
+                              ? "text-whi"
+                              : "text-slate-500"
+                          } child:transition-colors`}
+                        >
                           <span>{course.Episode.length} جلسه</span>
-                          <span className={`topic__time-dot block w-1 h-1 ${hoveredItem === course.name ? "bg-white" : "bg-slate-500/50"} rounded-full`}></span>
+                          <span
+                            className={`topic__time-dot block w-1 h-1 ${
+                              hoveredItem === course.name
+                                ? "bg-white"
+                                : "bg-slate-500/50"
+                            } rounded-full`}
+                          ></span>
                           <span>14 دقیقه</span>
                         </div>
-                        <IoIosArrowDown className={hoveredItem === course.name ? `rotate-180`: ''}/>
+                        <IoIosArrowDown
+                          className={
+                            hoveredItem === course.name ? `rotate-180` : ""
+                          }
+                        />
                       </div>
                     </div>
                     {hoveredItem === course.name && (
@@ -398,6 +473,30 @@ export default function CourseView() {
                   </div>
                 ))}
               </div>
+            </div>
+
+            {/* !<-- Related Courses  */}
+            <div className="hidden lg:block bg-white rounded-2xl p-5 sm:p-5 mt-8">
+              <div className="flex items-center gap-x-2 mb-5 sm:mb-6 relative">
+                <span className="absolute -right-6 sm:-right-[26px] block w-2 h-[34px] md:h-9.5 bg-amber-400 rounded-r-sm "></span>
+                <span className="hidden md:inline-block text-amber-400 text-[30px]">
+                  <HiSparkles className="text-[35px]"/>
+                </span>
+                <h3 className="font-danaDemibold text-xl md:text-2xl">
+                دوره های مرتبط
+                </h3>
+              </div>
+
+              <div className="space-y-4 md:space-y-5">
+                <div className="flex items-center justify-between flex-wrap bg-gray-100 dark:bg-dark rounded-lg py-2 pr-2 pl-4">
+                  <div className="flex items-center gap-x-4 w-4/5">
+                  <img class="w-24 rounded-md aspect-video" src="https://sabzlearn.ir/wp-content/uploads/2023/12/ezgif.com-jpg-to-webp-converted-6-1.webp" alt="آموزش پایتون رایگان مقدماتی تا پیشرفته + پروژه های جذاب"/>
+                  <a href="">salam</a>
+                  </div>
+                  <a href="">salam</a>
+                </div>
+              </div>
+              
             </div>
           </div>
 

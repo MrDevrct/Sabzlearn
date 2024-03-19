@@ -3,7 +3,7 @@ import Search from './pages/search';
 import NotFound from './pages/notFound';
 import Courses from './pages/courses';
 import courseInfo from './pages/courseInfo';
-import Category from './pages/category';
+import Categories from './pages/categories';
 import Articles from './pages/articles';
 import Login from './pages/login';
 import Register from './pages/register';
@@ -37,7 +37,7 @@ const router = [
     {
         name: 'Category',
         path: '/category/:categoryName',
-        component: Category
+        component: Categories
     },
     {
         name: 'Articles',

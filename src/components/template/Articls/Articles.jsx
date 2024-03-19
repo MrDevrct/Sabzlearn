@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import HeaderCategories from "../Category/HeaderCategories";
+import HeaderCategories from "../Categories/HeaderCategories";
 import ArticlBox from "../../modules/ArticlBox";
 import apiRequest from "../../../services/Axios/config";
 import SearchBox from "../../modules/Categoreis/SearchBox";

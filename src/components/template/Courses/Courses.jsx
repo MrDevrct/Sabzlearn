@@ -3,7 +3,7 @@ import CourseBox from "../../modules/CourseBox";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCourses } from "../../../services/Redux/actions";
-import HeaderCategories from "../Category/HeaderCategories";
+import HeaderCategories from "../Categories/HeaderCategories";
 import SortBox from "../../modules/Categoreis/SortBox";
 import FilterBox from "../../modules/Categoreis/FilterBox";
 import SearchBox from "../../modules/Categoreis/SearchBox";

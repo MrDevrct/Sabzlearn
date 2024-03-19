@@ -19,3 +19,4 @@ export default function HeaderCategories({  titlePage , quantityCourses }) {
     </div>
   );
 }
+

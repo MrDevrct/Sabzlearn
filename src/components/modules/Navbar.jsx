@@ -6,7 +6,6 @@ import MenuNav from "./Navbar/menuNav";
 import Theme from "./Navbar/theme";
 import { HiBars3 } from "react-icons/hi2";
 import NavigationMenu from './Navbar/MobileMenu'
-import "../../css/ElementProprety/MenuMobile.css";
 import { useDispatch, useSelector } from "react-redux";
 import { setOpenMenu } from '../../services/Redux/actions'; 
 

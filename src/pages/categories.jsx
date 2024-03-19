@@ -1,10 +1,10 @@
 import React from 'react'
-import Category from '../components/template/Category/Category.jsx'
+import Categories from '../components/template/Categories/Categories'
 
 export default function category() {
   return (
     <>
-    <Category/>
+    <Categories/>
     </>
   )
 }

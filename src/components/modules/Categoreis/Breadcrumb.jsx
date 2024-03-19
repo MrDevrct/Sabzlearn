@@ -1,14 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
-import "../../../css/ElementProprety/Breadcrumb.css";
 
 export default function Breadcrumb({ links }) {
   return (
     <>
-      <div className="breadcrumb">
+      <div className="flex h-[3.25rem] items-center overflow-x-auto bg-white rounded-[0.75rem]">
         {links.map((link) => (
-          <div className="breadcrumb__item" key={link.id}>
+          <div className="flex h-full shrink-0 pr-3" key={link.id}>
             <Link
               className="flex items-center font-danaLight text-xl"
               to={link.to}
