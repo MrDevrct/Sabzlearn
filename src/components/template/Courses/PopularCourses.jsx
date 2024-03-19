@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import SectionHeader from "../Home/SectionHeader";
+import SectionHeader from "../../modules/Home/SectionHeader";
 import CourseBox from "../../modules/CourseBox";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";

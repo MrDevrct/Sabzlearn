@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import AboutUsBox from "../../modules/AboutUsBox";
-import SectionHeader from "../Home/SectionHeader";
+import SectionHeader from "../../modules/Home/SectionHeader";
 import { HiOutlineChatBubbleLeftRight } from "react-icons/hi2";
 import { PiBookOpenBold } from "react-icons/pi";
 import { BsBarChart } from "react-icons/bs";

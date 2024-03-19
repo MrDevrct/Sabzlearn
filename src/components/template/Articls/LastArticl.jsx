@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import SectionHeader from "../Home/SectionHeader";
+import SectionHeader from "../../modules/Home/SectionHeader";
 import ArticlBox from "../../modules/ArticlBox";
 import apiRequest from "../../../services/Axios/config";
 

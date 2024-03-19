@@ -1,5 +1,5 @@
 import React from "react";
-import SectionHeader from "../template/Home/SectionHeader";
+import SectionHeader from "../../modules/Home/SectionHeader";
 
 const roadmap = [
   {

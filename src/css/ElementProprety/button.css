@@ -99,3 +99,15 @@
     color: rgb(34 197 94 / var(--tw-text-opacity));
 }
 
+
+.button-xs {
+    height: 34px;
+    padding-left: 0.625rem;
+    padding-right: 0.625rem;
+}
+button-xs {
+    -moz-column-gap: .625rem;
+    column-gap: 0.625rem;
+    font-size: .875rem;
+    line-height: 1.5rem;
+}

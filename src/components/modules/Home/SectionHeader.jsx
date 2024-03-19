@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../../modules/Button";
+import Button from "../Button";
 
 export default function SectionHeader({
   desc,

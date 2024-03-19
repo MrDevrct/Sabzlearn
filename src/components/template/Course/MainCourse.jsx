@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchCourses } from "../../../services/Redux/actions";
 import apiRequest from "../../../services/Axios/config";
 import moment from "jalali-moment";
+import '../../../css/ElementProprety/button.css'
 
 // component
 import CourseDetailBox from "../../modules/CourseInfo/CourseDetailBox";
@@ -22,6 +23,12 @@ import { HiAcademicCap } from "react-icons/hi";
 import { IoIosArrowDown } from "react-icons/io";
 import { ImPlay2 } from "react-icons/im";
 import { HiSparkles } from "react-icons/hi2";
+import { BsArrowLeftCircleFill } from "react-icons/bs";
+import { HiChatBubbleLeftRight } from "react-icons/hi2";
+import { HiOutlineChatBubbleBottomCenterText } from "react-icons/hi2";
+
+
+
 
 // icon course details box
 import { BsInfoCircle } from "react-icons/bs";
@@ -45,6 +52,7 @@ export default function CourseView() {
   const [categoryPath, setCategoryPath] = useState(null);
   const [hoveredItem, setHoveredItem] = useState(null);
   const [showFullContent, setShowFullContent] = useState(false);
+  const [relatedCourses , setRelatedCourses] = useState([])
 
   // Fetch courses on component mount
   useEffect(() => {
@@ -228,7 +236,7 @@ export default function CourseView() {
             <div className="bg-white rounded-2xl p-5 sm:p-5 mt-8">
               {/* title description */}
               <div className="flex items-center gap-x-2 mb-5 sm:mb-6 relative">
-                <span className="absolute -right-6 sm:-right-[26px] block w-2 h-[34px] md:h-9.5 bg-amber-400 rounded-r-sm "></span>
+                <span className="absolute -right-6 sm:-right-[26px] block w-2 h-[34px] md:h-10 bg-amber-400 rounded-r-sm "></span>
                 <span className="hidden md:inline-block text-amber-400 text-[30px]">
                   <IoDocumentText />
                 </span>
@@ -381,8 +389,8 @@ export default function CourseView() {
             {/* !<-- Headlines --> */}
             <div className="bg-white rounded-2xl p-5 sm:p-5 mt-8">
               <div className="flex items-center gap-x-3 mb-6 sm:mb-7 relative">
-                <span className="absolute -right-6 sm:-right-[26px] block w-1.5 h-[34px] md:h-9.5 bg-sky-500 rounded-r-sm"></span>
-                <span className="hidden md:inline-block text-sky-500 text-[30px]">
+                <span className="absolute -right-6 sm:-right-[26px] block w-1.5 h-[34px] md:h-10 bg-sky-500 rounded-r-sm"></span>
+                <span className="hidden md:inline-block text-sky-500 text-[35px]">
                   <HiAcademicCap />
                 </span>
                 <h3 className="font-danaDemibold text-xl md:text-2xl">
@@ -478,7 +486,7 @@ export default function CourseView() {
             {/* !<-- Related Courses  */}
             <div className="hidden lg:block bg-white rounded-2xl p-5 sm:p-5 mt-8">
               <div className="flex items-center gap-x-2 mb-5 sm:mb-6 relative">
-                <span className="absolute -right-6 sm:-right-[26px] block w-2 h-[34px] md:h-9.5 bg-amber-400 rounded-r-sm "></span>
+                <span className="absolute -right-6 sm:-right-[26px] block w-2 h-[34px] md:h-10 bg-amber-400 rounded-r-sm "></span>
                 <span className="hidden md:inline-block text-amber-400 text-[30px]">
                   <HiSparkles className="text-[35px]"/>
                 </span>
@@ -488,15 +496,80 @@ export default function CourseView() {
               </div>
 
               <div className="space-y-4 md:space-y-5">
+                {/* 1 */}
                 <div className="flex items-center justify-between flex-wrap bg-gray-100 dark:bg-dark rounded-lg py-2 pr-2 pl-4">
                   <div className="flex items-center gap-x-4 w-4/5">
-                  <img class="w-24 rounded-md aspect-video" src="https://sabzlearn.ir/wp-content/uploads/2023/12/ezgif.com-jpg-to-webp-converted-6-1.webp" alt="آموزش پایتون رایگان مقدماتی تا پیشرفته + پروژه های جذاب"/>
-                  <a href="">salam</a>
+                    <img className="w-24 rounded-md aspect-video" src="https://sabzlearn.ir/wp-content/uploads/2023/12/ezgif.com-jpg-to-webp-converted-6-1.webp" alt="آموزش پایتون رایگان مقدماتی تا پیشرفته + پروژه های جذاب"/>
+                    <a href="" className="font-danaMedium line-clamp-2">آموزش شبکه با گرایش امنیت | Black Network</a>
                   </div>
-                  <a href="">salam</a>
+                  <a href="" className="flex gap-x-1 items-center justify-between sm:justify-normal text-sky-500 font-danaDemiBold text-sm">
+                    مشاهده
+                    <BsArrowLeftCircleFill className="text-[20px] mr-1"/>
+                  </a>
+
                 </div>
+                {
+                  courses.category === courseInfo.category
+                }
+                {/* 2 */}
+                <div className="flex items-center justify-between flex-wrap bg-gray-100 dark:bg-dark rounded-lg py-2 pr-2 pl-4">
+                  <div className="flex items-center gap-x-4 w-4/5">
+                    <img className="w-24 rounded-md aspect-video" src="https://sabzlearn.ir/wp-content/uploads/2023/12/ezgif.com-jpg-to-webp-converted-6-1.webp" alt="آموزش پایتون رایگان مقدماتی تا پیشرفته + پروژه های جذاب"/>
+                    <a href="" className="font-danaMedium line-clamp-2">آموزش شبکه با گرایش امنیت | Black Network</a>
+                  </div>
+                  <a href="" className="flex gap-x-1 items-center justify-between sm:justify-normal text-sky-500 font-danaDemiBold text-sm">
+                    مشاهده
+                    <BsArrowLeftCircleFill className="text-[20px] mr-1"/>
+                  </a>
+
+                </div>
+                {/* 3 */}
+                <div className="flex items-center justify-between flex-wrap bg-gray-100 dark:bg-dark rounded-lg py-2 pr-2 pl-4">
+                  <div className="flex items-center gap-x-4 w-4/5">
+                    <img className="w-24 rounded-md aspect-video" src="https://sabzlearn.ir/wp-content/uploads/2023/12/ezgif.com-jpg-to-webp-converted-6-1.webp" alt="آموزش پایتون رایگان مقدماتی تا پیشرفته + پروژه های جذاب"/>
+                    <a href="" className="font-danaMedium line-clamp-2">آموزش شبکه با گرایش امنیت | Black Network</a>
+                  </div>
+                  <a href="" className="flex gap-x-1 items-center justify-between sm:justify-normal text-sky-500 font-danaDemiBold text-sm">
+                    مشاهده
+                    <BsArrowLeftCircleFill className="text-[20px] mr-1"/>
+                  </a>
+
+                </div>
+                {/* 4 */}
+                <div className="flex items-center justify-between flex-wrap bg-gray-100 dark:bg-dark rounded-lg py-2 pr-2 pl-4">
+                  <div className="flex items-center gap-x-4 w-4/5">
+                    <img className="w-24 rounded-md aspect-video" src="https://sabzlearn.ir/wp-content/uploads/2023/12/ezgif.com-jpg-to-webp-converted-6-1.webp" alt="آموزش پایتون رایگان مقدماتی تا پیشرفته + پروژه های جذاب"/>
+                    <a href="" className="font-danaMedium line-clamp-2">آموزش شبکه با گرایش امنیت | Black Network</a>
+                  </div>
+                  <a href="" className="flex gap-x-1 items-center justify-between sm:justify-normal text-sky-500 font-danaDemiBold text-sm">
+                    مشاهده
+                    <BsArrowLeftCircleFill className="text-[20px] mr-1"/>
+                  </a>
+
+                </div>
+
               </div>
               
+            </div>
+
+            {/* comments */}
+            <div className="bg-white rounded-2xl p-5 sm:p-5 mt-8">
+              <div className="flex items-center justify-between mb-6 sm:mb-7">
+              <div className="flex items-center gap-x-3 mb-6 sm:mb-7 relative">
+                <span className="absolute -right-6 sm:-right-[26px] block w-1.5 h-[34px] md:h-10 bg-red-500 rounded-r-sm"></span>
+                <span className="hidden md:inline-block text-red-500 text-[35px]">
+                  <HiChatBubbleLeftRight />
+                </span>
+                <h3 className="font-danaDemibold text-xl md:text-2xl">
+                نظرات
+                </h3>
+              </div>
+              {/* new button */}
+              <button className="button-primary sm:h-[40px] sm:px-[1rem] mb-5 h-[35px] px-[8px] sm:text-[16px] text-[14px]">
+									ایجاد نظر جدید
+                  <HiOutlineChatBubbleBottomCenterText className="mr-1"/>
+							</button>
+              </div>
             </div>
           </div>
 

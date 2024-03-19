@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCourses } from "../../../services/Redux/actions";
-import SectionHeader from "../Home/SectionHeader";
+import SectionHeader from "../../modules/Home/SectionHeader";
 import CourseBox from "../../modules/CourseBox";
 import { Link } from "react-router-dom";
 

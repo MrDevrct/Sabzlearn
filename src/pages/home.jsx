@@ -5,7 +5,7 @@ import AboutUs from "../components/template/AboutUs/AboutUs"
 import PopularCourses from "../components/template/Courses/PopularCourses";
 import PresellCourses from "../components/template/Courses/PresellCourses";
 import LastArticls from "../components/template/Articls/LastArticl";
-import RoadMap from "../components/modules/RoadMap"
+import RoadMap from "../components/template/RoadMap/RoadMap"
 import Banner from "../components/modules/Banner"
 
 
