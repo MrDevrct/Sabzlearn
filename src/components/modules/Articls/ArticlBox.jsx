@@ -1,9 +1,9 @@
 import React from "react";
-import Caver from './Articls/cover'
-import Button from './Articls/button'
-import Icon from './Articls/icon'
-import '../../css/ElementProprety/Blog-Banner.css'
-import TitleAndDescription from "./Articls/TitleAndDescription";
+import Caver from './cover'
+import Button from './button'
+import Icon from './icon'
+import '../../../css/ElementProprety/Blog-Banner.css'
+import TitleAndDescription from "./TitleAndDescription";
 
 export default function ArticlBox(props) {
   return (

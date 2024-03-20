@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import SectionHeader from "../../modules/Home/SectionHeader";
-import ArticlBox from "../../modules/ArticlBox";
+import ArticlBox from "../../modules/Articls/ArticlBox";
 import apiRequest from "../../../services/Axios/config";
 
 export default function LastArticl() {
