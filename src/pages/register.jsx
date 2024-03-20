@@ -11,10 +11,12 @@ import { HiOutlineUser } from "react-icons/hi2";
 import { LuPhone } from "react-icons/lu";
 import { FaRegEnvelope } from "react-icons/fa";
 import { FiLock } from "react-icons/fi";
+import Cookies from "js-cookie";
 
 export default function Login() {
   const userId = uuidv4();
 
+  // form data new user
   const [formData, setFormData] = useState({
     id: userId,
     username: '',
@@ -24,9 +26,11 @@ export default function Login() {
     role: 'USER',
     createdAccount: '',
     updatedAccount: '',
+    wallet : 0 ,
     courses: []
   });
 
+  // set form data
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({
@@ -40,13 +44,18 @@ export default function Login() {
     const currentDate = new Date().toISOString();
     
     try {
-      const response = await apiRequset.post("/user",{...formData,
-        createdAccount: currentDate
-      })
-
-      console.log('response : ', response.data);
+      // post data user new
+      const response = await apiRequset.post("/users",{...formData, createdAccount: currentDate})
+      console.log(response);
+      
+      if (response.status === 201) {
+        // Set token in cookie
+        window.location.pathname = '/'
+        Cookies.set("Token", formData.email , { expires: 7 });
+      }
+      
     } catch (error) {
-      console.error("خطا در ارسال اطلاعات به دیتابیس:", error); // نمایش خطا در صورت وجود
+      console.error(error);
     }
   };
   
@@ -90,6 +99,8 @@ export default function Login() {
               placeholder="نام کاربری"
               icon={HiOutlineUser}
               onChange={handleInputChange}
+              minLength={3}
+              maxLength={15}
             />
 
             {/* phone number */}
@@ -99,6 +110,8 @@ export default function Login() {
               placeholder="شماره موبایل"
               icon={LuPhone}
               onChange={handleInputChange}
+              minLength={11}
+              maxLength={11}
             />
 
             {/* email */}
@@ -117,6 +130,8 @@ export default function Login() {
               placeholder="رمز عبور"
               icon={FiLock}
               onChange={handleInputChange}
+              minLength={3}
+              maxLength={12}
             />
 
             <button className="bg-[#22c55e] text-white rounded-full text-[1rem] px-[1rem] h-[52px] gap-1 w-full">

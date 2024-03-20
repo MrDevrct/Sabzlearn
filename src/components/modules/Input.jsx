@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Input({ type, name , placeholder, icon: Icon , onChange }) {
+export default function Input({ type, name , placeholder, icon: Icon , onChange , minLength , maxLength}) {
   return (
     <div className="relative">
       <input
@@ -10,6 +10,8 @@ export default function Input({ type, name , placeholder, icon: Icon , onChange 
         placeholder={placeholder}
         style={{ paddingLeft: "2.35rem", paddingRight: "0.85rem" }}
         onChange={onChange}
+        minLength={minLength}
+        maxLength={maxLength}
       />
       {Icon && <Icon className="absolute top-0 bottom-0 left-3 my-auto text-[#64748b] text-[20px]" />}
     </div>

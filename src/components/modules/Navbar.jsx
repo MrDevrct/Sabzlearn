@@ -19,6 +19,8 @@ export default function Header() {
     dispatch(setOpenMenu(!openMenu)); // تغییر وضعیت منو
   };
 
+  
+
   return (
     <>
       <div className="bg-white flex items-center justify-between mx-auto w-full h-[84px] md:h-[6rem] px-4 lg:px-12">

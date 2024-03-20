@@ -1,10 +1,93 @@
-import React from "react";
+import React, { useState } from "react";
 import "../css/ElementProprety/FormInput.css";
 import { FaRegEnvelope } from "react-icons/fa";
 import { FiLock } from "react-icons/fi";
 import Input from "../components/modules/Input";
+import apiRequset from "../services/Axios/config";
+import Cookies from 'js-cookie';
+
+// alert toastify
+import { Bounce, ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Login() {
+  // form data
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  // set form data value
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await apiRequset.get("/users");
+      const users = response.data;
+      const isLogin = users.find((users) => users.email === formData.email);
+
+      if (isLogin) {
+        const isPasswordValid = isLogin.password === formData.password;
+        if (isPasswordValid) {
+          toast.success('با موفقیت به وارد شدید.', {
+            position: "top-left",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: false,
+            rtl: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Bounce,
+            });
+
+          Cookies.set('Token', isLogin.email , { expires: 7, domain: 'localhost', httpOnly: false});
+          window.location.pathname = '/'
+        } 
+        else {
+        toast.error("رمز یا ایمیل وارد شده استباه است .", {
+            position: "top-left",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            rtl: true,
+            transition: Bounce,
+        });
+        }
+      } 
+      else {
+      toast.error("کاربری با این ایمیل و رمز عبور یافت نشد.", {
+          position: "top-left",
+          autoClose: 5000,
+          hideProgressBar: false,
+          rtl: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+      });
+      }
+
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <>
       <main className="flex justify-center items-center flex-col relative px-4 py-6 min-h-screen">
@@ -36,14 +119,35 @@ export default function Login() {
           </p>
 
           {/* !<-- form data --> */}
-          <form className="form-data space-y-5">
-            <Input type="text" placeholder="ادرس ایمیل" icon={FaRegEnvelope} />
-            <Input type="text" placeholder="رمز عبور" icon={FiLock} />
-            <button className="bg-[#22c55e] text-white rounded-full text-[1rem] px-[1rem] h-[52px] gap-1 w-full">
+          <form
+            className="form-data space-y-5"
+            onSubmit={(e) => e.preventDefault()}
+          >
+            {/* email */}
+            <Input
+              type="text"
+              name="email"
+              placeholder="ادرس ایمیل"
+              icon={FaRegEnvelope}
+              onChange={handleInputChange}
+            />
+
+            {/* password */}
+            <Input
+              type="text"
+              name="password"
+              placeholder="رمز عبور"
+              icon={FiLock}
+              onChange={handleInputChange}
+            />
+
+            <button
+              className="bg-[#22c55e] text-white rounded-full text-[1rem] px-[1rem] h-[52px] gap-1 w-full"
+              onClick={handleSubmit}
+            >
               ورود
             </button>
           </form>
-
 
           <div className="flex items-center justify-between font-danaMedium text-sm text-slate-500 mt-5">
             <a href="https://sabzlearn.ir/login?after=https%3A%2F%2Fsabzlearn.ir%2F">
@@ -60,10 +164,9 @@ export default function Login() {
 
         {/* footer page */}
         <div className="max-w-[330px] w-full mx-auto text-center mt-7 sm:mt-8 font-danaMedium">
-           با عضویت در سایت، تمامی قوانین و شرایط استفاده از خدمت {" "}
+          با عضویت در سایت، تمامی قوانین و شرایط استفاده از خدمت{" "}
           <a href="https://sabzlearn.ir" className="text-green-500">
-            سبزلرن
-            {" "}
+            سبزلرن{" "}
           </a>
           را پذیرفته اید.
         </div>
@@ -71,6 +174,9 @@ export default function Login() {
         {/* bgraund */}
         <div className="hidden lg:block absolute top-0 left-0 w-[300px] h-[300px] bg-sky-500 opacity-20 blur-[120px] rounded-full"></div>
         <div className="hidden lg:block absolute bottom-0 right-0 w-[300px] h-[300px] bg-amber-400 opacity-20 blur-[120px] rounded-full"></div>
+
+        {/* alert notifiction */}
+        <ToastContainer />
       </main>
     </>
   );
