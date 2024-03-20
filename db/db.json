@@ -15,6 +15,7 @@
       "timeMin": "00",
       "time": "2024-01-30T12:30",
       "category": "فرانت اند",
+      "prerequisite" : "React",
       "session": [
         { "id": 1, "name": "معرفی", "Episode": [
           { "id": 1, "name": "معرفی" , "description": "" , "path": "/"},
@@ -40,6 +41,7 @@
       "timeMin": "00",
       "time": "2024-02-21T11:30",
       "category": "فرانت اند",
+      "prerequisite" : "ReactJs",
       "session": [
         { "id": 1, "name": "معرفی", "Episode": [
           { "id": 1, "name": "معرفی"  , "description": "" , "path": "https://tech.sabzlearn.ir/uploads/ce01010101it/next/Next001-intro.mp4?h=W8dWbT0KKRXcxEXOVXztbw&amp;t=1710900103"},
@@ -65,6 +67,7 @@
       "timeMin": "45",
       "time": "2024-02-11T02:30",
       "category": "فرانت اند",
+      "prerequisite" : "HTML CSS JS",
       "session": [
         { "id": 1, "name": "معرفی", "Episode": [
           { "id": 1, "name": "کتابخانه ها به چه کاری می آیند" , "description": "" , "path": "/"},
@@ -90,6 +93,7 @@
       "timeMin": "30",
       "time": "2024-01-01T02:00",
       "category": "ارتقا مهارت",
+      "prerequisite" : "JS",
       "session": [
         { "id": 1, "name": "معرفی", "Episode": [
           { "id": 1, "name": "کتابخانه ها به چه کاری می آیند" , "description": "" , "path": "/"},
@@ -116,6 +120,7 @@
       "timeMin": "15",
       "time": "2024-02-01T10:30",
       "category": "فرانت اند",
+      "prerequisite" : "HTML CSS JS",
       "session": [
         { "id": 1, "name": "معرفی", "Episode": [
           { "id": 1, "name": "کتابخانه ها به چه کاری می آیند" , "description": "" , "path": "/"},
@@ -141,6 +146,7 @@
       "timeMin": "00",
       "time": "2024-01-30T12:30",
       "category": "امنیت",
+      "prerequisite" : "JS",
       "session": [
         { "id": 1, "name": "معرفی", "Episode": [
           { "id": 1, "name": "کتابخانه ها به چه کاری می آیند" , "description": "" , "path": "/"},
@@ -166,6 +172,7 @@
       "timeMin": "00",
       "time": "2024-02-21T11:30",
       "category": "فرانت اند",
+      "prerequisite" : "تسلط به فرانت",
       "session": [
         { "id": 1, "name": "معرفی", "Episode": [
           { "id": 1, "name": "کتابخانه ها به چه کاری می آیند" , "description": "" , "path": "/"},
@@ -191,6 +198,7 @@
       "timeMin": "45",
       "time": "2024-02-11T02:30",
       "category": "پی اچ پی",
+      "prerequisite" : "تسلط به پی اچ پی",
       "session": [
         { "id": 1, "name": "معرفی", "Episode": [
           { "id": 1, "name": "کتابخانه ها به چه کاری می آیند" , "description": "" , "path": "/"},
@@ -216,6 +224,7 @@
       "timeMin": "30",
       "time": "2024-01-01T02:00",
       "category": "پی اچ پی",
+      "prerequisite" : "تسلط به پی اچ پی",
       "session": [
         { "id": 1, "name": "معرفی", "Episode": [
           { "id": 1, "name": "کتابخانه ها به چه کاری می آیند" , "description": "" , "path": "/"},
@@ -241,6 +250,7 @@
       "timeMin": "15",
       "time": "2024-02-01T10:30",
       "category": "امنیت",
+      "prerequisite" : "پایتون",
       "session": [
         { "id": 1, "name": "معرفی", "Episode": [
           { "id": 1, "name": "کتابخانه ها به چه کاری می آیند" , "description": "" , "path": "/"},
@@ -266,6 +276,7 @@
       "timeMin": "30",
       "time": "2024-01-01T02:00",
       "category": "امنیت",
+      "prerequisite" : "تسلط به فرانت",
       "session": [
         { "id": 1, "name": "معرفی", "Episode": [
           { "id": 1, "name": "کتابخانه ها به چه کاری می آیند" , "description": "" , "path": "/"},
@@ -291,6 +302,7 @@
       "timeMin": "15",
       "time": "2024-02-01T10:30",
       "category": "امنیت",
+      "prerequisite" : "HTML CSS JS",
       "session": [
         { "id": 1, "name": "معرفی", "Episode": [
           { "id": 1, "name": "کتابخانه ها به چه کاری می آیند" , "description": "" , "path": "https://tech.sabzlearn.ir/uploads/ce01010101it/next/Next001-intro.mp4?h=W8dWbT0KKRXcxEXOVXztbw&amp;t=1710900103"},
