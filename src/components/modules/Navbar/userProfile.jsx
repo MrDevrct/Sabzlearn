@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { HiOutlineUser } from "react-icons/hi2";
 import { FaArrowRightFromBracket } from "react-icons/fa6";
 import { CiPower } from "react-icons/ci";
+import { Link } from "react-router-dom";
 
 
 export default function UserProfile() {
@@ -16,26 +17,26 @@ export default function UserProfile() {
       <div className="relative">
         <div className="container">
           <div onClick={handleProfileToggle} className="cursor-pointer">
-            {/* <a href="#" className="hidden lg:block">
+            {/* <Link to="#" className="hidden lg:block">
               <img
                 src="https://secure.gravatar.com/avatar/528a5bf0557c32011fe9642f619f90d9?s=96&d=mm&r=g"
                 className="w-14 h-14 rounded-full"
                 alt="avatar-user"
               />
-            </a> */}
-            <a
-              href="#"
+            </Link> */}
+            <Link
+              to="#"
               className="flex lg:hidden button-xl only-icon bg-gray-100 text-slate-500 dark:text-white" 
             >
               <FaArrowRightFromBracket />
-            </a>
-            <a
-              href=""
+            </Link>
+            <Link
+              to="/login"
               className="hidden lg:flex button-xl button-secondary hover:text-white hover:bg-sky-600"
             >
               ورود | عضویت
               <HiOutlineUser className="text-[18px]" />
-            </a>
+            </Link>
           </div>
 
           {isProfileOpen && (
@@ -58,39 +59,39 @@ export default function UserProfile() {
                 </div>
                 <hr />
                 <div className="flex flex-col">
-                  <a
-                    href=""
+                  <Link
+                    to=""
                     className="text-[#464749] hover:bg-slate-200 hover:text-[#464749] py-[12px] px-2 my-[4px] rounded-[12px]"
                   >
                     <span>پیشخوان</span>
-                  </a>
-                  <a
-                    href=""
+                  </Link>
+                  <Link
+                    to=""
                     className="text-[#464749] hover:bg-slate-200 hover:text-[#464749] py-[12px] px-2 my-[4px] rounded-[12px]"
                   >
                     <span>دوره های من</span>
-                  </a>
-                  <a
-                    href=""
+                  </Link>
+                  <Link
+                    to=""
                     className="text-[#464749] hover:bg-slate-200 hover:text-[#464749] py-[12px] px-2 my-[4px] rounded-[12px]"
                   >
                     <span>تیکت های پشتیبانی</span>
-                  </a>
-                  <a
-                    href=""
+                  </Link>
+                  <Link
+                    to=""
                     className="text-[#464749] hover:bg-slate-200 hover:text-[#464749] py-[12px] px-2 my-[4px] rounded-[12px]"
                   >
                     <span>جزئیات حساب</span>
-                  </a>
+                  </Link>
                 </div>
                 <hr />
                 <div className="flex flex-col">
-                  <a
-                    href=""
+                  <Link
+                    to=""
                     className="text-[#464749] hover:bg-slate-200 hover:text-[#464749] py-[12px] px-2 rounded-[12px]"
                   >
                     <span>خروج</span>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

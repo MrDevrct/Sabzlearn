@@ -1,68 +1,74 @@
 import React from "react";
 import "../css/ElementProprety/FormInput.css";
+import { FaRegEnvelope } from "react-icons/fa";
+import { FiLock } from "react-icons/fi";
+import Input from "../components/modules/Input";
 
 export default function Login() {
   return (
     <>
       <main className="flex justify-center items-center flex-col relative px-4 py-6 min-h-screen">
-        {/* logo sabzlearn  */}
-        <a
-          href="/"
-          className="flex items-center gap-x-3.5 mb-10"
-        >
+        {/* !<-- logo sabzlearn -->  */}
+        <a href="/" className="flex items-center gap-x-3 sm:mb-10 mb-4">
           <img
             src="https://sabzlearn.ir/wp-content/themes/sabzlearn-theme/images/logo.webp"
-            className="sm:h-[62px] h-[50px] lg:mt-5 mt-2"
-            alt="سبز لرن"
-            loading="lazy"
+            alt="logo"
+            className="h-[62px]"
           />
-          <span className="w-[136px] h-[62px]">
-            <h1 className="font-danaDemibold sm:text-[40px] text-[26px]">سبزلرن</h1>
-            <p className="sm:text-[18px] text-[12px]">S a b z l e r n . i r</p>
-          </span>
+          <div className="w-[138px] h-[62px] sm:mb-3 sm:mt-0 mt-10">
+            <h2 className="sm:text-[30px] text-[20px] font-danaDemibold">
+              سبزلرن
+            </h2>
+            <h2 className="sm:text-[18px] text-[12px] font-danaLight">
+              S a b z l e a r n . i r
+            </h2>
+          </div>
         </a>
 
-        {/* page Body  */}
-        <div className="max-w-[330px] w-full pt-5 pb-6 px-6 text-center bg-white dark:bg-darker rounded-2xl">
-          <h4 className="font-danaDemibold text-xl mb-4 sm:mb-4.5">ورود با ایمیل</h4>
-
+        {/* !<-- page Body -->  */}
+        <div className="max-w-[330px] w-full pt-5 pb-6 px-6 text-center bg-white rounded-2xl">
+          <h4 className="font-danaMedium text-xl mb-4 sm:mb-5">عضویت</h4>
           <p className="mb-5">
-            قبلا ثبت نام نکرده اید؟
-            <a
-              href="/register"
-              className="font-danaDemiBold text-green-500"
-            >
-              عضویت
+            قبلا ثبت نام نکرده اید؟{" "}
+            <a href="/register" className="font-danaDemibold text-green-500 ">
+              ثبت نام کنید
             </a>
           </p>
 
-          <form className="user-data__form space-y-5">
-            <div className="relative">
-              <input
-                type="email"
-                className="user-data__username form-input has-icon"
-                placeholder="آدرس ایمیل"
-              />
-            </div>
-            <div className="relative">
-              <input
-                type="password"
-                className="user-data__username form-input has-icon"
-                placeholder="رمز عبور"
-              />
-            </div>
+          {/* !<-- form data --> */}
+          <form className="form-data space-y-5">
+            <Input type="text" placeholder="ادرس ایمیل" icon={FaRegEnvelope} />
+            <Input type="text" placeholder="رمز عبور" icon={FiLock} />
+            <button className="bg-[#22c55e] text-white rounded-full text-[1rem] px-[1rem] h-[52px] gap-1 w-full">
+              ورود
+            </button>
           </form>
+
+
+          <div className="flex items-center justify-between font-danaMedium text-sm text-slate-500 mt-5">
+            <a href="https://sabzlearn.ir/login?after=https%3A%2F%2Fsabzlearn.ir%2F">
+              ورود با موبایل
+            </a>
+            <a
+              href="https://sabzlearn.ir/login/lost-password?after=https%3A%2F%2Fsabzlearn.ir%2F"
+              className="underline underline-offset-2"
+            >
+              فراموشی رمز عبور
+            </a>
+          </div>
         </div>
 
         {/* footer page */}
         <div className="max-w-[330px] w-full mx-auto text-center mt-7 sm:mt-8 font-danaMedium">
-          با عضویت در سایت، تمامی قوانین و شرایط استفاده از خدمت
+           با عضویت در سایت، تمامی قوانین و شرایط استفاده از خدمت {" "}
           <a href="https://sabzlearn.ir" className="text-green-500">
             سبزلرن
-          </a>{" "}
+            {" "}
+          </a>
           را پذیرفته اید.
         </div>
 
+        {/* bgraund */}
         <div className="hidden lg:block absolute top-0 left-0 w-[300px] h-[300px] bg-sky-500 opacity-20 blur-[120px] rounded-full"></div>
         <div className="hidden lg:block absolute bottom-0 right-0 w-[300px] h-[300px] bg-amber-400 opacity-20 blur-[120px] rounded-full"></div>
       </main>
