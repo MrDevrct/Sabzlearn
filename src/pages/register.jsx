@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import apiRequset from '../services/Axios/config'
+import { v4 as uuidv4 } from 'uuid';
 
 // component
 import Input from "../components/modules/Input";
@@ -11,15 +13,43 @@ import { FaRegEnvelope } from "react-icons/fa";
 import { FiLock } from "react-icons/fi";
 
 export default function Login() {
+  const userId = uuidv4();
 
-  const registerNewUser = (event) => {
-    const [formState, setFormState] = useState({
-      username: "login",
-      phone: "123",
-      email: "123@example.com",
-      password: "password",
+  const [formData, setFormData] = useState({
+    id: userId,
+    username: '',
+    phone: '',
+    email: '',
+    password: '',
+    role: 'USER',
+    createdAccount: '',
+    updatedAccount: '',
+    courses: []
+  });
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value
     });
   };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const currentDate = new Date().toISOString();
+    
+    try {
+      const response = await apiRequset.post("/user",{...formData,
+        createdAccount: currentDate
+      })
+
+      console.log('response : ', response.data);
+    } catch (error) {
+      console.error("خطا در ارسال اطلاعات به دیتابیس:", error); // نمایش خطا در صورت وجود
+    }
+  };
+  
 
   return (
     <>
@@ -49,11 +79,46 @@ export default function Login() {
             </Link>
           </p>
 
-          <form className="form-data space-y-5">
-            <Input type="text" placeholder="نام کاربری" icon={HiOutlineUser} />
-            <Input type="text" placeholder="شماره موبایل" icon={LuPhone} />
-            <Input type="text" placeholder="ادرس ایمیل" icon={FaRegEnvelope} />
-            <Input type="text" placeholder="رمز عبور" icon={FiLock} />
+          <form
+            className="form-data space-y-5"
+            onSubmit={handleSubmit}
+          >
+            {/* username */}
+            <Input
+              type="text"
+              name = "username"
+              placeholder="نام کاربری"
+              icon={HiOutlineUser}
+              onChange={handleInputChange}
+            />
+
+            {/* phone number */}
+            <Input
+              type="text"
+              name = "phone"
+              placeholder="شماره موبایل"
+              icon={LuPhone}
+              onChange={handleInputChange}
+            />
+
+            {/* email */}
+            <Input
+              type="email"
+              name = "email"
+              placeholder="ادرس ایمیل"
+              icon={FaRegEnvelope}
+              onChange={handleInputChange}
+            />
+
+            {/* password */}
+            <Input
+              type="password"
+              name = "password"
+              placeholder="رمز عبور"
+              icon={FiLock}
+              onChange={handleInputChange}
+            />
+
             <button className="bg-[#22c55e] text-white rounded-full text-[1rem] px-[1rem] h-[52px] gap-1 w-full">
               ادامه
             </button>

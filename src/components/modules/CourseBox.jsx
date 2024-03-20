@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { HiOutlineUser, HiOutlineUsers } from "react-icons/hi2";
 import { FaStarHalfAlt } from "react-icons/fa";
@@ -27,6 +27,7 @@ export default function CardBox(props) {
             className="block w-full h-full object-cover rounded-2xl"
             src={props.img}
             alt={props.title}
+            loading="lazy"
           />
         </Link>
       </div>
