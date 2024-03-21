@@ -68,7 +68,7 @@ export default function CourseHeadlines({ data }) {
                             {episode.id}
                           </div>
                           <a
-                            href={episode.path}
+                            href={`/lesson/${episode.path}`}
                             className="inline-block lg:max-w-3/4 text-sm md:text-base group-hover:text-green-500"
                           >
                             {episode.name}

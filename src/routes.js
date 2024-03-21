@@ -3,6 +3,7 @@ import Search from './pages/search';
 import NotFound from './pages/notFound';
 import Courses from './pages/courses';
 import courseInfo from './pages/courseInfo';
+import courseParts from './pages/courseParts';
 import Categories from './pages/categories';
 import Articles from './pages/articles';
 import Login from './pages/login';
@@ -28,6 +29,11 @@ const router = [
         name: 'Course-Info',
         path: '/course/:courseName',
         component: courseInfo
+    },
+    {
+        name: 'Course-Parts',
+        path: '/lesson/:courseParts',
+        component: courseParts
     },
     {
         name: 'Courses',
