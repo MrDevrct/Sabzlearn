@@ -1,6 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useParams } from 'react-router-dom';
 
 export default function CourseParts() {
+  const param = useParams()
+  useEffect(()=>{
+    console.log(param);
+  },[])
   return (
     <section className='mx-auto overflow-x-hidden mt-8 sm:mt-10'>
       <div className='container'>

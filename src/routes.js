@@ -17,7 +17,7 @@ const router = [
     },
     {
         name: 'Search',
-        path: '/courses/search',  
+        path: '/courses/:search',  
         component: Search
     },
     {
@@ -32,7 +32,7 @@ const router = [
     },
     {
         name: 'Course-Parts',
-        path: '/lesson/:courseParts',
+        path: '/lesson/:courseInfo',
         component: courseParts
     },
     {

@@ -19,32 +19,32 @@ export default function CourseHeadlines({ data }) {
 
       {/* Headline Items */}
       <div className="space-y-4 md:space-y-5">
-        {data.session.map((course) => (
+        {data.session.map((session) => (
           <div
             className="overflow-hidden rounded-[0.75rem] bg-[#f3f4f6]"
-            key={course.id}
+            key={session.id}
           >
             <div
               className={`topic__head flex cursor-pointer items-center justify-between gap-x-5 md:gap-x-20 p-4 md:p-4 transition duration-150 ease-in py-2 ${
-                hoveredItem === course.name ? "bg-[#64748b] text-white" : ""
+                hoveredItem === session.name ? "bg-[#64748b] text-white" : ""
               }`}
               onClick={() =>
-                setHoveredItem(hoveredItem === course.name ? null : course.name)
+                setHoveredItem(hoveredItem === session.name ? null : session.name)
               }
             >
               <span className="inline-block font-danaDemibold lg:line-clamp-3 transition-colors">
-                {course.name}
+                {session.name}
               </span>
               <div className="flex items-center gap-x-3 shrink-0">
                 <div
                   className={`hidden lg:flex items-center gap-x-1.5 text-sm ${
-                    hoveredItem === course.name ? "text-whi" : "text-slate-500"
+                    hoveredItem === session.name ? "text-whi" : "text-slate-500"
                   } child:transition-colors`}
                 >
-                  <span>{course.Episode.length} جلسه</span>
+                  <span>{session.Episode.length} جلسه</span>
                   <span
                     className={`topic__time-dot block w-1 h-1 ${
-                      hoveredItem === course.name
+                      hoveredItem === session.name
                         ? "bg-white"
                         : "bg-slate-500/50"
                     } rounded-full`}
@@ -52,15 +52,15 @@ export default function CourseHeadlines({ data }) {
                   <span>14 دقیقه</span>
                 </div>
                 <IoIosArrowDown
-                  className={hoveredItem === course.name ? `rotate-180` : ""}
+                  className={hoveredItem === session.name ? `rotate-180` : ""}
                 />
               </div>
             </div>
-            {hoveredItem === course.name && (
+            {hoveredItem === session.name && (
               <>
-                {course.Episode.length > 0 ? (
+                {session.Episode.length > 0 ? (
                   // اگر آرایه حاوی آیتم‌ها بود
-                  course.Episode.map((episode) => (
+                  session.Episode.map((episode) => (
                     <div className="topic__body" key={episode.id}>
                       <div className="flex items-start justify-between gap-x-5 gap-y-3 flex-wrap lg:flex-nowrap px-4 py-5 group">
                         <div className="flex items-start flex-grow gap-x-2.5 md:gap-x-3.5 child:transition-colors">
@@ -68,7 +68,7 @@ export default function CourseHeadlines({ data }) {
                             {episode.id}
                           </div>
                           <a
-                            href={`/lesson/${data.name}-S=${course.id}-${episode.id}`}
+                             href={`/lesson/${data.name}-${session.id}`}
                             className="inline-block lg:max-w-3/4 text-sm md:text-base group-hover:text-green-500"
                           >
                             {episode.name}
