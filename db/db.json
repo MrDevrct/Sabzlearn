@@ -11,6 +11,18 @@
       "updatedAccount": "",
       "wallet": 0,
       "courses": []
+    },
+    {
+      "id": "30b01dd3-b43a-4e7d-8748-06fd815258aa",
+      "username": "Morgan",
+      "phone": "09023883441",
+      "email": "hasanjalali@gmail.com",
+      "password": "Plutnium007",
+      "role": "USER",
+      "createdAccount": "2024-03-21T02:20:22.397Z",
+      "updatedAccount": "",
+      "wallet": 0,
+      "courses": []
     }
   ],
   "courses": [

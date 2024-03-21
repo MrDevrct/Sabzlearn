@@ -11,8 +11,9 @@
 }
 
 .button-xl {
-    height: 52px;
+    height: 56px;
 }
+
 .button-lg, .button-xl {
     -moz-column-gap: .625rem;
     column-gap: 0.625rem;

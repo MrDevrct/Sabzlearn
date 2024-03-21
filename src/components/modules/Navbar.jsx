@@ -42,7 +42,7 @@ export default function Header() {
           <MenuNav platform='desktop'/>
         </nav>
 
-        <div dir="ltr" className="flex items-center gap-x-2 h-13">
+        <div dir="ltr" className="flex items-center gap-x-5 h-13">
           {/* Profile User */}
           <Profile />
           {/* mode theme */}
