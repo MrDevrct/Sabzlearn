@@ -39,7 +39,7 @@ export default function Login() {
         if (isPasswordValid) {
           toast.success('با موفقیت به وارد شدید.', {
             position: "top-left",
-            autoClose: 5000,
+            autoClose: 3000,
             hideProgressBar: true,
             closeOnClick: true,
             pauseOnHover: false,
@@ -56,7 +56,7 @@ export default function Login() {
         else {
         toast.error("رمز یا ایمیل وارد شده استباه است .", {
             position: "top-left",
-            autoClose: 5000,
+            autoClose: 3000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
@@ -71,7 +71,7 @@ export default function Login() {
       else {
       toast.error("کاربری با این ایمیل و رمز عبور یافت نشد.", {
           position: "top-left",
-          autoClose: 5000,
+          autoClose: 3000,
           hideProgressBar: false,
           rtl: true,
           closeOnClick: true,

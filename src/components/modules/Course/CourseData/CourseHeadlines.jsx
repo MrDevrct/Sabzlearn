@@ -26,7 +26,7 @@ export default function CourseHeadlines({ data }) {
           >
             <div
               className={`topic__head flex cursor-pointer items-center justify-between gap-x-5 md:gap-x-20 p-4 md:p-4 transition duration-150 ease-in py-2 ${
-                hoveredItem === course.name ? "bg-slate-700 text-white" : ""
+                hoveredItem === course.name ? "bg-[#64748b] text-white" : ""
               }`}
               onClick={() =>
                 setHoveredItem(hoveredItem === course.name ? null : course.name)

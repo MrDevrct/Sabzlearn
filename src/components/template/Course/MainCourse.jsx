@@ -43,6 +43,7 @@ export default function CourseView() {
   const params = useParams();
   const [courseInfo, setCourseInfo] = useState(null);
   const [categoryPath, setCategoryPath] = useState(null);
+  const [relatedCourse, setRelatedCourse] = useState([]);
 
   // Fetch courses on component mount
   useEffect(() => {
@@ -59,14 +60,24 @@ export default function CourseView() {
   useEffect(() => {
     const fetchCategoryPath = async () => {
       try {
+        // get data Categories
         const categoriesResponse = await apiRequest("/Categories");
-        const category = categoriesResponse.data.find(
-          (category) => courseInfo && courseInfo.category === category.title
-        );
+        const category = categoriesResponse.data.find((category) => courseInfo && courseInfo.category === category.title);
 
+        // If category value
         if (category) {
           setCategoryPath(category.path);
         }
+
+        // related Course 
+        if (courses.length > 0 && courseInfo) {
+          const filteredCourses = courses.filter((course) => course.category === courseInfo.category && course.name !== courseInfo.name); 
+          if (filteredCourses.length > 0) {
+            const fourCourses = filteredCourses.slice(0, 4); // چهار دوره اول
+            setRelatedCourse(fourCourses);
+          }
+        }
+
       } catch (error) {
         console.error("Error fetching category data:", error);
       }
@@ -179,7 +190,7 @@ export default function CourseView() {
             <CourseHeadlines data={courseInfo} />
 
             {/* !<-- Related Courses  */}
-            <CourseRelated />
+            <CourseRelated data={relatedCourse} inCourse={courseInfo}/>
 
             {/* !<-- Comments --> */}
             <CourseComments />

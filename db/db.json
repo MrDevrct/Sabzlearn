@@ -1,61 +1,13 @@
 {
   "users": [
     {
-      "id": "35b95704-dd78-4451-979c-aafc2c8445db",
+      "id": "e01d4d2a-dd5e-41f4-a499-d72a35a71a05",
       "username": "Morgan",
       "phone": "09023883441",
-      "email": "steammw2r6platform@gmail.com",
-      "password": "123456789",
+      "email": "mr.devrct@gmail.com",
+      "password": "123456",
       "role": "USER",
-      "createdAccount": "2024-03-20T21:19:18.347Z",
-      "updatedAccount": "",
-      "wallet": 0,
-      "courses": []
-    },
-    {
-      "id": "b6d7f755-8728-46b7-8acb-da42f39c4b8c",
-      "username": "Morgan",
-      "phone": "09023883441",
-      "email": "gameronlinvip@gmail.com",
-      "password": "212121212",
-      "role": "USER",
-      "createdAccount": "2024-03-20T21:21:36.381Z",
-      "updatedAccount": "",
-      "wallet": 2,
-      "courses": []
-    },
-    {
-      "id": "b6d7f755-8728-46b7-8acb-da42f39c4b8c",
-      "username": "Morgan",
-      "phone": "09023883441",
-      "email": "gameronlinvip@gmail.com",
-      "password": "212121212",
-      "role": "USER",
-      "createdAccount": "2024-03-20T21:21:58.468Z",
-      "updatedAccount": "",
-      "wallet": 0,
-      "courses": []
-    },
-    {
-      "id": "b6d7f755-8728-46b7-8acb-da42f39c4b8c",
-      "username": "Morgan",
-      "phone": "09023883441",
-      "email": "gameronlinvip@gmail.com",
-      "password": "212121212",
-      "role": "USER",
-      "createdAccount": "2024-03-20T21:22:08.041Z",
-      "updatedAccount": "",
-      "wallet": 0,
-      "courses": []
-    },
-    {
-      "id": "b6d7f755-8728-46b7-8acb-da42f39c4b8c",
-      "username": "Morgan",
-      "phone": "09023883441",
-      "email": "gameronlinvip@gmail.com",
-      "password": "212121212",
-      "role": "USER",
-      "createdAccount": "2024-03-20T21:22:13.764Z",
+      "createdAccount": "2024-03-20T23:49:56.740Z",
       "updatedAccount": "",
       "wallet": 0,
       "courses": []

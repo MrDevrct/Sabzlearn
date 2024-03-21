@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import apiRequset from '../services/Axios/config'
-import { v4 as uuidv4 } from 'uuid';
+import apiRequset from "../services/Axios/config";
+import { v4 as uuidv4 } from "uuid";
 
-// component
+// alert toastify
+import { Bounce, ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+// components
 import Input from "../components/modules/Input";
 
 // icon
@@ -12,22 +16,24 @@ import { LuPhone } from "react-icons/lu";
 import { FaRegEnvelope } from "react-icons/fa";
 import { FiLock } from "react-icons/fi";
 import Cookies from "js-cookie";
+import apiRequest from "../services/Axios/config";
 
 export default function Login() {
+  // create id for user
   const userId = uuidv4();
 
   // form data new user
   const [formData, setFormData] = useState({
     id: userId,
-    username: '',
-    phone: '',
-    email: '',
-    password: '',
-    role: 'USER',
-    createdAccount: '',
-    updatedAccount: '',
-    wallet : 0 ,
-    courses: []
+    username: "",
+    phone: "",
+    email: "",
+    password: "",
+    role: "USER",
+    createdAccount: "",
+    updatedAccount: "",
+    wallet: 0,
+    courses: [],
   });
 
   // set form data
@@ -35,30 +41,50 @@ export default function Login() {
     const { name, value } = event.target;
     setFormData({
       ...formData,
-      [name]: value
+      [name]: value,
     });
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const currentDate = new Date().toISOString();
-    
+
     try {
+      // Checking emails are duplicates or not
+      const emailCheck = await apiRequest(`/users?email=${formData.email}`);
+
+      if (emailCheck.data.length > 0) {
+        toast.error("این ایمیل قبلا استفاده شده است.", {
+          position: "top-left",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          rtl: true,
+          transition: Bounce,
+        });
+        return;
+      }
+
       // post data user new
-      const response = await apiRequset.post("/users",{...formData, createdAccount: currentDate})
+      const response = await apiRequset.post("/users", {
+        ...formData,
+        createdAccount: currentDate,
+      });
       console.log(response);
-      
+
       if (response.status === 201) {
         // Set token in cookie
-        window.location.pathname = '/'
-        Cookies.set("Token", formData.email , { expires: 7 });
+        window.location.pathname = "/";
+        Cookies.set("Token", formData.email, { expires: 7 });
       }
-      
     } catch (error) {
       console.error(error);
     }
   };
-  
 
   return (
     <>
@@ -88,14 +114,11 @@ export default function Login() {
             </Link>
           </p>
 
-          <form
-            className="form-data space-y-5"
-            onSubmit={handleSubmit}
-          >
+          <form className="form-data space-y-5" onSubmit={handleSubmit}>
             {/* username */}
             <Input
               type="text"
-              name = "username"
+              name="username"
               placeholder="نام کاربری"
               icon={HiOutlineUser}
               onChange={handleInputChange}
@@ -106,7 +129,7 @@ export default function Login() {
             {/* phone number */}
             <Input
               type="text"
-              name = "phone"
+              name="phone"
               placeholder="شماره موبایل"
               icon={LuPhone}
               onChange={handleInputChange}
@@ -117,7 +140,7 @@ export default function Login() {
             {/* email */}
             <Input
               type="email"
-              name = "email"
+              name="email"
               placeholder="ادرس ایمیل"
               icon={FaRegEnvelope}
               onChange={handleInputChange}
@@ -126,7 +149,7 @@ export default function Login() {
             {/* password */}
             <Input
               type="password"
-              name = "password"
+              name="password"
               placeholder="رمز عبور"
               icon={FiLock}
               onChange={handleInputChange}
