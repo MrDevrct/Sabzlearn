@@ -9,6 +9,7 @@ import Cookies from 'js-cookie';
 // alert toastify
 import { Bounce, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Button from "../components/modules/Button";
 
 export default function Login() {
   // form data
@@ -134,19 +135,18 @@ export default function Login() {
 
             {/* password */}
             <Input
-              type="text"
+              type="password"
               name="password"
               placeholder="رمز عبور"
               icon={FiLock}
               onChange={handleInputChange}
             />
 
-            <button
-              className="bg-[#22c55e] text-white rounded-full text-[1rem] px-[1rem] h-[52px] gap-1 w-full"
+            <Button
+              text='ورود'
               onClick={handleSubmit}
-            >
-              ورود
-            </button>
+            />
+            
           </form>
 
           <div className="flex items-center justify-between font-danaMedium text-sm text-slate-500 mt-5">

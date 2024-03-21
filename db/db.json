@@ -51,13 +51,13 @@
               "id": 1,
               "name": "معرفی",
               "description": "",
-              "path": "/"
+              "video": "/"
             },
             {
               "id": 2,
               "name": "کتابخانه ها ایا در بهبود و غملکرد تاثیر دارند",
               "description": "",
-              "path": "/"
+              "video": "/"
             }
           ]
         },
@@ -70,7 +70,7 @@
     },
     {
       "id": "2",
-      "name": "Next-js",
+      "name": "NextJs",
       "title": "آموزش Next.js بصورت پروژه محور",
       "description": "نکست یه فریمورک مبتنی بر ری‌اکت هست که امروزه تو بازار کار یکی از مهم‌ترین تکنولوژی‌ها برای توسعه دهنده های ری‌اکت به حساب میاد. نکست رو میشه مکمل ری‌اکت دونست. یعنی هر چی که ری‌اکت داره نکست هم داره، بعلاوه چند",
       "img": "https://sabzlearn.ir/wp-content/uploads/2023/12/ezgif.com-jpg-to-webp-converted-27-1-768x432.webp",
@@ -93,13 +93,13 @@
               "id": 1,
               "name": "معرفی",
               "description": "",
-              "path": "https://tech.sabzlearn.ir/uploads/ce01010101it/next/Next001-intro.mp4?h=W8dWbT0KKRXcxEXOVXztbw&amp;t=1710900103"
+              "video": "https://tech.sabzlearn.ir/uploads/ce01010101it/next/Next001-intro.mp4?h=W8dWbT0KKRXcxEXOVXztbw&amp;t=1710900103"
             },
             {
               "id": 2,
               "name": "کتابخانه ها ایا در بهبود و غملکرد تاثیر دارند",
               "description": "",
-              "path": "/"
+              "video": "/"
             }
           ]
         },
@@ -112,7 +112,7 @@
     },
     {
       "id": "3",
-      "name": "React-js",
+      "name": "ReactJs",
       "title": "آموزش ری اکت ( ReactJS ) در دنیای واقعی | از 0 تا استخدام [منتورشیپ]",
       "description": "حدود 40 ساعت آموزش جامع و تخصصی ری اکت!  شما در دوره آموزش ری اکت ReactJS ، این کتابخانه قدرتمند و پر استفاده جاوا اسکریپت را به صورت کاملا پروژه محور و کاربردی یاد میگیرید! ری اکت گل سرسبد فرانت اند محسوب",
       "img": "https://sabzlearn.ir/wp-content/uploads/2023/12/Com_react-1-768x432.webp",
@@ -135,13 +135,13 @@
               "id": 1,
               "name": "کتابخانه ها به چه کاری می آیند",
               "description": "",
-              "path": "/"
+              "video": "/"
             },
             {
               "id": 2,
               "name": "کتابخانه ها ایا در بهبود و غملکرد تاثیر دارند",
               "description": "",
-              "path": "/"
+              "video": "/"
             }
           ]
         },
@@ -177,13 +177,13 @@
               "id": 1,
               "name": "کتابخانه ها به چه کاری می آیند",
               "description": "",
-              "path": "/"
+              "video": "/"
             },
             {
               "id": 2,
               "name": "کتابخانه ها ایا در بهبود و غملکرد تاثیر دارند",
               "description": "",
-              "path": "/"
+              "video": "/"
             }
           ]
         },
@@ -220,13 +220,13 @@
               "id": 1,
               "name": "کتابخانه ها به چه کاری می آیند",
               "description": "",
-              "path": "/"
+              "video": "/"
             },
             {
               "id": 2,
               "name": "کتابخانه ها ایا در بهبود و غملکرد تاثیر دارند",
               "description": "",
-              "path": "/"
+              "video": "/"
             }
           ]
         },
@@ -239,7 +239,7 @@
     },
     {
       "id": "6",
-      "name": "hacker-zero",
+      "name": "hackerZero",
       "title": "ورود به دنیای امنیت | هکر صفر کیلومتر",
       "description": "اگر برای ورود به دنیای امنیت سردرگم هستید. این دوره با راهنمایی مختصر و مفید و ارائه موارد تجربی باعث رشد و حل سردرگمی های شما میشود",
       "img": "https://sabzlearn.ir/wp-content/uploads/2024/01/0h1-768x432.webp",
@@ -262,13 +262,13 @@
               "id": 1,
               "name": "کتابخانه ها به چه کاری می آیند",
               "description": "",
-              "path": "/"
+              "video": "/"
             },
             {
               "id": 2,
               "name": "کتابخانه ها ایا در بهبود و غملکرد تاثیر دارند",
               "description": "",
-              "path": "/"
+              "video": "/"
             }
           ]
         },
@@ -304,13 +304,13 @@
               "id": 1,
               "name": "کتابخانه ها به چه کاری می آیند",
               "description": "",
-              "path": "/"
+              "video": "/"
             },
             {
               "id": 2,
               "name": "کتابخانه ها ایا در بهبود و غملکرد تاثیر دارند",
               "description": "",
-              "path": "/"
+              "video": "/"
             }
           ]
         },
@@ -323,7 +323,7 @@
     },
     {
       "id": "8",
-      "name": "php-project",
+      "name": "phpProject",
       "title": "پروژه های کاربردی با PHP",
       "description": "مینی پروژه‌های کاربری با PHP یه دوره آموزشی گام به گام هست که برای توسعه‌دهندگان وب، به ویژه کسایی که میخوان مهارت‌های برنامه‌نویسی PHP خودشونو تقویت کنن و تجربه‌های عملی کسب کنن، مناسبه",
       "img": "https://sabzlearn.ir/wp-content/uploads/2023/12/ezgif.com-jpg-to-webp-converted-35-1-768x432.webp",
@@ -346,13 +346,13 @@
               "id": 1,
               "name": "کتابخانه ها به چه کاری می آیند",
               "description": "",
-              "path": "/"
+              "video": "/"
             },
             {
               "id": 2,
               "name": "کتابخانه ها ایا در بهبود و غملکرد تاثیر دارند",
               "description": "",
-              "path": "/"
+              "video": "/"
             }
           ]
         },
@@ -388,13 +388,13 @@
               "id": 1,
               "name": "کتابخانه ها به چه کاری می آیند",
               "description": "",
-              "path": "/"
+              "video": "/"
             },
             {
               "id": 2,
               "name": "کتابخانه ها ایا در بهبود و غملکرد تاثیر دارند",
               "description": "",
-              "path": "/"
+              "video": "/"
             }
           ]
         },
@@ -436,7 +436,7 @@
               "id": 2,
               "name": "کتابخانه ها ایا در بهبود و غملکرد تاثیر دارند",
               "description": "",
-              "path": "/"
+              "video": "/"
             }
           ]
         },
@@ -472,13 +472,13 @@
               "id": 1,
               "name": "کتابخانه ها به چه کاری می آیند",
               "description": "",
-              "path": "/"
+              "video": "/"
             },
             {
               "id": 2,
               "name": "کتابخانه ها ایا در بهبود و غملکرد تاثیر دارند",
               "description": "",
-              "path": "/"
+              "video": "/"
             }
           ]
         },
@@ -491,7 +491,7 @@
     },
     {
       "id": "12",
-      "name": "node-js",
+      "name": "nodeJs",
       "title": "آموزش حرفه ای NodeJS بدون پیش نیاز",
       "description": "الان و امروز کمتر کسی هست که از بازار کار داغ نود جی اس با خبر نباشه و یکی از دلایل استفاده از این تکنولوژی فارغ از یه خیلی از مزایاش برای برنامه نویسا(کسب و کار ها به کنار) همین بازار کارشه و ما توی این دوره از نقطه منفی صفر حتی اگه جاوااسکریپت بلد",
       "img": "https://sabzlearn.ir/wp-content/uploads/2023/12/ezgif.com-jpg-to-webp-converted-22-1-768x432.webp",
@@ -514,13 +514,13 @@
               "id": 1,
               "name": "کتابخانه ها به چه کاری می آیند",
               "description": "",
-              "path": "https://tech.sabzlearn.ir/uploads/ce01010101it/next/Next001-intro.mp4?h=W8dWbT0KKRXcxEXOVXztbw&amp;t=1710900103"
+              "video": "https://tech.sabzlearn.ir/uploads/ce01010101it/next/Next001-intro.mp4?h=W8dWbT0KKRXcxEXOVXztbw&amp;t=1710900103"
             },
             {
               "id": 2,
               "name": "کتابخانه ها ایا در بهبود و غملکرد تاثیر دارند",
               "description": "",
-              "path": "/"
+              "video": "/"
             }
           ]
         },

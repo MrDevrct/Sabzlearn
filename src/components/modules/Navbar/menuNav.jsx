@@ -106,7 +106,7 @@ export default function MenuNav({ platform }) {
       {/* !<-- mobile categories --> */}
       {platform === "mobile" && (
         // {/* !<-- list categories --> */}
-        <ul className="mobile-menu">
+        <ul className="mobile-menu space-y-4">
           {menu.map((menuItem) => (
             <li
               key={menuItem.id} // کلید یکتا برای عنصر اصلی لیست

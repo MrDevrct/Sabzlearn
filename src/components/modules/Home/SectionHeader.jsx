@@ -1,10 +1,10 @@
 import React from "react";
-import Button from "../Button";
+import Link from "../Link";
 
 export default function SectionHeader({
   desc,
   title,
-  btnTitle,
+  linkTitle,
   path,
   spanColor,
 }) {
@@ -19,7 +19,7 @@ export default function SectionHeader({
           {desc}
         </p>
       </div>
-      {btnTitle ? <Button btnTitle={btnTitle} path={path} /> : null}
+      {linkTitle ? <Link title={linkTitle} path={path} /> : null}
     </div>
   );
 }

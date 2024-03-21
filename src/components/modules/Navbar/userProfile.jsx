@@ -46,7 +46,7 @@ export default function UserProfile() {
     <>
       <div className="relative group">
         <div className="container">
-          <div className="relative group z-50 cursor-pointer">
+          <div className={`relative group ${isProfileOpen ? 'z-50' : ''} cursor-pointer`}>
             {Token ? (
               <button
                 to="#"

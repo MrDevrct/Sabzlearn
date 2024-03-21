@@ -36,8 +36,6 @@ export default function PopularCourses() {
         <SectionHeader
           title="دوره های پیش فروش"
           desc=" دورهای پیش فروش  بر اساس امتیاز دانشجو ها"
-          path=""
-          btnTitle=""
           spanColor="bg-yellow-500"
         />
 

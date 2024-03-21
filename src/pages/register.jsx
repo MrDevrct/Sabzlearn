@@ -17,6 +17,7 @@ import { FaRegEnvelope } from "react-icons/fa";
 import { FiLock } from "react-icons/fi";
 import Cookies from "js-cookie";
 import apiRequest from "../services/Axios/config";
+import Button from "../components/modules/Button";
 
 export default function Login() {
   // create id for user
@@ -114,7 +115,7 @@ export default function Login() {
             </Link>
           </p>
 
-          <form className="form-data space-y-5" onSubmit={handleSubmit}>
+          <form className="form-data space-y-5">
             {/* username */}
             <Input
               type="text"
@@ -157,9 +158,10 @@ export default function Login() {
               maxLength={12}
             />
 
-            <button className="bg-[#22c55e] text-white rounded-full text-[1rem] px-[1rem] h-[52px] gap-1 w-full">
-              ادامه
-            </button>
+            <Button 
+              text='ادامه'
+              onClick={handleSubmit}
+            />
           </form>
         </div>
 

@@ -19,7 +19,7 @@ export default function LastArticl() {
         <SectionHeader
           title="مقاله ها"
           desc="پیش به سوی ارتقای مهارت ها"
-          btnTitle="مشاهده همه مقالات"
+          linkTitle="مشاهده همه مقالات"
           path='/articles'
           spanColor="bg-yellow-500"
         />

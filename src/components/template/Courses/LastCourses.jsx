@@ -38,7 +38,7 @@ export default function LastCourses() {
             title="جدیدترین دوره ها"
             desc="سکوی پرتاب شما به سمت موفقیت"
             path="/courses/"
-            btnTitle="نمایش همه دوره ها"
+            linkTitle="نمایش همه دوره ها"
             spanColor="bg-yellow-500"
           />
           
