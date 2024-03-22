@@ -15,7 +15,7 @@ export default function CourseTeacher({data}) {
       </span>
       <p className="mt-2"></p>
       <a
-        href="https://sabzlearn.ir/teacher/HamidrezaEbadi"
+        href={`/teacher/${data.teacher}`}
         className="button-primary button-lg button-outline mx-auto my-4 py-2"
       >
         مشاهده پروفایل من

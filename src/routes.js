@@ -6,6 +6,7 @@ import courseInfo from './pages/courseInfo';
 import courseParts from './pages/courseParts';
 import Categories from './pages/categories';
 import Articles from './pages/articles';
+import Teacher from './pages/teacher';
 import Login from './pages/login';
 import Register from './pages/register';
 
@@ -49,6 +50,11 @@ const router = [
         name: 'Articles',
         path: '/articles',
         component: Articles
+    },
+    {
+        name: 'Teacher',
+        path: '/teacher/:teacherName',
+        component: Teacher
     },
     {
         name: 'Login',

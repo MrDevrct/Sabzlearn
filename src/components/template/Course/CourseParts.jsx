@@ -6,7 +6,6 @@ import Breadcrumb from '../../modules/Categoreis/Breadcrumb';
 import { LuHome } from "react-icons/lu";
 import apiRequest from '../../../services/Axios/config';
 import HeaderTitle from '../../modules/Course/CourseData/HeaderTitle';
-import courseAboutTeacher from '../../modules/Course/CourseData/CourseAboutTeacher'
 import Button from '../../modules/Button'
 
 export default function CourseParts() {
@@ -44,9 +43,7 @@ export default function CourseParts() {
         const response = await apiRequest("/Categories");
         const category = response.data.find((category) => course && course.category === category.title);
         setCategoryPath(category.path);
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) {}
     };
     fetchData();
   }, [course]);
@@ -100,7 +97,7 @@ export default function CourseParts() {
 
               {/* course Lesson title */}
               <div className='flex py-5 sm:py-4 my-5 border-b border-b-gray-200'>
-                <div className='inline-flex items-center shrink-0 h-7 bg-sky-50 text-sky-500 dark:bg-sky-500/10 text-sm px-1 ml-2.5 font-danaDemibold rounded'>{episodeCourse.id}</div>
+                <div className='inline-flex items-center shrink-0 h-7 bg-sky-50 text-sky-500 dark:bg-sky-500/10 text-sm px-1 ml-2.5 font-IRANSNumber rounded'>{episodeCourse.id}</div>
                 <h4 className='font-danaMedium sm:text-lg'>{episodeCourse.name}</h4>
               </div>
 
@@ -130,7 +127,19 @@ export default function CourseParts() {
 
           {/* !<-- Side --> */}
           <aside className='col-span-full order-first md:order-none md:col-span-5 xl:col-span-4'>
-            
+            <div className='bg-white border border-gray-100 pl-2 pr-5 sm:pr-5 py-5 sm:py-5 rounded-xl mt-6 lg:mt-0'>
+              {/* title Chapter */}
+              <div className="flex items-center gap-x-2 mb-5 pb-5 border-b">
+							  <span className="font-danaDemibold text-lg">سرفصل های دوره</span>
+						  </div>
+              {/* Chapters */}
+              <div className='overflow-y-scroll pl-2 max-h-[602px]'>
+                <div className='chapter'>
+                  salam
+                </div>
+              </div>
+
+            </div>
           </aside>
         </div>
 

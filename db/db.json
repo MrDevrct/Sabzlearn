@@ -679,5 +679,120 @@
       "img": "https://sabzlearn.ir/wp-content/uploads/2021/09/the-difference-between-bootstrap-4-and-5-768x461.webp",
       "participants": 12000
     }
+  ],
+
+  "teachers": [
+    {
+      "id": 1,
+      "name": "سعید راد",
+      "img": "https://secure.gravatar.com/avatar/50db59beddbfed36a1646dae99ca7b2d?s=256&amp;d=mm&amp;r=g",
+      "description": "اولین کدم رو 14 سالگی زدم، حدود 9 سال پیش که با زبان ویژوال بیسیک بود و بعد حدودا 2 سال تو فیلد برنامه نویسی موبایل با زبان جاوا کار کردم و در نهایت با عشقی به اسم جاوا اسکریپت آشنا شدم و حدودا یه 7 سالی هست جاوا اسکریپت کد می‌زنم و به صورت Mern Stack فعالیت می‌کنم.",
+      "social": [
+        { "id": 1, "name": "instagram", "path": "" },
+        { "id": 2, "name": "telegram", "path": "" }
+      ],
+      "skills" : [
+        { "id": 1, "name": "HTML"},
+        { "id": 2, "name": "CSS"},
+        { "id": 3, "name": "JavaScript"},
+        { "id": 4, "name": "React.js"},
+        { "id": 5, "name": "Redux"},
+        { "id": 6, "name": "Next.js"},
+        { "id": 7, "name": "Node.js"}
+      ],
+      "courses" : [
+        {
+          "id": 1,
+          "name": "NextJs",
+          "title": "آموزش Next.js بصورت پروژه محور",
+          "description": "نکست یه فریمورک مبتنی بر ری‌اکت هست که امروزه تو بازار کار یکی از مهم‌ترین تکنولوژی‌ها برای توسعه دهنده های ری‌اکت به حساب میاد. نکست رو میشه مکمل ری‌اکت دونست. یعنی هر چی که ری‌اکت داره نکست هم داره، بعلاوه چند",
+          "img": "https://sabzlearn.ir/wp-content/uploads/2023/12/ezgif.com-jpg-to-webp-converted-27-1-768x432.webp",
+          "ProjectCourseImg": "https://sabzlearn.ir/wp-content/uploads/2024/01/next.webp",
+          "price": 290000,
+          "participants": 10000,
+          "teacher": "سعید راد",
+          "satisfaction": 400,
+          "timeHours": "60",
+          "timeMin": "00",
+          "time": "2024-02-21T11:30",
+          "category": "فرانت اند",
+          "prerequisite": "ReactJs",
+          "session": [
+            {
+              "id": 1,
+              "name": "معرفی",
+              "Episode": [
+                {
+                  "id": 1,
+                  "name": "اصلا ما چرا ب نکست تیاز داریم",
+                  "description": "",
+                  "video": "https://tech.sabzlearn.ir/uploads/ce01010101it/next/Next001-intro.mp4?h=yGzse9HrlURpPpo8P-MMpg&t=1711149074"
+                },
+                {
+                  "id": 2,
+                  "name": "کتابخانه ها ایا در بهبود و غملکرد تاثیر دارند",
+                  "description": "",
+                  "video": "https://tech.sabzlearn.ir/uploads/ce01010101it/next/Next002-react-vs-next.mp4?h=qa7QssYoKXjAJeP_MSUjyQ&t=1711149149"
+                },
+                {
+                  "id": 3,
+                  "name": "ریکت بهتره یا نکست",
+                  "description": "",
+                  "video": "https://tech.sabzlearn.ir/uploads/ce01010101it/next/Next002-react-vs-next.mp4?h=qa7QssYoKXjAJeP_MSUjyQ&t=1711149149"
+                }
+              ]
+            },
+            {
+              "id": 2,
+              "name": "پیش نیاز ها",
+              "Episode": []
+            }
+          ]
+        },
+        {
+          "id": "3",
+          "name": "ReactJs",
+          "title": "آموزش ری اکت ( ReactJS ) در دنیای واقعی | از 0 تا استخدام [منتورشیپ]",
+          "description": "حدود 40 ساعت آموزش جامع و تخصصی ری اکت!  شما در دوره آموزش ری اکت ReactJS ، این کتابخانه قدرتمند و پر استفاده جاوا اسکریپت را به صورت کاملا پروژه محور و کاربردی یاد میگیرید! ری اکت گل سرسبد فرانت اند محسوب",
+          "img": "https://sabzlearn.ir/wp-content/uploads/2023/12/Com_react-1-768x432.webp",
+          "ProjectCourseImg": "https://sabzlearn.ir/wp-content/uploads/2024/01/REACTjs.webp",
+          "price": 1290000,
+          "participants": 12000,
+          "teacher": "سعید راد",
+          "satisfaction": 210,
+          "timeHours": "89",
+          "timeMin": "45",
+          "time": "2024-02-11T02:30",
+          "category": "فرانت اند",
+          "prerequisite": "HTML CSS JS",
+          "session": [
+            {
+              "id": 1,
+              "name": "معرفی",
+              "Episode": [
+                {
+                  "id": 1,
+                  "name": "کتابخانه ها به چه کاری می آیند",
+                  "description": "",
+                  "video": "/"
+                },
+                {
+                  "id": 2,
+                  "name": "کتابخانه ها ایا در بهبود و غملکرد تاثیر دارند",
+                  "description": "",
+                  "video": "/"
+                }
+              ]
+            },
+            {
+              "id": 2,
+              "name": "پیش نیاز ها",
+              "Episode": []
+            }
+          ]
+        }
+      ]
+
+    }
   ]
 }
