@@ -28,7 +28,7 @@
   "courses": [
     {
       "id": "1",
-      "name": "Library-React",
+      "name": "LibraryReact",
       "title": "۲۰ کتابخانه کاربردی ReactJS برای بازارکار",
       "description": "‌کتابخانه‌ها باعث افزایش سرعت کدنویسی میشن. در حدی که تو بازار کار هم از کتابخانه های مختلفی برای توسعه پروژه‌ها استفاده میشه. تو این دوره 20 کتابخانه پرکاربرد و پراستفاده ری‌اکت که تو بازار کار برای توسعه پروژه های مختلفی استفاده میشه رو بصورت پروژه محور یاد میگیری. این موضوع هم",
       "img": "https://sabzlearn.ir/wp-content/uploads/2023/12/ezgif.com-jpg-to-webp-converted-29-1-768x432.webp",
@@ -91,15 +91,15 @@
           "Episode": [
             {
               "id": 1,
-              "name": "معرفی",
+              "name": "اصلا ما چرا ب نکست تیاز داریم",
               "description": "",
-              "video": "https://tech.sabzlearn.ir/uploads/ce01010101it/next/Next001-intro.mp4?h=W8dWbT0KKRXcxEXOVXztbw&amp;t=1710900103"
+              "video": "https://tech.sabzlearn.ir/uploads/ce01010101it/next/Next001-intro.mp4?h=yGzse9HrlURpPpo8P-MMpg&t=1711149074"
             },
             {
               "id": 2,
               "name": "کتابخانه ها ایا در بهبود و غملکرد تاثیر دارند",
               "description": "",
-              "video": "/"
+              "video": "https://tech.sabzlearn.ir/uploads/ce01010101it/next/Next002-react-vs-next.mp4?h=qa7QssYoKXjAJeP_MSUjyQ&t=1711149149"
             }
           ]
         },
