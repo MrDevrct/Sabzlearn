@@ -7,10 +7,14 @@ export default function HeaderTitle({ spanColor, iconColor, icon, title }) {
       <span
         className={`absolute -right-6 sm:-right-[26px] block w-2 h-[34px] md:h-10 ${spanColor} rounded-r-sm `}
       ></span>
+      
       {/* Icon and Icon Color */}
-      <span className={`hidden md:inline-block ${iconColor} text-[35px]`}>
-        {icon}
-      </span>
+      {icon && (
+        <span className={`hidden md:inline-block ${iconColor} text-[35px]`}>
+          {icon}
+        </span>
+      )}
+
       {/* Title */}
       <h3 className="font-danaDemibold text-xl md:text-2xl">{title}</h3>
     </div>

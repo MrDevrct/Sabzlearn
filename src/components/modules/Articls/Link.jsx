@@ -4,7 +4,6 @@ import { IoArrowBackCircle } from "react-icons/io5";
 export default function button() {
   return (
     <>
-      <div className="flex justify-center pt-[12px] pb-[25px]">
         <a
           href="#"
           className="flex items-center text-zinc-700 dark:text-white hover:text-[#6cdc5e] font-danaMedium transition-colors"
@@ -14,7 +13,6 @@ export default function button() {
             <span className="ml-1 order-1">مطالعه مقاله</span>
           </div>    
         </a>
-      </div>
     </>
   );
 }

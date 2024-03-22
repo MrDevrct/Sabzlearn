@@ -1,5 +1,6 @@
 import React from "react";
-import "../../../css/ElementProprety/button.css";
+import { CiPlay1 } from "react-icons/ci";
+import Button from "../../modules/Button";
 
 export default function Header() {
   return (
@@ -26,27 +27,23 @@ export default function Header() {
             {/* buttons header */}
             <div className="flex items-center justify-center flex-wrap lg:justify-end gap-4 sm:gap-6 mt-8 sm:mt-10">
               <a
-                href="https://sabzlearn.ir/courses/?s=&amp;only_free=yes"
+                href=""
                 className="flex items-center gap-x-2 group font-danaMedium cursor-pointer"
               >
                 <span className="hidden sm:inline">دوره های رایگان</span>
 
-                <span className="button-xl button-primary only-icon">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="32"
-                    height="32"
-                    fill="currentColor"
-                    className="bi bi-play"
-                    viewBox="0 0 16 16"
-                  >
-                    <path d="M10.804 8 5 4.633v6.734zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696z" />
-                  </svg>
-                </span>
+                <Button 
+                  icon={<CiPlay1 />} 
+                  className="button-xl button-primary only-icon text-[20px]"
+                />
+                
               </a>
-              <a href="#roadmaps" className="button-xl button-secondary">
-                از این مسیر ها شروع کن
-              </a>
+
+              <Button 
+                text="از این مسیر ها شروع کن" 
+                className="button-xl button-secondary"
+              />
+                
             </div>
 
             {/* items back in background */}

@@ -112,3 +112,7 @@ button-xs {
     font-size: .875rem;
     line-height: 1.5rem;
 }
+.button-gray {
+    --tw-bg-opacity: 1;
+    background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+}

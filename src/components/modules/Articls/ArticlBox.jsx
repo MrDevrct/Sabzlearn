@@ -1,7 +1,7 @@
 import React from "react";
-import Caver from './cover'
-import Button from './button'
-import Icon from './icon'
+import Caver from './CoverImg'
+import LinkBtn from './Link'
+import Icon from './Icon'
 import '../../../css/ElementProprety/Blog-Banner.css'
 import TitleAndDescription from "./TitleAndDescription";
 
@@ -19,7 +19,11 @@ export default function ArticlBox(props) {
           <div className="mt-auto space-y-2">
             <Icon data={props}/>
             <hr className="text-[#647488]"/>
-            <Button/>
+
+          <div className="flex justify-center pt-[12px] pb-[25px]">
+            <LinkBtn/>
+          </div>
+
           </div>
         </div>
       </div>
