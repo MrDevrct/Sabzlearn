@@ -23,6 +23,18 @@
       "updatedAccount": "",
       "wallet": 0,
       "courses": []
+    },
+    {
+      "id": "af7d7734-bf07-4823-8e40-2b1820abd82d",
+      "username": "MohammadAbdolah",
+      "phone": "09022812384",
+      "email": "mr.mohammad.pg19@gmail.com",
+      "password": "Plutnium007",
+      "role": "USER",
+      "createdAccount": "2024-03-22T17:54:22.427Z",
+      "updatedAccount": "",
+      "wallet": 0,
+      "courses": []
     }
   ],
   "courses": [
@@ -680,27 +692,55 @@
       "participants": 12000
     }
   ],
-
   "teachers": [
     {
-      "id": 1,
+      "id": "1",
       "name": "سعید راد",
       "img": "https://secure.gravatar.com/avatar/50db59beddbfed36a1646dae99ca7b2d?s=256&amp;d=mm&amp;r=g",
       "description": "اولین کدم رو 14 سالگی زدم، حدود 9 سال پیش که با زبان ویژوال بیسیک بود و بعد حدودا 2 سال تو فیلد برنامه نویسی موبایل با زبان جاوا کار کردم و در نهایت با عشقی به اسم جاوا اسکریپت آشنا شدم و حدودا یه 7 سالی هست جاوا اسکریپت کد می‌زنم و به صورت Mern Stack فعالیت می‌کنم.",
       "social": [
-        { "id": 1, "name": "instagram", "path": "" },
-        { "id": 2, "name": "telegram", "path": "" }
+        {
+          "id": 1,
+          "name": "instagram",
+          "path": ""
+        },
+        {
+          "id": 2,
+          "name": "telegram",
+          "path": ""
+        }
       ],
-      "skills" : [
-        { "id": 1, "name": "HTML"},
-        { "id": 2, "name": "CSS"},
-        { "id": 3, "name": "JavaScript"},
-        { "id": 4, "name": "React.js"},
-        { "id": 5, "name": "Redux"},
-        { "id": 6, "name": "Next.js"},
-        { "id": 7, "name": "Node.js"}
+      "skills": [
+        {
+          "id": 1,
+          "name": "HTML"
+        },
+        {
+          "id": 2,
+          "name": "CSS"
+        },
+        {
+          "id": 3,
+          "name": "JavaScript"
+        },
+        {
+          "id": 4,
+          "name": "React.js"
+        },
+        {
+          "id": 5,
+          "name": "Redux"
+        },
+        {
+          "id": 6,
+          "name": "Next.js"
+        },
+        {
+          "id": 7,
+          "name": "Node.js"
+        }
       ],
-      "courses" : [
+      "courses": [
         {
           "id": 1,
           "name": "NextJs",
@@ -792,7 +832,6 @@
           ]
         }
       ]
-
     }
   ]
 }

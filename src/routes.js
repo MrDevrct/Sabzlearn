@@ -43,7 +43,7 @@ const router = [
     },
     {
         name: 'Category',
-        path: '/category/:categoryName',
+        path: '/category/:categoryName/',
         component: Categories
     },
     {

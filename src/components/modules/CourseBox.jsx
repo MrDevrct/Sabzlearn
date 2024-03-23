@@ -50,7 +50,7 @@ export default function CardBox(props) {
           <div className="flex items-center gap-x-1 hover:text-green-500 transition-colors">
             <HiOutlineUser className="text-[18px]" />
             <a
-              href="https://sabzlearn.ir/teacher/moein123"
+              href={`/teacher/${props.teacher}`}
               className="font-danaLight text-[18px] mt-1 hover:text-green-500"
             >
               {props.teacher}

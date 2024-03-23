@@ -1,20 +1,30 @@
 import React, { useState, useEffect } from "react";
-import CourseBox from "../../modules/CourseBox";
 import { Link, useLocation, useParams } from "react-router-dom";
+
+// get data in redux
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCourses } from "../../../services/Redux/actions";
+
+// components
+import CourseBox from "../../modules/CourseBox";
 import HeaderCategories from "../Categories/HeaderCategories";
 import SortBox from "../../modules/Categoreis/SortBox";
 import FilterBox from "../../modules/Categoreis/FilterBox";
 import SearchBox from "../../modules/Categoreis/SearchBox";
-import { LuArrowUpDown } from "react-icons/lu";
 
+// icon
+import { LuArrowUpDown } from "react-icons/lu";
+import { HiOutlineFunnel } from "react-icons/hi2";
+import { BiXCircle } from "react-icons/bi";
+import { CiTrash } from "react-icons/ci";
 
 export default function Courses() {
   const location = useLocation();
   const dispatch = useDispatch();
   const dataCourses = useSelector((state) => state.courses);
   const [coursesInfo, setCoursesInfo] = useState([]);
+  const [isFilterMobile, setIsFilterMobile] = useState(false);
+  const [isSortMobile, setIsSortMobile] = useState(false);
   const { categoryName } = useParams();
   const [searchValue, setSearchValue] = useState(""); // افزودن متغیر searchQuery
   const [active, setActive] = useState(null);
@@ -27,6 +37,7 @@ export default function Courses() {
     setCoursesInfo(dataCourses);
   }, [dataCourses]);
 
+  // search for courses
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
     const newSearchQuery = queryParams.get("q");
@@ -50,6 +61,7 @@ export default function Courses() {
     setCoursesInfo(filteredCourses);
   }, [location.search, dataCourses, categoryName]);
 
+  // sort by course
   const handleSortChange = (sortName) => {
     let sortedCourses = [...dataCourses];
     if (sortName === "ارزان ترین") {
@@ -62,9 +74,30 @@ export default function Courses() {
       sortedCourses = dataCourses;
     }
     setCoursesInfo(sortedCourses);
-    setActive(sortName)
+    setActive(sortName);
   };
-  
+
+  // filter the course
+  const handleFilterChange = (event, operator) => {
+    let sortedCourses = [...coursesInfo];
+    if (event.target.checked === true) {
+      if (operator === "دوره های رایگان") {
+        sortedCourses = sortedCourses.filter((course) => course.price === 0);
+      }
+    } else {
+      sortedCourses = dataCourses;
+    }
+    setCoursesInfo(sortedCourses);
+  };
+
+  const openFilterMobile = () => {
+    setIsFilterMobile(!isFilterMobile);
+  };
+
+  const openSortMobile = () => {
+    setIsSortMobile(!isSortMobile);
+  };
+
   return (
     <main className="mt-20">
       <div className="w-fit container">
@@ -84,15 +117,24 @@ export default function Courses() {
         {/* <!-- content --> */}
         <section className="grid grid-cols-12 gap-y-5 md:gap-x-7">
           {/* <!-- search and filters --> */}
-          <div className="col-span-full lg:col-span-4 xl:col-span-3 lg:sticky top-6 space-y-6">
+          <div className="col-span-full lg:col-span-4 xl:col-span-3 lg:sticky top-6 space-y-6 px-2 md:px-0">
             <form className="space-y-6">
               {/* <!-- search box --> */}
               <SearchBox placeholder="جستجو بین دورها" />
 
               {/* <!-- toggle filters --> */}
-              <FilterBox operator="دوره های رایگان" />
-              <FilterBox operator="دوره های پیش فروش" />
-              <FilterBox operator="دوره های خریداری شده " />
+              <FilterBox
+                operator="دوره های رایگان"
+                onFilterChange={handleFilterChange}
+              />
+              <FilterBox
+                operator="دوره های پیش فروش"
+                onFilterChange={handleFilterChange}
+              />
+              <FilterBox
+                operator="دوره های خریداری شده "
+                onFilterChange={handleFilterChange}
+              />
             </form>
           </div>
 
@@ -104,29 +146,144 @@ export default function Courses() {
                 <span className="font-danaMedium">مرتب سازی بر اساس :</span>
               </div>
               <div className="flex items-center font-danaLight gap-x-2 lg:gap-x-8 h-full">
-                <SortBox sortName="همه دورها" onSortChange={handleSortChange} active={active === "همه دورها"} />
-                <SortBox sortName="ارزان ترین" onSortChange={handleSortChange} active={active === "ارزان ترین"} />
-                <SortBox sortName="گران ترین" onSortChange={handleSortChange} active={active === "گران ترین"} />
-                <SortBox sortName="پر مخاطب ها" onSortChange={handleSortChange} active={active === "پر مخاطب ها"} />
+                <SortBox
+                  sortName="همه دورها"
+                  onSortChange={handleSortChange}
+                  active={active === "همه دورها"}
+                />
+                <SortBox
+                  sortName="ارزان ترین"
+                  onSortChange={handleSortChange}
+                  active={active === "ارزان ترین"}
+                />
+                <SortBox
+                  sortName="گران ترین"
+                  onSortChange={handleSortChange}
+                  active={active === "گران ترین"}
+                />
+                <SortBox
+                  sortName="پر مخاطب ها"
+                  onSortChange={handleSortChange}
+                  active={active === "پر مخاطب ها"}
+                />
+              </div>
+            </div>
+
+            {/* mobile sort and filter */}
+            <div className="flex md:hidden items-center gap-6 mb-8">
+              <div
+                className="flex cursor-pointer items-center rounded-full justify-center font-danaMedium h-[52px] px-4 text-lg gap-x-3 bg-white text-black w-1/2"
+                onClick={openFilterMobile}
+              >
+                <HiOutlineFunnel className="text-[24px]" />
+                <span>فیلتر</span>
+              </div>
+              <div
+                className="flex cursor-pointer items-center rounded-full justify-center font-danaMedium h-[52px] px-4 text-lg gap-x-3 bg-white text-black w-1/2"
+                onClick={openSortMobile}
+              >
+                <LuArrowUpDown className="text-[24px]" />
+                <span>همه دوره ها</span>
               </div>
             </div>
 
             {/* <!-- courses --> */}
-              <div className="posts_wrap grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-7 sm:px-0 px-2">
-                {coursesInfo.length > 0 ? (
-                  coursesInfo.map((course) => (
-                    <CourseBox key={course.id} {...course} />
-                  ))
-                ) : (
-                  <Link to="/courses">
-                    <button>برگشت به صفحه محصولاتی</button>
-                  </Link>
-                )}
-              </div>
-
+            <div className="posts_wrap grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-7 sm:px-0 px-2">
+              {coursesInfo.length > 0 ? (
+                coursesInfo.map((course) => (
+                  <CourseBox key={course.id} {...course} />
+                ))
+              ) : (
+                <Link to="/courses">
+                  <button>برگشت به صفحه محصولاتی</button>
+                </Link>
+              )}
+            </div>
           </section>
         </section>
       </div>
+
+      {/* sort Mobile */}
+      <div
+        className={`bottom-sheet ${isSortMobile ? "bottom-sheet--open" : ""}`}
+      >
+        <div className="bottom-sheet__header">
+          <span className="bottom-sheet__name font-danaDemibold">
+            مرتب سازی بر اساس
+          </span>
+          <button className="bottom-sheet__close-btn" onClick={openSortMobile}>
+            <BiXCircle className="text-[25px]" />
+          </button>
+        </div>
+
+        <div className="bottom-sheet__body font-danaMedium">
+          <a
+            href=""
+            className="bottom-sheet__item bottom-sheet__item--selected"
+          >
+            <span>همه دوره ها</span>
+          </a>
+          <a href="" className="bottom-sheet__item ">
+            <span>ارزان ترین</span>
+          </a>
+          <a href="" className="bottom-sheet__item ">
+            <span>گران ترین</span>
+          </a>
+          <a href="" className="bottom-sheet__item ">
+            <span>پرمخاطب ها</span>
+          </a>
+        </div>
+      </div>
+
+      {/* filter mobile */}
+      <div className={` filter ${isFilterMobile ? "filter--open" : ""}`}>
+        <div className="filter__header">
+          <div className="flex items-center gap-x-2">
+            <button
+              className="filter__close-btn flex items-center justify-center mb-1"
+              onClick={openFilterMobile}
+            >
+              <BiXCircle className="text-[25px]" />
+            </button>
+            <span className="font-danaDemibold text-lg">فیلترها</span>
+          </div>
+          <button className="filter__clean-btn font-danaDemibold">
+            حذف فیلتر ها
+            <CiTrash className="text-[25px] mb-1" />
+          </button>
+        </div>
+
+        <form className="filter__body">
+          <label className="toggle w-full flex items-center justify-between py-5">
+            <span className="font-danaMedium select-none">
+              فقط دوره های رایگان
+            </span>
+            <input type="checkbox" className="toggle__input" />
+            <span className="toggle__marker"></span>
+          </label>
+          <label className="toggle w-full flex items-center justify-between py-5 border-t border-t-gray-200">
+            <span className="font-danaMedium select-none">
+              فقط دوره های رایگان
+            </span>
+            <input type="checkbox" className="toggle__input" />
+            <span className="toggle__marker"></span>
+          </label>
+        </form>
+
+        <div className="filter__footer">
+          <button className="filter__submit-btn button-lg button-primary w-full">
+            اعمال فیلتر
+          </button>
+        </div>
+      </div>
+
+      {/* bg shadow */}
+      {isSortMobile && (
+        <div
+          className="overlay fixed w-full h-full top-0 left-0 bg-black/40 z-40 transition-all"
+          onClick={openSortMobile}
+        ></div>
+      )}
     </main>
   );
 }

@@ -1,16 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import SortBox from "../../modules/Categoreis/SortBox";
-import CourseBox from "../../modules/CourseBox";
-import HeaderCategories from "./HeaderCategories";
 import apiRequest from "../../../services/Axios/config";
-import "../../../css/ElementProprety/Input.css";
-import FilterBox from "../../modules/Categoreis/FilterBox";
-import SearchBox from "../../modules/Categoreis/SearchBox";
-import { LuArrowUpDown } from "react-icons/lu";
+
+// get data in redux
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCourses } from "../../../services/Redux/actions";
 
+//components
+import CourseBox from "../../modules/CourseBox";
+import SortBox from "../../modules/Categoreis/SortBox";
+import HeaderCategories from "./HeaderCategories";
+import FilterBox from "../../modules/Categoreis/FilterBox";
+import SearchBox from "../../modules/Categoreis/SearchBox";
+
+// icon
+import { LuArrowUpDown } from "react-icons/lu";
+import { HiOutlineFunnel } from "react-icons/hi2";
+import { BiXCircle } from "react-icons/bi";
+import { CiTrash } from "react-icons/ci";
+
+// styles for input
+import "../../../css/ElementProprety/Input.css";
+import "../../../css/ElementProprety/FiltersMobile.css";
 
 export default function Category() {
   const dispatch = useDispatch();
@@ -18,6 +29,8 @@ export default function Category() {
   const [coursesInfo, setCoursesInfo] = useState([]);
   const { categoryName } = useParams();
   const [courseCount, setCourseCount] = useState(0);
+  const [isFilterMobile, setIsFilterMobile] = useState(false);
+  const [isSortMobile, setIsSortMobile] = useState(false);
   const [categoryTitle, setCategoryTitle] = useState("");
   const [sortSelected, setSortSelected] = useState(null);
   const [active, setActive] = useState(null);
@@ -30,6 +43,7 @@ export default function Category() {
     setCoursesInfo(dataCourses);
   }, [dataCourses]);
 
+  // get all courses in the Category name
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -39,7 +53,7 @@ export default function Category() {
         const selectedCategory = category.find(
           (category) => category.path === categoryName
         );
-  
+
         // Set category title
         if (selectedCategory) {
           setCategoryTitle(selectedCategory.title);
@@ -55,12 +69,13 @@ export default function Category() {
         console.error("Error fetching data:", error);
       }
     };
-  
+
     if (categoryName) {
       fetchData();
     }
   }, [categoryName, dataCourses]);
 
+  // sort by course
   const handleSortChange = (sortName) => {
     let sortedCourses = [...coursesInfo];
     if (sortName === "ارزان ترین") {
@@ -76,7 +91,27 @@ export default function Category() {
     setCoursesInfo(sortedCourses);
     setActive(sortName);
   };
-  
+
+  // filter by course
+  const handleFilterChange = (event, operator) => {
+    let sortedCourses = [...coursesInfo];
+    if (event.target.checked === true) {
+      if (operator === "دوره های رایگان") {
+        sortedCourses = sortedCourses.filter((course) => course.price === 0);
+      }
+    } else {
+      sortedCourses = sortSelected;
+    }
+    setCoursesInfo(sortedCourses);
+  };
+
+  const openFilterMobile = () => {
+    setIsFilterMobile(!isFilterMobile);
+  };
+
+  const openSortMobile = () => {
+    setIsSortMobile(!isSortMobile);
+  };
 
   return (
     // section categories
@@ -91,20 +126,47 @@ export default function Category() {
         {/* content */}
         <section className="grid grid-cols-12 gap-y-5 md:gap-x-7">
           {/* search and filters */}
-          <div className="col-span-full lg:col-span-4 xl:col-span-3 lg:sticky top-6 space-y-6">
+          <div className="col-span-full lg:col-span-4 xl:col-span-3 lg:sticky top-6 space-y-6 px-2 md:px-0">
             <form className="space-y-6">
               {/* search */}
               <SearchBox placeholder={`جستجو بین دورهای ${categoryTitle}`} />
 
               {/* toggle filters */}
-              <FilterBox operator="دوره های رایگان" />
-              <FilterBox operator="دوره های پیش فروش" />
-              <FilterBox operator="دوره های خریداری شده " />
+              <FilterBox
+                operator="دوره های رایگان"
+                onFilterChange={handleFilterChange}
+              />
+              <FilterBox
+                operator="دوره های پیش فروش"
+                onFilterChange={handleFilterChange}
+              />
+              <FilterBox
+                operator="دوره های خریداری شده "
+                onFilterChange={handleFilterChange}
+              />
             </form>
           </div>
 
           {/* content sort and courses */}
           <section className="col-span-full lg:col-span-8 xl:col-span-9 order-1 lg:order-2">
+
+            {/* mobile sort and filter */}
+            <div className="flex md:hidden items-center gap-6 mb-8">
+              <div
+                className="flex cursor-pointer items-center rounded-full justify-center font-danaMedium h-[52px] px-4 text-lg gap-x-3 bg-white text-black w-1/2"
+                onClick={openFilterMobile}
+              >
+                <HiOutlineFunnel className="text-[24px]" />
+                <span>فیلتر</span>
+              </div>
+              <div className="flex cursor-pointer items-center rounded-full justify-center font-danaMedium h-[52px] px-4 text-lg gap-x-3 bg-white text-black w-1/2"
+                onClick={openSortMobile}
+              >
+                <LuArrowUpDown className="text-[24px]" />
+                <span>همه دوره ها</span>
+              </div>
+            </div>
+
             {/* <!-- sort in courses --> */}
             <div className="hidden lg:flex items-center gap-x-6 px-5 mb-8 h-16 bg-white shadow-normal rounded-xl">
               <div className="flex items-center shrink-0 gap-x-2 px-4">
@@ -112,10 +174,26 @@ export default function Category() {
                 <span className="font-danaMedium">مرتب سازی بر اساس :</span>
               </div>
               <div className="flex items-center font-danaLight gap-x-2 lg:gap-x-8 h-full">
-                <SortBox sortName="همه دورها" onSortChange={handleSortChange} active={active === "همه دورها"} />
-                <SortBox sortName="ارزان ترین" onSortChange={handleSortChange} active={active === "ارزان ترین"} />
-                <SortBox sortName="گران ترین" onSortChange={handleSortChange} active={active === "گران ترین"} />
-                <SortBox sortName="پر مخاطب ها" onSortChange={handleSortChange} active={active === "پر مخاطب ها"} />
+                <SortBox
+                  sortName="همه دورها"
+                  onSortChange={handleSortChange}
+                  active={active === "همه دورها"}
+                />
+                <SortBox
+                  sortName="ارزان ترین"
+                  onSortChange={handleSortChange}
+                  active={active === "ارزان ترین"}
+                />
+                <SortBox
+                  sortName="گران ترین"
+                  onSortChange={handleSortChange}
+                  active={active === "گران ترین"}
+                />
+                <SortBox
+                  sortName="پر مخاطب ها"
+                  onSortChange={handleSortChange}
+                  active={active === "پر مخاطب ها"}
+                />
               </div>
             </div>
 
@@ -128,6 +206,84 @@ export default function Category() {
           </section>
         </section>
       </div>
+
+      {/* sort Mobile */}
+      <div className={`bottom-sheet ${isSortMobile ? 'bottom-sheet--open' : ''}`}>
+
+        <div className="bottom-sheet__header">
+          <span className="bottom-sheet__name font-danaDemibold">مرتب سازی بر اساس</span>
+          <button class="bottom-sheet__close-btn" onClick={openSortMobile}>
+            <BiXCircle className="text-[25px]" />
+          </button>
+        </div>
+
+        <div className="bottom-sheet__body font-danaMedium">
+          <a href="" className="bottom-sheet__item bottom-sheet__item--selected">
+            <span>همه دوره ها</span>
+          </a>
+          <a href="" className="bottom-sheet__item ">
+            <span>ارزان ترین</span>
+          </a>
+          <a href="" className="bottom-sheet__item ">
+            <span>گران ترین</span>
+          </a>
+          <a href="" className="bottom-sheet__item ">
+            <span>پرمخاطب ها</span>
+          </a>
+        </div>
+
+      </div>
+
+      {/* filter mobile */}
+      <div className={` filter ${isFilterMobile ? "filter--open" : ""}`}>
+        <div className="filter__header">
+          <div className="flex items-center gap-x-2">
+            <button
+              className="filter__close-btn flex items-center justify-center mb-1"
+              onClick={openFilterMobile}
+            >
+              <BiXCircle className="text-[25px]" />
+            </button>
+            <span className="font-danaDemibold text-lg">فیلترها</span>
+          </div>
+          <button className="filter__clean-btn font-danaDemibold">
+            حذف فیلتر ها
+            <CiTrash className="text-[25px] mb-1" />
+          </button>
+        </div>
+
+        <form className="filter__body">
+          <label className="toggle w-full flex items-center justify-between py-5">
+            <span className="font-danaMedium select-none">
+              فقط دوره های رایگان
+            </span>
+            <input type="checkbox" className="toggle__input" />
+            <span className="toggle__marker"></span>
+          </label>
+          <label className="toggle w-full flex items-center justify-between py-5 border-t border-t-gray-200">
+            <span className="font-danaMedium select-none">
+              فقط دوره های رایگان
+            </span>
+            <input type="checkbox" className="toggle__input" />
+            <span className="toggle__marker"></span>
+          </label>
+        </form>
+
+        <div className="filter__footer">
+          <button className="filter__submit-btn button-lg button-primary w-full">
+            اعمال فیلتر
+          </button>
+        </div>
+      </div>
+
+      {/* bg shadow */}
+      {isSortMobile && (
+      <div
+        className="overlay fixed w-full h-full top-0 left-0 bg-black/40 z-40 transition-all"
+        onClick={openSortMobile}
+      ></div>
+      )}
+
     </main>
   );
 }
