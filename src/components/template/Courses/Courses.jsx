@@ -28,6 +28,10 @@ export default function Courses() {
   const { categoryName } = useParams();
   const [searchValue, setSearchValue] = useState(""); // افزودن متغیر searchQuery
   const [active, setActive] = useState(null);
+  // filter mobile
+  const [freeCoursesOnly, setFreeCoursesOnly] = useState(false);
+  const [preSaleCoursesOnly, setPreSaleCoursesOnly] = useState(false);
+  const [purchasedCoursesOnly, setPurchasedCoursesOnly] = useState(false);
 
   useEffect(() => {
     dispatch(fetchCourses());
@@ -98,6 +102,49 @@ export default function Courses() {
     setIsSortMobile(!isSortMobile);
   };
 
+  // handel filter course to  mobile
+  const handleFilterSubmit = () => {
+    let filteredCourses = dataCourses;
+
+    if (freeCoursesOnly) {
+      filteredCourses = filteredCourses.filter((course) => course.price === 0);
+    }
+    if (preSaleCoursesOnly) {
+      // فیلتر دوره های پیش فروش
+    }
+    if (purchasedCoursesOnly) {
+      // فیلتر دوره های خریداری شده
+    }
+
+    setCoursesInfo(filteredCourses);
+    openFilterMobile()
+  };
+  // remove handel filter course to  mobile
+  const handleFilterClear = () => {
+    setFreeCoursesOnly(false);
+    setPreSaleCoursesOnly(false);
+    setPurchasedCoursesOnly(false);
+  
+    // همچنین می‌توانید فیلترها را در همینجا اعمال کنید
+    let filteredCourses = dataCourses;
+  
+    if (!freeCoursesOnly && !preSaleCoursesOnly && !purchasedCoursesOnly) {
+      setCoursesInfo(dataCourses); // اگر هیچ چک‌باکسی انتخاب نشده بود، نمایش تمام دوره‌ها
+    } else {
+      if (freeCoursesOnly) {
+        filteredCourses = filteredCourses.filter((course) => course.price === 0);
+      }
+      if (preSaleCoursesOnly) {
+        // فیلتر دوره های پیش فروش
+      }
+      if (purchasedCoursesOnly) {
+        // فیلتر دوره های خریداری شده
+      }
+  
+      setCoursesInfo(filteredCourses);
+    }
+  };
+
   return (
     <main className="mt-20">
       <div className="w-fit container">
@@ -147,21 +194,25 @@ export default function Courses() {
               </div>
               <div className="flex items-center font-danaLight gap-x-2 lg:gap-x-8 h-full">
                 <SortBox
+                  platform="desktop"
                   sortName="همه دورها"
                   onSortChange={handleSortChange}
                   active={active === "همه دورها"}
                 />
                 <SortBox
+                  platform="desktop"
                   sortName="ارزان ترین"
                   onSortChange={handleSortChange}
                   active={active === "ارزان ترین"}
                 />
                 <SortBox
+                  platform="desktop"
                   sortName="گران ترین"
                   onSortChange={handleSortChange}
                   active={active === "گران ترین"}
                 />
                 <SortBox
+                  platform="desktop"
                   sortName="پر مخاطب ها"
                   onSortChange={handleSortChange}
                   active={active === "پر مخاطب ها"}
@@ -217,21 +268,34 @@ export default function Courses() {
         </div>
 
         <div className="bottom-sheet__body font-danaMedium">
-          <a
-            href=""
-            className="bottom-sheet__item bottom-sheet__item--selected"
-          >
-            <span>همه دوره ها</span>
-          </a>
-          <a href="" className="bottom-sheet__item ">
-            <span>ارزان ترین</span>
-          </a>
-          <a href="" className="bottom-sheet__item ">
-            <span>گران ترین</span>
-          </a>
-          <a href="" className="bottom-sheet__item ">
-            <span>پرمخاطب ها</span>
-          </a>
+          <SortBox
+            platform="mobile"
+            sortName="همه دورها"
+            onSortChange={handleSortChange}
+            active={active === "همه دورها"}
+            onClick={openSortMobile}
+          />
+          <SortBox
+            platform="mobile"
+            sortName="ارزان ترین"
+            onSortChange={handleSortChange}
+            active={active === "ارزان ترین"}
+            onClick={openSortMobile}
+          />
+          <SortBox
+            platform="mobile"
+            sortName="گران ترین"
+            onSortChange={handleSortChange}
+            active={active === "گران ترین"}
+            onClick={openSortMobile}
+          />
+          <SortBox
+            platform="mobile"
+            sortName="پر مخاطب ها"
+            onSortChange={handleSortChange}
+            active={active === "پر مخاطب ها"}
+            onClick={openSortMobile}
+          />
         </div>
       </div>
 
@@ -247,7 +311,7 @@ export default function Courses() {
             </button>
             <span className="font-danaDemibold text-lg">فیلترها</span>
           </div>
-          <button className="filter__clean-btn font-danaDemibold">
+          <button className="filter__clean-btn font-danaDemibold" onClick={handleFilterClear}>
             حذف فیلتر ها
             <CiTrash className="text-[25px] mb-1" />
           </button>
@@ -258,20 +322,23 @@ export default function Courses() {
             <span className="font-danaMedium select-none">
               فقط دوره های رایگان
             </span>
-            <input type="checkbox" className="toggle__input" />
+            <input type="checkbox" className="toggle__input" checked={freeCoursesOnly} onChange={(e) => setFreeCoursesOnly(e.target.checked)} />
             <span className="toggle__marker"></span>
           </label>
           <label className="toggle w-full flex items-center justify-between py-5 border-t border-t-gray-200">
             <span className="font-danaMedium select-none">
               فقط دوره های رایگان
             </span>
-            <input type="checkbox" className="toggle__input" />
+            <input type="checkbox" className="toggle__input" onChange={(e) => setFreeCoursesOnly(e.target.checked)}/>
             <span className="toggle__marker"></span>
           </label>
         </form>
 
         <div className="filter__footer">
-          <button className="filter__submit-btn button-lg button-primary w-full">
+          <button
+            className="filter__submit-btn button-lg button-primary w-full"
+            onClick={handleFilterSubmit}
+          >
             اعمال فیلتر
           </button>
         </div>

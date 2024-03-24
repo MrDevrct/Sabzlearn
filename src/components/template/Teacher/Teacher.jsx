@@ -10,23 +10,27 @@ import CourseBox from "../../modules/CourseBox";
 // icons
 import { FaInstagram } from "react-icons/fa";
 import { FaTelegramPlane } from "react-icons/fa";
+import { BiXCircle } from "react-icons/bi";
 
 export default function Category() {
   const { teacherName } = useParams();
-  const [courses , setCourses] = useState([])
-  const [sortSelected , setSortSelected] = useState([])
-  const [active , setActive] = useState([])
+  const [courses, setCourses] = useState([]);
+  const [sortSelected, setSortSelected] = useState([]);
+  const [isSortMobile, setIsSortMobile] = useState(false);
+  const [active, setActive] = useState([]);
   const [teacher, setTeacher] = useState(null);
 
   useEffect(() => {
     const fetchTeacher = async () => {
       try {
         const teacherResponse = await apiRequest("/teachers");
-        const foundTeacher = teacherResponse.data.find((teacher) => teacher.name === teacherName);
+        const foundTeacher = teacherResponse.data.find(
+          (teacher) => teacher.name === teacherName
+        );
         if (foundTeacher) {
           setTeacher(foundTeacher);
           setCourses(foundTeacher.courses);
-          setSortSelected(foundTeacher.courses)
+          setSortSelected(foundTeacher.courses);
         }
       } catch (error) {
         console.error("Error fetching teacher:", error);
@@ -55,6 +59,10 @@ export default function Category() {
   if (!teacher) {
     return <div>Loading...</div>;
   }
+
+  const openSortMobile = () => {
+    setIsSortMobile(!isSortMobile);
+  };
 
   return (
     // section categories
@@ -127,10 +135,41 @@ export default function Category() {
                 <span className="font-danaMedium">مرتب سازی بر اساس :</span>
               </div>
               <div className="flex items-center font-danaLight gap-x-2 lg:gap-x-8 h-full">
-                <SortBox sortName="همه دورها" onSortChange={handleSortChange} active={active === "همه دورها"} />
-                <SortBox sortName="ارزان ترین" onSortChange={handleSortChange} active={active === "ارزان ترین"} />
-                <SortBox sortName="گران ترین" onSortChange={handleSortChange} active={active === "گران ترین"} />
-                <SortBox sortName="پر مخاطب ها" onSortChange={handleSortChange} active={active === "پر مخاطب ها"} />
+                <SortBox
+                  platform="desktop"
+                  sortName="همه دورها"
+                  onSortChange={handleSortChange}
+                  active={active === "همه دورها"}
+                />
+                <SortBox
+                  platform="desktop"
+                  sortName="ارزان ترین"
+                  onSortChange={handleSortChange}
+                  active={active === "ارزان ترین"}
+                />
+                <SortBox
+                  platform="desktop"
+                  sortName="گران ترین"
+                  onSortChange={handleSortChange}
+                  active={active === "گران ترین"}
+                />
+                <SortBox
+                  platform="desktop"
+                  sortName="پر مخاطب ها"
+                  onSortChange={handleSortChange}
+                  active={active === "پر مخاطب ها"}
+                />
+              </div>
+            </div>
+
+            {/* mobile sort */}
+            <div className="flex md:hidden items-center gap-6 mb-8">
+              <div
+                className="w-full bg-white text-black h-[52px] px-4 gap-x-2.5 text-base flex cursor-pointer items-center rounded-full font-danaMedium justify-center"
+                onClick={openSortMobile}
+              >
+                <LuArrowUpDown className="text-[24px]" />
+                <span>همه دوره ها</span>
               </div>
             </div>
 
@@ -143,6 +182,59 @@ export default function Category() {
           </section>
         </section>
       </div>
+
+      {/* sort Mobile */}
+      <div
+        className={`bottom-sheet ${isSortMobile ? "bottom-sheet--open" : ""}`}
+      >
+        <div className="bottom-sheet__header">
+          <span className="bottom-sheet__name font-danaDemibold">
+            مرتب سازی بر اساس
+          </span>
+          <button className="bottom-sheet__close-btn" onClick={openSortMobile}>
+            <BiXCircle className="text-[25px]" />
+          </button>
+        </div>
+
+        <div className="bottom-sheet__body font-danaMedium">
+        <SortBox
+            platform="mobile"
+            sortName="همه دورها"
+            onSortChange={handleSortChange}
+            active={active === "همه دورها"}
+            onClick={openSortMobile}
+          />
+          <SortBox
+            platform="mobile"
+            sortName="ارزان ترین"
+            onSortChange={handleSortChange}
+            active={active === "ارزان ترین"}
+            onClick={openSortMobile}
+          />
+          <SortBox
+            platform="mobile"
+            sortName="گران ترین"
+            onSortChange={handleSortChange}
+            active={active === "گران ترین"}
+            onClick={openSortMobile}
+          />
+          <SortBox
+            platform="mobile"
+            sortName="پر مخاطب ها"
+            onSortChange={handleSortChange}
+            active={active === "پر مخاطب ها"}
+            onClick={openSortMobile}
+          />
+        </div>
+      </div>
+
+      {/* bg shadow */}
+      {isSortMobile && (
+        <div
+          className="overlay fixed w-full h-full top-0 left-0 bg-black/40 z-40 transition-all"
+          onClick={openSortMobile}
+        ></div>
+      )}
     </main>
   );
 }

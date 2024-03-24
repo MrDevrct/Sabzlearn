@@ -16,6 +16,7 @@ import CourseDetailBox from "../../modules/Course/CourseData/CourseDetailBox";
 
 export default function CourseParts() {
   const [course, setCourse] = useState([]);
+  const [chapterCourse, setChapterCourse] = useState([]);
   const [episodeCourse, setEpisodeCourse] = useState([]);
   const [categoryPath, setCategoryPath] = useState(null);
   const { courseInfo } = useParams();
@@ -33,11 +34,12 @@ export default function CourseParts() {
     );
     if (foundCourse) {
       setCourse(foundCourse);
+      setChapterCourse(foundCourse.session);
       const chapterId = parseInt(courseInfo.split("-")[1]);
       const foundChapter = foundCourse.session.find(
         (chap) => chap.id === chapterId
       );
-      console.log(foundChapter);
+
       if (foundChapter) {
         const episodeId = parseInt(courseInfo.split(":")[1]);
         const foundEpisode = foundChapter.Episode.find(
@@ -162,17 +164,19 @@ export default function CourseParts() {
 
               {/* Chapters */}
               <div className="overflow-y-scroll pl-2 max-h-[602px]">
-                <div className="chapter">
-                  {course.session?.map((session) => (
-                    <>
-                      <div className="flex cursor-pointer items-center justify-between gap-3 my-4 rounded-[10px] bg-[#f3f4f6] p-[16px]">
-                        <span className="font-danaMedium truncate">
-                          {session.name}
-                        </span>
-                        <MdKeyboardArrowDown />
+                <div className="chapters">
+                  {chapterCourse.map((chapter) => (
+                      <div className="chapter" key={chapter.id}>
+                        <div
+                          className="flex cursor-pointer items-center justify-between gap-3 my-4 rounded-[10px] bg-[#f3f4f6] p-[16px]"
+                        >
+                          <span className="font-danaMedium truncate">
+                            {chapter.name}
+                          </span>
+                          <MdKeyboardArrowDown />
+                        </div>
+                        <div></div>
                       </div>
-                      <div></div>
-                    </>
                   ))}
 
                   <div></div>

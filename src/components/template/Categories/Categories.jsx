@@ -149,7 +149,6 @@ export default function Category() {
 
           {/* content sort and courses */}
           <section className="col-span-full lg:col-span-8 xl:col-span-9 order-1 lg:order-2">
-
             {/* mobile sort and filter */}
             <div className="flex md:hidden items-center gap-6 mb-8">
               <div
@@ -159,7 +158,8 @@ export default function Category() {
                 <HiOutlineFunnel className="text-[24px]" />
                 <span>فیلتر</span>
               </div>
-              <div className="flex cursor-pointer items-center rounded-full justify-center font-danaMedium h-[52px] px-4 text-lg gap-x-3 bg-white text-black w-1/2"
+              <div
+                className="flex cursor-pointer items-center rounded-full justify-center font-danaMedium h-[52px] px-4 text-lg gap-x-3 bg-white text-black w-1/2"
                 onClick={openSortMobile}
               >
                 <LuArrowUpDown className="text-[24px]" />
@@ -175,21 +175,25 @@ export default function Category() {
               </div>
               <div className="flex items-center font-danaLight gap-x-2 lg:gap-x-8 h-full">
                 <SortBox
+                  platform="desktop"
                   sortName="همه دورها"
                   onSortChange={handleSortChange}
                   active={active === "همه دورها"}
                 />
                 <SortBox
+                  platform="desktop"
                   sortName="ارزان ترین"
                   onSortChange={handleSortChange}
                   active={active === "ارزان ترین"}
                 />
                 <SortBox
+                  platform="desktop"
                   sortName="گران ترین"
                   onSortChange={handleSortChange}
                   active={active === "گران ترین"}
                 />
                 <SortBox
+                  platform="desktop"
                   sortName="پر مخاطب ها"
                   onSortChange={handleSortChange}
                   active={active === "پر مخاطب ها"}
@@ -208,30 +212,48 @@ export default function Category() {
       </div>
 
       {/* sort Mobile */}
-      <div className={`bottom-sheet ${isSortMobile ? 'bottom-sheet--open' : ''}`}>
-
+      <div
+        className={`bottom-sheet ${isSortMobile ? "bottom-sheet--open" : ""}`}
+      >
         <div className="bottom-sheet__header">
-          <span className="bottom-sheet__name font-danaDemibold">مرتب سازی بر اساس</span>
-          <button class="bottom-sheet__close-btn" onClick={openSortMobile}>
+          <span className="bottom-sheet__name font-danaDemibold">
+            مرتب سازی بر اساس
+          </span>
+          <button className="bottom-sheet__close-btn" onClick={openSortMobile}>
             <BiXCircle className="text-[25px]" />
           </button>
         </div>
 
         <div className="bottom-sheet__body font-danaMedium">
-          <a href="" className="bottom-sheet__item bottom-sheet__item--selected">
-            <span>همه دوره ها</span>
-          </a>
-          <a href="" className="bottom-sheet__item ">
-            <span>ارزان ترین</span>
-          </a>
-          <a href="" className="bottom-sheet__item ">
-            <span>گران ترین</span>
-          </a>
-          <a href="" className="bottom-sheet__item ">
-            <span>پرمخاطب ها</span>
-          </a>
+          <SortBox
+            platform="mobile"
+            sortName="همه دورها"
+            onSortChange={handleSortChange}
+            active={active === "همه دورها"}
+            onClick={openSortMobile}
+          />
+          <SortBox
+            platform="mobile"
+            sortName="ارزان ترین"
+            onSortChange={handleSortChange}
+            active={active === "ارزان ترین"}
+            onClick={openSortMobile}
+          />
+          <SortBox
+            platform="mobile"
+            sortName="گران ترین"
+            onSortChange={handleSortChange}
+            active={active === "گران ترین"}
+            onClick={openSortMobile}
+          />
+          <SortBox
+            platform="mobile"
+            sortName="پر مخاطب ها"
+            onSortChange={handleSortChange}
+            active={active === "پر مخاطب ها"}
+            onClick={openSortMobile}
+          />
         </div>
-
       </div>
 
       {/* filter mobile */}
@@ -278,12 +300,11 @@ export default function Category() {
 
       {/* bg shadow */}
       {isSortMobile && (
-      <div
-        className="overlay fixed w-full h-full top-0 left-0 bg-black/40 z-40 transition-all"
-        onClick={openSortMobile}
-      ></div>
+        <div
+          className="overlay fixed w-full h-full top-0 left-0 bg-black/40 z-40 transition-all"
+          onClick={openSortMobile}
+        ></div>
       )}
-
     </main>
   );
 }
