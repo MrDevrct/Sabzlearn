@@ -44,7 +44,7 @@ export default function Courses() {
   // search for courses
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
-    const newSearchQuery = queryParams.get("q");
+    const newSearchQuery = queryParams.get("s");
 
     setSearchValue(newSearchQuery || ""); // تنظیم مقدار جدید برای searchQuery
 

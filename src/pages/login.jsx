@@ -1,22 +1,47 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../css/ElementProprety/FormInput.css";
 import { FaRegEnvelope } from "react-icons/fa";
 import { FiLock } from "react-icons/fi";
 import Input from "../components/modules/Input";
 import apiRequset from "../services/Axios/config";
 import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
 
 // alert toastify
 import { Bounce, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Button from "../components/modules/Button";
+import apiRequest from "../services/Axios/config";
 
 export default function Login() {
+  const navigate = useNavigate();
   // form data
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+
+
+  useEffect(() => {
+    const token = Cookies.get('Token');
+    if (token) {
+      const fetchUser = async () => {
+        try {
+          window.location.pathname = '/';
+          const response = await apiRequest.get("/users");
+          const users = response.data;
+          const user = users.find(user => user.email === token);
+          if (user) {
+            navigate('/desired-page'); // استفاده از navigate به جای history.push
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      };
+      fetchUser();
+    }
+  }, [navigate]);
+
 
   // set form data value
   const handleInputChange = (event) => {
@@ -29,7 +54,6 @@ export default function Login() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     try {
       const response = await apiRequset.get("/users");
       const users = response.data;

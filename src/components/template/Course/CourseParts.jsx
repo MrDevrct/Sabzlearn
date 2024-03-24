@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import ReactPlayer from "react-player";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCourses } from "../../../services/Redux/actions";
@@ -7,18 +8,18 @@ import { LuHome } from "react-icons/lu";
 import apiRequest from "../../../services/Axios/config";
 import HeaderTitle from "../../modules/Course/CourseData/HeaderTitle";
 import Button from "../../modules/Button";
-import { HiOutlineInformationCircle } from "react-icons/hi2";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { CgArrowLeftO } from "react-icons/cg";
 import { IoChatbubbleEllipsesSharp } from "react-icons/io5";
-
-import CourseDetailBox from "../../modules/Course/CourseData/CourseDetailBox";
+import { MdOutlineRadioButtonUnchecked } from "react-icons/md";
+import "../../../css/ElementProprety/CourseParts.css";
 
 export default function CourseParts() {
   const [course, setCourse] = useState([]);
   const [chapterCourse, setChapterCourse] = useState([]);
   const [episodeCourse, setEpisodeCourse] = useState([]);
   const [categoryPath, setCategoryPath] = useState(null);
+  const [openChapters, setOpenChapters] = useState([]);
   const { courseInfo } = useParams();
   const dispatch = useDispatch();
   const dataCourses = useSelector((state) => state.courses);
@@ -64,6 +65,17 @@ export default function CourseParts() {
     fetchData();
   }, [course]);
 
+  // تابعی برای تغییر وضعیت باز یا بسته شدن فصل:
+  const toggleChapter = (chapterId) => {
+    setOpenChapters(prevState => {
+      if (prevState.includes(chapterId)) {
+        return prevState.filter(id => id !== chapterId);
+      } else {
+        return [...prevState, chapterId];
+      }
+    });
+  };
+
   return (
     <section className="mx-auto overflow-x-hidden mt-8 sm:mt-10">
       <div className="container">
@@ -95,11 +107,13 @@ export default function CourseParts() {
 
         {/* <!-- Course Lesson --> */}
         <div className="aspect-video mt-8 sm:mt-10 overflow-hidden rounded-xl">
-          <video
-            src={episodeCourse.video}
-            className="w-full m-auto overflow-hidden rounded-[20px]"
-            controls
-          ></video>
+          <ReactPlayer
+            url={episodeCourse.video}
+            className="w-full h-full overflow-hidden rounded-xl"
+            width="100%"
+            height="100%"
+            controls={true}
+          />
         </div>
 
         <div className="grid grid-cols-12 gap-y-6 gap-x-5 lg:gap-x-7 mt-6 lg:mt-8 ">
@@ -123,13 +137,13 @@ export default function CourseParts() {
               <div className="flex justify-between gap-3.5 flex-wrap">
                 <Button
                   text="سوال دارم!"
-                  className="w-full sm:w-36 p-2 button-lg button-gray"
+                  className="w-full sm:w-36 p-2 button-lg button-gray font-danaMedium"
                 />
 
                 <div className="flex gap-y-3.5 gap-x-4 justify-end flex-grow flex-wrap">
                   <Button
                     text="دانلود ویدیو"
-                    className="w-full sm:w-36 p-2 button-lg button-primary"
+                    className="w-full sm:w-36 p-2 button-lg button-primary font-danaMedium"
                   />
                 </div>
               </div>
@@ -165,44 +179,53 @@ export default function CourseParts() {
               {/* Chapters */}
               <div className="overflow-y-scroll pl-2 max-h-[602px]">
                 <div className="chapters">
+
                   {chapterCourse.map((chapter) => (
-                      <div className="chapter" key={chapter.id}>
-                        <div
-                          className="flex cursor-pointer items-center justify-between gap-3 my-4 rounded-[10px] bg-[#f3f4f6] p-[16px]"
-                        >
-                          <span className="font-danaMedium truncate">
-                            {chapter.name}
-                          </span>
-                          <MdKeyboardArrowDown />
-                        </div>
-                        <div></div>
+                    <div className="chapter my-4" key={chapter.id}>
+                      <div
+                        className={`chapter__head ${
+                          openChapters.includes(chapter.id)
+                            ? "chapter__head--active"
+                            : ""
+                        }`}
+                        onClick={() => toggleChapter(chapter.id)}
+                      >
+                        <span className="font-danaMedium truncate">
+                          {chapter.name}
+                        </span>
+                        <MdKeyboardArrowDown className={`${openChapters.includes(chapter.id) ? "rotate-180" : ""}`}/>
                       </div>
+                      {openChapters.includes(chapter.id) &&
+                        chapter.Episode.map((episode) => (
+                          <div className="chapter__lessons" key={episode.id}>
+                            <div className="lesson">
+                              <a
+                                href={`/lesson/${course.name}-${chapter.id}:${episode.id}`}
+                                className="block line-clamp-2"
+                              >
+                                {episode.name}
+                              </a>
+                              <div className="flex items-center justify-between mt-3 sm:mt-2">
+                                <div className="lesson__status text-[20px] text-green-500">
+                                  <MdOutlineRadioButtonUnchecked />
+                                </div>
+                                <div className="min-w-18 button-xs button-primary button-outline">
+                                  11:30{" "}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                    </div>
                   ))}
 
-                  <div></div>
                 </div>
               </div>
             </div>
 
             {/* details box */}
-            <div className="grid grid-cols-3 gap-3.5 mt-6 lg:mt-8">
-              <CourseDetailBox
-                icon={<HiOutlineInformationCircle />}
-                title="وضعیت دوره"
-                text="پیش فروش"
-              />
-
-              <CourseDetailBox
-                icon={<HiOutlineInformationCircle />}
-                title="وضعیت دوره"
-                text="پیش فروش"
-              />
-
-              <CourseDetailBox
-                icon={<HiOutlineInformationCircle />}
-                title="وضعیت دوره"
-                text="پیش فروش"
-              />
+            <div className="grid grid-cols-3 gap-4 mt-6 lg:mt-8">
+              <div></div>
             </div>
 
             {/* progress  */}

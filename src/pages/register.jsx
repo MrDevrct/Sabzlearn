@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import apiRequset from "../services/Axios/config";
 import { v4 as uuidv4 } from "uuid";
 
@@ -20,6 +20,7 @@ import apiRequest from "../services/Axios/config";
 import Button from "../components/modules/Button";
 
 export default function Login() {
+  const navigate = useNavigate(); 
   // create id for user
   const userId = uuidv4();
 
@@ -36,6 +37,28 @@ export default function Login() {
     wallet: 0,
     courses: [],
   });
+
+  // if token is invalid
+  useEffect(() => {
+    const token = Cookies.get('Token');
+    if (token) {
+      const fetchUser = async () => {
+        try {
+          window.location.pathname = '/';
+          const response = await apiRequest.get("/users");
+          const users = response.data;
+          const user = users.find(user => user.email === token);
+          if (user) {
+            navigate('/desired-page'); // استفاده از navigate به جای history.push
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      };
+      fetchUser();
+    }
+  }, [navigate]);
+
 
   // set form data
   const handleInputChange = (event) => {

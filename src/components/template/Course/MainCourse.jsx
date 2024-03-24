@@ -98,8 +98,8 @@ export default function CourseView() {
   const formattedDate = formatDate(courseInfo.time);
 
   return (
-    <main className="mt-8 sm:mt-10 px-2">
-      <div className="container">
+    <main className="mt-8 sm:mt-10">
+      <div className="container px-4">
         {/* <!-- Breadcrumb --> */}
         <Breadcrumb
           links={[

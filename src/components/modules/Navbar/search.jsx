@@ -17,7 +17,7 @@ export default function Input({ platform }) {
   const searchHandler = (event) => {
     if (event.keyCode === 13) {
       if (search.trim()) {
-        navigate(`/courses/search?q=${search}`);
+        navigate(`/courses/?s=${search}`);
         if (platform === "mobile") {
           toggleMenu();
         }
@@ -32,7 +32,7 @@ export default function Input({ platform }) {
 
   const searchBtnHandler = () => {
     if (search.trim()) {
-      navigate(`/courses/search?q=${search}`);
+      navigate(`/courses/?s=${search}`);
       if (platform === "mobile") {
         toggleMenu();
       }

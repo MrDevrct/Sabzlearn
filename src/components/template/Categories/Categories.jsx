@@ -29,6 +29,7 @@ export default function Category() {
   const [coursesInfo, setCoursesInfo] = useState([]);
   const { categoryName } = useParams();
   const [courseCount, setCourseCount] = useState(0);
+  // 
   const [isFilterMobile, setIsFilterMobile] = useState(false);
   const [isSortMobile, setIsSortMobile] = useState(false);
   const [categoryTitle, setCategoryTitle] = useState("");
@@ -38,6 +39,7 @@ export default function Category() {
   const [freeCoursesOnly, setFreeCoursesOnly] = useState(false);
   const [preSaleCoursesOnly, setPreSaleCoursesOnly] = useState(false);
   const [purchasedCoursesOnly, setPurchasedCoursesOnly] = useState(false);
+
 
   useEffect(() => {
     dispatch(fetchCourses());
@@ -142,6 +144,7 @@ export default function Category() {
     setCoursesInfo(sortSelected)
   };
 
+
   return (
     // section categories
     <main className="mt-20">
@@ -158,7 +161,9 @@ export default function Category() {
           <div className="col-span-full lg:col-span-4 xl:col-span-3 lg:sticky top-6 space-y-6 px-2 md:px-0">
             <form className="space-y-6">
               {/* search */}
-              <SearchBox placeholder={`جستجو بین دورهای ${categoryTitle}`} />
+              <SearchBox 
+                placeholder={`جستجو بین دورهای ${categoryTitle}`} 
+              />
 
               {/* toggle filters */}
               <FilterBox
