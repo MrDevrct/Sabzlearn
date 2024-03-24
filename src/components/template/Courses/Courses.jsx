@@ -109,12 +109,6 @@ export default function Courses() {
     if (freeCoursesOnly) {
       filteredCourses = filteredCourses.filter((course) => course.price === 0);
     }
-    if (preSaleCoursesOnly) {
-      // فیلتر دوره های پیش فروش
-    }
-    if (purchasedCoursesOnly) {
-      // فیلتر دوره های خریداری شده
-    }
 
     setCoursesInfo(filteredCourses);
     openFilterMobile()
@@ -125,24 +119,7 @@ export default function Courses() {
     setPreSaleCoursesOnly(false);
     setPurchasedCoursesOnly(false);
   
-    // همچنین می‌توانید فیلترها را در همینجا اعمال کنید
-    let filteredCourses = dataCourses;
-  
-    if (!freeCoursesOnly && !preSaleCoursesOnly && !purchasedCoursesOnly) {
-      setCoursesInfo(dataCourses); // اگر هیچ چک‌باکسی انتخاب نشده بود، نمایش تمام دوره‌ها
-    } else {
-      if (freeCoursesOnly) {
-        filteredCourses = filteredCourses.filter((course) => course.price === 0);
-      }
-      if (preSaleCoursesOnly) {
-        // فیلتر دوره های پیش فروش
-      }
-      if (purchasedCoursesOnly) {
-        // فیلتر دوره های خریداری شده
-      }
-  
-      setCoursesInfo(filteredCourses);
-    }
+    setCoursesInfo(dataCourses)
   };
 
   return (

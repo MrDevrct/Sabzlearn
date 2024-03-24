@@ -34,6 +34,10 @@ export default function Category() {
   const [categoryTitle, setCategoryTitle] = useState("");
   const [sortSelected, setSortSelected] = useState(null);
   const [active, setActive] = useState(null);
+  // filter mobile
+  const [freeCoursesOnly, setFreeCoursesOnly] = useState(false);
+  const [preSaleCoursesOnly, setPreSaleCoursesOnly] = useState(false);
+  const [purchasedCoursesOnly, setPurchasedCoursesOnly] = useState(false);
 
   useEffect(() => {
     dispatch(fetchCourses());
@@ -111,6 +115,31 @@ export default function Category() {
 
   const openSortMobile = () => {
     setIsSortMobile(!isSortMobile);
+  };
+
+  // handel filter course to  mobile
+  const handleFilterSubmit = () => {
+    let filteredCourses = [...coursesInfo];
+
+    if (freeCoursesOnly) {
+      filteredCourses = filteredCourses.filter((course) => course.price === 0);
+      setCoursesInfo(filteredCourses)
+    }
+    else {
+      filteredCourses = sortSelected
+    }
+
+    setCoursesInfo(filteredCourses);
+    openFilterMobile();
+  };
+
+  // remove handel filter course to  mobile
+  const handleFilterClear = () => {
+    setFreeCoursesOnly(false);
+    setPreSaleCoursesOnly(false);
+    setPurchasedCoursesOnly(false);
+
+    setCoursesInfo(sortSelected)
   };
 
   return (
@@ -268,7 +297,7 @@ export default function Category() {
             </button>
             <span className="font-danaDemibold text-lg">فیلترها</span>
           </div>
-          <button className="filter__clean-btn font-danaDemibold">
+          <button className="filter__clean-btn font-danaDemibold" onClick={handleFilterClear}>
             حذف فیلتر ها
             <CiTrash className="text-[25px] mb-1" />
           </button>
@@ -279,20 +308,23 @@ export default function Category() {
             <span className="font-danaMedium select-none">
               فقط دوره های رایگان
             </span>
-            <input type="checkbox" className="toggle__input" />
+            <input type="checkbox" className="toggle__input" checked={freeCoursesOnly} onChange={(e) => setFreeCoursesOnly(e.target.checked)} />
             <span className="toggle__marker"></span>
           </label>
           <label className="toggle w-full flex items-center justify-between py-5 border-t border-t-gray-200">
             <span className="font-danaMedium select-none">
               فقط دوره های رایگان
             </span>
-            <input type="checkbox" className="toggle__input" />
+            <input type="checkbox" className="toggle__input" onChange={(e) => setFreeCoursesOnly(e.target.checked)}/>
             <span className="toggle__marker"></span>
           </label>
         </form>
 
         <div className="filter__footer">
-          <button className="filter__submit-btn button-lg button-primary w-full">
+          <button
+            className="filter__submit-btn button-lg button-primary w-full"
+            onClick={handleFilterSubmit}
+          >
             اعمال فیلتر
           </button>
         </div>
