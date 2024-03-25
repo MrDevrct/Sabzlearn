@@ -120,3 +120,21 @@
 .lesson:first-child {
     padding-top: 1rem;
 }
+.lesson--watching {
+    position: relative;
+}
+
+.lesson--watching:before {
+    content: "";
+    display: block;
+    position: absolute;
+    right: -18px;
+    top: 0;
+    bottom: 0;
+    background-color: #22c55e;
+    width: 6px;
+    height: calc(100% - 40px);
+    margin: auto 0;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+}

@@ -42,6 +42,7 @@ export default function CourseParts() {
 
   // validate open menu chapter
   const [openChapters, setOpenChapters] = useState([]);
+  const [active, setActive] = useState(false);
 
   // Fetch courses on component mount
   useEffect(() => {
@@ -66,6 +67,7 @@ export default function CourseParts() {
         const foundEpisode = foundChapter.Episode.find(
           (epsid) => epsid.id === episodeId
         );
+        setActive(true)
         setEpisodeCourse(foundEpisode);
       }
     }
@@ -223,10 +225,10 @@ export default function CourseParts() {
                       {openChapters.includes(chapter.id) &&
                         chapter.Episode.map((episode) => (
                           <div className="chapter__lessons" key={episode.id}>
-                            <div className="lesson">
+                            <div className="lesson lesson--watching">
                               <a
                                 href={`/lesson/${course.name}-${chapter.id}:${episode.id}`}
-                                className="block line-clamp-2"
+                                className='block line-clamp-2'
                               >
                                 {episode.name}
                               </a>
@@ -234,7 +236,7 @@ export default function CourseParts() {
                                 <div className="lesson__status text-[20px] text-green-500">
                                   <MdOutlineRadioButtonUnchecked />
                                 </div>
-                                <div className="min-w-18 button-xs button-primary button-outline">
+                                <div className="min-w-18 button-xs button-primary button-outline font-IRANSNumber">
                                   11:30{" "}
                                 </div>
                               </div>
