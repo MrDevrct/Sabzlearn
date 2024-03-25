@@ -147,11 +147,8 @@ export default function Courses() {
     let filteredCourses = dataCourses;
 
     if (searchParamValue) {
-      filteredCourses = dataCourses.filter(
-        (course) =>
-          course.title.toLowerCase().includes(searchParamValue.toLowerCase())
-      );
-    }
+      filteredCourses = dataCourses.filter((course) => course.title.toLowerCase().includes(searchParamValue.toLowerCase()));
+    } 
 
     setCoursesInfo(filteredCourses);
   }, [location.search, dataCourses, categoryName]);

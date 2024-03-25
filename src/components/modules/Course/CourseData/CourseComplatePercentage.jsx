@@ -33,7 +33,7 @@ export default function CourseComplatePercentage({data}) {
         {/* !<-- Progressbar completion percentage --> */}
         <div className="flex items-center justify-between font-danaDemibold text-sm sm:text-base mb-3">
           <span>درصد تکمیل دوره</span>
-          <span>{data.status_complate}</span>
+          <span>%{data.complate}</span>
         </div>
 
         {/* !<-- Progress -->  */}
@@ -47,7 +47,7 @@ export default function CourseComplatePercentage({data}) {
         >
           <div
             className="flex flex-col justify-center rounded-full overflow-hidden bg-[#22c55e] text-xs text-white text-center whitespace-nowrap transition duration-500"
-            style={{ width: `${data.status_complate}$`}}
+            style={{ width: `${data.complate}%`}}
           ></div>
         </div>
       </div>

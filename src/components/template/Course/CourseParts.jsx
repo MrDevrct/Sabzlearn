@@ -14,11 +14,17 @@ import { IoChatbubbleEllipsesSharp } from "react-icons/io5";
 import { MdOutlineRadioButtonUnchecked } from "react-icons/md";
 import "../../../css/ElementProprety/CourseParts.css";
 
+// icon 
+import { BsInfoCircle } from "react-icons/bs";
+import { PiTimer } from "react-icons/pi";
+import { HiOutlineVideoCamera } from "react-icons/hi2";
+
+
 export default function CourseParts() {
   // get the courses in redux
   const dispatch = useDispatch();
   const dataCourses = useSelector((state) => state.courses);
-  
+
   // params in pgae route
   const { courseInfo } = useParams();
 
@@ -36,7 +42,6 @@ export default function CourseParts() {
 
   // validate open menu chapter
   const [openChapters, setOpenChapters] = useState([]);
-
 
   // Fetch courses on component mount
   useEffect(() => {
@@ -82,9 +87,9 @@ export default function CourseParts() {
 
   // تابعی برای تغییر وضعیت باز یا بسته شدن فصل:
   const toggleChapter = (chapterId) => {
-    setOpenChapters(prevState => {
+    setOpenChapters((prevState) => {
       if (prevState.includes(chapterId)) {
-        return prevState.filter(id => id !== chapterId);
+        return prevState.filter((id) => id !== chapterId);
       } else {
         return [...prevState, chapterId];
       }
@@ -194,7 +199,6 @@ export default function CourseParts() {
               {/* Chapters */}
               <div className="overflow-y-scroll pl-2 max-h-[602px]">
                 <div className="chapters">
-
                   {chapterCourse.map((chapter) => (
                     <div className="chapter my-4" key={chapter.id}>
                       <div
@@ -208,7 +212,13 @@ export default function CourseParts() {
                         <span className="font-danaMedium truncate">
                           {chapter.name}
                         </span>
-                        <MdKeyboardArrowDown className={`${openChapters.includes(chapter.id) ? "rotate-180" : ""}`}/>
+                        <MdKeyboardArrowDown
+                          className={`${
+                            openChapters.includes(chapter.id)
+                              ? "rotate-180"
+                              : ""
+                          }`}
+                        />
                       </div>
                       {openChapters.includes(chapter.id) &&
                         chapter.Episode.map((episode) => (
@@ -233,18 +243,38 @@ export default function CourseParts() {
                         ))}
                     </div>
                   ))}
-
                 </div>
               </div>
             </div>
 
             {/* details box */}
-            <div className="grid grid-cols-3 gap-4 mt-6 lg:mt-8">
-              <div></div>
+            <div className="grid grid-cols-3 gap-4 mt-4 lg:mt-5 items-center">
+              <div className="text-center pb-4 sm:pb-3 pt-4 sm:3.5 bg-white rounded-xl flex flex-col items-center">
+                <BsInfoCircle className="block mb-2 text-green-500 text-[40px]" />
+                <div>
+                  <h3 className="block font-danaDemibold text-sm sm:text-base mb-1 sm:mb-0">وضعیت دوره</h3>
+                  <p className="opacity-70 text-sm">تکمیل شده</p>
+                </div>
+              </div>
+              <div className="text-center pb-4 sm:pb-3 pt-4 sm:3.5 bg-white rounded-xl flex flex-col items-center">
+                <PiTimer className="block mb-2 text-green-500 text-[40px]" />
+                <div>
+                  <h3 className="block font-danaDemibold text-sm sm:text-base mb-1 sm:mb-0">زمان دوره</h3>
+                  <p className="opacity-70 text-sm">56:34</p>
+                </div>
+              </div>
+              <div className="text-center pb-4 sm:pb-3 pt-4 sm:3.5 bg-white rounded-xl flex flex-col items-center">
+                <HiOutlineVideoCamera className="block mb-2 text-green-500 text-[40px]" />
+                <div>
+                  <h3 className="block font-danaDemibold text-sm sm:text-base mb-1 sm:mb-0">وضعیت دوره</h3>
+                  <p className="opacity-70 text-sm">تکمیل شده</p>
+                </div>
+              </div>
+
             </div>
 
             {/* progress  */}
-            <div className="bg-white border border-gray-100 p-5 sm:p-5 rounded-xl mt-6 lg:mt-8">
+            <div className="bg-white border border-gray-100 p-5 sm:p-5 rounded-xl mt-4 lg:mt-6">
               <p className="text-sm mb-4">
                 وقتی 70 درصد یک ویدیو را بصورت آنلاین تماشا میکنید، میزان پیشرفت
                 شما بصورت خودکار بروزرسانی میشود.

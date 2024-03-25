@@ -19,7 +19,6 @@ import { Navigate, useNavigate } from "react-router-dom";
           event.preventDefault(); // جلوگیری از رفتار پیش‌فرض
           navigate(`/courses/?s=${searchValues}`);
         }
-          
       }
     };
 
