@@ -4,7 +4,7 @@ import { FiBookOpen } from "react-icons/fi";
 import { HiOutlineUser } from "react-icons/hi2";
 
 
-export default function CourseInfo({ title , description , name , price , student }) {
+export default function CourseInfo({ title , description , name , price , student , onClick }) {
   const addCommas = (num) => {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
@@ -24,7 +24,7 @@ export default function CourseInfo({ title , description , name , price , studen
           {student === true ? (
             <>
               <a
-                href={`/course/${name}`}
+                href={`/lesson/${name}-1:1`}
                 className="button-2xl button-primary w-full mb-2 sm:w-auto font-danaMedium order-2"
               >
                 <FiBookOpen className="text-[30px]" />
@@ -37,13 +37,13 @@ export default function CourseInfo({ title , description , name , price , studen
             </>
           ) : (
             <>
-              <a
-                href={`/course/${name}`}
+              <button
                 className="button-2xl button-primary w-full mb-2 sm:w-auto font-danaMedium"
+                onClick={onClick}
               >
                 <HiOutlineAcademicCap className="text-[30px]" />
                 ثبت نام در دوره
-              </a>
+              </button>
               <div className="flex items-center justify-between gap-x-2 mb-3">
                 {price !== 0 ? (
                   <>

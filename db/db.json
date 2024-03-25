@@ -34,55 +34,184 @@
       "createdAccount": "2024-03-22T17:54:22.427Z",
       "updatedAccount": "",
       "wallet": 0,
-      "courses": [        
+      "courses": [
         {
-        "id": "2",
-        "name": "NextJs",
-        "title": "آموزش Next.js بصورت پروژه محور",
-        "description": "نکست یه فریمورک مبتنی بر ری‌اکت هست که امروزه تو بازار کار یکی از مهم‌ترین تکنولوژی‌ها برای توسعه دهنده های ری‌اکت به حساب میاد. نکست رو میشه مکمل ری‌اکت دونست. یعنی هر چی که ری‌اکت داره نکست هم داره، بعلاوه چند",
-        "img": "https://sabzlearn.ir/wp-content/uploads/2023/12/ezgif.com-jpg-to-webp-converted-27-1-768x432.webp",
-        "ProjectCourseImg": "https://sabzlearn.ir/wp-content/uploads/2024/01/next.webp",
-        "price": 290000,
-        "participants": 10000,
-        "teacher": "سعید راد",
-        "satisfaction": 400,
-        "timeHours": "60",
-        "timeMin": "00",
-        "time": "2024-02-21T11:30",
-        "category": "فرانت اند",
-        "prerequisite": "ReactJs",
-        "session": [
-          {
-            "id": 1,
-            "name": "معرفی",
-            "Episode": [
-              {
-                "id": 1,
-                "name": "اصلا ما چرا ب نکست تیاز داریم",
-                "description": "",
-                "video": "https://tech.sabzlearn.ir/uploads/ce01010101it/next/Next001-intro.mp4?h=yGzse9HrlURpPpo8P-MMpg&t=1711149074"
-              },
-              {
-                "id": 2,
-                "name": "کتابخانه ها ایا در بهبود و غملکرد تاثیر دارند",
-                "description": "",
-                "video": "https://tech.sabzlearn.ir/uploads/ce01010101it/next/Next002-react-vs-next.mp4?h=86BLA6IRGjj-eufOvqYR5Q&t=1711389966"
-              },
-              {
-                "id": 3,
-                "name": "ریکت بهتره یا نکست",
-                "description": "",
-                "video": "https://tech.sabzlearn.ir/uploads/ce01010101it/next/Next005-ssr-vs-csr.mp4?h=3XD8nyqi2nMcEO2ODOHlBg&t=1711390006"
-              }
-            ]
-          },
-          {
-            "id": 2,
-            "name": "پیش نیاز ها",
-            "Episode": []
-          }
-        ]
-      }
+          "id": "2",
+          "name": "NextJs",
+          "title": "آموزش Next.js بصورت پروژه محور",
+          "description": "نکست یه فریمورک مبتنی بر ری‌اکت هست که امروزه تو بازار کار یکی از مهم‌ترین تکنولوژی‌ها برای توسعه دهنده های ری‌اکت به حساب میاد. نکست رو میشه مکمل ری‌اکت دونست. یعنی هر چی که ری‌اکت داره نکست هم داره، بعلاوه چند",
+          "img": "https://sabzlearn.ir/wp-content/uploads/2023/12/ezgif.com-jpg-to-webp-converted-27-1-768x432.webp",
+          "ProjectCourseImg": "https://sabzlearn.ir/wp-content/uploads/2024/01/next.webp",
+          "price": 290000,
+          "participants": 10000,
+          "teacher": "سعید راد",
+          "satisfaction": 400,
+          "timeHours": "60",
+          "timeMin": "00",
+          "time": "2024-02-21T11:30",
+          "category": "فرانت اند",
+          "prerequisite": "ReactJs",
+          "session": [
+            {
+              "id": 1,
+              "name": "معرفی",
+              "Episode": [
+                {
+                  "id": 1,
+                  "name": "اصلا ما چرا ب نکست تیاز داریم",
+                  "description": "",
+                  "video": "https://tech.sabzlearn.ir/uploads/ce01010101it/next/Next001-intro.mp4?h=yGzse9HrlURpPpo8P-MMpg&t=1711149074"
+                },
+                {
+                  "id": 2,
+                  "name": "کتابخانه ها ایا در بهبود و غملکرد تاثیر دارند",
+                  "description": "",
+                  "video": "https://tech.sabzlearn.ir/uploads/ce01010101it/next/Next002-react-vs-next.mp4?h=86BLA6IRGjj-eufOvqYR5Q&t=1711389966"
+                },
+                {
+                  "id": 3,
+                  "name": "ریکت بهتره یا نکست",
+                  "description": "",
+                  "video": "https://tech.sabzlearn.ir/uploads/ce01010101it/next/Next005-ssr-vs-csr.mp4?h=3XD8nyqi2nMcEO2ODOHlBg&t=1711390006"
+                }
+              ]
+            },
+            {
+              "id": 2,
+              "name": "پیش نیاز ها",
+              "Episode": []
+            }
+          ]
+        },
+        {
+          "id": "1",
+          "name": "LibraryReact",
+          "title": "۲۰ کتابخانه کاربردی ReactJS برای بازارکار",
+          "description": "‌کتابخانه‌ها باعث افزایش سرعت کدنویسی میشن. در حدی که تو بازار کار هم از کتابخانه های مختلفی برای توسعه پروژه‌ها استفاده میشه. تو این دوره 20 کتابخانه پرکاربرد و پراستفاده ری‌اکت که تو بازار کار برای توسعه پروژه های مختلفی استفاده میشه رو بصورت پروژه محور یاد میگیری. این موضوع هم",
+          "img": "https://sabzlearn.ir/wp-content/uploads/2023/12/ezgif.com-jpg-to-webp-converted-29-1-768x432.webp",
+          "ProjectCourseImg": "https://sabzlearn.ir/wp-content/uploads/2024/01/20REACT.webp",
+          "price": 0,
+          "participants": 2000,
+          "teacher": "سعید راد",
+          "satisfaction": 280,
+          "timeHours": "30",
+          "timeMin": "00",
+          "time": "2024-01-30T12:30",
+          "category": "فرانت اند",
+          "complate": 100,
+          "prerequisite": "React",
+          "session": [
+            {
+              "id": 1,
+              "name": "معرفی",
+              "Episode": [
+                {
+                  "id": 1,
+                  "name": "معرفی",
+                  "description": "",
+                  "video": "/"
+                },
+                {
+                  "id": 2,
+                  "name": "کتابخانه ها ایا در بهبود و غملکرد تاثیر دارند",
+                  "description": "",
+                  "video": "/"
+                }
+              ]
+            },
+            {
+              "id": 2,
+              "name": "پیش نیاز ها",
+              "Episode": []
+            }
+          ]
+        },
+        {
+          "id": "5",
+          "name": "typescript",
+          "title": "آموزش کاربردی Typescript بصورت پروژه محور",
+          "description": "ایپ اسکریپت یه زبون برنامه نویسیه که توسط مایکروسافت ارائه شده و یسری قابلیت و فیچر های جدید رو با هدف افزایش پرفورمنس و کاهش احتمال خطا به جاوا اسکریپت اضافه کرده. بنا به آمار استک‌اور‌فلو و بازار کار جاوا اسکریت، امروزه تایپ اسکریپت به یکی از زبان های مهم، پراستفاده و محبوب تبدیل شده",
+          "img": "https://sabzlearn.ir/wp-content/uploads/2023/12/ezgif.com-jpg-to-webp-converted-23-1-768x432.webp",
+          "ProjectCourseImg": "https://sabzlearn.ir/wp-content/uploads/2024/01/تایپ-اسکریپت.webp",
+          "price": 1000000,
+          "participants": 8000,
+          "teacher": "سعید راد",
+          "satisfaction": 500,
+          "timeHours": "40",
+          "timeMin": "15",
+          "time": "2024-02-01T10:30",
+          "category": "فرانت اند",
+          "complate": 100,
+          "prerequisite": "HTML CSS JS",
+          "session": [
+            {
+              "id": 1,
+              "name": "معرفی",
+              "Episode": [
+                {
+                  "id": 1,
+                  "name": "کتابخانه ها به چه کاری می آیند",
+                  "description": "",
+                  "video": "/"
+                },
+                {
+                  "id": 2,
+                  "name": "کتابخانه ها ایا در بهبود و غملکرد تاثیر دارند",
+                  "description": "",
+                  "video": "/"
+                }
+              ]
+            },
+            {
+              "id": 2,
+              "name": "پیش نیاز ها",
+              "Episode": []
+            }
+          ]
+        },
+        {
+          "id": "6",
+          "name": "hackerZero",
+          "title": "ورود به دنیای امنیت | هکر صفر کیلومتر",
+          "description": "اگر برای ورود به دنیای امنیت سردرگم هستید. این دوره با راهنمایی مختصر و مفید و ارائه موارد تجربی باعث رشد و حل سردرگمی های شما میشود",
+          "img": "https://sabzlearn.ir/wp-content/uploads/2024/01/0h1-768x432.webp",
+          "ProjectCourseImg": "",
+          "price": 0,
+          "participants": 2000,
+          "teacher": "حسین عبادی",
+          "satisfaction": 280,
+          "timeHours": "30",
+          "timeMin": "00",
+          "time": "2024-01-30T12:30",
+          "category": "امنیت",
+          "complate": 100,
+          "prerequisite": "JS",
+          "session": [
+            {
+              "id": 1,
+              "name": "معرفی",
+              "Episode": [
+                {
+                  "id": 1,
+                  "name": "کتابخانه ها به چه کاری می آیند",
+                  "description": "",
+                  "video": "/"
+                },
+                {
+                  "id": 2,
+                  "name": "کتابخانه ها ایا در بهبود و غملکرد تاثیر دارند",
+                  "description": "",
+                  "video": "/"
+                }
+              ]
+            },
+            {
+              "id": 2,
+              "name": "پیش نیاز ها",
+              "Episode": []
+            }
+          ]
+        }
       ]
     }
   ],

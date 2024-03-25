@@ -43,15 +43,21 @@ export default function CourseView() {
   // get data in redux
   const dispatch = useDispatch();
   const courses = useSelector((state) => state.courses);
+
   // get params route page
   const params = useParams();
+
   // validate course and category 
   const [courseInfo, setCourseInfo] = useState(null);
   const [categoryPath, setCategoryPath] = useState(null);
+
   // validate course chapters
   const [relatedCourse, setRelatedCourse] = useState([]);
+
   // validate This user is a student. Is there a course or not?
   const [student, setStudent] = useState(false);
+
+  const [user, setUser]= useState([]);
 
   // Fetch courses on component mount
   useEffect(() => {
@@ -96,6 +102,7 @@ export default function CourseView() {
           const users = response.data;
           const user = users.find((user) => user.email === token);
           if (user) {
+            setUser(user)
             const studentCourse = user.courses.find(
               (course) => course.name === courseInfo.name
             );
@@ -122,6 +129,26 @@ export default function CourseView() {
 
   // Convert Gregorian to solar time
   const formattedDate = formatDate(courseInfo.time);
+
+  const addCourseHandler = async () => {
+    try {
+      let updatedUserData = {...user,courses: [...user.courses, courseInfo]};
+  
+      const response = await apiRequest.put(`/users/${user.id}`, updatedUserData);
+  
+      if (response.status === 200) {
+        setUser(updatedUserData);
+        setStudent(true)
+      } else {
+        alert("خطا در افزودن محصول به دوره‌های شما!");
+      }
+    } catch (error) {
+      console.error("خطا در افزودن محصول به دوره‌های شما:", error);
+      alert("خطا در افزودن محصول به دوره‌های شما!");
+    }
+  };
+  
+  
 
   return (
     <main className="mt-8 sm:mt-10">
@@ -161,6 +188,7 @@ export default function CourseView() {
             description={courseInfo.description}
             price={courseInfo.price}
             student={student}
+            onClick={addCourseHandler}
           />
 
           {/* <!-- Course Banner  --> */}
