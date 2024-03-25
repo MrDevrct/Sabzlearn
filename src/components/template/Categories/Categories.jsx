@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import apiRequest from "../../../services/Axios/config";
 
 // get data in redux
@@ -29,7 +29,8 @@ export default function Category() {
   const [coursesInfo, setCoursesInfo] = useState([]);
   const { categoryName } = useParams();
   const [courseCount, setCourseCount] = useState(0);
-  // 
+  const [categoryPath, setCategoryPath] = useState(null);
+  //
   const [isFilterMobile, setIsFilterMobile] = useState(false);
   const [isSortMobile, setIsSortMobile] = useState(false);
   const [categoryTitle, setCategoryTitle] = useState("");
@@ -39,7 +40,6 @@ export default function Category() {
   const [freeCoursesOnly, setFreeCoursesOnly] = useState(false);
   const [preSaleCoursesOnly, setPreSaleCoursesOnly] = useState(false);
   const [purchasedCoursesOnly, setPurchasedCoursesOnly] = useState(false);
-
 
   useEffect(() => {
     dispatch(fetchCourses());
@@ -62,6 +62,7 @@ export default function Category() {
 
         // Set category title
         if (selectedCategory) {
+          setCategoryPath(selectedCategory.path);
           setCategoryTitle(selectedCategory.title);
           // set count courses
           const filteredCourses = dataCourses.filter(
@@ -125,10 +126,9 @@ export default function Category() {
 
     if (freeCoursesOnly) {
       filteredCourses = filteredCourses.filter((course) => course.price === 0);
-      setCoursesInfo(filteredCourses)
-    }
-    else {
-      filteredCourses = sortSelected
+      setCoursesInfo(filteredCourses);
+    } else {
+      filteredCourses = sortSelected;
     }
 
     setCoursesInfo(filteredCourses);
@@ -141,9 +141,31 @@ export default function Category() {
     setPreSaleCoursesOnly(false);
     setPurchasedCoursesOnly(false);
 
-    setCoursesInfo(sortSelected)
+    setCoursesInfo(sortSelected);
   };
 
+  // search for course in categories
+  const location = useLocation();
+  const [searchValue, setSearchValue] = useState("");
+  // search for course in categories
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const searchParamValue = searchParams.get("s");
+    setSearchValue(searchParamValue || "");
+
+    let filteredCourses = dataCourses;
+
+    console.log(categoryTitle);
+    if (searchParamValue) {
+      filteredCourses = dataCourses.filter(
+        (course) =>
+          course.category === categoryTitle &&
+          course.title.toLowerCase().includes(searchParamValue.toLowerCase())
+      );
+    }
+
+    setCoursesInfo(filteredCourses);
+  }, [location.search, dataCourses, categoryName]);
 
   return (
     // section categories
@@ -161,8 +183,9 @@ export default function Category() {
           <div className="col-span-full lg:col-span-4 xl:col-span-3 lg:sticky top-6 space-y-6 px-2 md:px-0">
             <form className="space-y-6">
               {/* search */}
-              <SearchBox 
-                placeholder={`جستجو بین دورهای ${categoryTitle}`} 
+              <SearchBox
+                category={categoryPath}
+                placeholder={`جستجو بین دورهای ${categoryTitle}`}
               />
 
               {/* toggle filters */}
@@ -302,7 +325,10 @@ export default function Category() {
             </button>
             <span className="font-danaDemibold text-lg">فیلترها</span>
           </div>
-          <button className="filter__clean-btn font-danaDemibold" onClick={handleFilterClear}>
+          <button
+            className="filter__clean-btn font-danaDemibold"
+            onClick={handleFilterClear}
+          >
             حذف فیلتر ها
             <CiTrash className="text-[25px] mb-1" />
           </button>
@@ -313,14 +339,23 @@ export default function Category() {
             <span className="font-danaMedium select-none">
               فقط دوره های رایگان
             </span>
-            <input type="checkbox" className="toggle__input" checked={freeCoursesOnly} onChange={(e) => setFreeCoursesOnly(e.target.checked)} />
+            <input
+              type="checkbox"
+              className="toggle__input"
+              checked={freeCoursesOnly}
+              onChange={(e) => setFreeCoursesOnly(e.target.checked)}
+            />
             <span className="toggle__marker"></span>
           </label>
           <label className="toggle w-full flex items-center justify-between py-5 border-t border-t-gray-200">
             <span className="font-danaMedium select-none">
               فقط دوره های رایگان
             </span>
-            <input type="checkbox" className="toggle__input" onChange={(e) => setFreeCoursesOnly(e.target.checked)}/>
+            <input
+              type="checkbox"
+              className="toggle__input"
+              onChange={(e) => setFreeCoursesOnly(e.target.checked)}
+            />
             <span className="toggle__marker"></span>
           </label>
         </form>

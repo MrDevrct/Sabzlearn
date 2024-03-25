@@ -1,17 +1,21 @@
   import React, { useState } from "react";
   import { CiSearch } from "react-icons/ci";
+import { Navigate, useNavigate } from "react-router-dom";
 
-  export default function SearchBox({ placeholder }) {
+  export default function SearchBox({ placeholder , category }) {
     // search values
     const [searchValues, setSearchValues] = useState(null);
+    const navigate = useNavigate()
 
+    
     const searchHandler = (event) => {
-      if (event.key === 'Enter') { // استفاده از event.key برای بررسی کلید Enter
-        event.preventDefault(); // جلوگیری از رفتار پیش‌فرض
-        console.log(searchValues);
+      if (event.keyCode === 13) {
+        if (searchValues.trim()) {
+          event.preventDefault(); // جلوگیری از رفتار پیش‌فرض
+          navigate(`/category/${category}/?s=${searchValues}`);
+        }
       }
     };
-    
 
     return (
       <div className="h-17 bg-white rounded-xl p-4 md:p-5">
