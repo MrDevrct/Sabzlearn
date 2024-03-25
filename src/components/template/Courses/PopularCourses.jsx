@@ -8,6 +8,7 @@ import { fetchCourses, setCourses } from "../../../services/Redux/actions";
 export default function PopularCourses() {
   // get the courses in redux
   const dispatch = useDispatch();
+  
   // validate the courses
   const dataCourses = useSelector((state) => state.courses);
   const [coursesInfo, setCoursesInfo] = useState([]);

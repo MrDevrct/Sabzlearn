@@ -24,27 +24,40 @@ import "../../../css/ElementProprety/Input.css";
 import "../../../css/ElementProprety/FiltersMobile.css";
 
 export default function Category() {
+  // get data courses in redux
   const dispatch = useDispatch();
   const dataCourses = useSelector((state) => state.courses);
+  // validate courses
   const [coursesInfo, setCoursesInfo] = useState([]);
+  const [backupCourses, setBackupCourses] = useState(null);
+  // get params in page route
   const { categoryName } = useParams();
+  // validate courses count
   const [courseCount, setCourseCount] = useState(0);
+  // validate category path
   const [categoryPath, setCategoryPath] = useState(null);
-  //
+  // validate filter and sort mobile 
   const [isFilterMobile, setIsFilterMobile] = useState(false);
   const [isSortMobile, setIsSortMobile] = useState(false);
+  // validate category title
   const [categoryTitle, setCategoryTitle] = useState("");
-  const [sortSelected, setSortSelected] = useState(null);
+  // validate active sort 
   const [active, setActive] = useState(null);
-  // filter mobile
+  // validate items filter mobile
   const [freeCoursesOnly, setFreeCoursesOnly] = useState(false);
   const [preSaleCoursesOnly, setPreSaleCoursesOnly] = useState(false);
   const [purchasedCoursesOnly, setPurchasedCoursesOnly] = useState(false);
+  // search for course in categories
+  const location = useLocation();
+  const [searchValue, setSearchValue] = useState("");
 
+  
+  // Fetch courses on component mount
   useEffect(() => {
     dispatch(fetchCourses());
   }, [dispatch]);
 
+  // Update courseInfo when courses or params change
   useEffect(() => {
     setCoursesInfo(dataCourses);
   }, [dataCourses]);
@@ -69,12 +82,10 @@ export default function Category() {
             (course) => course.category === selectedCategory.title
           );
           setCoursesInfo(filteredCourses);
-          setSortSelected(filteredCourses);
+          setBackupCourses(filteredCourses);
           setCourseCount(filteredCourses.length);
         }
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
+      } catch (error) {}
     };
 
     if (categoryName) {
@@ -82,7 +93,7 @@ export default function Category() {
     }
   }, [categoryName, dataCourses]);
 
-  // sort by course
+  // function handler sort by course
   const handleSortChange = (sortName) => {
     let sortedCourses = [...coursesInfo];
     if (sortName === "ارزان ترین") {
@@ -92,14 +103,14 @@ export default function Category() {
     } else if (sortName === "پر مخاطب ها") {
       sortedCourses.sort((a, b) => b.participants - a.participants);
     } else {
-      sortedCourses = sortSelected;
+      sortedCourses = backupCourses;
     }
 
     setCoursesInfo(sortedCourses);
     setActive(sortName);
   };
 
-  // filter by course
+  // function handler filter by course
   const handleFilterChange = (event, operator) => {
     let sortedCourses = [...coursesInfo];
     if (event.target.checked === true) {
@@ -107,15 +118,17 @@ export default function Category() {
         sortedCourses = sortedCourses.filter((course) => course.price === 0);
       }
     } else {
-      sortedCourses = sortSelected;
+      sortedCourses = backupCourses;
     }
     setCoursesInfo(sortedCourses);
   };
 
+  // function handler open menu filter courses mobile
   const openFilterMobile = () => {
     setIsFilterMobile(!isFilterMobile);
   };
 
+  // function handler open menu sort courses mobile
   const openSortMobile = () => {
     setIsSortMobile(!isSortMobile);
   };
@@ -128,7 +141,7 @@ export default function Category() {
       filteredCourses = filteredCourses.filter((course) => course.price === 0);
       setCoursesInfo(filteredCourses);
     } else {
-      filteredCourses = sortSelected;
+      filteredCourses = backupCourses;
     }
 
     setCoursesInfo(filteredCourses);
@@ -141,12 +154,10 @@ export default function Category() {
     setPreSaleCoursesOnly(false);
     setPurchasedCoursesOnly(false);
 
-    setCoursesInfo(sortSelected);
+    setCoursesInfo(backupCourses);
   };
 
-  // search for course in categories
-  const location = useLocation();
-  const [searchValue, setSearchValue] = useState("");
+
   // search for course in categories
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);

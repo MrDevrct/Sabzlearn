@@ -9,6 +9,7 @@ export default function LastCourses() {
   // get the courses in redux
   const dispatch = useDispatch();
   const dataCourses = useSelector((state) => state.courses);
+  
   // validate course
   const [coursesInfo, setCoursesInfo] = useState([]);
 

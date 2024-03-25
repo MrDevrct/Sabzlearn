@@ -9,6 +9,7 @@ export default function PopularCourses() {
   // get the courses in redux
   const dispatch = useDispatch();
   const dataCourses = useSelector((state) => state.courses);
+  
   // validate the courses
   const [coursesInfo, setCoursesInfo] = useState([]);
 

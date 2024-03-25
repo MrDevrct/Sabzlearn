@@ -19,24 +19,38 @@ import { BiXCircle } from "react-icons/bi";
 import { CiTrash } from "react-icons/ci";
 
 export default function Courses() {
-  const location = useLocation();
+  // get data courses in redux
   const dispatch = useDispatch();
   const dataCourses = useSelector((state) => state.courses);
+
+  // validate courses
   const [coursesInfo, setCoursesInfo] = useState([]);
+
+  // validate filter and sort mobile
   const [isFilterMobile, setIsFilterMobile] = useState(false);
   const [isSortMobile, setIsSortMobile] = useState(false);
-  const { categoryName } = useParams();
-  const [searchValue, setSearchValue] = useState(""); // افزودن متغیر searchQuery
+
+  // validate active sort 
   const [active, setActive] = useState(null);
+
+  // get params in page route
+  const { categoryName } = useParams();
+
+  // validate search
+  const location = useLocation();
+  const [searchValue, setSearchValue] = useState(""); // افزودن متغیر searchQuery
+  
   // filter mobile
   const [freeCoursesOnly, setFreeCoursesOnly] = useState(false);
   const [preSaleCoursesOnly, setPreSaleCoursesOnly] = useState(false);
   const [purchasedCoursesOnly, setPurchasedCoursesOnly] = useState(false);
 
+  // Fetch courses on component mount
   useEffect(() => {
     dispatch(fetchCourses());
   }, [dispatch]);
 
+  // Update courseInfo when courses or params change
   useEffect(() => {
     setCoursesInfo(dataCourses);
   }, [dataCourses]);
@@ -65,7 +79,7 @@ export default function Courses() {
     setCoursesInfo(filteredCourses);
   }, [location.search, dataCourses, categoryName]);
 
-  // sort by course
+  // function handler sort by courses
   const handleSortChange = (sortName) => {
     let sortedCourses = [...dataCourses];
     if (sortName === "ارزان ترین") {
@@ -81,7 +95,7 @@ export default function Courses() {
     setActive(sortName);
   };
 
-  // filter the course
+  // function handler filter the courses
   const handleFilterChange = (event, operator) => {
     let sortedCourses = [...coursesInfo];
     if (event.target.checked === true) {
@@ -94,10 +108,12 @@ export default function Courses() {
     setCoursesInfo(sortedCourses);
   };
 
+  // function handler open menu filter mobile
   const openFilterMobile = () => {
     setIsFilterMobile(!isFilterMobile);
   };
 
+  // function handler open menu sort mobile
   const openSortMobile = () => {
     setIsSortMobile(!isSortMobile);
   };

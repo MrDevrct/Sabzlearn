@@ -13,9 +13,14 @@ import { FaTelegramPlane } from "react-icons/fa";
 import { BiXCircle } from "react-icons/bi";
 
 export default function Category() {
+  // get params page route 
   const { teacherName } = useParams();
+
+  // validate courses teacher
   const [courses, setCourses] = useState([]);
-  const [sortSelected, setSortSelected] = useState([]);
+  
+  // validate backup Courses teacher
+  const [backupCourses, setBackupCourses] = useState([]);
   const [isSortMobile, setIsSortMobile] = useState(false);
   const [active, setActive] = useState([]);
   const [teacher, setTeacher] = useState(null);
@@ -24,24 +29,22 @@ export default function Category() {
     const fetchTeacher = async () => {
       try {
         const teacherResponse = await apiRequest("/teachers");
-        const foundTeacher = teacherResponse.data.find(
-          (teacher) => teacher.name === teacherName
-        );
+        const foundTeacher = teacherResponse.data.find((teacher) => teacher.name === teacherName);
         if (foundTeacher) {
           setTeacher(foundTeacher);
           setCourses(foundTeacher.courses);
-          setSortSelected(foundTeacher.courses);
+          setBackupCourses(foundTeacher.courses);
         }
-      } catch (error) {
-        console.error("Error fetching teacher:", error);
-      }
+      } catch (error) {}
     };
 
     fetchTeacher();
   }, [teacherName]);
 
+  // function handler sort Courses
   const handleSortChange = (sortName) => {
     let sortedCourses = [...courses];
+
     if (sortName === "ارزان ترین") {
       sortedCourses.sort((a, b) => a.price - b.price);
     } else if (sortName === "گران ترین") {
@@ -49,17 +52,19 @@ export default function Category() {
     } else if (sortName === "پر مخاطب ها") {
       sortedCourses.sort((a, b) => b.participants - a.participants);
     } else {
-      sortedCourses = sortSelected;
+      sortedCourses = backupCourses;
     }
 
     setCourses(sortedCourses);
     setActive(sortName);
   };
 
+  // teacher is valid
   if (!teacher) {
     return <div>Loading...</div>;
   }
 
+  // function handler open menu sort mobile
   const openSortMobile = () => {
     setIsSortMobile(!isSortMobile);
   };

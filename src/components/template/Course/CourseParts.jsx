@@ -18,18 +18,25 @@ export default function CourseParts() {
   // get the courses in redux
   const dispatch = useDispatch();
   const dataCourses = useSelector((state) => state.courses);
-  // validate the course
-  const [course, setCourse] = useState([]);
-  // validate the course chapters
-  const [chapterCourse, setChapterCourse] = useState([]);
-  // validate the course episodes
-  const [episodeCourse, setEpisodeCourse] = useState([]);
-  // validate the category path
-  const [categoryPath, setCategoryPath] = useState(null);
-  // validate open menu chapter
-  const [openChapters, setOpenChapters] = useState([]);
+  
   // params in pgae route
   const { courseInfo } = useParams();
+
+  // validate the course
+  const [course, setCourse] = useState([]);
+
+  // validate the course chapters
+  const [chapterCourse, setChapterCourse] = useState([]);
+
+  // validate the course episodes
+  const [episodeCourse, setEpisodeCourse] = useState([]);
+
+  // validate the category path
+  const [categoryPath, setCategoryPath] = useState(null);
+
+  // validate open menu chapter
+  const [openChapters, setOpenChapters] = useState([]);
+
 
   // Fetch courses on component mount
   useEffect(() => {
