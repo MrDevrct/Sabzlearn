@@ -139,6 +139,7 @@ export default function CourseView() {
       if (response.status === 200) {
         setUser(updatedUserData);
         setStudent(true)
+        alert("به سبد دوره های افزوده شد");
       } else {
         alert("خطا در افزودن محصول به دوره‌های شما!");
       }

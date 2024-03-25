@@ -211,6 +211,92 @@
               "Episode": []
             }
           ]
+        },
+        {
+          "id": "12",
+          "name": "nodeJs",
+          "title": "آموزش حرفه ای NodeJS بدون پیش نیاز",
+          "description": "الان و امروز کمتر کسی هست که از بازار کار داغ نود جی اس با خبر نباشه و یکی از دلایل استفاده از این تکنولوژی فارغ از یه خیلی از مزایاش برای برنامه نویسا(کسب و کار ها به کنار) همین بازار کارشه و ما توی این دوره از نقطه منفی صفر حتی اگه جاوااسکریپت بلد",
+          "img": "https://sabzlearn.ir/wp-content/uploads/2023/12/ezgif.com-jpg-to-webp-converted-22-1-768x432.webp",
+          "ProjectCourseImg": "https://sabzlearn.ir/wp-content/uploads/2024/02/nodejs.webp",
+          "price": 200000,
+          "participants": 8000,
+          "teacher": "حسین عبادی",
+          "satisfaction": 500,
+          "timeHours": "40",
+          "timeMin": "15",
+          "time": "2024-02-01T10:30",
+          "category": "امنیت",
+          "complate": 100,
+          "prerequisite": "HTML CSS JS",
+          "session": [
+            {
+              "id": 1,
+              "name": "معرفی",
+              "Episode": [
+                {
+                  "id": 1,
+                  "name": "کتابخانه ها به چه کاری می آیند",
+                  "description": "",
+                  "video": "https://tech.sabzlearn.ir/uploads/ce01010101it/next/Next001-intro.mp4?h=W8dWbT0KKRXcxEXOVXztbw&amp;t=1710900103"
+                },
+                {
+                  "id": 2,
+                  "name": "کتابخانه ها ایا در بهبود و غملکرد تاثیر دارند",
+                  "description": "",
+                  "video": "/"
+                }
+              ]
+            },
+            {
+              "id": 2,
+              "name": "پیش نیاز ها",
+              "Episode": []
+            }
+          ]
+        },
+        {
+          "id": "11",
+          "name": "docker",
+          "title": "Docker از صفر مطلق!",
+          "description": "داکر یک پلتفرم متن باز برای طراحی؛ انتقال؛ استقرار و اجرای نرم افزار ها تحت مفهومی به نام Container می‌باشد، در این دوره به صورت تخصصی مفاهیم و مباحث داکر را فرا خواهیم گرفت.",
+          "img": "https://sabzlearn.ir/wp-content/uploads/2024/03/Docker1-1-1-768x432.webp",
+          "ProjectCourseImg": "",
+          "price": 400000,
+          "participants": 8000,
+          "teacher": "آرمین هوشمند",
+          "satisfaction": 100,
+          "timeHours": "2",
+          "timeMin": "30",
+          "time": "2024-01-01T02:00",
+          "category": "امنیت",
+          "complate": 100,
+          "prerequisite": "تسلط به فرانت",
+          "session": [
+            {
+              "id": 1,
+              "name": "معرفی",
+              "Episode": [
+                {
+                  "id": 1,
+                  "name": "کتابخانه ها به چه کاری می آیند",
+                  "description": "",
+                  "video": "/"
+                },
+                {
+                  "id": 2,
+                  "name": "کتابخانه ها ایا در بهبود و غملکرد تاثیر دارند",
+                  "description": "",
+                  "video": "/"
+                }
+              ]
+            },
+            {
+              "id": 2,
+              "name": "پیش نیاز ها",
+              "Episode": []
+            }
+          ]
         }
       ]
     }
@@ -274,7 +360,7 @@
       "timeMin": "00",
       "time": "2024-02-21T11:30",
       "category": "فرانت اند",
-      "complate": 20,
+      "complate": 60,
       "prerequisite": "ReactJs",
       "session": [
         {
