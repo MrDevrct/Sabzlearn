@@ -3,16 +3,27 @@ import "../css/ElementProprety/FormInput.css";
 import { FaRegEnvelope } from "react-icons/fa";
 import { FiLock } from "react-icons/fi";
 import Input from "../components/modules/Input";
-import apiRequset from "../services/Axios/config";
 import Cookies from 'js-cookie';
 
 // alert toastify
 import { Bounce, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+// component
 import Button from "../components/modules/Button";
-import apiRequest from "../services/Axios/config";
+
+// get data in redux
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUsers } from "../services/Redux/actions";
+
 
 export default function Login() {
+  const dispatch = useDispatch();
+  const dataUsers = useSelector((state) => state.users);
+  const [users, SetUsers] = useState([]);
+
+  const Token = Cookies.get("Token");
+
   // form data
   const [formData, setFormData] = useState({
     email: "",
