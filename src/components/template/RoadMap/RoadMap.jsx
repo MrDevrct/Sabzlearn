@@ -1,6 +1,8 @@
 import React from "react";
+// component
 import SectionHeader from "../../modules/Home/SectionHeader";
 
+// validate items roadmap
 const roadmap = [
   {
     id: 1,

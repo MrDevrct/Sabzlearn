@@ -1,4 +1,5 @@
 import React from "react";
+// Icons
 import { HiUsers } from "react-icons/hi2";
 import { IoIosStar } from "react-icons/io";
 
@@ -32,7 +33,7 @@ export default function CourseComplatePercentage({data}) {
         {/* !<-- Progressbar completion percentage --> */}
         <div className="flex items-center justify-between font-danaDemibold text-sm sm:text-base mb-3">
           <span>درصد تکمیل دوره</span>
-          <span>20%</span>
+          <span>{data.status_complate}</span>
         </div>
 
         {/* !<-- Progress -->  */}
@@ -46,7 +47,7 @@ export default function CourseComplatePercentage({data}) {
         >
           <div
             className="flex flex-col justify-center rounded-full overflow-hidden bg-[#22c55e] text-xs text-white text-center whitespace-nowrap transition duration-500"
-            style={{ width: "20%" }}
+            style={{ width: `${data.status_complate}$`}}
           ></div>
         </div>
       </div>

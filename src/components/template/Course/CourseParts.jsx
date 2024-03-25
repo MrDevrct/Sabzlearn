@@ -15,15 +15,23 @@ import { MdOutlineRadioButtonUnchecked } from "react-icons/md";
 import "../../../css/ElementProprety/CourseParts.css";
 
 export default function CourseParts() {
-  const [course, setCourse] = useState([]);
-  const [chapterCourse, setChapterCourse] = useState([]);
-  const [episodeCourse, setEpisodeCourse] = useState([]);
-  const [categoryPath, setCategoryPath] = useState(null);
-  const [openChapters, setOpenChapters] = useState([]);
-  const { courseInfo } = useParams();
+  // get the courses in redux
   const dispatch = useDispatch();
   const dataCourses = useSelector((state) => state.courses);
+  // validate the course
+  const [course, setCourse] = useState([]);
+  // validate the course chapters
+  const [chapterCourse, setChapterCourse] = useState([]);
+  // validate the course episodes
+  const [episodeCourse, setEpisodeCourse] = useState([]);
+  // validate the category path
+  const [categoryPath, setCategoryPath] = useState(null);
+  // validate open menu chapter
+  const [openChapters, setOpenChapters] = useState([]);
+  // params in pgae route
+  const { courseInfo } = useParams();
 
+  // Fetch courses on component mount
   useEffect(() => {
     dispatch(fetchCourses());
   }, [dispatch]);

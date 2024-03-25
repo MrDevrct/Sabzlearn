@@ -6,18 +6,23 @@ import CourseBox from "../../modules/CourseBox";
 import { Link } from "react-router-dom";
 
 export default function LastCourses() {
+  // get the courses in redux
   const dispatch = useDispatch();
   const dataCourses = useSelector((state) => state.courses);
+  // validate course
   const [coursesInfo, setCoursesInfo] = useState([]);
 
+  // Fetch courses on component mount
   useEffect(() => {
     dispatch(fetchCourses());
   }, [dispatch]);
 
+  // Update courseInfo when courses or params change
   useEffect(() => {
     setCoursesInfo(dataCourses);
   }, [dataCourses]);
 
+  // filters course in participants
   useEffect(() => {
     let filteredCourses = dataCourses;
 

@@ -6,18 +6,23 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchCourses, setCourses } from "../../../services/Redux/actions";
 
 export default function PopularCourses() {
+  // get the courses in redux
   const dispatch = useDispatch();
+  // validate the courses
   const dataCourses = useSelector((state) => state.courses);
   const [coursesInfo, setCoursesInfo] = useState([]);
 
+  // Fetch courses on component mount
   useEffect(() => {
     dispatch(fetchCourses());
   }, [dispatch]);
 
+  // Update courseInfo when courses or params change
   useEffect(() => {
     setCoursesInfo(dataCourses);
   }, [dataCourses]);
 
+  // filters course in participants
   useEffect(() => {
     let filteredCourses = dataCourses;
 

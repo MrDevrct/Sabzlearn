@@ -3,7 +3,7 @@ import { HiSparkles } from "react-icons/hi2";
 import { BsArrowLeftCircleFill } from "react-icons/bs";
 import HeaderTitle from "./HeaderTitle";
 
-export default function CourseRelated({ data }) {
+export default function CourseRelated({ relatedCourse }) {
   return (
     <div className="hidden lg:block bg-white rounded-2xl p-5 sm:p-5 mt-8">
       {/* !<-- Header Title --> */}
@@ -17,7 +17,7 @@ export default function CourseRelated({ data }) {
       {/* Related Items */}
       <div className="space-y-4 md:space-y-5">
         {/* items */}
-        {data.map((related) => (
+        {relatedCourse.map((related) => (
           <div
             className="flex items-center justify-between flex-wrap bg-gray-100 dark:bg-dark rounded-lg py-2 pr-2 pl-4"
             key={related.id}

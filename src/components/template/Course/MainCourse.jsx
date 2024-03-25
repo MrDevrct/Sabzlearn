@@ -18,6 +18,8 @@ import CourseDescription from "../../modules/Course/CourseData/CourseDescription
 import CourseAboutTeacher from "../../modules/Course/CourseData/CourseAboutTeacher";
 import CourseShortLink from "../../modules/Course/CourseData/CourseShortLink";
 import CourseComplatePercentage from "../../modules/Course/CourseData/CourseComplatePercentage";
+// coockie
+import Cookies from "js-cookie";
 
 // icon
 import { LuHome } from "react-icons/lu";
@@ -38,12 +40,18 @@ function formatDate(isoString) {
 }
 
 export default function CourseView() {
+  // get data in redux
   const dispatch = useDispatch();
   const courses = useSelector((state) => state.courses);
+  // get params route page
   const params = useParams();
+  // validate course and category 
   const [courseInfo, setCourseInfo] = useState(null);
   const [categoryPath, setCategoryPath] = useState(null);
+  // validate course chapters
   const [relatedCourse, setRelatedCourse] = useState([]);
+  // validate This user is a student. Is there a course or not?
+  const [student, setStudent] = useState(false);
 
   // Fetch courses on component mount
   useEffect(() => {
@@ -60,30 +68,48 @@ export default function CourseView() {
   useEffect(() => {
     const fetchCategoryPath = async () => {
       try {
-        // get data Categories
+        // get data categories
         const categoriesResponse = await apiRequest("/Categories");
         const category = categoriesResponse.data.find((category) => courseInfo && courseInfo.category === category.title);
 
-        // If category value
         if (category) {
           setCategoryPath(category.path);
         }
 
-        // related Course 
+        // related course 
         if (courses.length > 0 && courseInfo) {
-          const filteredCourses = courses.filter((course) => course.category === courseInfo.category && course.name !== courseInfo.name); 
+          const filteredCourses = courses.filter(
+            (course) =>
+              course.category === courseInfo.category &&
+              course.name !== courseInfo.name
+          );
           if (filteredCourses.length > 0) {
-            const fourCourses = filteredCourses.slice(0, 4); // چهار دوره اول
+            const fourCourses = filteredCourses.slice(0, 4);
             setRelatedCourse(fourCourses);
           }
         }
 
-      } catch (error) {
-        console.error("Error fetching category data:", error);
-      }
+        // get user 
+        const token = Cookies.get("Token");
+        if (token) {
+          const response = await apiRequest.get("/users");
+          const users = response.data;
+          const user = users.find((user) => user.email === token);
+          if (user) {
+            const studentCourse = user.courses.find(
+              (course) => course.name === courseInfo.name
+            );
+            if (studentCourse) {
+              setStudent(true);
+            } else {
+              setStudent(false);
+            }
+          }
+        }
+
+      } catch (error) {}
     };
 
-    // Only fetch categoryPath when courseInfo is available
     if (courseInfo) {
       fetchCategoryPath();
     }
@@ -134,6 +160,7 @@ export default function CourseView() {
             title={courseInfo.title}
             description={courseInfo.description}
             price={courseInfo.price}
+            student={student}
           />
 
           {/* <!-- Course Banner  --> */}
@@ -190,7 +217,7 @@ export default function CourseView() {
             <CourseHeadlines data={courseInfo} />
 
             {/* !<-- Related Courses  */}
-            <CourseRelated data={relatedCourse} inCourse={courseInfo}/>
+            <CourseRelated relatedCourse={relatedCourse}/>
 
             {/* !<-- Comments --> */}
             <CourseComments />
