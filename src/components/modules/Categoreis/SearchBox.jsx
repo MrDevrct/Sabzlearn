@@ -10,10 +10,16 @@ import { Navigate, useNavigate } from "react-router-dom";
     
     const searchHandler = (event) => {
       if (event.keyCode === 13) {
-        if (searchValues.trim()) {
+        if (category) {          
+          if (searchValues.trim()) {
+            event.preventDefault(); // جلوگیری از رفتار پیش‌فرض
+            navigate(`/category/${category}/?s=${searchValues}`);
+          }
+        } else {
           event.preventDefault(); // جلوگیری از رفتار پیش‌فرض
-          navigate(`/category/${category}/?s=${searchValues}`);
+          navigate(`/courses/?s=${searchValues}`);
         }
+          
       }
     };
 

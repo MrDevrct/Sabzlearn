@@ -122,6 +122,25 @@ export default function Courses() {
     setCoursesInfo(dataCourses)
   };
 
+  // search for course in categories
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const searchParamValue = searchParams.get("s");
+    setSearchValue(searchParamValue || "");
+
+    let filteredCourses = dataCourses;
+
+    if (searchParamValue) {
+      filteredCourses = dataCourses.filter(
+        (course) =>
+          course.title.toLowerCase().includes(searchParamValue.toLowerCase())
+      );
+    }
+
+    setCoursesInfo(filteredCourses);
+  }, [location.search, dataCourses, categoryName]);
+
+
   return (
     <main className="mt-20">
       <div className="w-fit container">
