@@ -60,7 +60,7 @@ export default function Input({ platform }) {
                 style={{ paddingRight: "1rem"}}
               />
               <button
-                className="absolute left-2 top-0 bottom-1 w-6 h-6 my-auto text-slate-500"
+                className="absolute left-3 top-0 bottom-2 w-6 h-6 my-auto text-slate-500"
                 onClick={searchBtnHandler}
               >
                 <CiSearch className="text-[30px]" />

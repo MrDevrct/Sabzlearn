@@ -175,7 +175,14 @@
         {
           "id": 2,
           "name": "پیش نیاز ها",
-          "Episode": []
+          "Episode": [
+            {
+              "id": 1,
+              "name": "کتابخانه ها ایا در بهبود و غملکرد تاثیر دارند",
+              "description": "",
+              "video": "https://tech.sabzlearn.ir/uploads/ce01010101it/next/Next002-react-vs-next.mp4?h=86BLA6IRGjj-eufOvqYR5Q&t=1711389966"
+            }
+          ]
         }
       ]
     },

@@ -3,7 +3,7 @@ import Search from './pages/search';
 import NotFound from './pages/notFound';
 import Courses from './pages/courses';
 import courseInfo from './pages/courseInfo';
-import courseParts from './pages/courseParts';
+import Lesson from './pages/lesson';
 import Categories from './pages/categories';
 import Articles from './pages/articles';
 import Teacher from './pages/teacher';
@@ -34,7 +34,7 @@ const router = [
     {
         name: 'Course-Parts',
         path: '/lesson/:courseInfo',
-        component: courseParts
+        component: Lesson
     },
     {
         name: 'Courses',
