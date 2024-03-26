@@ -3,6 +3,10 @@ import { Link } from "react-router-dom";
 import apiRequset from "../services/Axios/config";
 import { v4 as uuidv4 } from "uuid";
 
+// get data in redux
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUsers } from "../services/Redux/actions";
+
 // alert toastify
 import { Bounce, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -22,7 +26,10 @@ import Button from "../components/modules/Button";
 export default function Login() {
   // create id for user
   const userId = uuidv4();
-
+  const dispatch = useDispatch();
+  const dataUsers = useSelector((state) => state.users);
+  const [users, SetUsers] = useState([]);
+  const token = Cookies.get("Token");
   // form data new user
   const [formData, setFormData] = useState({
     id: userId,
@@ -37,26 +44,26 @@ export default function Login() {
     courses: [],
   });
 
-  // if token is invalid
-  useEffect(() => {
-    const token = Cookies.get('Token');
-    if (token) {
-      const fetchUser = async () => {
-        try {
-          const response = await apiRequest.get("/users");
-          const users = response.data;
-          const user = users.find(user => user.email === token);
-          if (user) {
-            window.location.pathname = '/';
-          }
-        } catch (error) {
-          console.error(error);
-        }
-      };
-      fetchUser();
-    }
-  }, []);
 
+  // Fetch courses on component mount
+  useEffect(() => {
+    dispatch(fetchUsers());
+  }, [dispatch]);
+
+  // Update courseInfo when courses or params change
+  useEffect(() => {
+    SetUsers(dataUsers);
+  }, [dataUsers]);
+
+  // get token
+  useEffect(() => {
+    if (token) {
+      const user = dataUsers.find((user) => user.email === token);
+      if (user) {
+        location.pathname = "/";
+      }
+    }
+  }, [token, users]);
 
   // set form data
   const handleInputChange = (event) => {
@@ -179,10 +186,7 @@ export default function Login() {
               maxLength={12}
             />
 
-            <Button 
-              text='ادامه'
-              onClick={handleSubmit}
-            />
+            <Button text="ادامه" onClick={handleSubmit} />
           </form>
         </div>
 
@@ -197,6 +201,8 @@ export default function Login() {
 
         <div className="hidden lg:block absolute top-0 left-0 w-[300px] h-[300px] bg-sky-500 opacity-20 blur-[120px] rounded-full"></div>
         <div className="hidden lg:block absolute bottom-0 right-0 w-[300px] h-[300px] bg-amber-400 opacity-20 blur-[120px] rounded-full"></div>
+
+        <ToastContainer />
       </section>
     </>
   );

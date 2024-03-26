@@ -166,7 +166,6 @@ export default function Category() {
 
     let filteredCourses = dataCourses;
 
-    console.log(categoryTitle);
     if (searchParamValue) {
       filteredCourses = dataCourses.filter(
         (course) =>

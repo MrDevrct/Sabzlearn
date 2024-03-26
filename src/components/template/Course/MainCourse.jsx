@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCourses } from "../../../services/Redux/actions";
+import { fetchCourses ,fetchUsers} from "../../../services/Redux/actions";
 import apiRequest from "../../../services/Axios/config";
 import moment from "jalali-moment";
 
@@ -42,7 +42,9 @@ function formatDate(isoString) {
 export default function CourseView() {
   // get data in redux
   const dispatch = useDispatch();
-  const courses = useSelector((state) => state.courses);
+  const dataCourses = useSelector((state) => state.courses);
+  const dataUsers = useSelector((state) => state.users);
+  const token = Cookies.get("Token");
 
   // get params route page
   const params = useParams();
@@ -59,16 +61,18 @@ export default function CourseView() {
 
   const [user, setUser]= useState([]);
 
+
   // Fetch courses on component mount
   useEffect(() => {
     dispatch(fetchCourses());
+    dispatch(fetchUsers());
   }, [dispatch]);
 
   // Update courseInfo when courses or params change
   useEffect(() => {
-    const course = courses.find((cours) => cours.name === params.courseName);
+    const course = dataCourses.find((cours) => cours.name === params.courseName);
     setCourseInfo(course);
-  }, [courses, params.courseName]);
+  }, [dataCourses, dataUsers , params.courseName]);
 
   // Fetch categoryPath based on courseInfo
   useEffect(() => {
@@ -83,8 +87,8 @@ export default function CourseView() {
         }
 
         // related course 
-        if (courses.length > 0 && courseInfo) {
-          const filteredCourses = courses.filter(
+        if (dataCourses.length > 0 && courseInfo) {
+          const filteredCourses = dataCourses.filter(
             (course) =>
               course.category === courseInfo.category &&
               course.name !== courseInfo.name
@@ -96,11 +100,8 @@ export default function CourseView() {
         }
 
         // get user 
-        const token = Cookies.get("Token");
         if (token) {
-          const response = await apiRequest.get("/users");
-          const users = response.data;
-          const user = users.find((user) => user.email === token);
+          const user = dataUsers.find((user) => user.email === token);
           if (user) {
             setUser(user)
             const studentCourse = user.courses.find(

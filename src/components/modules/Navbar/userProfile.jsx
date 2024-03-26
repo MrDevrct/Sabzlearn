@@ -80,7 +80,7 @@ export default function UserProfile() {
                 {/* desktop btn login */}
                 <Link
                   to="/login"
-                  className="hidden lg:flex button-xl button-secondary hover:text-white hover:bg-sky-600"
+                  className="hidden lg:flex button-xl button-secondary hover:text-white hover:bg-sky-600 font-danaMedium"
                 >
                   ورود | عضویت
                   <HiOutlineUser className="text-[18px]" />

@@ -299,6 +299,209 @@
           ]
         }
       ]
+    },
+    {
+      "id": "2dc08da4-69da-4419-9266-cadd59d39740",
+      "username": "saeedRad",
+      "phone": "09023883441",
+      "email": "game1-2@gmail.com",
+      "password": "Plutnium007",
+      "role": "USER",
+      "createdAccount": "2024-03-25T23:33:30.691Z",
+      "updatedAccount": "",
+      "wallet": 0,
+      "courses": [
+        {
+          "id": "2",
+          "name": "NextJs",
+          "title": "آموزش Next.js بصورت پروژه محور",
+          "description": "نکست یه فریمورک مبتنی بر ری‌اکت هست که امروزه تو بازار کار یکی از مهم‌ترین تکنولوژی‌ها برای توسعه دهنده های ری‌اکت به حساب میاد. نکست رو میشه مکمل ری‌اکت دونست. یعنی هر چی که ری‌اکت داره نکست هم داره، بعلاوه چند",
+          "img": "https://sabzlearn.ir/wp-content/uploads/2023/12/ezgif.com-jpg-to-webp-converted-27-1-768x432.webp",
+          "ProjectCourseImg": "https://sabzlearn.ir/wp-content/uploads/2024/01/next.webp",
+          "price": 290000,
+          "participants": 10000,
+          "teacher": "سعید راد",
+          "satisfaction": 400,
+          "timeHours": "60",
+          "timeMin": "00",
+          "time": "2024-02-21T11:30",
+          "category": "فرانت اند",
+          "complate": 60,
+          "prerequisite": "ReactJs",
+          "session": [
+            {
+              "id": 1,
+              "name": "معرفی",
+              "Episode": [
+                {
+                  "id": 1,
+                  "name": "اصلا ما چرا ب نکست تیاز داریم",
+                  "description": "",
+                  "video": "https://tech.sabzlearn.ir/uploads/ce01010101it/next/Next001-intro.mp4?h=yGzse9HrlURpPpo8P-MMpg&t=1711149074"
+                },
+                {
+                  "id": 2,
+                  "name": "کتابخانه ها ایا در بهبود و غملکرد تاثیر دارند",
+                  "description": "",
+                  "video": "https://tech.sabzlearn.ir/uploads/ce01010101it/next/Next002-react-vs-next.mp4?h=86BLA6IRGjj-eufOvqYR5Q&t=1711389966"
+                },
+                {
+                  "id": 3,
+                  "name": "ریکت بهتره یا نکست",
+                  "description": "",
+                  "video": "https://tech.sabzlearn.ir/uploads/ce01010101it/next/Next005-ssr-vs-csr.mp4?h=3XD8nyqi2nMcEO2ODOHlBg&t=1711390006"
+                }
+              ]
+            },
+            {
+              "id": 2,
+              "name": "پیش نیاز ها",
+              "Episode": [
+                {
+                  "id": 1,
+                  "name": "کتابخانه ها ایا در بهبود و غملکرد تاثیر دارند",
+                  "description": "",
+                  "video": "https://tech.sabzlearn.ir/uploads/ce01010101it/next/Next002-react-vs-next.mp4?h=86BLA6IRGjj-eufOvqYR5Q&t=1711389966"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "6",
+          "name": "hackerZero",
+          "title": "ورود به دنیای امنیت | هکر صفر کیلومتر",
+          "description": "اگر برای ورود به دنیای امنیت سردرگم هستید. این دوره با راهنمایی مختصر و مفید و ارائه موارد تجربی باعث رشد و حل سردرگمی های شما میشود",
+          "img": "https://sabzlearn.ir/wp-content/uploads/2024/01/0h1-768x432.webp",
+          "ProjectCourseImg": "",
+          "price": 0,
+          "participants": 2000,
+          "teacher": "حسین عبادی",
+          "satisfaction": 280,
+          "timeHours": "30",
+          "timeMin": "00",
+          "time": "2024-01-30T12:30",
+          "category": "امنیت",
+          "complate": 100,
+          "prerequisite": "JS",
+          "session": [
+            {
+              "id": 1,
+              "name": "معرفی",
+              "Episode": [
+                {
+                  "id": 1,
+                  "name": "کتابخانه ها به چه کاری می آیند",
+                  "description": "",
+                  "video": "/"
+                },
+                {
+                  "id": 2,
+                  "name": "کتابخانه ها ایا در بهبود و غملکرد تاثیر دارند",
+                  "description": "",
+                  "video": "/"
+                }
+              ]
+            },
+            {
+              "id": 2,
+              "name": "پیش نیاز ها",
+              "Episode": []
+            }
+          ]
+        },
+        {
+          "id": "10",
+          "name": "django",
+          "title": "دوره پروژه محور متخصص جنگو",
+          "description": "از ویژگی های مهم دوره آموزش جنگو میتونیم به توضیح کامل مفاهیم پایه و ساختاری، کامل بودن و توجه به جزئیات، بررسی روش های مختلف حل مسئله و انتخاب بهترین روش ممکن، رعایت اصول کدنویسی، توجه به داکیومنت خوانی، بررسی خطاهای احتمال",
+          "img": "https://sabzlearn.ir/wp-content/uploads/2023/12/ezgif.com-jpg-to-webp-converted-20-1-768x432.webp",
+          "ProjectCourseImg": "https://sabzlearn.ir/wp-content/uploads/2024/01/جنگو2.webp",
+          "price": 1000000,
+          "participants": 8000,
+          "teacher": "حسین عبادی",
+          "satisfaction": 500,
+          "timeHours": "40",
+          "timeMin": "15",
+          "time": "2024-02-01T10:30",
+          "category": "امنیت",
+          "complate": 100,
+          "prerequisite": "پایتون",
+          "session": [
+            {
+              "id": 1,
+              "name": "معرفی",
+              "Episode": [
+                {
+                  "id": 1,
+                  "name": "کتابخانه ها به چه کاری می آیند",
+                  "description": "",
+                  "path": "11-22"
+                },
+                {
+                  "id": 2,
+                  "name": "کتابخانه ها ایا در بهبود و غملکرد تاثیر دارند",
+                  "description": "",
+                  "video": "/"
+                }
+              ]
+            },
+            {
+              "id": 2,
+              "name": "پیش نیاز ها",
+              "Episode": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dfc10f7c-ce6b-455b-b5f1-aed398225648",
+      "username": "asghar",
+      "phone": "09023883441",
+      "email": "steammw2r6platform@gmail.com",
+      "password": "Rasool1385",
+      "role": "USER",
+      "createdAccount": "2024-03-25T23:59:02.686Z",
+      "updatedAccount": "",
+      "wallet": 0,
+      "courses": []
+    },
+    {
+      "id": "f38449cb-51b3-4080-a9d2-86cf801e4ba9",
+      "username": "سشسش",
+      "phone": "09023883445",
+      "email": "gamenfa@gmail.com",
+      "password": "Plutnium1385",
+      "role": "USER",
+      "createdAccount": "2024-03-26T00:02:43.882Z",
+      "updatedAccount": "",
+      "wallet": 0,
+      "courses": []
+    },
+    {
+      "id": "f24a7c45-0d95-4261-96c6-4d48a506c29c",
+      "username": "Hadi",
+      "phone": "09232328931",
+      "email": "hadimohammadi@gmail.com",
+      "password": "Plutnium007",
+      "role": "USER",
+      "createdAccount": "2024-03-26T00:04:36.206Z",
+      "updatedAccount": "",
+      "wallet": 0,
+      "courses": []
+    },
+    {
+      "id": "90cb1533-8dab-4f25-8f76-60460fc12f37",
+      "username": "zahra",
+      "phone": "09023883441",
+      "email": "zahraAsadi@gmail.com",
+      "password": "Plutnium007",
+      "role": "USER",
+      "createdAccount": "2024-03-26T00:06:34.688Z",
+      "updatedAccount": "",
+      "wallet": 0,
+      "courses": []
     }
   ],
   "courses": [

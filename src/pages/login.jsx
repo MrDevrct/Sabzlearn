@@ -3,7 +3,7 @@ import "../css/ElementProprety/FormInput.css";
 import { FaRegEnvelope } from "react-icons/fa";
 import { FiLock } from "react-icons/fi";
 import Input from "../components/modules/Input";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 
 // alert toastify
 import { Bounce, ToastContainer, toast } from "react-toastify";
@@ -16,40 +16,37 @@ import Button from "../components/modules/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUsers } from "../services/Redux/actions";
 
-
 export default function Login() {
   const dispatch = useDispatch();
   const dataUsers = useSelector((state) => state.users);
   const [users, SetUsers] = useState([]);
-
-  const Token = Cookies.get("Token");
-
+  const token = Cookies.get("Token");
+  
   // form data
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
 
-
+  // Fetch courses on component mount
   useEffect(() => {
-    const token = Cookies.get('Token');
-    if (token) {
-      const fetchUser = async () => {
-        try {
-          const response = await apiRequest.get("/users");
-          const users = response.data;
-          const user = users.find(user => user.email === token);
-          if (user) {
-            window.location.pathname = '/';
-          }
-        } catch (error) {
-          console.error(error);
-        }
-      };
-      fetchUser();
-    }
-  }, []);
+    dispatch(fetchUsers());
+  }, [dispatch]);
 
+  // Update courseInfo when courses or params change
+  useEffect(() => {
+    SetUsers(dataUsers);
+  }, [dataUsers]);
+
+  // get token
+  useEffect(() => {
+    if (token) {
+      const user = dataUsers.find((user) => user.email === token);
+      if (user) {
+        location.pathname = "/";
+      }
+    }
+  }, [token, users]);
 
   // set form data value
   const handleInputChange = (event) => {
@@ -63,14 +60,12 @@ export default function Login() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await apiRequset.get("/users");
-      const users = response.data;
-      const isLogin = users.find((users) => users.email === formData.email);
+      const isLogin = dataUsers.find((users) => users.email === formData.email);
 
       if (isLogin) {
         const isPasswordValid = isLogin.password === formData.password;
         if (isPasswordValid) {
-          toast.success('با موفقیت به وارد شدید.', {
+          toast.success("با موفقیت به وارد شدید.", {
             position: "top-left",
             autoClose: 3000,
             hideProgressBar: true,
@@ -81,13 +76,16 @@ export default function Login() {
             progress: undefined,
             theme: "light",
             transition: Bounce,
-            });
+          });
 
-          Cookies.set('Token', isLogin.email , { expires: 7, domain: 'localhost', httpOnly: false});
-          window.location.pathname = '/'
-        } 
-        else {
-        toast.error("رمز یا ایمیل وارد شده استباه است .", {
+          Cookies.set("Token", isLogin.email, {
+            expires: 7,
+            domain: "localhost",
+            httpOnly: false,
+          });
+          window.location.pathname = "/";
+        } else {
+          toast.error("رمز یا ایمیل وارد شده استباه است .", {
             position: "top-left",
             autoClose: 3000,
             hideProgressBar: false,
@@ -98,11 +96,10 @@ export default function Login() {
             theme: "light",
             rtl: true,
             transition: Bounce,
-        });
+          });
         }
-      } 
-      else {
-      toast.error("کاربری با این ایمیل و رمز عبور یافت نشد.", {
+      } else {
+        toast.error("کاربری با این ایمیل و رمز عبور یافت نشد.", {
           position: "top-left",
           autoClose: 3000,
           hideProgressBar: false,
@@ -113,9 +110,8 @@ export default function Login() {
           progress: undefined,
           theme: "light",
           transition: Bounce,
-      });
+        });
       }
-
     } catch (error) {
       console.error(error);
     }
@@ -174,11 +170,7 @@ export default function Login() {
               onChange={handleInputChange}
             />
 
-            <Button
-              text='ورود'
-              onClick={handleSubmit}
-            />
-            
+            <Button text="ورود" onClick={handleSubmit} />
           </form>
 
           <div className="flex items-center justify-between font-danaMedium text-sm text-slate-500 mt-5">
