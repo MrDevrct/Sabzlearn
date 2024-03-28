@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
-import apiRequset from "../../../services/Axios/config.js";
 import "../../../css/ElementProprety/button.css";
 
 //icon
@@ -12,44 +11,12 @@ import { HiOutlineChatBubbleLeftRight } from "react-icons/hi2";
 import { HiOutlineUser } from "react-icons/hi2";
 import { CiPower } from "react-icons/ci";
 
-// get data in redux
-import { useDispatch, useSelector } from "react-redux";
-import { fetchUsers, setUsers } from "../../../services/Redux/actions.js";
-
-export default function UserProfile() {
-  // get users in redux
-  const dispatch = useDispatch();
-  const dataUsers = useSelector((state) => state.users);
-  const [users, SetUsers] = useState([]);
-
-  // get token
-  const Token = Cookies.get("Token");
-
-  // validate is open profile
+export default function UserProfile({ isLogin, logout }) {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
-
-  // Fetch courses on component mount
-  useEffect(() => {
-    dispatch(fetchUsers());
-  }, [dispatch]);
-
-  // Update courseInfo when courses or params change
-  useEffect(() => {
-    if (Token && dataUsers.length > 0) {
-      const userFind = dataUsers.find(user => user.email === Token)
-      SetUsers(userFind);
-    }
-  }, [dataUsers]);
 
   const handleProfileToggle = () => {
     setIsProfileOpen(!isProfileOpen);
   };
-
-  const LogoutHandler = () => {
-    Cookies.remove("Token");
-    setIsProfileOpen(false);
-  };
-
 
   return (
     <>
@@ -60,7 +27,7 @@ export default function UserProfile() {
               isProfileOpen ? "z-50" : ""
             } cursor-pointer`}
           >
-            {Token ? (
+            {isLogin ? (
               <button
                 to="#"
                 className="user-profile button-xl only-icon bg-gray-100 text-slate-500"
@@ -105,10 +72,10 @@ export default function UserProfile() {
                   </a>
                   <div className="mr-3.5 flex flex-col gap-y-3 overflow-hidden">
                     <h3 className="font-danaDemibold inline-block truncate">
-                      {users.username}
+                      {isLogin.username}
                     </h3>
                     <p className="text-sm font-danaMedium text-green-500 inline-block">
-                      موجودی : {users.wallet} تومان
+                      موجودی : {isLogin.wallet} تومان
                     </p>
                   </div>
                 </div>
@@ -161,7 +128,7 @@ export default function UserProfile() {
                   <Link
                     to="/"
                     className="flex items-center justify-between px-2.5 h-12 rounded-lg hover:text-white hover:bg-red-500 transition-colors"
-                    onClick={LogoutHandler}
+                    onClick={logout}
                   >
                     <span className="flex items-center gap-x-2">
                       <CiPower className="text-[24px]" />

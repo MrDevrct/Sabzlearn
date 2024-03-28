@@ -1,9 +1,15 @@
-import React from "react";
-import { HiChatBubbleLeftRight } from "react-icons/hi2";
+import React, { useState } from "react";
+import { HiChatBubbleLeftRight, HiUser } from "react-icons/hi2";
 import { HiOutlineChatBubbleBottomCenterText } from "react-icons/hi2";
 import HeaderTitle from "./HeaderTitle";
 
 export default function CourseComments() {
+  const [openCommentForm , setOpenCommentForm]= useState(false)
+
+  const opneComment = () =>{
+    setOpenCommentForm(!openCommentForm)
+  }
+
   const comments = [
     {
       id: 1,
@@ -33,13 +39,52 @@ export default function CourseComments() {
         />
 
         {/* New Comment Button */}
-        <button className="button-primary sm:h-[40px] sm:px-[1rem] mb-5 h-[35px] px-[8px] sm:text-[16px] text-[14px]">
+        <button 
+          className="button-primary sm:h-[40px] sm:px-[1rem] mb-5 h-[35px] px-[8px] sm:text-[16px] text-[14px]"
+          onClick={opneComment}
+        >
           ایجاد نظر جدید
           <HiOutlineChatBubbleBottomCenterText className="mr-1" />
         </button>
       </div>
 
       <div className="mb-8 sm:mb-12 w-full">
+        <div className={`comment ${openCommentForm ? 'block' : 'hidden'}`}>
+          <div className="flex gap-x-3.5 mb-5 sm:mb-5">
+            <div className="flex items-center justify-center p-2 border border-gray-100 rounded-full">
+              <div className="flex items-center justify-center w-11 sm:w-12 h-11 sm:h-12 bg-gray-100 rounded-full">
+                <HiUser className="text-[18px] text-gray-600" />
+              </div>
+            </div>
+            <div className="flex justify-center flex-col gap-2">
+              <span className="font-danaMedium">IamNot</span>
+              <span className="font-danaLight text-sm opacity-70" id="comment-to">
+                ثبت نظر جدید
+              </span>
+            </div>
+          </div>
+          <textarea
+            id="comment"
+            rows="6"
+            className="w-full block p-5 md:p-4 bg-gray-100 text-gray-900  placeholder:text-slate-500/70 font-danaMedium text-sm rounded-xl outline-none"
+            placeholder="نظر خود را بنویسید ..."
+          ></textarea>
+
+          <div className="flex gap-x-4 justify-end mt-5 sm:mt-6">
+            <button 
+              className="flex-grow sm:grow-0 sm:w-36 button-lg button-primary button-outline font-danaMedium"
+              onClick={opneComment}
+            >
+              لغو
+            </button>
+            <button
+              className="flex-grow sm:grow-0 sm:w-36 button-lg button-primary font-danaMedium"
+            >
+              ارسال
+            </button>
+          </div>
+        </div>
+
         <div className="comments_wrap space-y-5 sm:space-y-5 mt-[2rem]">
           {comments.map((comment) => (
             <div
