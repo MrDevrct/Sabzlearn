@@ -78,14 +78,14 @@ export default function UserProfile({bgColor}) {
               <>
                 {/* mobile btn login */}
                 <Link
-                  href="/login"
+                  to="/login"
                   className={`flex lg:hidden button-xl only-icon bg-gray-100 text-slate-500`}
                 >
                   <HiMiniArrowRightOnRectangle className="text-[24px]" />
                 </Link>
                 {/* desktop btn login */}
                 <Link
-                  href="/login"
+                  to="/login"
                   className="hidden lg:flex button-xl button-secondary hover:text-white hover:bg-sky-600 font-danaMedium"
                 >
                   ورود | عضویت

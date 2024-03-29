@@ -245,10 +245,10 @@ export default function CourseView() {
             <CourseDescription data={courseInfo} />
 
             {/* !<-- Headlines --> */}
-            <CourseHeadlines data={courseInfo} />
+            <CourseHeadlines data={courseInfo} user={user}/>
 
             {/* !<-- Related Courses  */}
-            <CourseRelated relatedCourse={relatedCourse}/>
+            <CourseRelated  relatedCourse={relatedCourse}/>
 
             {/* !<-- Comments --> */}
             <CourseComments 

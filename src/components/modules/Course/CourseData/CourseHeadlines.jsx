@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HiAcademicCap } from "react-icons/hi";
 import { IoIosArrowDown } from "react-icons/io";
 import { ImPlay2 } from "react-icons/im";
 import HeaderTitle from "./HeaderTitle";
 
-export default function CourseHeadlines({ data }) {
+export default function CourseHeadlines({ data , user }) {
   const [hoveredItem, setHoveredItem] = useState(null);
+
 
   return (
     <div className="bg-white rounded-2xl p-5 sm:p-5 mt-8">
@@ -68,7 +69,7 @@ export default function CourseHeadlines({ data }) {
                             {episode.id}
                           </div>
                           <a
-                             href={`/lesson/${data.name}-${session.id}:${episode.id}`}
+                            href={`/lesson/${data.name}-${session.id}:${episode.id}`}
                             className="inline-block lg:max-w-3/4 text-sm md:text-base group-hover:text-green-500"
                           >
                             {episode.name}

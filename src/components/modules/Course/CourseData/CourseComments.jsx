@@ -12,27 +12,38 @@ export default function CourseComments({ course, setCourse }) {
   const dispatch = useDispatch();
   const dataUsers = useSelector((state) => state.users);
   const [openCommentForm, setOpenCommentForm] = useState(false);
-  const [commentId, setCommentId] = useState(1); // شمارنده ایدی کامنت‌ها
   const [comments, setComments] = useState(course.comment);
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState({});
   const token = Cookies.get("Token");
 
   useEffect(() => {
     dispatch(fetchUsers());
     if (token && dataUsers.length > 0) {
-      const user = dataUsers.find((user) => user.email === token);
-      setUser(user);
+      const currentUser = dataUsers.find((user) => user.email === token);
+      setUser(currentUser);
     }
-  }, [dispatch]);
+  }, [dispatch, dataUsers, token]);
+
+  useEffect(() => {
+    if (user.id && user.role && user.username) {
+      setFormComment(prevState => ({
+        ...prevState,
+        userId: user.id,
+        userRole: user.role,
+        fullName: user.username
+      }));
+    }
+  }, [user]);
 
   const openComment = () => {
     setOpenCommentForm(!openCommentForm);
   };
 
   const [formComment, setFormComment] = useState({
-    id: course.comment.length + 1, // استفاده از شمارنده برای تعیین ایدی کامنت
-    userId: user.id,
-    fullName: user.username,
+    id: course.comment.length + 1, 
+    userId: "",
+    userRole: "",
+    fullName: "",
     adminId: 1,
     comment: "",
     timeCreated: "",
@@ -49,7 +60,6 @@ export default function CourseComments({ course, setCourse }) {
 
   const handleSubmit = async () => {
     try {
-      // تبدیل تاریخ میلادی به تاریخ شمسی
       const jDate = moment().format("jYYYY/jM/jD");
       const timeCreated = moment(jDate, "jYYYY/jM/jD")
         .locale("fa")
@@ -63,48 +73,49 @@ export default function CourseComments({ course, setCourse }) {
       await apiRequest.put(`/courses/${course.id}`, updatedCourseData);
       setCourse(updatedCourseData);
 
-      // اضافه کردن کامنت جدید به لیست کامنت‌ها
       const newCommentList = [
         ...comments,
         {
           ...formComment,
-          userId: user.id,
-          fullName: user.username,
           timeCreated: timeCreated,
         },
       ];
       setComments(newCommentList);
       openComment();
 
-      // پاک کردن محتویات فرم و افزایش شمارنده ایدی کامنت
       setFormComment({
+        ...formComment,
         id: course.comment.length + 1,
-        userId: user.id,
-        fullName: user.username,
-        adminId: 1,
         comment: "",
         timeCreated: "",
         answar: "",
       });
-      setCommentId(commentId + 1);
     } catch (err) {
       console.error("Error:", err.message);
-      // یا هر عمل مناسب دیگر
     }
   };
 
+  useEffect(() => {
+    if (!openCommentForm) {
+      setFormComment({
+        ...formComment,
+        id: course.comment.length + 1,
+        comment: "",
+        timeCreated: "",
+        answar: "",
+      });
+    }
+  }, [openCommentForm]);
+  
   return (
     <div className="bg-white rounded-2xl p-5 sm:p-5 mt-8">
       <div className="flex items-center justify-between mb-6 sm:mb-7">
-        {/* !<-- Header Title --> */}
         <HeaderTitle
           title="نظرات"
           icon={<HiChatBubbleLeftRight />}
           iconColor="text-red-500"
           spanColor="bg-red-500"
         />
-
-        {/* New Comment Button */}
 
         <button
           className="button-primary sm:h-[40px] sm:px-[1rem] mb-5 h-[35px] px-[8px] sm:text-[16px] font-danaMedium text-[14px]"
@@ -138,6 +149,7 @@ export default function CourseComments({ course, setCourse }) {
             className="w-full block p-5 md:p-4 bg-gray-100 text-gray-900  placeholder:text-slate-500/70 font-danaMedium text-sm rounded-xl outline-none"
             placeholder="نظر خود را بنویسید ..."
             onChange={handleInputChange}
+            value={formComment.comment}
           ></textarea>
 
           <div className="flex gap-x-4 justify-end mt-5 sm:mt-6">
@@ -160,7 +172,7 @@ export default function CourseComments({ course, setCourse }) {
           {comments.map((comment, index) => (
             <div
               className="p-5 md:p-5 bg-gray-100 dark:bg-dark rounded-xl"
-              key={index} // استفاده از index به عنوان key
+              key={index}
             >
               <div className="comment-head flex items-center gap-x-3.5">
                 <div className="border-[1px] border-yellow-500 p-1 rounded-full">
@@ -176,7 +188,7 @@ export default function CourseComments({ course, setCourse }) {
                       {comment.fullName}{" "}
                     </span>
                     <span className="font-danaMedium text-lg opacity-70">
-                      | {user.role === "USER" ? "کاربر" : ""}
+                      | {comment.userRole === "USER" ? "کاربر" : ""}
                     </span>
                   </div>
                   <span className="font-IRANSNumber text-[14px]">
