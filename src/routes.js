@@ -1,4 +1,5 @@
 import Home from './pages/home';
+import Dashboard from './pages/dashboard';
 import Search from './pages/search';
 import NotFound from './pages/notFound';
 import Courses from './pages/courses';
@@ -15,6 +16,11 @@ const router = [
         name: 'Home',
         path: '/',
         component: Home
+    },
+    {
+        name: 'Dashboard',
+        path: '/dashboard',
+        component: Dashboard
     },
     {
         name: 'Search',

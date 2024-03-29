@@ -30,7 +30,7 @@ function AppContent() {
               key={route.path}
               path={route.path}
               element={(() => {
-                if (route.path === "/login" || route.path === "/register" || route.path === "*") {
+                if (route.path === "/login" || route.path === "/register" || route.path === "/dashboard" || route.path === "*") {
                   return <route.component />;
                 } else {
                   return (

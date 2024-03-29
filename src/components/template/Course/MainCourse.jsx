@@ -128,6 +128,7 @@ export default function CourseView() {
     return <div>Loading...</div>;
   }
 
+
   // Convert Gregorian to solar time
   const formattedDate = formatDate(courseInfo.time);
 
@@ -250,7 +251,11 @@ export default function CourseView() {
             <CourseRelated relatedCourse={relatedCourse}/>
 
             {/* !<-- Comments --> */}
-            <CourseComments />
+            <CourseComments 
+              setCourse={setCourseInfo} 
+              course={courseInfo} 
+              user={user}
+            />
           </div>
 
           {/* <!-- Students & Rating & Progress --> */}

@@ -1,31 +1,89 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HiChatBubbleLeftRight, HiUser } from "react-icons/hi2";
 import { HiOutlineChatBubbleBottomCenterText } from "react-icons/hi2";
 import HeaderTitle from "./HeaderTitle";
+import apiRequest from "../../../../services/Axios/config";
+import moment from "jalali-moment";
+import { fetchUsers } from "../../../../services/Redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import Cookies from "js-cookie";
 
-export default function CourseComments() {
-  const [openCommentForm , setOpenCommentForm]= useState(false)
+export default function CourseComments({ course, setCourse }) {
+  const dispatch = useDispatch();
+  const dataUsers = useSelector((state) => state.users);
+  const [openCommentForm, setOpenCommentForm] = useState(false);
+  const [commentId, setCommentId] = useState(1); // شمارنده ایدی کامنت‌ها
+  const [comments, setComments] = useState(course.comment);
+  const [user, setUser] = useState([]);
+  const token = Cookies.get("Token");
 
-  const opneComment = () =>{
-    setOpenCommentForm(!openCommentForm)
-  }
+  useEffect(() => {
+    dispatch(fetchUsers());
+    if (token && dataUsers.length > 0) {
+      const user = dataUsers.find((user) => user.email === token);
+      setUser(user);
+    }
+  }, [dispatch]);
 
-  const comments = [
-    {
-      id: 1,
-      userName: "ali",
-      adminName: "admin",
-      text: "ایا بعد این دوره میتوان وارد بازار کار شد",
-      answar: "بله",
-    },
-    {
-      id: 2,
-      userName: "mmd",
-      adminName: "admin",
-      text: "ایا بعد این دوره میتوان وارد بازار کار شد",
-      answar: "",
-    },
-  ];
+  const openComment = () => {
+    setOpenCommentForm(!openCommentForm);
+  };
+
+  const [formComment, setFormComment] = useState({
+    id: course.comment.length + 1, // استفاده از شمارنده برای تعیین ایدی کامنت
+    userId: user.id,
+    fullName: user.username,
+    adminId: 1,
+    comment: "",
+    timeCreated: "",
+    answar: "",
+  });
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormComment({
+      ...formComment,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async () => {
+    try {
+      // تبدیل تاریخ میلادی به تاریخ شمسی
+      const jDate = moment().format("jYYYY/jM/jD");
+      const timeCreated = moment(jDate, "jYYYY/jM/jD")
+        .locale("fa")
+        .format("jYYYY/jM/jD");
+
+      let updatedCourseData = {
+        ...course,
+        comment: [...course.comment, { ...formComment, timeCreated }],
+      };
+
+      await apiRequest.put(`/courses/${course.id}`, updatedCourseData);
+      setCourse(updatedCourseData);
+
+      // اضافه کردن کامنت جدید به لیست کامنت‌ها
+      const newCommentList = [...comments, { ...formComment, timeCreated }];
+      setComments(newCommentList);
+      openComment();
+
+      // پاک کردن محتویات فرم و افزایش شمارنده ایدی کامنت
+      setFormComment({
+        id: course.comment.length + 1,
+        userId: user.id,
+        fullName: user.username,
+        adminId: 1,
+        comment: "",
+        timeCreated: "",
+        answar: "",
+      });
+      setCommentId(commentId + 1);
+    } catch (err) {
+      console.error("Error:", err.message);
+      // یا هر عمل مناسب دیگر
+    }
+  };
 
   return (
     <div className="bg-white rounded-2xl p-5 sm:p-5 mt-8">
@@ -39,17 +97,19 @@ export default function CourseComments() {
         />
 
         {/* New Comment Button */}
-        <button 
-          className="button-primary sm:h-[40px] sm:px-[1rem] mb-5 h-[35px] px-[8px] sm:text-[16px] text-[14px]"
-          onClick={opneComment}
+
+        <button
+          className="button-primary sm:h-[40px] sm:px-[1rem] mb-5 h-[35px] px-[8px] sm:text-[16px] font-danaMedium text-[14px]"
+          onClick={token ? openComment : ()=> alert('لطفا برای ایجاد کامنت به حساب خود وارد شوید')}
         >
           ایجاد نظر جدید
           <HiOutlineChatBubbleBottomCenterText className="mr-1" />
         </button>
+
       </div>
 
       <div className="mb-8 sm:mb-12 w-full">
-        <div className={`comment ${openCommentForm ? 'block' : 'hidden'}`}>
+        <div className={`comment ${openCommentForm ? "block" : "hidden"}`}>
           <div className="flex gap-x-3.5 mb-5 sm:mb-5">
             <div className="flex items-center justify-center p-2 border border-gray-100 rounded-full">
               <div className="flex items-center justify-center w-11 sm:w-12 h-11 sm:h-12 bg-gray-100 rounded-full">
@@ -58,27 +118,30 @@ export default function CourseComments() {
             </div>
             <div className="flex justify-center flex-col gap-2">
               <span className="font-danaMedium">IamNot</span>
-              <span className="font-danaLight text-sm opacity-70" id="comment-to">
+              <span className="text-sm opacity-70" id="comment-to">
                 ثبت نظر جدید
               </span>
             </div>
           </div>
           <textarea
             id="comment"
+            name="comment"
             rows="6"
             className="w-full block p-5 md:p-4 bg-gray-100 text-gray-900  placeholder:text-slate-500/70 font-danaMedium text-sm rounded-xl outline-none"
             placeholder="نظر خود را بنویسید ..."
+            onChange={handleInputChange}
           ></textarea>
 
           <div className="flex gap-x-4 justify-end mt-5 sm:mt-6">
-            <button 
+            <button
               className="flex-grow sm:grow-0 sm:w-36 button-lg button-primary button-outline font-danaMedium"
-              onClick={opneComment}
+              onClick={openComment}
             >
               لغو
             </button>
             <button
               className="flex-grow sm:grow-0 sm:w-36 button-lg button-primary font-danaMedium"
+              onClick={handleSubmit}
             >
               ارسال
             </button>
@@ -86,10 +149,10 @@ export default function CourseComments() {
         </div>
 
         <div className="comments_wrap space-y-5 sm:space-y-5 mt-[2rem]">
-          {comments.map((comment) => (
+          {comments.map((comment, index) => (
             <div
               className="p-5 md:p-5 bg-gray-100 dark:bg-dark rounded-xl"
-              key={comment.id}
+              key={index} // استفاده از index به عنوان key
             >
               <div className="comment-head flex items-center gap-x-3.5">
                 <div className="border-[1px] border-yellow-500 p-1 rounded-full">
@@ -99,10 +162,22 @@ export default function CourseComments() {
                     className="w-12 h-12 rounded-full"
                   />
                 </div>
-                <span className="font-sans text-lg">{comment.userName}</span>
+                <div className="flex flex-col gap-1">
+                  <div className="flex items-center gap-x-1 ">
+                    <span className="font-danaLight text-sm opacity-70">
+                      {comment.fullName}{" "}
+                    </span>
+                    <span className="font-danaMedium text-lg opacity-70">
+                      | {user.role === "USER" ? "کاربر" : ""}
+                    </span>
+                  </div>
+                  <span className="font-IRANSNumber text-[14px]">
+                    {comment.timeCreated}
+                  </span>
+                </div>
               </div>
               <div className="comment mt-4 border-t py-4">
-                <p>{comment.text}</p>
+                <p>{comment.comment}</p>
 
                 {comment.answar.length > 0 && (
                   <div className="mt-5 p-4 border rounded-[10px]">
@@ -114,9 +189,7 @@ export default function CourseComments() {
                           className="w-12 h-12 rounded-full"
                         />
                       </div>
-                      <span className="font-sans text-lg">
-                        {comment.adminName}
-                      </span>
+                      <span className="font-sans text-lg">Admin</span>
                     </div>
                     <div className="answar mt-4 border-t py-4 px-4">
                       <p>{comment.answar}</p>
