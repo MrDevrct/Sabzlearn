@@ -10,6 +10,8 @@
       "createdAccount": "2024-03-26T00:06:34.688Z",
       "updatedAccount": "",
       "wallet": 0,
+      "paid": 0,
+      "tiket": [],
       "courses": []
     },
     {
@@ -22,7 +24,149 @@
       "createdAccount": "2024-03-29T00:31:36.103Z",
       "updatedAccount": "",
       "wallet": 1000000,
-      "courses": []
+      "paid": 200000,
+      "tiket": [],
+      "courses": [
+        {
+          "id": "2",
+          "name": "NextJs",
+          "title": "آموزش Next.js بصورت پروژه محور",
+          "description": "نکست یه فریمورک مبتنی بر ری‌اکت هست که امروزه تو بازار کار یکی از مهم‌ترین تکنولوژی‌ها برای توسعه دهنده های ری‌اکت به حساب میاد. نکست رو میشه مکمل ری‌اکت دونست. یعنی هر چی که ری‌اکت داره نکست هم داره، بعلاوه چند",
+          "img": "https://sabzlearn.ir/wp-content/uploads/2023/12/ezgif.com-jpg-to-webp-converted-27-1-768x432.webp",
+          "ProjectCourseImg": "https://sabzlearn.ir/wp-content/uploads/2024/01/next.webp",
+          "price": 290000,
+          "participants": 10000,
+          "teacher": "سعید راد",
+          "satisfaction": 400,
+          "timeHours": "60",
+          "timeMin": "00",
+          "time": "2024-02-21T11:30",
+          "category": "فرانت اند",
+          "complate": 60,
+          "prerequisite": "ReactJs",
+          "session": [
+            {
+              "id": 1,
+              "name": "معرفی",
+              "Episode": [
+                {
+                  "id": 1,
+                  "name": "اصلا ما چرا ب نکست تیاز داریم",
+                  "description": "",
+                  "video": "https://tech.sabzlearn.ir/uploads/ce01010101it/next/Next001-intro.mp4?h=yGzse9HrlURpPpo8P-MMpg&t=1711149074"
+                },
+                {
+                  "id": 2,
+                  "name": "کتابخانه ها ایا در بهبود و غملکرد تاثیر دارند",
+                  "description": "",
+                  "video": "https://tech.sabzlearn.ir/uploads/ce01010101it/next/Next002-react-vs-next.mp4?h=86BLA6IRGjj-eufOvqYR5Q&t=1711389966"
+                },
+                {
+                  "id": 3,
+                  "name": "ریکت بهتره یا نکست",
+                  "description": "",
+                  "video": "https://tech.sabzlearn.ir/uploads/ce01010101it/next/Next005-ssr-vs-csr.mp4?h=3XD8nyqi2nMcEO2ODOHlBg&t=1711390006"
+                }
+              ]
+            },
+            {
+              "id": 2,
+              "name": "پیش نیاز ها",
+              "Episode": [
+                {
+                  "id": 1,
+                  "name": "کتابخانه ها ایا در بهبود و غملکرد تاثیر دارند",
+                  "description": "",
+                  "video": "https://tech.sabzlearn.ir/uploads/ce01010101it/next/Next002-react-vs-next.mp4?h=86BLA6IRGjj-eufOvqYR5Q&t=1711389966"
+                }
+              ]
+            }
+          ],
+          "comment": [
+            {
+              "userId": "2b1aa4d7-f894-4b26-9720-480c595744e3",
+              "fullName": "رسول",
+              "adminId": 1,
+              "comment": "دوره نکست",
+              "answar": ""
+            },
+            {
+              "id": 2,
+              "userId": "2b1aa4d7-f894-4b26-9720-480c595744e3",
+              "fullName": "رسول",
+              "adminId": 1,
+              "comment": "خویبی",
+              "answar": ""
+            },
+            {
+              "id": 1,
+              "userId": "2b1aa4d7-f894-4b26-9720-480c595744e3",
+              "fullName": "رسول",
+              "adminId": 1,
+              "comment": "س",
+              "answar": ""
+            },
+            {
+              "id": 4,
+              "userId": "2b1aa4d7-f894-4b26-9720-480c595744e3",
+              "fullName": "رسول",
+              "adminId": 1,
+              "comment": "sasa",
+              "answar": ""
+            },
+            {
+              "id": 5,
+              "userId": "2b1aa4d7-f894-4b26-9720-480c595744e3",
+              "fullName": "رسول",
+              "adminId": 1,
+              "comment": "وب سوکت",
+              "timeCreated": "1403/1/10",
+              "answar": ""
+            },
+            {
+              "id": 6,
+              "userId": "2b1aa4d7-f894-4b26-9720-480c595744e3",
+              "fullName": "رسول",
+              "adminId": 1,
+              "comment": "php",
+              "timeCreated": "1403/1/10",
+              "answar": ""
+            },
+            {
+              "id": 7,
+              "userId": "2b1aa4d7-f894-4b26-9720-480c595744e3",
+              "fullName": "رسول",
+              "adminId": 1,
+              "comment": "sas",
+              "timeCreated": "1403/1/10",
+              "answar": ""
+            },
+            {
+              "id": 8,
+              "userId": "2b1aa4d7-f894-4b26-9720-480c595744e3",
+              "fullName": "رسول",
+              "adminId": 1,
+              "comment": "next js react js ",
+              "timeCreated": "1403/1/10",
+              "answar": ""
+            },
+            {
+              "id": 9,
+              "adminId": 1,
+              "comment": "سشسش",
+              "timeCreated": "1403/1/10",
+              "answar": ""
+            },
+            {
+              "id": 10,
+              "adminId": 1,
+              "comment": "سشسش",
+              "timeCreated": "1403/1/10",
+              "answar": ""
+            }
+          ]
+        }
+      ]
     }
   ],
   "courses": [
@@ -206,6 +350,13 @@
           "comment": "سشسش",
           "timeCreated": "1403/1/10",
           "answar": ""
+        },
+        {
+          "id": 11,
+          "adminId": 1,
+          "comment": "اخرین کامنت ",
+          "timeCreated": "1403/1/10",
+          "answar": ""
         }
       ]
     },
@@ -295,7 +446,15 @@
           "Episode": []
         }
       ],
-      "comment": []
+      "comment": [
+        {
+          "id": 1,
+          "adminId": 1,
+          "comment": "npm",
+          "timeCreated": "1403/1/10",
+          "answar": ""
+        }
+      ]
     },
     {
       "id": "5",
@@ -339,7 +498,15 @@
           "Episode": []
         }
       ],
-      "comment": []
+      "comment": [
+        {
+          "id": 1,
+          "adminId": 1,
+          "comment": "لینک",
+          "timeCreated": "1403/1/10",
+          "answar": ""
+        }
+      ]
     },
     {
       "id": "6",
@@ -471,7 +638,31 @@
           "Episode": []
         }
       ],
-      "comment": []
+      "comment": [
+        {
+          "id": 1,
+          "adminId": 1,
+          "comment": "salam php",
+          "timeCreated": "1403/1/10",
+          "answar": ""
+        },
+        {
+          "id": 2,
+          "adminId": 1,
+          "comment": "اسمم کو",
+          "timeCreated": "1403/1/10",
+          "answar": ""
+        },
+        {
+          "id": 2,
+          "userId": "2b1aa4d7-f894-4b26-9720-480c595744e3",
+          "fullName": "رسول",
+          "adminId": 1,
+          "comment": "اسمم کوsa\n",
+          "timeCreated": "1403/1/10",
+          "answar": ""
+        }
+      ]
     },
     {
       "id": "9",
@@ -647,7 +838,15 @@
           "Episode": []
         }
       ],
-      "comment": []
+      "comment": [
+        {
+          "id": 1,
+          "adminId": 1,
+          "comment": "سش",
+          "timeCreated": "1403/1/10",
+          "answar": ""
+        }
+      ]
     }
   ],
   "Categories": [

@@ -50,6 +50,13 @@ export default function UserProfile({bgColor}) {
     setIsProfileOpen(false);
   };
 
+  const addCommas = (num) => {
+    if (num) {
+      return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    } else {
+      return "0";
+    }
+  };
 
   return (
     <>
@@ -62,8 +69,7 @@ export default function UserProfile({bgColor}) {
           >
             {Token ? (
               <button
-                to="#"
-                className={`user-profile button-xl only-icon bg-gray-100 ${bgColor || 'bg-gray-100'} text-slate-500`}
+                className={`user-profile button-xl only-icon ${bgColor || 'bg-gray-100 sm:bg-gray-100'} text-slate-500`}
                 onClick={handleProfileToggle}
               >
                 <HiOutlineUser className="text-[20px]" />
@@ -79,7 +85,7 @@ export default function UserProfile({bgColor}) {
                 </Link>
                 {/* desktop btn login */}
                 <Link
-                  to="/login"
+                  href="/login"
                   className="hidden lg:flex button-xl button-secondary hover:text-white hover:bg-sky-600 font-danaMedium"
                 >
                   ورود | عضویت
@@ -107,59 +113,59 @@ export default function UserProfile({bgColor}) {
                     <h3 className="font-danaDemibold inline-block truncate">
                       {users.username}
                     </h3>
-                    <p className="text-sm font-danaMedium text-green-500 inline-block">
-                      موجودی : {users.wallet} تومان
+                    <p className="text-sm text-green-500 inline-block font-IRANSNumber">
+                      موجودی : {addCommas(users.wallet)} تومان
                     </p>
                   </div>
                 </div>
 
                 {/* 1 */}
-                <Link
-                  to="/my-account"
+                <a
+                  href="/my-account/"
                   className="flex items-center justify-between px-2.5 h-12 rounded-lg hover:text-white hover:bg-green-500 transition-colors"
                 >
                   <span className="flex items-center gap-x-2">
                     <BiHome className="text-[24px]" />
                     پیشخوان
                   </span>
-                </Link>
+                </a>
 
                 {/* 2 */}
-                <Link
-                  to=""
+                <a
+                  href="/my-account/courses"
                   className="flex items-center justify-between px-2.5 h-12 rounded-lg hover:text-white hover:bg-green-500 transition-colors"
                 >
                   <span className="flex items-center gap-x-2">
                     <HiOutlineFolderOpen className="text-[24px]" />
                     دوره های من
                   </span>
-                </Link>
+                </a>
 
                 {/* 3 */}
-                <Link
-                  to=""
+                <a
+                  href=""
                   className="flex items-center justify-between px-2.5 h-12 rounded-lg hover:text-white hover:bg-green-500 transition-colors"
                 >
                   <span className="flex items-center gap-x-2">
                     <HiOutlineChatBubbleLeftRight className="text-[24px]" />
                     تیکت های پشتیبانی
                   </span>
-                </Link>
+                </a>
 
                 {/* 4 */}
-                <Link
-                  to=""
+                <a
+                  href=""
                   className="flex items-center justify-between px-2.5 h-12 rounded-lg hover:text-white hover:bg-green-500 transition-colors"
                 >
                   <span className="flex items-center gap-x-2">
                     <HiOutlineUser className="text-[24px] " />
                     جزئیات حساب
                   </span>
-                </Link>
+                </a>
 
                 <div className="mt-2 pt-2 border-t border-t-gray-300">
-                  <Link
-                    to="/"
+                  <a
+                    href="/"
                     className="flex items-center justify-between px-2.5 h-12 rounded-lg hover:text-white hover:bg-red-500 transition-colors"
                     onClick={LogoutHandler}
                   >
@@ -167,7 +173,7 @@ export default function UserProfile({bgColor}) {
                       <CiPower className="text-[24px]" />
                       خروج
                     </span>
-                  </Link>
+                  </a>
                 </div>
               </div>
             </div>

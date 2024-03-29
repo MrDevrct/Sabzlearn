@@ -64,7 +64,15 @@ export default function CourseComments({ course, setCourse }) {
       setCourse(updatedCourseData);
 
       // اضافه کردن کامنت جدید به لیست کامنت‌ها
-      const newCommentList = [...comments, { ...formComment, timeCreated }];
+      const newCommentList = [
+        ...comments,
+        {
+          ...formComment,
+          userId: user.id,
+          fullName: user.username,
+          timeCreated: timeCreated,
+        },
+      ];
       setComments(newCommentList);
       openComment();
 

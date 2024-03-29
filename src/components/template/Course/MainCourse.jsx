@@ -254,7 +254,6 @@ export default function CourseView() {
             <CourseComments 
               setCourse={setCourseInfo} 
               course={courseInfo} 
-              user={user}
             />
           </div>
 

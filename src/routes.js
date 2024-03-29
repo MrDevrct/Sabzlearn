@@ -23,6 +23,11 @@ const router = [
         component: Dashboard
     },
     {
+        name: 'Dashboard',
+        path: '/my-account/:value',
+        component: Dashboard
+    },
+    {
         name: 'Search',
         path: '/courses/:search',  
         component: Search

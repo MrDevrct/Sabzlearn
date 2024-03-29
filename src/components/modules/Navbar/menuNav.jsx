@@ -53,17 +53,17 @@ export default function MenuNav({ platform }) {
               <div className="flex item-center">
                 {/* !<-- Articles Path root */}
                 {menuItem.path === "articles" ? (
-                  <Link to={`/${menuItem.path}`}>
+                  <a href={`/${menuItem.path}`}>
                     <span className="flex items-center justify-center cursor-pointer text-[#3F3F46] lg:mb-2 mb-0">
                       {menuItem.title}
                     </span>
-                  </Link>
+                  </a>
                 ) : (
-                  <Link to={`/category/${menuItem.path}`}>
+                  <a href={`/category/${menuItem.path}`}>
                     <span className="flex items-center justify-center cursor-pointer text-[#3F3F46] lg:mb-2 mb-0">
                       {menuItem.title}
                     </span>
-                  </Link>
+                  </a>
                 )}
 
                 <IoIosArrowDown className="hidden mt-1 mr-1 lg:block" />
@@ -78,21 +78,21 @@ export default function MenuNav({ platform }) {
                   {hoveredItem === "مقالات" ? (
                     <>
                       {articles.map((article) => (
-                        <Link key={article.id} to={`/course/${article.path}`}>
+                        <a key={article.id} href={`/course/${article.path}`}>
                           <div className="text-[15px] font-danaLight text-slate-500 py-1 my-2 text-right hover:text-[#2bce56] line-clamp-1">
                             {article.title}
                           </div>
-                        </Link>
+                        </a>
                       ))}
                     </>
                   ) : (
                     <>
                       {getFilteredItems(menuItem.title).map((item) => (
-                        <Link key={item.id} to={`/course/${item.name}`}>
+                        <a key={item.id} href={`/course/${item.name}`}>
                           <div className="text-[15px] font-danaLight text-slate-500 py-1 my-2 text-right hover:text-[#2bce56] line-clamp-1">
                             {item.title}
                           </div>
-                        </Link>
+                        </a>
                       ))}
                     </>
                   )}
