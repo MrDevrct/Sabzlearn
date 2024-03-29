@@ -16,7 +16,7 @@ import { CiPower } from "react-icons/ci";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUsers, setUsers } from "../../../services/Redux/actions.js";
 
-export default function UserProfile() {
+export default function UserProfile({bgColor}) {
   // get users in redux
   const dispatch = useDispatch();
   const dataUsers = useSelector((state) => state.users);
@@ -63,7 +63,7 @@ export default function UserProfile() {
             {Token ? (
               <button
                 to="#"
-                className="user-profile button-xl only-icon bg-gray-100 text-slate-500"
+                className={`user-profile button-xl only-icon bg-gray-100 ${bgColor || 'bg-gray-100'} text-slate-500`}
                 onClick={handleProfileToggle}
               >
                 <HiOutlineUser className="text-[20px]" />
@@ -73,7 +73,7 @@ export default function UserProfile() {
                 {/* mobile btn login */}
                 <Link
                   href="/login"
-                  className="flex lg:hidden button-xl only-icon bg-gray-100 text-slate-500"
+                  className={`flex lg:hidden button-xl only-icon bg-gray-100 text-slate-500`}
                 >
                   <HiMiniArrowRightOnRectangle className="text-[24px]" />
                 </Link>
@@ -115,7 +115,7 @@ export default function UserProfile() {
 
                 {/* 1 */}
                 <Link
-                  to=""
+                  to="/my-account"
                   className="flex items-center justify-between px-2.5 h-12 rounded-lg hover:text-white hover:bg-green-500 transition-colors"
                 >
                   <span className="flex items-center gap-x-2">

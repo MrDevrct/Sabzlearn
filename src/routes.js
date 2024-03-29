@@ -19,7 +19,7 @@ const router = [
     },
     {
         name: 'Dashboard',
-        path: '/dashboard',
+        path: '/my-account/',
         component: Dashboard
     },
     {
