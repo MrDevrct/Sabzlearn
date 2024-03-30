@@ -1,5 +1,5 @@
 import Home from './pages/home';
-import Dashboard from './pages/dashboard';
+import Panel from './pages/panel';
 import Search from './pages/search';
 import NotFound from './pages/notFound';
 import Courses from './pages/courses';
@@ -18,14 +18,14 @@ const router = [
         component: Home
     },
     {
-        name: 'Dashboard',
+        name: 'Panel User',
         path: '/my-account/',
-        component: Dashboard
+        component: Panel
     },
     {
-        name: 'Dashboard',
+        name: 'Panel User',
         path: '/my-account/:value',
-        component: Dashboard
+        component: Panel
     },
     {
         name: 'Search',
