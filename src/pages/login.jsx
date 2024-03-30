@@ -21,7 +21,7 @@ export default function Login() {
   const dataUsers = useSelector((state) => state.users);
   const [users, SetUsers] = useState([]);
   const token = Cookies.get("Token");
-  
+
   // form data
   const [formData, setFormData] = useState({
     email: "",
@@ -43,7 +43,11 @@ export default function Login() {
     if (token) {
       const user = dataUsers.find((user) => user.email === token);
       if (user) {
-        location.pathname = "/";
+        if (user.role === "USER") {
+          window.location.pathname = "/";
+        } else if (user.role === "ADMIN") {
+          window.location.pathname = "/admin";
+        }
       }
     }
   }, [token, users]);
@@ -83,7 +87,13 @@ export default function Login() {
             domain: "localhost",
             httpOnly: false,
           });
-          window.location.pathname = "/";
+          
+          if (isLogin.role === "USER") {
+            window.location.pathname = "/";
+          } else if (isLogin.role === "ADMIN") {
+            window.location.pathname = "/admin";
+          }
+
         } else {
           toast.error("رمز یا ایمیل وارد شده استباه است .", {
             position: "top-left",

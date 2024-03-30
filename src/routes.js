@@ -1,5 +1,6 @@
 import Home from './pages/home';
 import Panel from './pages/panel';
+import PAdmin from './pages/pAdmin';
 import Search from './pages/search';
 import NotFound from './pages/notFound';
 import Courses from './pages/courses';
@@ -26,6 +27,11 @@ const router = [
         name: 'Panel User',
         path: '/my-account/:value',
         component: Panel
+    },
+    {
+        name: 'Panel Admin',
+        path: '/admin',
+        component: PAdmin
     },
     {
         name: 'Search',
