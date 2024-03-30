@@ -143,7 +143,7 @@ export default function UserProfile({bgColor}) {
 
                 {/* 3 */}
                 <a
-                  href=""
+                  href="/my-account/tickets/"
                   className="flex items-center justify-between px-2.5 h-12 rounded-lg hover:text-white hover:bg-green-500 transition-colors"
                 >
                   <span className="flex items-center gap-x-2">
@@ -154,7 +154,7 @@ export default function UserProfile({bgColor}) {
 
                 {/* 4 */}
                 <a
-                  href=""
+                  href="/my-account/edit-account/"
                   className="flex items-center justify-between px-2.5 h-12 rounded-lg hover:text-white hover:bg-green-500 transition-colors"
                 >
                   <span className="flex items-center gap-x-2">

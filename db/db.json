@@ -1,134 +1,20 @@
 {
   "users": [
     {
-      "id": "90cb1533-8dab-4f25-8f76-60460fc12f37",
-      "username": "zahra",
-      "phone": "09023883441",
-      "email": "zahraAsadi@gmail.com",
+      "id": "d0a2b9e8-eca8-4fbd-b38d-5d301d26ce0f",
+      "username": "MohammadAbdolahzadeh",
+      "lastname": "",
+      "firstname": "",
+      "phone": "09022812384",
+      "email": "mr.mohammad.pg19@gmail.com",
       "password": "Plutnium007",
       "role": "USER",
-      "createdAccount": "2024-03-26T00:06:34.688Z",
+      "createdAccount": "2024-03-30T16:36:24.380Z",
       "updatedAccount": "",
+      "tiket": [],
       "wallet": 0,
       "paid": 0,
-      "tiket": [],
       "courses": []
-    },
-    {
-      "id": "2b1aa4d7-f894-4b26-9720-480c595744e3",
-      "username": "رسول",
-      "phone": "09023883441",
-      "email": "rasoolhosseini@gmail.com",
-      "password": "Plutnium007",
-      "role": "ADMIN",
-      "createdAccount": "2024-03-29T00:31:36.103Z",
-      "updatedAccount": "",
-      "wallet": 1000000,
-      "paid": 200000,
-      "tiket": [],
-      "courses": [
-        {
-          "id": "2",
-          "name": "NextJs",
-          "title": "آموزش Next.js بصورت پروژه محور",
-          "description": "نکست یه فریمورک مبتنی بر ری‌اکت هست که امروزه تو بازار کار یکی از مهم‌ترین تکنولوژی‌ها برای توسعه دهنده های ری‌اکت به حساب میاد. نکست رو میشه مکمل ری‌اکت دونست. یعنی هر چی که ری‌اکت داره نکست هم داره، بعلاوه چند",
-          "img": "https://sabzlearn.ir/wp-content/uploads/2023/12/ezgif.com-jpg-to-webp-converted-27-1-768x432.webp",
-          "ProjectCourseImg": "https://sabzlearn.ir/wp-content/uploads/2024/01/next.webp",
-          "price": 290000,
-          "participants": 10000,
-          "teacher": "سعید راد",
-          "satisfaction": 400,
-          "timeHours": "60",
-          "timeMin": "00",
-          "time": "2024-02-21T11:30",
-          "category": "فرانت اند",
-          "complate": 60,
-          "prerequisite": "ReactJs",
-          "session": [
-            {
-              "id": 1,
-              "name": "معرفی",
-              "Episode": [
-                {
-                  "id": 1,
-                  "name": "اصلا ما چرا ب نکست تیاز داریم",
-                  "description": "",
-                  "video": "https://tech.sabzlearn.ir/uploads/ce01010101it/next/Next001-intro.mp4?h=yGzse9HrlURpPpo8P-MMpg&t=1711149074"
-                },
-                {
-                  "id": 2,
-                  "name": "کتابخانه ها ایا در بهبود و غملکرد تاثیر دارند",
-                  "description": "",
-                  "video": "https://tech.sabzlearn.ir/uploads/ce01010101it/next/Next002-react-vs-next.mp4?h=86BLA6IRGjj-eufOvqYR5Q&t=1711389966"
-                },
-                {
-                  "id": 3,
-                  "name": "ریکت بهتره یا نکست",
-                  "description": "",
-                  "video": "https://tech.sabzlearn.ir/uploads/ce01010101it/next/Next005-ssr-vs-csr.mp4?h=3XD8nyqi2nMcEO2ODOHlBg&t=1711390006"
-                }
-              ]
-            },
-            {
-              "id": 2,
-              "name": "پیش نیاز ها",
-              "Episode": [
-                {
-                  "id": 1,
-                  "name": "کتابخانه ها ایا در بهبود و غملکرد تاثیر دارند",
-                  "description": "",
-                  "video": "https://tech.sabzlearn.ir/uploads/ce01010101it/next/Next002-react-vs-next.mp4?h=86BLA6IRGjj-eufOvqYR5Q&t=1711389966"
-                }
-              ]
-            }
-          ],
-          "comment": []
-        },
-        {
-          "id": "11",
-          "name": "docker",
-          "title": "Docker از صفر مطلق!",
-          "description": "داکر یک پلتفرم متن باز برای طراحی؛ انتقال؛ استقرار و اجرای نرم افزار ها تحت مفهومی به نام Container می‌باشد، در این دوره به صورت تخصصی مفاهیم و مباحث داکر را فرا خواهیم گرفت.",
-          "img": "https://sabzlearn.ir/wp-content/uploads/2024/03/Docker1-1-1-768x432.webp",
-          "ProjectCourseImg": "",
-          "price": 400000,
-          "participants": 8000,
-          "teacher": "آرمین هوشمند",
-          "satisfaction": 100,
-          "timeHours": "2",
-          "timeMin": "30",
-          "time": "2024-01-01T02:00",
-          "category": "امنیت",
-          "complate": 100,
-          "prerequisite": "تسلط به فرانت",
-          "session": [
-            {
-              "id": 1,
-              "name": "معرفی",
-              "Episode": [
-                {
-                  "id": 1,
-                  "name": "کتابخانه ها به چه کاری می آیند",
-                  "description": "",
-                  "video": "/"
-                },
-                {
-                  "id": 2,
-                  "name": "کتابخانه ها ایا در بهبود و غملکرد تاثیر دارند",
-                  "description": "",
-                  "video": "/"
-                }
-              ]
-            },
-            {
-              "id": 2,
-              "name": "پیش نیاز ها",
-              "Episode": []
-            }
-          ],
-          "comment": []
-        }
-      ]
     }
   ],
   "courses": [

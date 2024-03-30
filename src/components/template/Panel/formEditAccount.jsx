@@ -1,7 +1,7 @@
 import React from "react";
 import Input from "../../modules/Input";
 
-export default function formEditAccount() {
+export default function formEditAccount({userData}) {
   return (
     <div className="grid grid-cols-1 xl:grid-cols-3 gap-10">
       <div className="xl:col-span-2 bg-white dark:bg-gray-800 p-4.5 rounded-2xl">
@@ -27,62 +27,69 @@ export default function formEditAccount() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-5 gap-y-6">
-            <div>
+            <div className='space-y-2'>
               <label
                 for="phone"
                 className="font-danaDemibold text-zinc-700 dark:text-white"
               >
                 شماره موبایل
               </label>
-              <Input />
+              <Input value={userData.phone}/>
             </div>
 
-            <div class="hidden md:block"></div>
+            <div className="hidden md:block"></div>
 
-            <div>
+            <div className='space-y-2'>
               <label
-                for="phone"
+                for="username"
                 className="font-danaDemibold text-zinc-700 dark:text-white"
               >
-                شماره موبایل
+                نام
               </label>
-              <Input />
+              <Input value={userData.username}/>
             </div>
 
-            <div>
+            <div className='space-y-2'>
               <label
-                for="phone"
+                for="lastName"
                 className="font-danaDemibold text-zinc-700 dark:text-white"
               >
-                شماره موبایل
+                نام خانوادگی
               </label>
-              <Input />
+              <Input value={userData.lastname}/>
             </div>
 
-            <div>
+            <div className='space-y-2'>
               <label
-                for="phone"
+                for="firstname"
                 className="font-danaDemibold text-zinc-700 dark:text-white"
               >
-                شماره موبایل
+                نام کاربری
               </label>
-              <Input />
+              <Input 
+                value={userData.username}
+                onChange={()=>event.target.value}
+                disabled={true}  
+              />
             </div>
 
-            <div>
+            <div className='space-y-2'>
               <label
-                for="phone"
+                for="email"
                 className="font-danaDemibold text-zinc-700 dark:text-white"
               >
-                شماره موبایل
+                ایمیل
               </label>
-              <Input />
+              <Input 
+                value={userData.email}
+                onChange={(event)=>{event.target.value}}
+              />
             </div>
           </div>
 
           <button
             type="submit"
-            class="flex w-full h-[3.5rem] justify-center items-center gap-x-2 px-7 text-base mr-auto md:w-auto mt-10 bg-green-400 text-white rounded-[12px]"
+            className="flex w-full h-[3.5rem] justify-center items-center gap-x-2 px-7 text-base mr-auto md:w-auto mt-10 bg-green-400 text-white rounded-[12px]"
           >
             ثبت اطلاعات
           </button>
@@ -97,14 +104,14 @@ export default function formEditAccount() {
         </div>
         <form action="" className="p-4 pt-8">
           <div className="space-y-5 md:space-y-6">
-            <div>
+            <div className="space-y-2">
               <label
-                for="phone"
+                for="password"
                 className="font-danaDemibold text-zinc-700 dark:text-white"
               >
-                شماره موبایل
+                پسورد فعلی
               </label>
-              <Input />
+              <Input value={userData.password}/>
             </div>
 
             <div>
@@ -112,14 +119,14 @@ export default function formEditAccount() {
                 for="phone"
                 className="font-danaDemibold text-zinc-700 dark:text-white"
               >
-                شماره موبایل
+                پسورد جدید
               </label>
               <Input />
             </div>
           </div>
           <button
             type="submit"
-            class="flex w-full h-[3.5rem] justify-center items-center gap-x-2 px-7 text-base mr-auto md:w-auto mt-10 bg-green-400 text-white rounded-[12px]"
+            className="flex w-full h-[3.5rem] justify-center items-center gap-x-2 px-7 text-base mr-auto md:w-auto mt-10 bg-green-400 text-white rounded-[12px]"
           >
             ثبت اطلاعات
           </button>

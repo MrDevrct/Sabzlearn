@@ -13,9 +13,10 @@ import { HiOutlineRocketLaunch } from "react-icons/hi2";
 import { HiOutlineCurrencyDollar } from "react-icons/hi";
 import { HiOutlineBars3BottomRight } from "react-icons/hi2";
 import Profile from "../../modules/Navbar/userProfile";
-import FormEditAccount from "./formEditAccount";
+import FormEditAccount from "./FormEditAccount";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUsers } from "../../../services/Redux/actions";
+import UserCourse from "./UserCourse";
 
 export default function dashboard() {
   const dispatch = useDispatch();
@@ -149,12 +150,14 @@ export default function dashboard() {
 
         <div className="px-5 md:px-0">
           {lastRoute === "courses" ? (
-            <h1>{lastRoute}</h1>
+            <>
+            <UserCourse userData={user} />
+            </>
           ) : lastRoute === "tickets" ? (
             <h1>{lastRoute}</h1>
           ) : lastRoute === "edit-account" ? (
             <>
-              <FormEditAccount />
+              <FormEditAccount userData={user}/>
             </>
           ) : (
             <>

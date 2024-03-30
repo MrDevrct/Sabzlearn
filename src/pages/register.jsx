@@ -34,6 +34,8 @@ export default function Login() {
   const [formData, setFormData] = useState({
     id: userId,
     username: "",
+    lastname: "",
+    firstname: "",
     phone: "",
     email: "",
     password: "",
@@ -154,7 +156,7 @@ export default function Login() {
               icon={HiOutlineUser}
               onChange={handleInputChange}
               minLength={3}
-              maxLength={15}
+              maxLength={20}
             />
 
             {/* phone number */}
