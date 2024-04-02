@@ -8,7 +8,7 @@ export default function Input({ type, name , placeholder, icon: Icon , onChange 
         name={name}
         value={value}
         className="bg-[#f3f4f6] h-[3.25rem] w-full rounded-[10px] text-sm text-[#64748b]"
-        placeholder={placeholder}
+        placeholder={placeholder }
         style={{ paddingLeft: "2.35rem", paddingRight: "0.85rem" }}
         onChange={onChange}
         minLength={minLength}

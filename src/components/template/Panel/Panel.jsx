@@ -35,6 +35,12 @@ export default function dashboard() {
     }
   }, [dataUsers, token]);
 
+  if (!token) {
+    location.pathname="/login"
+    return (
+    <div>loading ... </div>
+    )
+  }
   const logout = (event) => {
     event.preventDefault();
     Cookies.remove("Token");
@@ -157,7 +163,7 @@ export default function dashboard() {
             <h1>{lastRoute}</h1>
           ) : lastRoute === "edit-account" ? (
             <>
-              <FormEditAccount userData={user}/>
+              <FormEditAccount/>
             </>
           ) : (
             <>

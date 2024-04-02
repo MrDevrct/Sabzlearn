@@ -1,7 +1,98 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Input from "../../modules/Input";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUsers } from "../../../services/Redux/actions";
+import Cookies from "js-cookie";
+import apiRequest from "../../../services/Axios/config";
 
-export default function formEditAccount({userData}) {
+export default function FormEditAccount() {
+  const dispatch = useDispatch();
+  const dataUsers = useSelector((state) => state.users);
+  const [user, setUser] = useState({});
+  const token = Cookies.get("Token");
+  const [currentPassword, setCurrentPassword] = useState(null);
+  const [updatePassword, setUpdatePassword] = useState(null);
+  const [updateUser, setUpdateUser] = useState({
+    email: "",
+    lastname: "",
+    firstname: "",
+    phone: "",
+  });
+
+  useEffect(() => {
+    dispatch(fetchUsers());
+  }, [dispatch]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (token && dataUsers.length > 0) {
+        const userFound = await dataUsers.find((user) => user.email === token);
+        setUser(userFound || {});
+        setUpdateUser({
+          email: userFound.email || "",
+          firstname: userFound.firstname || "",
+          lastname: userFound.lastname || "",
+          phone: userFound.phone || "",
+        });
+      }
+    };
+    fetchData();
+  }, [token, dataUsers]);
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setUpdateUser({
+      ...updateUser,
+      [name]: value,
+    });
+  };
+
+  const updateUserHandler = async (event) => {
+    event.preventDefault();
+    try {
+      const updatedUser = {
+        ...user,
+        email: updateUser.email,
+        firstname: updateUser.firstname,
+        lastname: updateUser.lastname,
+        phone: updateUser.phone,
+      };
+
+      const response = await apiRequest.put(`/users/${user.id}`, updatedUser);
+      if (response.status === 200) {
+        alert("اطلاعات با موفقیت اپدیت شد");
+        Cookies.set("Token", updateUser.email);
+      }
+    } catch (error) {
+      console.error("Error updating user:", error);
+    }
+  };
+
+  const updatePasswordHandler = async (event) => {
+    event.preventDefault();
+    try {
+      if (currentPassword === user.password) { // بررسی صحت رمز قدیمی
+        const updatedPasswordUser = {
+          ...user,
+          password: updatePassword // بروزرسانی رمز جدید
+        };
+        const response = await apiRequest.put(`/users/${user.id}`, updatedPasswordUser);
+  
+        if (response.status === 200) {
+          alert("رمز شما با موفقغیت تغییر کرد");
+          setUpdatePassword('');
+          setCurrentPassword('');
+          setUser(updatedPasswordUser); // بروزرسانی اطلاعات کاربر با رمز جدید
+        }
+      } else {
+        alert("رمز فعلی شما اشتباه است");
+      }
+    } catch (error) {
+      console.error("Error updating password:", error);
+    }
+  };
+  
+
   return (
     <div className="grid grid-cols-1 xl:grid-cols-3 gap-10">
       <div className="xl:col-span-2 bg-white dark:bg-gray-800 p-4.5 rounded-2xl">
@@ -16,79 +107,81 @@ export default function formEditAccount({userData}) {
               src="https://secure.gravatar.com/avatar/528a5bf0557c32011fe9642f619f90d9?s=256&amp;d=mm&amp;r=g"
               className="w-32 md:w-44 h-32 md:h-44 rounded-full"
             />
-            <a
-              href="https://gravatar.com/"
-              target="_blank"
-              title="برای تغییر پروفایل وارد وبسایت Gravatar.com شوید."
-              className="absolute bottom-0 right-0 flex items-center justify-center w-10 md:w-14 h-10 md:h-14 rounded-full bg-sky-600 border-2 md:border-4 border-white cursor-pointer transition-colors"
-            >
-              Photo
-            </a>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-5 gap-y-6">
-            <div className='space-y-2'>
+            <div className="space-y-2">
               <label
-                for="phone"
+                htmlFor="phone"
                 className="font-danaDemibold text-zinc-700 dark:text-white"
               >
                 شماره موبایل
               </label>
-              <Input value={userData.phone}/>
+              <Input
+                name="phone"
+                onChange={handleInputChange}
+                value={updateUser.phone}
+              />
             </div>
 
             <div className="hidden md:block"></div>
 
-            <div className='space-y-2'>
+            <div className="space-y-2">
               <label
-                for="username"
+                htmlFor="username"
                 className="font-danaDemibold text-zinc-700 dark:text-white"
               >
                 نام
               </label>
-              <Input value={userData.username}/>
+              <Input
+                name="firstname"
+                onChange={handleInputChange}
+                value={updateUser.firstname}
+              />
             </div>
 
-            <div className='space-y-2'>
+            <div className="space-y-2">
               <label
-                for="lastName"
+                htmlFor="lastName"
                 className="font-danaDemibold text-zinc-700 dark:text-white"
               >
                 نام خانوادگی
               </label>
-              <Input value={userData.lastname}/>
+              <Input
+                name="lastname"
+                onChange={handleInputChange}
+                value={updateUser.lastname}
+              />
             </div>
 
-            <div className='space-y-2'>
+            <div className="space-y-2">
               <label
-                for="firstname"
+                htmlFor="firstname"
                 className="font-danaDemibold text-zinc-700 dark:text-white"
               >
                 نام کاربری
               </label>
-              <Input 
-                value={userData.username}
-                onChange={()=>event.target.value}
-                disabled={true}  
-              />
+              <Input value={user.username} disabled={true} />
             </div>
 
-            <div className='space-y-2'>
+            <div className="space-y-2">
               <label
-                for="email"
+                htmlFor="email"
                 className="font-danaDemibold text-zinc-700 dark:text-white"
               >
                 ایمیل
               </label>
-              <Input 
-                value={userData.email}
-                onChange={(event)=>{event.target.value}}
+              <Input
+                name="email"
+                onChange={handleInputChange}
+                value={updateUser.email}
               />
             </div>
           </div>
 
           <button
             type="submit"
+            onClick={updateUserHandler}
             className="flex w-full h-[3.5rem] justify-center items-center gap-x-2 px-7 text-base mr-auto md:w-auto mt-10 bg-green-400 text-white rounded-[12px]"
           >
             ثبت اطلاعات
@@ -106,27 +199,34 @@ export default function formEditAccount({userData}) {
           <div className="space-y-5 md:space-y-6">
             <div className="space-y-2">
               <label
-                for="password"
+                htmlFor="password"
                 className="font-danaDemibold text-zinc-700 dark:text-white"
               >
                 پسورد فعلی
               </label>
-              <Input value={userData.password}/>
+              <Input
+                onChange={(e) => setCurrentPassword(e.target.value)}
+                value={currentPassword}
+              />
             </div>
 
             <div>
               <label
-                for="phone"
+                htmlFor="phone"
                 className="font-danaDemibold text-zinc-700 dark:text-white"
               >
                 پسورد جدید
               </label>
-              <Input />
+              <Input
+                onChange={(e) => setUpdatePassword(e.target.value)}
+                value={updatePassword}
+              />
             </div>
           </div>
           <button
             type="submit"
             className="flex w-full h-[3.5rem] justify-center items-center gap-x-2 px-7 text-base mr-auto md:w-auto mt-10 bg-green-400 text-white rounded-[12px]"
+            onClick={updatePasswordHandler}
           >
             ثبت اطلاعات
           </button>

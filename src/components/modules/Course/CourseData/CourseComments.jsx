@@ -136,7 +136,7 @@ export default function CourseComments({ course, setCourse }) {
               </div>
             </div>
             <div className="flex justify-center flex-col gap-2">
-              <span className="font-danaMedium">IamNot</span>
+              <span className="font-danaMedium">{user.username}</span>
               <span className="text-sm opacity-70" id="comment-to">
                 ثبت نظر جدید
               </span>
