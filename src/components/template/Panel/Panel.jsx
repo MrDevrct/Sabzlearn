@@ -12,12 +12,15 @@ import { HiOutlineTicket } from "react-icons/hi2";
 import { HiOutlineRocketLaunch } from "react-icons/hi2";
 import { HiOutlineCurrencyDollar } from "react-icons/hi";
 import { HiOutlineBars3BottomRight } from "react-icons/hi2";
+import { IoArrowBack } from "react-icons/io5";
 import Profile from "../../modules/Navbar/userProfile";
 import FormEditAccount from "./FormEditAccount";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUsers } from "../../../services/Redux/actions";
 import UserCourse from "./UserCourse";
 import UserTickets from "./UserTickets";
+import CourseBox from "../../modules/CourseBox";
+import moment from "jalali-moment";
 
 export default function dashboard() {
   const dispatch = useDispatch();
@@ -37,11 +40,10 @@ export default function dashboard() {
   }, [dataUsers, token]);
 
   if (!token) {
-    location.pathname="/login"
-    return (
-    <div>loading ... </div>
-    )
+    location.pathname = "/login";
+    return <div>loading ... </div>;
   }
+
   const logout = (event) => {
     event.preventDefault();
     Cookies.remove("Token");
@@ -66,6 +68,11 @@ export default function dashboard() {
     console.log(lastPart);
   }, []);
 
+  const formatDate = (dateString) => {
+    const date = moment(dateString, "YYYY-MM-DD").format("jYYYY/jMM/jDD");
+    return date;
+  };
+
   return (
     <main className="md:bg-white flex gap-x-10 2xl:gap-x-14 lg:px-8 xl:px-14 2xl:px-25 lg:py-7">
       <aside className="sidebar fixed top-0 bottom-0 -right-64 z-30 lg:static bg-white flex flex-col w-64 lg:w-56 lg:mt-10 px-7 py-5 lg:px-0 lg:py-0 shrink-0 lg:min-h-[calc(100vh-68px)] transition-all lg:transition-none">
@@ -86,7 +93,11 @@ export default function dashboard() {
           {/* 1 */}
           <a
             href="/my-account/"
-            className={`flex items-center gap-x-2.5 h-12 px-3 rounded-lg ${lastRoute === "my-account" ? 'bg-green-500 text-white' : 'text-black'}  hover:bg-green-600`}
+            className={`flex items-center gap-x-2.5 h-12 px-3 rounded-lg ${
+              lastRoute === "my-account"
+                ? "bg-green-500 text-white"
+                : "text-black"
+            }  hover:bg-green-600`}
           >
             <BiHome className="text-[24px]" />
             پیشخوان{" "}
@@ -95,7 +106,9 @@ export default function dashboard() {
           {/* 2 */}
           <a
             href="/my-account/courses/"
-            className={`flex items-center gap-x-2.5 h-12 px-3 rounded-lg ${lastRoute === "courses" ? 'bg-green-500 text-white' : 'text-black'}  hover:bg-green-600`}
+            className={`flex items-center gap-x-2.5 h-12 px-3 rounded-lg ${
+              lastRoute === "courses" ? "bg-green-500 text-white" : "text-black"
+            }  hover:bg-green-600`}
           >
             <HiOutlineFolderOpen className="text-[24px]" />
             دوره های من{" "}
@@ -104,7 +117,9 @@ export default function dashboard() {
           {/* 3 */}
           <a
             href="/my-account/tickets/"
-            className={`flex items-center gap-x-2.5 h-12 px-3 rounded-lg ${lastRoute === "tickets" ? 'bg-green-500 text-white' : 'text-black'}  hover:bg-green-600`}
+            className={`flex items-center gap-x-2.5 h-12 px-3 rounded-lg ${
+              lastRoute === "tickets" ? "bg-green-500 text-white" : "text-black"
+            }  hover:bg-green-600`}
           >
             <HiOutlineChatBubbleLeftRight className="text-[24px]" />
             تیکت های پشتیبانی{" "}
@@ -113,7 +128,11 @@ export default function dashboard() {
           {/* 4 */}
           <a
             href="/my-account/edit-account/"
-            className={`flex items-center gap-x-2.5 h-12 px-3 rounded-lg ${lastRoute === "edit-account" ? 'bg-green-500 text-white' : 'text-black'}  hover:bg-green-600`}
+            className={`flex items-center gap-x-2.5 h-12 px-3 rounded-lg ${
+              lastRoute === "edit-account"
+                ? "bg-green-500 text-white"
+                : "text-black"
+            }  hover:bg-green-600`}
           >
             <HiOutlineUser className="text-[24px]" />
             جزئیات حساب{" "}
@@ -158,13 +177,15 @@ export default function dashboard() {
         <div className="px-5 md:px-0">
           {lastRoute === "courses" ? (
             <>
-            <UserCourse userData={user} />
+              <UserCourse userData={user} />
             </>
           ) : lastRoute === "tickets" ? (
-            <UserTickets userData={user} />
+            <>
+              <UserTickets userData={user} />
+            </>
           ) : lastRoute === "edit-account" ? (
             <>
-              <FormEditAccount/>
+              <FormEditAccount />
             </>
           ) : (
             <>
@@ -248,6 +269,85 @@ export default function dashboard() {
                         تومان
                       </span>
                     </span>
+                  </div>
+                </div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-7 items-start">
+                <div>
+                  <div className="flex justify-between items-center bg-white px-4 py-3 md:p-5 mb-4 md:mb-5 rounded-2xl">
+                    <span className="font-danaMedium md:text-xl text-zinc-700">
+                      اخیرا مشاهده شده
+                    </span>
+                    <a
+                      href="/my-account/courses/"
+                      className="flex justify-center items-center max-w-fit cursor-pointer px-3.5 gap-x-1.5 h-[2.25rem] text-sm rounded-xl bg-sky-100 text-sky-500"
+                    >
+                      همه دوره های ثبت نام شده
+                      <IoArrowBack />
+                    </a>
+                  </div>
+                  <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-x-5 gap-y-4">
+                    {user.courses?.map((course) => (
+                      <CourseBox key={course.id} {...course} />
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <div className="bg-white p-3.5 md:p-4.5 rounded-2xl">
+                    <div className="flex justify-between items-center pb-3.5 md:pb-4.5 mb-6 md:mb-7 border-b border-b-gray-200">
+                      <span className="font-danaMedium md:text-xl text-zinc-700">
+                        تیکت های اخیر
+                      </span>
+                      <a
+                        href="/my-account/tickets/"
+                        className="flex items-center gap-x-1.5 text-sky-500 text-sm"
+                      >
+                        همه تیکت ها
+                        <IoArrowBack />
+                      </a>
+                    </div>
+                    <div>
+                      {user.tickets?.map((ticket) => (
+                        <div
+                          className="flex items-center justify-between flex-wrap gap-y-3 p-3 hover:bg-gray-100 rounded-xl transition-colors"
+                          key={ticket.id}
+                        >
+                          <a
+                            href=""
+                            className="text-zinc-700 w-full sm:max-w-sm sm:truncate"
+                          >
+                            {ticket.tickets}
+                          </a>
+                          <div className="flex items-center gap-3">
+                            <span className="text-xs text-slate-500">
+                              {formatDate(ticket.timeCreated)}
+                            </span>
+                            {ticket.answer ? (
+                              <span className="text-xs py-1 px-1.5 text-green-500 bg-green-100 rounded">
+                                پاسخ داده شده
+                              </span>
+                            ) : (
+                              <span className="text-xs py-1 px-1.5 text-slate-500 bg-slate-500/10  rounded">
+                                در انتظار پاسخ
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="bg-white p-3.5 md:p-4.5 rounded-2xl mt-7">
+                    <div className="flex justify-between items-center pb-3.5 md:pb-4.5 mb-6 md:mb-7 border-b border-b-gray-200 dark:border-b-gray-700">
+                      <span className="font-danaMedium md:text-xl text-zinc-700">
+                        پرسش های اخیر
+                      </span>
+                    </div>
+                    <div>
+                      <div className="text-zinc-700 font-danaLight mt-7 mb-2 leading-7 text-center">
+                        تا به الان پرسشی ارسال نکرده‌اید!
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

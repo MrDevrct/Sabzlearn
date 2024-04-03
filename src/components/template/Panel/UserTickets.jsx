@@ -1,3 +1,4 @@
+import moment from "jalali-moment";
 import React, { useEffect, useState } from "react";
 import { HiOutlineChatBubbleLeftRight } from "react-icons/hi2";
 import { HiOutlineEnvelopeOpen } from "react-icons/hi2";
@@ -10,17 +11,26 @@ export default function UserTickets({ userData }) {
     closedTickets: 0,
   });
 
-
   useEffect(() => {
     if (userData.tickets) {
       const totalTickets = userData.tickets.length;
-      const openTickets = userData.tickets.filter((ticket) => ticket.answer === null)
-        .length;
-      const closedTickets = userData.tickets.filter((ticket) => ticket.answer !== null)
-        .length;
+      const openTickets = userData.tickets.filter(
+        (ticket) => ticket.answer === null
+      ).length;
+      const closedTickets = userData.tickets.filter(
+        (ticket) => ticket.answer !== null
+      ).length;
       setTicketStats({ totalTickets, openTickets, closedTickets });
     }
   }, [userData]);
+
+  const formatDate = (dateString) => {
+    const date = moment(dateString, "YYYY-MM-DDTHH:mm:ss.SSS[Z]");
+    const formattedDate = `${date.format("jYYYY/jMM/jDD")} ${date.format(
+      "(HH:mm)"
+    )}`;
+    return formattedDate;
+  };
 
   return (
     <>
@@ -75,22 +85,28 @@ export default function UserTickets({ userData }) {
         </div>
 
         <div>
-        {userData.tickets?.map((ticket) => (
-            <div className="flex items-center justify-between flex-wrap gap-y-3 p-3 hover:bg-gray-100 rounded-xl transition-colors" key={ticket.id}>
+          {userData.tickets?.map((ticket) => (
+            <div
+              className="flex items-center justify-between flex-wrap gap-y-3 p-3 hover:bg-gray-100 rounded-xl transition-colors"
+              key={ticket.id}
+            >
               <div className="flex items-center">
                 <span className="block w-20 text-right font-danaMedium">
                   #{ticket.id}
                 </span>
                 <a
-                  href={`https://sabzlearn.ir/my-account/view_ticket?id=${ticket.id}`}
+                  href=""
                   className="text-zinc-700 dark:text-white w-full font-danaMedium sm:max-w-md md:truncate"
                 >
                   {ticket.tickets}
                 </a>
               </div>
               <div className="flex items-center gap-5">
-                <span className="text-xs text-slate-500 dark:text-slate-400 text-ltr">
-                  {ticket.timeCreated} (09:27)
+                <span
+                  className="text-xs text-slate-500 dark:text-slate-400"
+                  dir="ltr"
+                >
+                  {formatDate(ticket.timeCreated)}
                 </span>
                 <span className="text-xs py-1 px-1.5 text-slate-500 dark:text-yellow-400 bg-slate-500/10 dark:bg-yellow-400/10 rounded">
                   {ticket.answer ? "پشتیبانی" : "انتظار پاسخ"}
@@ -104,7 +120,6 @@ export default function UserTickets({ userData }) {
             </div>
           ))}
         </div>
-
       </div>
     </>
   );

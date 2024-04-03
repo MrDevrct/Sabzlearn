@@ -3,8 +3,8 @@
     {
       "id": "299b4dfb-8ca0-4aec-a3fc-72c93a4b1fdb",
       "username": "Morgan",
-      "lastname": "",
-      "firstname": "",
+      "lastname": "حسینی",
+      "firstname": "سید رسول",
       "phone": "09023883441",
       "email": "rasoolhosseini@gmail.com",
       "password": "rasool",
@@ -19,7 +19,7 @@
           "adminId": 1,
           "tickets": "سلام",
           "timeCreated": "2024-04-03T03:16:45.569Z",
-          "answer": null,
+          "answer": "سلام",
           "id": 1
         },
         {
@@ -29,7 +29,7 @@
           "adminId": 1,
           "tickets": "خوبی",
           "timeCreated": "2024-04-03T03:17:00.901Z",
-          "answer": "به خوبیتون",
+          "answer": null,
           "id": 2
         },
         {
@@ -39,7 +39,7 @@
           "adminId": 1,
           "tickets": "کمکم کنید",
           "timeCreated": "2024-04-03T03:25:49.999Z",
-          "answer": null,
+          "answer": "چه کمکی از من بر میاد",
           "id": 3
         }
       ],

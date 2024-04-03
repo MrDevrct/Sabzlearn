@@ -16,7 +16,6 @@ export default function FormEditAccount() {
     email: "",
     lastname: "",
     firstname: "",
-    phone: "",
   });
 
   useEffect(() => {
@@ -55,7 +54,6 @@ export default function FormEditAccount() {
         email: updateUser.email,
         firstname: updateUser.firstname,
         lastname: updateUser.lastname,
-        phone: updateUser.phone,
       };
 
       const response = await apiRequest.put(`/users/${user.id}`, updatedUser);
@@ -121,6 +119,7 @@ export default function FormEditAccount() {
                 name="phone"
                 onChange={handleInputChange}
                 value={updateUser.phone}
+                disabled={true}
               />
             </div>
 
