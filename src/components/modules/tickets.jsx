@@ -11,6 +11,8 @@ export default function Tickets() {
   const dataUsers = useSelector((state) => state.users);
   const [users, setUsers] = useState({});
   const Token = Cookies.get("Token");
+  const [tickets, setTickets] = useState([]);
+  const [openTickets, setOpenTickets] = useState(false);
   const [newTickets, setNewTickets] = useState({
     userId: "",
     userRole: "",
@@ -21,17 +23,28 @@ export default function Tickets() {
     answer: null,
   });
 
+  // گرفتن دیتا های یوزر با استفاده از ریداکس
   useEffect(() => {
     dispatch(fetchUsers());
   }, [dispatch]);
 
+  // گرفتن دیتا شخص با استفاده از توکن و گرفتن تیکت های کاربر
   useEffect(() => {
-    if (Token && dataUsers.length > 0) {
-      const userFind = dataUsers.find((user) => user.email === Token);
-      setUsers(userFind);
-    }
-  }, [Token, dataUsers]);
-
+    const fetchData = async () => {
+      try {
+        if (Token && dataUsers.length > 0) {
+          const userFind = await dataUsers.find((user) => user.email === Token);
+          setUsers(userFind);
+          const ticketFind = await apiRequest(`/tickets/?fullName=${userFind.username}`);
+          setTickets(ticketFind.data);
+          console.log(ticketFind.data);
+        }
+      } catch (e) {}
+    };
+    fetchData();
+  }, [Token, dataUsers]); 
+  
+  // قرار دادن ایدی و مشخصات کاربر در فرم تیکت
   useEffect(() => {
     if (users.id && users.role && users.username) {
       setNewTickets((prevState) => ({
@@ -43,10 +56,12 @@ export default function Tickets() {
     }
   }, [users]);
 
+  // در صورت لاگین نبودن کاربر نیکت ها نمایش داده نمیشود
   if (!Token) {
     return <div></div>;
   }
 
+  // قرار دادن ولی اینپوت 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setNewTickets({
@@ -55,34 +70,28 @@ export default function Tickets() {
     });
   };
 
+  // اد کردن تیکت جدید به دیتا تیکت ها
   const ticketsHandler = async (event) => {
     try {
       if (event.key === "Enter") {
-        const updatedUserTickets = {
-          ...users,
-          tickets: [
-            ...users.tickets,
-            {
-              ...newTickets,
-              id: users.tickets.length + 1,
-              timeCreated: new Date().toISOString(),
-            },
-          ],
-        };
-
-        await apiRequest.put(`/users/${users.id}`, updatedUserTickets);
-
+        const response = await apiRequest.post(`/tickets`, {
+          ...newTickets,
+          timeCreated: new Date() // افزودن زمان ایجاد به تیکت
+        });
+        const newTicket = response.data;
+        setTickets(prevTickets => [...prevTickets, newTicket]);
         setNewTickets({
           ...newTickets,
           tickets: "",
         });
-
-        setUsers(updatedUserTickets);
       }
-    } catch (error) {}
+    } catch (error) {
+      console.error(error);
+    }
   };
-
-  const [openTickets, setOpenTickets] = useState(false);
+  
+  
+  // باز بسته کردن فرم تیکت
   const openTicketsHandler = () => {
     setOpenTickets(!openTickets);
   };
@@ -95,39 +104,45 @@ export default function Tickets() {
         </button>
       </div>
       {openTickets === true ? (
-        <div className="fixed w-[22rem] max-h-[24rem] bottom-[6rem] left-10 bg-white text-black rounded-[18px] overflow-y-scroll">
-          <div className="flex items-center justify-center h-[10rem] bg-sky-500 text-white rounded-[18px]">
-            <div className="content text-center">
-              <div className="title text-[28px]">
-                <h1>چت انلاین</h1>
-              </div>
-              <div className="text text-[12px]">
-                لطفا در صورتی که مشکل فنی یا در خصوص پیشیبانی دوره دارید، در بخش
-                پرسش پاسخ خود دوره ارسال کنید.
+        <div className="fixed w-[360px] h-[500px] bottom-[6rem] left-10 bg-white text-black rounded-[18px] overflow-y-scroll">
+          <div className="relative">
+            <div className="flex items-center justify-center h-[12rem] bg-sky-500 text-white rounded-[18px]">
+              <div className="content text-center">
+                <div className="title text-[28px]">
+                  <h1>چت انلاین</h1>
+                </div>
+                <div className="text text-[12px]">
+                  لطفا در صورتی که مشکل فنی یا در خصوص پیشیبانی دوره دارید، در
+                  بخش پرسش پاسخ خود دوره ارسال کنید.
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="overflow-y-scroll">
-            {users.tickets.map((ticket) => (
-              <p
-                className="px-4 my-2 mr-2 w-fit rounded-full bg-sky-300 text-white"
-                key={ticket.id}
-              >
-                {ticket.tickets}
-              </p>
-            ))}
-          </div>
+            <div className="overflow-y-scroll h-[400px]">
+              {tickets.length > 0 ? (
+                tickets.map((ticket) => (
+                  <p
+                    className="px-4 my-2 mr-2 w-fit rounded-full bg-green-200"
+                    key={ticket.id}
+                  >
+                    {ticket.tickets}
+                  </p>
+                ))
+              ) : (
+                <p>Loading...</p>
+              )}
+            </div>
 
-          <div className="editor w-full">
-            <input
-              name="tickets"
-              placeholder="یک پیغام بنویسید..."
-              className="w-full h-12 outline-none border-t px-2"
-              onChange={handleInputChange}
-              onKeyDown={ticketsHandler}
-              value={newTickets.tickets}
-            ></input>
+            <div className="editor sticky bottom-0 w-full h-12 bg-white border-t border-gray-300">
+              <input
+                name="tickets"
+                placeholder="یک پیغام بنویسید..."
+                className="h-12 w-full outline-none px-2"
+                onChange={handleInputChange}
+                onKeyDown={ticketsHandler}
+                value={newTickets.tickets}
+              ></input>
+            </div>
           </div>
         </div>
       ) : null}

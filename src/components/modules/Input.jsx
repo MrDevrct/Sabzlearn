@@ -6,7 +6,7 @@ export default function Input({ type, name , placeholder, icon: Icon , onChange 
       <input
         type={type || "text"}
         name={name}
-        value={value || ""}
+        value={value}
         className={`${disabled ? "bg-[#e5e7eb]" : "bg-[#f3f4f6]"}  h-[3.25rem] w-full rounded-[10px] text-sm text-[#64748b]`}
         placeholder={placeholder || ""}
         style={{ paddingLeft: "2.35rem", paddingRight: "0.85rem" }}
