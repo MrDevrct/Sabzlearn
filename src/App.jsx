@@ -5,8 +5,8 @@ import Navbar from "./components/modules/Navbar";
 import Footer from "./components/modules/Footer";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Provider } from "react-redux";
-import store from './services/Redux/store'
-
+import store from "./services/Redux/store";
+import Tickets from "./components/modules/tickets";
 
 const queryClient = new QueryClient();
 
@@ -30,13 +30,21 @@ function AppContent() {
               key={route.path}
               path={route.path}
               element={(() => {
-                if (route.path === "/login" || route.path === "/register" || route.path === "/my-account/" ||  route.path === "/my-account/:value" || route.path === "/admin"  || route.path === "*") {
+                if (
+                  route.path === "/login" ||
+                  route.path === "/register" ||
+                  route.path === "/my-account/" ||
+                  route.path === "/my-account/:value" ||
+                  route.path === "/admin" ||
+                  route.path === "*"
+                ) {
                   return <route.component />;
                 } else {
                   return (
                     <>
                       <Navbar />
-                        <route.component />
+                      <route.component />
+                      <Tickets />
                       <Footer />
                     </>
                   );

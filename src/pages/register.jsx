@@ -42,7 +42,7 @@ export default function Login() {
     role: "USER",
     createdAccount: "",
     updatedAccount: "",
-    tiket:[],
+    tickets:[],
     wallet: 0,
     paid : 0,
     courses: [],

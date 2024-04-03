@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import CourseBox from "../../modules/CourseBox";
 import { HiOutlineCreditCard } from "react-icons/hi2";
 import { HiOutlineRocketLaunch } from "react-icons/hi2";
-import { HiOutlineTicket } from "react-icons/hi2";
 import { HiOutlineCurrencyDollar } from "react-icons/hi";
 
 export default function UserCourse({ userData }) {

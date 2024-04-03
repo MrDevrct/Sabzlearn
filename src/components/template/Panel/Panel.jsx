@@ -17,6 +17,7 @@ import FormEditAccount from "./FormEditAccount";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUsers } from "../../../services/Redux/actions";
 import UserCourse from "./UserCourse";
+import UserTickets from "./UserTickets";
 
 export default function dashboard() {
   const dispatch = useDispatch();
@@ -160,7 +161,7 @@ export default function dashboard() {
             <UserCourse userData={user} />
             </>
           ) : lastRoute === "tickets" ? (
-            <h1>{lastRoute}</h1>
+            <UserTickets userData={user} />
           ) : lastRoute === "edit-account" ? (
             <>
               <FormEditAccount/>

@@ -11,7 +11,38 @@
       "role": "USER",
       "createdAccount": "2024-04-02T19:09:32.024Z",
       "updatedAccount": "",
-      "tiket": [],
+      "tickets": [
+        {
+          "userId": "299b4dfb-8ca0-4aec-a3fc-72c93a4b1fdb",
+          "userRole": "USER",
+          "fullName": "Morgan",
+          "adminId": 1,
+          "tickets": "سلام",
+          "timeCreated": "2024-04-03T03:16:45.569Z",
+          "answer": null,
+          "id": 1
+        },
+        {
+          "userId": "299b4dfb-8ca0-4aec-a3fc-72c93a4b1fdb",
+          "userRole": "USER",
+          "fullName": "Morgan",
+          "adminId": 1,
+          "tickets": "خوبی",
+          "timeCreated": "2024-04-03T03:17:00.901Z",
+          "answer": "به خوبیتون",
+          "id": 2
+        },
+        {
+          "userId": "299b4dfb-8ca0-4aec-a3fc-72c93a4b1fdb",
+          "userRole": "USER",
+          "fullName": "Morgan",
+          "adminId": 1,
+          "tickets": "کمکم کنید",
+          "timeCreated": "2024-04-03T03:25:49.999Z",
+          "answer": null,
+          "id": 3
+        }
+      ],
       "wallet": 0,
       "paid": 0,
       "courses": [
