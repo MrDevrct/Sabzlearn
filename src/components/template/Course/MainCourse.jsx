@@ -1,12 +1,14 @@
-// use this
+// کتابخانه های استفاده شده
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCourses, fetchUsers } from "../../../services/Redux/actions";
 import apiRequest from "../../../services/Axios/config";
 import moment from "jalali-moment";
+import Cookies from "js-cookie";
 
-// component
+
+// کامپوننت های استقاده شده
 import Breadcrumb from "../../modules/Categoreis/Breadcrumb";
 import CourseBanner from "../../modules/Course/CourseHead/CourseBanner";
 import CourseDetailBox from "../../modules/Course/CourseData/CourseDetailBox";
@@ -18,21 +20,19 @@ import CourseDescription from "../../modules/Course/CourseData/CourseDescription
 import CourseAboutTeacher from "../../modules/Course/CourseData/CourseAboutTeacher";
 import CourseShortLink from "../../modules/Course/CourseData/CourseShortLink";
 import CourseComplatePercentage from "../../modules/Course/CourseData/CourseComplatePercentage";
-// coockie
-import Cookies from "js-cookie";
 
-// icon
+
+// ایکون های استفاده شده
 import { LuHome } from "react-icons/lu";
-
-// icon CourseBox Info
 import { BsInfoCircle } from "react-icons/bs";
 import { CiVideoOn } from "react-icons/ci";
 import { HiOutlineBriefcase } from "react-icons/hi2";
 import { HiOutlineUsers } from "react-icons/hi2";
 import { RxCalendar } from "react-icons/rx";
 import { CiClock2 } from "react-icons/ci";
+import Swal from 'sweetalert2'
 
-// Convert Gregorian date to solar
+// تبدیل تاریخ میلادی به شمسی
 function formatDate(isoString) {
   const dateObject = new Date(isoString);
   const jalaliDate = moment(dateObject).locale("fa").format("YYYY/MM/DD");
@@ -40,50 +40,36 @@ function formatDate(isoString) {
 }
 
 export default function CourseView() {
-  // get data in redux
+  const params = useParams();
   const dispatch = useDispatch();
   const dataCourses = useSelector((state) => state.courses);
   const dataUsers = useSelector((state) => state.users);
   const token = Cookies.get("Token");
-
-  // get params route page
-  const params = useParams();
-
-  // validate course and category
+  const [user, setUser] = useState([]);
+  const [student, setStudent] = useState(false);
   const [courseInfo, setCourseInfo] = useState(null);
   const [categoryPath, setCategoryPath] = useState(null);
-
-  // validate course chapters
   const [relatedCourse, setRelatedCourse] = useState([]);
 
-  // validate This user is a student. Is there a course or not?
-  const [student, setStudent] = useState(false);
-
-  const [user, setUser] = useState([]);
-
-  // Fetch courses on component mount
+  // گرفتن اطلاعات یوزر ها و دوره ها
   useEffect(() => {
     dispatch(fetchCourses());
     dispatch(fetchUsers());
   }, [dispatch]);
 
-  // Update courseInfo when courses or params change
+  // گرفتن اطلاعات دوره از دیتا دورها 
   useEffect(() => {
-    const course = dataCourses.find(
-      (cours) => cours.name === params.courseName
-    );
+    const course = dataCourses.find((cours) => cours.name === params.courseName);
     setCourseInfo(course);
   }, [dataCourses, dataUsers, params.courseName]);
 
-  // Fetch categoryPath based on courseInfo
+
+  //
   useEffect(() => {
     const fetchCategoryPath = async () => {
       try {
-        // get data categories
         const categoriesResponse = await apiRequest("/Categories");
-        const category = categoriesResponse.data.find(
-          (category) => courseInfo && courseInfo.category === category.title
-        );
+        const category = categoriesResponse.data.find((category) => courseInfo && courseInfo.category === category.title);
 
         if (category) {
           setCategoryPath(category.path);
@@ -91,11 +77,8 @@ export default function CourseView() {
 
         // related course
         if (dataCourses.length > 0 && courseInfo) {
-          const filteredCourses = dataCourses.filter(
-            (course) =>
-              course.category === courseInfo.category &&
-              course.name !== courseInfo.name
-          );
+          const filteredCourses = dataCourses.filter((course) => course.category === courseInfo.category &&course.name !== courseInfo.name);
+
           if (filteredCourses.length > 0) {
             const fourCourses = filteredCourses.slice(0, 4);
             setRelatedCourse(fourCourses);
@@ -104,13 +87,12 @@ export default function CourseView() {
 
         // get user
         if (token) {
-          const user = dataUsers.find((user) => user.email === token);
+          const user = dataUsers.find((user) => user.id === token);
           if (user) {
             setUser(user);
             const studentCourse = user.courses.find((course) => course.name === courseInfo.name);
             if (studentCourse) {
               try {
-                // آپدیت زمان آخرین اضافه شدن به دوره در دیتای کاربر
                 const updatedUser = { ...user };
                 const updatedCourses = updatedUser.courses.map((course) => course.name === courseInfo.name ? { ...course, lastTimeAdded: new Date() }: course);
                 updatedUser.courses = updatedCourses;
@@ -161,28 +143,32 @@ export default function CourseView() {
       const newTotalPaid = totalPaid + courseInfo.price;
 
       // آپدیت داده‌های کاربر با قیمت جدید و محصول جدید
-      updatedUserData.courses = [
-        ...updatedUserData.courses,
-        { ...courseInfo, lastTimeAdded: currentTime },
-      ];
+      updatedUserData.courses = [...updatedUserData.courses,{ ...courseInfo, lastTimeAdded: currentTime },];
       updatedUserData.paid = newTotalPaid;
 
       // ارسال درخواست به سرور برای به‌روزرسانی داده‌های کاربر
-      const response = await apiRequest.put(
-        `/users/${user.id}`,
-        updatedUserData
-      );
+      const response = await apiRequest.put(`/users/${user.id}`, updatedUserData);
 
       if (response.status === 200) {
         setUser(updatedUserData);
         setStudent(true);
-        alert("به سبد دوره های افزوده شد");
+        Swal.fire({
+          icon: "success",
+          title: "به سبد خرید اضافه شد.",
+        }); 
       } else {
-        alert("خطا در افزودن محصول به دوره‌های شما!");
+        Swal.fire({
+          icon: "error",
+          text: "مشکلی در اضافه کردن دوره پیش امد!",
+        }); 
       }
     } catch (error) {
-      console.error("خطا در افزودن محصول به دوره‌های شما:", error);
-      alert("خطا در افزودن محصول به دوره‌های شما!");
+ 
+      Swal.fire({
+        icon: "error",
+        title: "خطا!",
+        text: "لطفا برای دریافت دوره وارد حساب کاربری خود شوید!",
+      }); 
     }
   };
 

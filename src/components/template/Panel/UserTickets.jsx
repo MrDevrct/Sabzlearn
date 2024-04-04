@@ -5,7 +5,7 @@ import { HiOutlineEnvelopeOpen } from "react-icons/hi2";
 import { HiOutlineTicket } from "react-icons/hi2";
 import apiRequest from "../../../services/Axios/config";
 
-export default function UserTickets({ userData }) {
+export default function UserTickets({ tickets }) {
   const [ticket, setTicket] = useState([]);
   const [closedTickets, setClosedTickets] = useState();
   const [openTickets, setOpenTickets] = useState();
@@ -14,37 +14,18 @@ export default function UserTickets({ userData }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        if (userData) {
-          const ticketResponse = await apiRequest(`/tickets/?fullName=Morgan`);
-          setTicket(ticketResponse.data)
-
-          const closedTickets = ticketResponse.data.filter((ticket) => ticket.answer !== null).length;
+        if (tickets) {
+          const closedTickets = tickets.filter((ticket) => ticket.answer !== null).length;
           setClosedTickets(closedTickets)
 
-          const openTickets = ticketResponse.data.filter((ticket) => ticket.answer === null).length;
+          const openTickets = tickets.filter((ticket) => ticket.answer === null).length;
           setOpenTickets(openTickets)
         }
       } catch (err) {}
     };
     fetchData();
-  }, [userData]);
+  }, [tickets]);
 
-  //   const fetchData = async() => {
-  //     try {
-  //       if (userData) {
-  //         const totalTickets = userData.tickets.length;
-  //         const openTickets = userData.tickets.filter(
-  //           (ticket) => ticket.answer === null
-  //         ).length;
-  //         const closedTickets = userData.tickets.filter(
-  //           (ticket) => ticket.answer !== null
-  //         ).length;
-  //         setTicketStats({ totalTickets, openTickets, closedTickets });
-  //       }
-  //     } catch (err) {}
-  //   };
-  //   fetchData()
-  // }, [userData]);
 
   const formatDate = (dateString) => {
     const date = moment(dateString, "YYYY-MM-DDTHH:mm:ss.SSS[Z]");
@@ -65,7 +46,7 @@ export default function UserTickets({ userData }) {
           <div className="flex flex-col gap-y-1.5 md:gap-y-2 text-white">
             <span className="text-sm font-danaMedium">همه تیکت ها</span>
             <span className="font-IRANSNumber text-sm md:text-lg">
-              {ticket.length} &nbsp;
+              {tickets.length} &nbsp;
               <span className="slms-price_symbol font-danaDemibold">عدد</span>
             </span>
           </div>
@@ -93,7 +74,7 @@ export default function UserTickets({ userData }) {
           <div className="flex flex-col gap-y-1.5 md:gap-y-2 text-white">
             <span className="text-sm font-danaMedium">بسته شده</span>
             <span className="font-IRANSNumber text-sm md:text-lg">
-              {ticket.length > 0 ? closedTickets : '0'} &nbsp;
+              {tickets.length > 0 ? closedTickets : '0'} &nbsp;
               <span className="slms-price_symbol font-danaDemibold">تیکت</span>
             </span>
           </div>
@@ -107,8 +88,8 @@ export default function UserTickets({ userData }) {
         </div>
 
         <div>
-          {ticket.length > 0 &&
-            ticket.map((ticket) => (
+          {tickets.length > 0 &&
+            tickets.map((ticket) => (
               <div
                 className="flex items-center justify-between flex-wrap gap-y-3 p-3 hover:bg-gray-100 rounded-xl transition-colors"
                 key={ticket.id}

@@ -41,7 +41,7 @@ export default function Login() {
   // get token
   useEffect(() => {
     if (token) {
-      const user = dataUsers.find((user) => user.email === token);
+      const user = dataUsers.find((user) => user.id === token);
       if (user) {
         if (user.role === "USER") {
           window.location.pathname = "/";
@@ -82,7 +82,7 @@ export default function Login() {
             transition: Bounce,
           });
 
-          Cookies.set("Token", isLogin.email, {
+          Cookies.set("Token", isLogin.id, {
             expires: 7,
             domain: "localhost",
             httpOnly: false,

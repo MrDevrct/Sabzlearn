@@ -19,7 +19,7 @@ export default function CourseComments({ course, setCourse }) {
   useEffect(() => {
     dispatch(fetchUsers());
     if (token && dataUsers.length > 0) {
-      const currentUser = dataUsers.find((user) => user.email === token);
+      const currentUser = dataUsers.find((user) => user.id === token);
       setUser(currentUser);
     }
   }, [dispatch, dataUsers, token]);

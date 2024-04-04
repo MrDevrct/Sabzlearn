@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchUsers } from "../../../services/Redux/actions";
 import Cookies from "js-cookie";
 import apiRequest from "../../../services/Axios/config";
+import Swal from 'sweetalert2'
 
 export default function FormEditAccount() {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ export default function FormEditAccount() {
   useEffect(() => {
     const fetchData = async () => {
       if (token && dataUsers.length > 0) {
-        const userFound = await dataUsers.find((user) => user.email === token);
+        const userFound = await dataUsers.find((user) => user.id === token);
         setUser(userFound || {});
         setUpdateUser({
           email: userFound.email || "",
@@ -56,10 +57,22 @@ export default function FormEditAccount() {
         lastname: updateUser.lastname,
       };
 
-      const response = await apiRequest.put(`/users/${user.id}`, updatedUser);
-      if (response.status === 200) {
-        alert("اطلاعات با موفقیت اپدیت شد");
-        Cookies.set("Token", updateUser.email);
+      const isEmailExists = dataUsers.some((existingUser) => existingUser.email === updateUser.email);
+
+      if (!isEmailExists) {
+        const response = await apiRequest.put(`/users/${user.id}`, updatedUser);
+        if (response.status === 200) {
+          Swal.fire({
+            icon: "success",
+            text: "اطلاعات با موفقیت اپدیت شد",
+          });
+        }
+      } else {
+          Swal.fire({
+            icon: "error",
+            title: "خطا!",
+            text: "این ایمیل قبلاً استفاده شده است",
+          });
       }
     } catch (error) {
       console.error("Error updating user:", error);
@@ -77,13 +90,20 @@ export default function FormEditAccount() {
         const response = await apiRequest.put(`/users/${user.id}`, updatedPasswordUser);
   
         if (response.status === 200) {
-          alert("رمز شما با موفقغیت تغییر کرد");
+          Swal.fire({
+            icon: "success",
+            text: "رمز شما با موفقغیت تغییر کرد",
+          });
           setUpdatePassword('');
           setCurrentPassword('');
           setUser(updatedPasswordUser); // بروزرسانی اطلاعات کاربر با رمز جدید
         }
       } else {
-        alert("رمز فعلی شما اشتباه است");
+        Swal.fire({
+          icon: "error",
+          title: "خطا!",
+          text: "رمز فعلی شما اشتباه است",
+        });
       }
     } catch (error) {
       console.error("Error updating password:", error);

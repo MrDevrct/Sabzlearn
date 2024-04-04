@@ -61,6 +61,7 @@ export default function LastCourses() {
             )}
           </div>
         </div>
+        <div></div>
       </section>
     </>
   );

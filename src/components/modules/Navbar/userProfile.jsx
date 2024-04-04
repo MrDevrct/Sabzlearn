@@ -36,7 +36,7 @@ export default function UserProfile({bgColor}) {
   // Update courseInfo when courses or params change
   useEffect(() => {
     if (Token && dataUsers.length > 0) {
-      const userFind = dataUsers.find(user => user.email === Token)
+      const userFind = dataUsers.find(user => user.id === Token)
       SetUsers(userFind);
     }
   }, [dataUsers]);

@@ -34,10 +34,10 @@ export default function Tickets() {
     const fetchData = async () => {
       try {
         if (Token && dataUsers.length > 0) {
-          const userFind = await dataUsers.find((user) => user.email === Token);
+          const userFind = await dataUsers.find((user) => user.id === Token);
           setUsers(userFind);
           const ticketFind = await apiRequest(
-            `/tickets/?fullName=${userFind.username}`
+            `/tickets/?fullName=${userFind.id}`
           );
           setTickets(ticketFind.data);
         }
@@ -105,7 +105,7 @@ export default function Tickets() {
         </button>
       </div>
       {openTickets === true ? (
-        <div className="sb-chat fixed w-[360px] h-[650px] sm:bottom-[5rem] sm:left-10 left-0 bottom-0 text-black bg-white rounded-[18px]">
+        <div className="sb-chat fixed w-[360px] h-[650px] sm:bottom-[6rem] sm:left-10 left-4 bottom-4 text-black bg-white rounded-[18px]">
           <div className="relative">
             <div className="flex items-center justify-center h-[12rem] bg-sky-500 text-white rounded-[18px_18px_0_0]">
               <div className="content text-center">

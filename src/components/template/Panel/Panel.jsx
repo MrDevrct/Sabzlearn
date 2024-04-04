@@ -39,11 +39,11 @@ export default function dashboard() {
   useEffect(() => {
     const fetchData = async () => {
       if (token && dataUsers.length > 0) {
-        const userFound = dataUsers.find((user) => user.email === token);
+        const userFound = dataUsers.find((user) => user.id === token);
         setUser(userFound);
 
         const ticketFind = await apiRequest(
-          `/tickets/?fullName=${userFound.username}`
+          `/tickets/?userId=${userFound.id}`
         );
         const sortedTickets = ticketFind.data.sort(
           (a, b) => new Date(b.timeCreated) - new Date(a.timeCreated)
@@ -126,8 +126,8 @@ export default function dashboard() {
             className={`flex items-center gap-x-2.5 h-12 px-3 rounded-lg ${
               lastRoute === "my-account"
                 ? "bg-green-500 text-white"
-                : "text-black"
-            }  hover:bg-green-600`}
+                : "hover:bg-gray-100 text-black"
+            } `}
           >
             <BiHome className="text-[24px]" />
             پیشخوان{" "}
@@ -137,8 +137,8 @@ export default function dashboard() {
           <a
             href="/my-account/courses/"
             className={`flex items-center gap-x-2.5 h-12 px-3 rounded-lg ${
-              lastRoute === "courses" ? "bg-green-500 text-white" : "text-black"
-            }  hover:bg-green-600`}
+              lastRoute === "courses" ? "bg-green-500 text-white" : "hover:bg-gray-100 text-black"
+            }`}
           >
             <HiOutlineFolderOpen className="text-[24px]" />
             دوره های من{" "}
@@ -148,8 +148,8 @@ export default function dashboard() {
           <a
             href="/my-account/tickets/"
             className={`flex items-center gap-x-2.5 h-12 px-3 rounded-lg ${
-              lastRoute === "tickets" ? "bg-green-500 text-white" : "text-black"
-            }  hover:bg-green-600`}
+              lastRoute === "tickets" ? "bg-green-500 text-white" : "hover:bg-gray-100 text-black"
+            } `}
           >
             <HiOutlineChatBubbleLeftRight className="text-[24px]" />
             تیکت های پشتیبانی{" "}
@@ -161,8 +161,8 @@ export default function dashboard() {
             className={`flex items-center gap-x-2.5 h-12 px-3 rounded-lg ${
               lastRoute === "edit-account"
                 ? "bg-green-500 text-white"
-                : "text-black"
-            }  hover:bg-green-600`}
+                : "hover:bg-gray-100 text-black"
+            } `}
           >
             <HiOutlineUser className="text-[24px]" />
             جزئیات حساب{" "}
@@ -223,7 +223,7 @@ export default function dashboard() {
             </>
           ) : lastRoute === "tickets" ? (
             <>
-              <UserTickets userData={user} />
+              <UserTickets tickets={tickets} />
             </>
           ) : lastRoute === "edit-account" ? (
             <>

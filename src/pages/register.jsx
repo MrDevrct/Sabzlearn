@@ -61,7 +61,7 @@ export default function Login() {
   // get token
   useEffect(() => {
     if (token) {
-      const user = dataUsers.find((user) => user.email === token);
+      const user = dataUsers.find((user) => user.id === token);
       if (user) {
         location.pathname = "/";
       }
@@ -111,7 +111,7 @@ export default function Login() {
       if (response.status === 201) {
         // Set token in cookie
         window.location.pathname = "/";
-        Cookies.set("Token", formData.email, { expires: 7 });
+        Cookies.set("Token", formData.id, { expires: 7 });
       }
     } catch (error) {
       console.error(error);
