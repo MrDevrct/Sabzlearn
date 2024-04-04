@@ -3,22 +3,22 @@ import HeaderTitle from "../Course/CourseData/HeaderTitle";
 import { IoChatbubbleEllipsesSharp } from "react-icons/io5";
 
 export default function CourseComment() {
-  const comments = [
-    {
-      id: 1,
-      userName: "ali",
-      adminName: "admin",
-      text: "ایا بعد این دوره میتوان وارد بازار کار شد",
-      answar: "بله",
-    },
-    {
-      id: 2,
-      userName: "mmd",
-      adminName: "admin",
-      text: "ایا بعد این دوره میتوان وارد بازار کار شد",
-      answar: "",
-    },
-  ];
+  // const comments = [
+  //   {
+  //     id: 1,
+  //     userName: "ali",
+  //     adminName: "admin",
+  //     text: "ایا بعد این دوره میتوان وارد بازار کار شد",
+  //     answar: "بله",
+  //   },
+  //   {
+  //     id: 2,
+  //     userName: "mmd",
+  //     adminName: "admin",
+  //     text: "ایا بعد این دوره میتوان وارد بازار کار شد",
+  //     answar: "",
+  //   },
+  // ];
   return (
     <div className="bg-white dark:bg-darker rounded-2xl p-5 sm:p-5 mt-6 lg:mt-8">
       <div>
@@ -33,7 +33,7 @@ export default function CourseComment() {
       {/* Q&A form */}
       <div className="mb-8 sm:mb-12">
         <div className="comments_wrap space-y-5 sm:space-y-5 mt-[2rem]">
-          {comments.map((comment) => (
+          {/* {comments.map((comment) => (
             <div
               className="p-5 md:p-5 bg-gray-100 dark:bg-dark rounded-xl"
               key={comment.id}
@@ -72,7 +72,8 @@ export default function CourseComment() {
                 )}
               </div>
             </div>
-          ))}
+          ))} */}
+          <h2>قابلیت کامنت برای قسمت های هر دوره در اپدیت بعدی اضافه می شود</h2>
         </div>
       </div>
     </div>
