@@ -42,7 +42,6 @@ export default function Login() {
     role: "USER",
     createdAccount: "",
     updatedAccount: "",
-    tickets:[],
     wallet: 0,
     paid : 0,
     courses: [],

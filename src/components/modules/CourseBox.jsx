@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { HiOutlineUser, HiOutlineUsers } from "react-icons/hi2";
 import { FaStarHalfAlt } from "react-icons/fa";
 
@@ -18,8 +17,8 @@ export default function CardBox(props) {
     <div className="course sm:h-[27rem] sm:max-w-[19rem] w-full h-fit flex flex-col bg-white shadow-sm rounded-2xl leading-normal">
       {/* image cover */}
       <div className="relative h-42 group">
-        <Link
-          to={`/course/${props.name}`}
+        <a
+          href={`/course/${props.name}`}
           className="block w-full h-full"
           title={props.title}
         >
@@ -29,7 +28,7 @@ export default function CardBox(props) {
             alt={props.title}
             loading="lazy"
           />
-        </Link>
+        </a>
       </div>
 
       {/* title and description */}

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchUsers } from "../../services/Redux/actions";
 import Cookies from "js-cookie";
 import apiRequest from "../../services/Axios/config";
+import "../../css/ElementProprety/tickets.css";
 
 export default function Tickets() {
   const dispatch = useDispatch();
@@ -35,15 +36,16 @@ export default function Tickets() {
         if (Token && dataUsers.length > 0) {
           const userFind = await dataUsers.find((user) => user.email === Token);
           setUsers(userFind);
-          const ticketFind = await apiRequest(`/tickets/?fullName=${userFind.username}`);
+          const ticketFind = await apiRequest(
+            `/tickets/?fullName=${userFind.username}`
+          );
           setTickets(ticketFind.data);
-          console.log(ticketFind.data);
         }
       } catch (e) {}
     };
     fetchData();
-  }, [Token, dataUsers]); 
-  
+  }, [Token, dataUsers]);
+
   // قرار دادن ایدی و مشخصات کاربر در فرم تیکت
   useEffect(() => {
     if (users.id && users.role && users.username) {
@@ -61,7 +63,7 @@ export default function Tickets() {
     return <div></div>;
   }
 
-  // قرار دادن ولی اینپوت 
+  // قرار دادن ولی اینپوت
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setNewTickets({
@@ -76,10 +78,10 @@ export default function Tickets() {
       if (event.key === "Enter") {
         const response = await apiRequest.post(`/tickets`, {
           ...newTickets,
-          timeCreated: new Date() // افزودن زمان ایجاد به تیکت
+          timeCreated: new Date(), // افزودن زمان ایجاد به تیکت
         });
         const newTicket = response.data;
-        setTickets(prevTickets => [...prevTickets, newTicket]);
+        setTickets((prevTickets) => [...prevTickets, newTicket]);
         setNewTickets({
           ...newTickets,
           tickets: "",
@@ -89,8 +91,7 @@ export default function Tickets() {
       console.error(error);
     }
   };
-  
-  
+
   // باز بسته کردن فرم تیکت
   const openTicketsHandler = () => {
     setOpenTickets(!openTickets);
@@ -98,15 +99,15 @@ export default function Tickets() {
 
   return (
     <>
-      <div className="fixed bottom-5 left-5 flex items-center justify-center rounded-full bg-sky-500 h-[60px] w-[60px]  text-white z-10">
+      <div className="fixed bottom-5 left-5 flex items-center justify-center rounded-full bg-sky-500 h-[60px] w-[60px] text-white z-10">
         <button className="text-[28px]" onClick={openTicketsHandler}>
           {openTickets === true ? <IoClose /> : <BsChatText className="mb-1" />}
         </button>
       </div>
       {openTickets === true ? (
-        <div className="fixed w-[360px] h-[500px] bottom-[6rem] left-10 bg-white text-black rounded-[18px] overflow-y-scroll">
+        <div className="sb-chat fixed w-[360px] h-[650px] sm:bottom-[5rem] sm:left-10 left-0 bottom-0 text-black bg-white rounded-[18px]">
           <div className="relative">
-            <div className="flex items-center justify-center h-[12rem] bg-sky-500 text-white rounded-[18px]">
+            <div className="flex items-center justify-center h-[12rem] bg-sky-500 text-white rounded-[18px_18px_0_0]">
               <div className="content text-center">
                 <div className="title text-[28px]">
                   <h1>چت انلاین</h1>
@@ -119,7 +120,7 @@ export default function Tickets() {
             </div>
 
             <div className="overflow-y-scroll h-[400px]">
-              {tickets.length > 0 ? (
+              {tickets.length > 0 && (
                 tickets.map((ticket) => (
                   <p
                     className="px-4 my-2 mr-2 w-fit rounded-full bg-green-200"
@@ -128,8 +129,6 @@ export default function Tickets() {
                     {ticket.tickets}
                   </p>
                 ))
-              ) : (
-                <p>Loading...</p>
               )}
             </div>
 
@@ -149,3 +148,4 @@ export default function Tickets() {
     </>
   );
 }
+

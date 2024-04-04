@@ -21,11 +21,15 @@ import UserCourse from "./UserCourse";
 import UserTickets from "./UserTickets";
 import CourseBox from "../../modules/CourseBox";
 import moment from "jalali-moment";
+import apiRequest from "../../../services/Axios/config";
 
 export default function dashboard() {
   const dispatch = useDispatch();
   const dataUsers = useSelector((state) => state.users);
   const [user, setUser] = useState([]);
+  const [tickets, setTickets] = useState([]);
+  const [courses, setCourses] = useState([]);
+  const [openMenu, setOpenMenu] = useState(false);
   const token = Cookies.get("Token");
 
   useEffect(() => {
@@ -33,10 +37,26 @@ export default function dashboard() {
   }, [dispatch]);
 
   useEffect(() => {
-    if (token && dataUsers.length > 0) {
-      const userFound = dataUsers.find((user) => user.email === token);
-      setUser(userFound);
-    }
+    const fetchData = async () => {
+      if (token && dataUsers.length > 0) {
+        const userFound = dataUsers.find((user) => user.email === token);
+        setUser(userFound);
+
+        const ticketFind = await apiRequest(
+          `/tickets/?fullName=${userFound.username}`
+        );
+        const sortedTickets = ticketFind.data.sort(
+          (a, b) => new Date(b.timeCreated) - new Date(a.timeCreated)
+        );
+        setTickets(sortedTickets);
+
+        const sortedCourses = userFound.courses.sort(
+          (a, b) => new Date(b.lastTimeAdded) - new Date(a.lastTimeAdded)
+        );
+        setCourses(sortedCourses);
+      }
+    };
+    fetchData();
   }, [dataUsers, token]);
 
   if (!token) {
@@ -73,9 +93,17 @@ export default function dashboard() {
     return date;
   };
 
+  const openMenuHandler = () => {
+    setOpenMenu(!openMenu);
+  };
+
   return (
     <main className="md:bg-white flex gap-x-10 2xl:gap-x-14 lg:px-8 xl:px-14 2xl:px-25 lg:py-7">
-      <aside className="sidebar fixed top-0 bottom-0 -right-64 z-30 lg:static bg-white flex flex-col w-64 lg:w-56 lg:mt-10 px-7 py-5 lg:px-0 lg:py-0 shrink-0 lg:min-h-[calc(100vh-68px)] transition-all lg:transition-none">
+      <aside
+        className={`sidebar fixed top-0 bottom-0 ${
+          openMenu === true ? "right-0 z-50" : "-right-64"
+        } lg:static bg-white flex flex-col w-64 lg:w-56 lg:mt-10 px-7 py-5 lg:px-0 lg:py-0 shrink-0 lg:min-h-[calc(100vh-68px)] transition-all lg:transition-none`}
+      >
         <div className="flex items-center justify-between pb-5 mb-7 border-b md:border-none border-b-gray-200">
           <a href="/" className="flex items-center gap-x-1.5 md:gap-x-2.5">
             <img
@@ -85,7 +113,9 @@ export default function dashboard() {
             />
             <div className="w-[86px] md:w-32 h-10 md:h-[57px]">
               <h1 className="font-danaDemibold text-4xl">سبزلرن</h1>
-              <span className="text-sm">S a b z l e a r n . i r</span>
+              <span className="lg:text-sm md:text-[12px] sm:text-[10px] text-[10px]">
+                S a b z l e a r n . i r
+              </span>
             </div>
           </a>
         </div>
@@ -156,9 +186,21 @@ export default function dashboard() {
             {user.username} عزیز؛ خوش اومدی 🙌
           </h3>
 
-          <div className="sidebar__open-btn flex gap-x-1 md:hidden font-danaMedium text-zinc-700">
+          <div
+            className="sidebar__open-btn flex gap-x-1 md:hidden font-danaMedium text-zinc-700"
+            onClick={openMenuHandler}
+          >
             <HiOutlineBars3BottomRight className="text-2xl" />
-            پیشخوان{" "}
+            {" "}
+            {lastRoute === 'courses' ? (
+              <>دوره های من</>
+            ) : lastRoute === "tickets" ? (
+              <>تیکت ها</>
+            ) : lastRoute === "edit-account" ? (
+              <>جزئیات حساب</>
+            ) : (
+              <>پیشخوان</>
+            )}
           </div>
 
           <div className="flex gap-x-3.5 md:gap-x-7">
@@ -241,17 +283,13 @@ export default function dashboard() {
                       مجموع تیکت ها{" "}
                     </span>
                     <span className="font-IRANSNumber text-sm md:text-lg">
-                      {user && user.tiket && user.tiket.length > 0 ? (
-                        <>
-                          {user.tiket.length}
-                          <span className="slms-price_symbol font-danaDemibold">
-                            {" "}
-                            تیکت{" "}
-                          </span>
-                        </>
-                      ) : (
-                        "0 تیکت"
-                      )}
+                      <span className="slms-price_symbol font-IRANSNumber">
+                        {tickets.length > 0 ? (
+                          <>{tickets.length} تیکت</>
+                        ) : (
+                          <>تیکت 0</>
+                        )}
+                      </span>
                     </span>
                   </div>
                 </div>
@@ -286,8 +324,8 @@ export default function dashboard() {
                       <IoArrowBack />
                     </a>
                   </div>
-                  <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-x-5 gap-y-4">
-                    {user.courses?.map((course) => (
+                  <div className="w-full grid grid-cols-1 xs:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-x-5 gap-y-4">
+                    {courses.map((course) => (
                       <CourseBox key={course.id} {...course} />
                     ))}
                   </div>
@@ -308,7 +346,7 @@ export default function dashboard() {
                       </a>
                     </div>
                     <div>
-                      {user.tickets?.map((ticket) => (
+                      {tickets.map((ticket) => (
                         <div
                           className="flex items-center justify-between flex-wrap gap-y-3 p-3 hover:bg-gray-100 rounded-xl transition-colors"
                           key={ticket.id}
@@ -354,6 +392,12 @@ export default function dashboard() {
             </>
           )}
         </div>
+        {openMenu && (
+          <div
+            className="overlay fixed w-full h-full top-0 left-0 bg-black/40 z-40 transition-all"
+            onClick={openMenuHandler}
+          ></div>
+        )}
       </div>
     </main>
   );

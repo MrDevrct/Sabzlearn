@@ -3,26 +3,48 @@ import React, { useEffect, useState } from "react";
 import { HiOutlineChatBubbleLeftRight } from "react-icons/hi2";
 import { HiOutlineEnvelopeOpen } from "react-icons/hi2";
 import { HiOutlineTicket } from "react-icons/hi2";
+import apiRequest from "../../../services/Axios/config";
 
 export default function UserTickets({ userData }) {
-  const [ticketStats, setTicketStats] = useState({
-    totalTickets: 0,
-    openTickets: 0,
-    closedTickets: 0,
-  });
+  const [ticket, setTicket] = useState([]);
+  const [closedTickets, setClosedTickets] = useState();
+  const [openTickets, setOpenTickets] = useState();
+
 
   useEffect(() => {
-    if (userData.tickets) {
-      const totalTickets = userData.tickets.length;
-      const openTickets = userData.tickets.filter(
-        (ticket) => ticket.answer === null
-      ).length;
-      const closedTickets = userData.tickets.filter(
-        (ticket) => ticket.answer !== null
-      ).length;
-      setTicketStats({ totalTickets, openTickets, closedTickets });
-    }
+    const fetchData = async () => {
+      try {
+        if (userData) {
+          const ticketResponse = await apiRequest(`/tickets/?fullName=Morgan`);
+          setTicket(ticketResponse.data)
+
+          const closedTickets = ticketResponse.data.filter((ticket) => ticket.answer !== null).length;
+          setClosedTickets(closedTickets)
+
+          const openTickets = ticketResponse.data.filter((ticket) => ticket.answer === null).length;
+          setOpenTickets(openTickets)
+        }
+      } catch (err) {}
+    };
+    fetchData();
   }, [userData]);
+
+  //   const fetchData = async() => {
+  //     try {
+  //       if (userData) {
+  //         const totalTickets = userData.tickets.length;
+  //         const openTickets = userData.tickets.filter(
+  //           (ticket) => ticket.answer === null
+  //         ).length;
+  //         const closedTickets = userData.tickets.filter(
+  //           (ticket) => ticket.answer !== null
+  //         ).length;
+  //         setTicketStats({ totalTickets, openTickets, closedTickets });
+  //       }
+  //     } catch (err) {}
+  //   };
+  //   fetchData()
+  // }, [userData]);
 
   const formatDate = (dateString) => {
     const date = moment(dateString, "YYYY-MM-DDTHH:mm:ss.SSS[Z]");
@@ -43,7 +65,7 @@ export default function UserTickets({ userData }) {
           <div className="flex flex-col gap-y-1.5 md:gap-y-2 text-white">
             <span className="text-sm font-danaMedium">همه تیکت ها</span>
             <span className="font-IRANSNumber text-sm md:text-lg">
-              {ticketStats.totalTickets} &nbsp;
+              {ticket.length} &nbsp;
               <span className="slms-price_symbol font-danaDemibold">عدد</span>
             </span>
           </div>
@@ -57,7 +79,7 @@ export default function UserTickets({ userData }) {
           <div className="flex flex-col gap-y-1.5 md:gap-y-2 text-white">
             <span className="text-sm font-danaMedium">تیکت های باز</span>
             <span className="font-IRANSNumber text-sm md:text-lg">
-              {ticketStats.openTickets} &nbsp;
+              { ticket.length > 0 ? openTickets : '0'}&nbsp;
               <span className="slms-price_symbol font-danaDemibold">تیکت</span>
             </span>
           </div>
@@ -71,7 +93,7 @@ export default function UserTickets({ userData }) {
           <div className="flex flex-col gap-y-1.5 md:gap-y-2 text-white">
             <span className="text-sm font-danaMedium">بسته شده</span>
             <span className="font-IRANSNumber text-sm md:text-lg">
-              {ticketStats.closedTickets} &nbsp;
+              {ticket.length > 0 ? closedTickets : '0'} &nbsp;
               <span className="slms-price_symbol font-danaDemibold">تیکت</span>
             </span>
           </div>
@@ -85,40 +107,41 @@ export default function UserTickets({ userData }) {
         </div>
 
         <div>
-          {userData.tickets?.map((ticket) => (
-            <div
-              className="flex items-center justify-between flex-wrap gap-y-3 p-3 hover:bg-gray-100 rounded-xl transition-colors"
-              key={ticket.id}
-            >
-              <div className="flex items-center">
-                <span className="block w-20 text-right font-danaMedium">
-                  #{ticket.id}
-                </span>
-                <a
-                  href=""
-                  className="text-zinc-700 dark:text-white w-full font-danaMedium sm:max-w-md md:truncate"
-                >
-                  {ticket.tickets}
-                </a>
-              </div>
-              <div className="flex items-center gap-5">
-                <span
-                  className="text-xs text-slate-500 dark:text-slate-400"
-                  dir="ltr"
-                >
-                  {formatDate(ticket.timeCreated)}
-                </span>
-                <span className="text-xs py-1 px-1.5 text-slate-500 dark:text-yellow-400 bg-slate-500/10 dark:bg-yellow-400/10 rounded">
-                  {ticket.answer ? "پشتیبانی" : "انتظار پاسخ"}
-                </span>
-                {ticket.answer && (
-                  <span className="text-xs py-1 px-1.5 text-green-500 bg-green-100 rounded-md">
-                    پاسخ داده شده
+          {ticket.length > 0 &&
+            ticket.map((ticket) => (
+              <div
+                className="flex items-center justify-between flex-wrap gap-y-3 p-3 hover:bg-gray-100 rounded-xl transition-colors"
+                key={ticket.id}
+              >
+                <div className="flex items-center">
+                  <span className="block w-20 text-right font-danaMedium">
+                    #{ticket.id}
                   </span>
-                )}
+                  <a
+                    href=""
+                    className="text-zinc-700 dark:text-white w-full font-danaMedium sm:max-w-md md:truncate"
+                  >
+                    {ticket.tickets}
+                  </a>
+                </div>
+                <div className="flex items-center gap-5">
+                  <span
+                    className="text-xs text-slate-500 dark:text-slate-400"
+                    dir="ltr"
+                  >
+                    {formatDate(ticket.timeCreated)}
+                  </span>
+                  <span className="text-xs py-1 px-1.5 text-slate-500 dark:text-yellow-400 bg-slate-500/10 dark:bg-yellow-400/10 rounded">
+                    {ticket.answer ? "پشتیبانی" : "انتظار پاسخ"}
+                  </span>
+                  {ticket.answer && (
+                    <span className="text-xs py-1 px-1.5 text-green-500 bg-green-100 rounded-md">
+                      پاسخ داده شده
+                    </span>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
       </div>
     </>

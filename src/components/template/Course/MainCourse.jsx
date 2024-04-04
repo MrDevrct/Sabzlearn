@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCourses ,fetchUsers} from "../../../services/Redux/actions";
+import { fetchCourses, fetchUsers } from "../../../services/Redux/actions";
 import apiRequest from "../../../services/Axios/config";
 import moment from "jalali-moment";
 
@@ -49,7 +49,7 @@ export default function CourseView() {
   // get params route page
   const params = useParams();
 
-  // validate course and category 
+  // validate course and category
   const [courseInfo, setCourseInfo] = useState(null);
   const [categoryPath, setCategoryPath] = useState(null);
 
@@ -59,8 +59,7 @@ export default function CourseView() {
   // validate This user is a student. Is there a course or not?
   const [student, setStudent] = useState(false);
 
-  const [user, setUser]= useState([]);
-
+  const [user, setUser] = useState([]);
 
   // Fetch courses on component mount
   useEffect(() => {
@@ -70,9 +69,11 @@ export default function CourseView() {
 
   // Update courseInfo when courses or params change
   useEffect(() => {
-    const course = dataCourses.find((cours) => cours.name === params.courseName);
+    const course = dataCourses.find(
+      (cours) => cours.name === params.courseName
+    );
     setCourseInfo(course);
-  }, [dataCourses, dataUsers , params.courseName]);
+  }, [dataCourses, dataUsers, params.courseName]);
 
   // Fetch categoryPath based on courseInfo
   useEffect(() => {
@@ -80,13 +81,15 @@ export default function CourseView() {
       try {
         // get data categories
         const categoriesResponse = await apiRequest("/Categories");
-        const category = categoriesResponse.data.find((category) => courseInfo && courseInfo.category === category.title);
+        const category = categoriesResponse.data.find(
+          (category) => courseInfo && courseInfo.category === category.title
+        );
 
         if (category) {
           setCategoryPath(category.path);
         }
 
-        // related course 
+        // related course
         if (dataCourses.length > 0 && courseInfo) {
           const filteredCourses = dataCourses.filter(
             (course) =>
@@ -99,22 +102,35 @@ export default function CourseView() {
           }
         }
 
-        // get user 
+        // get user
         if (token) {
           const user = dataUsers.find((user) => user.email === token);
           if (user) {
-            setUser(user)
-            const studentCourse = user.courses.find(
-              (course) => course.name === courseInfo.name
-            );
+            setUser(user);
+            const studentCourse = user.courses.find((course) => course.name === courseInfo.name);
             if (studentCourse) {
-              setStudent(true);
+              try {
+                // آپدیت زمان آخرین اضافه شدن به دوره در دیتای کاربر
+                const updatedUser = { ...user };
+                const updatedCourses = updatedUser.courses.map((course) => course.name === courseInfo.name ? { ...course, lastTimeAdded: new Date() }: course);
+                updatedUser.courses = updatedCourses;
+
+                // ارسال درخواست به سرور برای به‌روزرسانی دیتای کاربر
+                const response = await apiRequest.put(`/users/${user.id}`,updatedUser);
+
+                if (response.status === 200) {
+                  setStudent(true);
+                } else {
+                  setStudent(false);
+                }
+              } catch (error) {
+                setStudent(false);
+              }
             } else {
               setStudent(false);
             }
           }
         }
-
       } catch (error) {}
     };
 
@@ -128,19 +144,38 @@ export default function CourseView() {
     return <div>Loading...</div>;
   }
 
-
   // Convert Gregorian to solar time
   const formattedDate = formatDate(courseInfo.time);
 
   const addCourseHandler = async () => {
     try {
-      let updatedUserData = {...user,courses: [...user.courses, courseInfo]};
-  
-      const response = await apiRequest.put(`/users/${user.id}`, updatedUserData);
-  
+      const currentTime = new Date().toISOString();
+      const updatedUserData = { ...user };
+
+      // محاسبه جمع قیمت محصولات قبلی کاربر
+      const totalPaid = updatedUserData.courses.reduce(
+        (acc, course) => acc + course.price,
+        0
+      );
+      // اضافه کردن قیمت محصول جدید به مجموع قیمت‌های قبلی
+      const newTotalPaid = totalPaid + courseInfo.price;
+
+      // آپدیت داده‌های کاربر با قیمت جدید و محصول جدید
+      updatedUserData.courses = [
+        ...updatedUserData.courses,
+        { ...courseInfo, lastTimeAdded: currentTime },
+      ];
+      updatedUserData.paid = newTotalPaid;
+
+      // ارسال درخواست به سرور برای به‌روزرسانی داده‌های کاربر
+      const response = await apiRequest.put(
+        `/users/${user.id}`,
+        updatedUserData
+      );
+
       if (response.status === 200) {
         setUser(updatedUserData);
-        setStudent(true)
+        setStudent(true);
         alert("به سبد دوره های افزوده شد");
       } else {
         alert("خطا در افزودن محصول به دوره‌های شما!");
@@ -150,8 +185,6 @@ export default function CourseView() {
       alert("خطا در افزودن محصول به دوره‌های شما!");
     }
   };
-  
-  
 
   return (
     <main className="mt-8 sm:mt-10">
@@ -245,16 +278,13 @@ export default function CourseView() {
             <CourseDescription data={courseInfo} />
 
             {/* !<-- Headlines --> */}
-            <CourseHeadlines data={courseInfo} user={user}/>
+            <CourseHeadlines data={courseInfo} student={student} />
 
             {/* !<-- Related Courses  */}
-            <CourseRelated  relatedCourse={relatedCourse}/>
+            <CourseRelated relatedCourse={relatedCourse} />
 
             {/* !<-- Comments --> */}
-            <CourseComments 
-              setCourse={setCourseInfo} 
-              course={courseInfo} 
-            />
+            <CourseComments setCourse={setCourseInfo} course={courseInfo} />
           </div>
 
           {/* <!-- Students & Rating & Progress --> */}

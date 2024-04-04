@@ -2,20 +2,20 @@ import React, { useEffect, useState } from "react";
 import { HiAcademicCap } from "react-icons/hi";
 import { IoIosArrowDown } from "react-icons/io";
 import { ImPlay2 } from "react-icons/im";
+import { CiLock } from "react-icons/ci";
 import HeaderTitle from "./HeaderTitle";
 
-export default function CourseHeadlines({ data , user }) {
+export default function CourseHeadlines({ data, student }) {
   const [hoveredItem, setHoveredItem] = useState(null);
-
 
   return (
     <div className="bg-white rounded-2xl p-5 sm:p-5 mt-8">
       {/* !<-- Header Title --> */}
       <HeaderTitle
-        title='سرفصل ها'
-        icon={<HiAcademicCap/>}
-        iconColor='text-sky-500'
-        spanColor='bg-sky-500'
+        title="سرفصل ها"
+        icon={<HiAcademicCap />}
+        iconColor="text-sky-500"
+        spanColor="bg-sky-500"
       />
 
       {/* Headline Items */}
@@ -30,7 +30,9 @@ export default function CourseHeadlines({ data , user }) {
                 hoveredItem === session.name ? "bg-[#64748b] text-white" : ""
               }`}
               onClick={() =>
-                setHoveredItem(hoveredItem === session.name ? null : session.name)
+                setHoveredItem(
+                  hoveredItem === session.name ? null : session.name
+                )
               }
             >
               <span className="inline-block font-danaDemibold lg:line-clamp-3 transition-colors">
@@ -68,16 +70,22 @@ export default function CourseHeadlines({ data , user }) {
                           <div className="flex items-center justify-center w-8 h-6 md:h-7 text-sm font-danaDemiBold bg-white group-hover:bg-green-500 group-hover:text-white rounded">
                             {episode.id}
                           </div>
-                          <a
-                            href={`/lesson/${data.name}-${session.id}:${episode.id}`}
-                            className="inline-block lg:max-w-3/4 text-sm md:text-base group-hover:text-green-500"
-                          >
-                            {episode.name}
-                          </a>
+                          {student ? (
+                            <a
+                              href={`/lesson/${data.name}-${session.id}:${episode.id}`}
+                              className="inline-block lg:max-w-3/4 text-sm md:text-base group-hover:text-green-500"
+                            >
+                              {episode.name}
+                            </a>
+                          ) : (
+                            <span className="inline-block lg:max-w-3/4 text-sm md:text-base group-hover:text-green-500">
+                              {episode.name}
+                            </span>
+                          )}
                         </div>
                         <div className="flex items-center gap-x-1.5 mr-auto text-gray-600 group-hover:text-green-500 child:transition-colors">
                           <span className="text-sm md:text-base">03:54</span>
-                          <ImPlay2 />
+                          {student ? <ImPlay2 className="text-[18px]"/> : <CiLock className="text-red-500 text-[25px]"/>}
                         </div>
                       </div>
                     </div>

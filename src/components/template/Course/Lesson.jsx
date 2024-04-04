@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCourses } from "../../../services/Redux/actions";
+import { fetchCourses, fetchUsers } from "../../../services/Redux/actions";
 import Breadcrumb from "../../modules/Categoreis/Breadcrumb";
 import { LuHome } from "react-icons/lu";
 import apiRequest from "../../../services/Axios/config";
@@ -16,11 +16,14 @@ import CourseDetailsBox from "../../modules/Lesson/CourseDetailsBox";
 import CourseProgress from "../../modules/Lesson/CourseProgress";
 import CourseTeacher from "../../modules/Lesson/CourseTeacher";
 import CourseChapters from "../../modules/Lesson/CourseChapters";
+import Cookies from "js-cookie";
 
 export default function CourseParts() {
   // get the courses in redux
   const dispatch = useDispatch();
   const dataCourses = useSelector((state) => state.courses);
+  const dataUsers = useSelector((state) => state.users);
+  const token = Cookies.get("Token");
 
   // params in pgae route
   const { courseInfo } = useParams();
@@ -39,13 +42,13 @@ export default function CourseParts() {
 
   // validate open menu chapter
 
-
   // Fetch courses on component mount
   useEffect(() => {
     dispatch(fetchCourses());
+    dispatch(fetchUsers());
   }, [dispatch]);
 
-  // Get Episode Course
+  
   useEffect(() => {
     const foundCourse = dataCourses.find(
       (c) => c.name === courseInfo.split("-")[0]
@@ -81,6 +84,11 @@ export default function CourseParts() {
     };
     fetchData();
   }, [course]);
+
+
+  if(!token){
+    location.pathname = '/'
+  }
 
 
   return (
@@ -126,14 +134,10 @@ export default function CourseParts() {
         <div className="grid grid-cols-12 gap-y-6 gap-x-5 lg:gap-x-7 mt-6 lg:mt-8 ">
           <div className="col-span-full order-last md:order-none md:col-span-7 xl:col-span-8">
             {/* !<-- info --> */}
-            <CourseInfo 
-              courseData={course}
-              episodeData={episodeCourse}
-            />
+            <CourseInfo courseData={course} episodeData={episodeCourse} />
 
             {/* !<-- Comment --> */}
-            <CourseComment/>
-
+            <CourseComment />
           </div>
 
           {/* !<-- Side --> */}
@@ -149,25 +153,22 @@ export default function CourseParts() {
 
               {/* Chapters */}
               <div className="overflow-y-scroll pl-2 max-h-[602px]">
-
-                <CourseChapters 
-                  chapterData={chapterCourse} 
+                <CourseChapters
+                  chapterData={chapterCourse}
                   courseData={courseInfo}
                   course={course}
                 />
-
               </div>
             </div>
 
             {/* details box */}
-            <CourseDetailsBox/>
+            <CourseDetailsBox />
 
             {/* progress  */}
-            <CourseProgress/>
+            <CourseProgress />
 
             {/* teacher */}
-            <CourseTeacher courseData={course}/>
-
+            <CourseTeacher courseData={course} />
           </aside>
         </div>
       </div>

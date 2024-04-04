@@ -44,8 +44,8 @@ function AppContent() {
                     <>
                       <Navbar />
                       <route.component />
-                      <Tickets />
                       <Footer />
+                      <Tickets />
                     </>
                   );
                 }
