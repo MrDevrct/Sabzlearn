@@ -11,7 +11,7 @@ export default function Header() {
           {/* text and btn header */}
           <div className="relative w-full sm:w-auto order-2 lg:order-2">
             {/* title header */}
-            <h2 className="h-[5rem] sm:h-[8rem] font-danaExtrabold sm:font-danaExtrabold text-2xl sm:text-[2.625rem]/[70px] 3xl:text-5xl/normal leading-normal">
+            <h2 className="h-[5rem] sm:h-[8rem] font-danaExtrabold sm:font-danaExtrabold text-2xl sm:text-[2.625rem]/[70px] 3xl:text-5xl/normal leading-normal" dir="rtl">
               <Typewriter
                 onInit={(typewriter) => {
                   typewriter

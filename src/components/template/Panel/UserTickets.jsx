@@ -1,12 +1,11 @@
-import moment from "jalali-moment";
 import React, { useEffect, useState } from "react";
 import { HiOutlineChatBubbleLeftRight } from "react-icons/hi2";
 import { HiOutlineEnvelopeOpen } from "react-icons/hi2";
 import { HiOutlineTicket } from "react-icons/hi2";
-import apiRequest from "../../../services/Axios/config";
+import moment from 'moment-timezone';
+import jalaliMoment from "jalali-moment"; // تغییر این خط
 
 export default function UserTickets({ tickets }) {
-  const [ticket, setTicket] = useState([]);
   const [closedTickets, setClosedTickets] = useState();
   const [openTickets, setOpenTickets] = useState();
 
@@ -28,12 +27,11 @@ export default function UserTickets({ tickets }) {
 
 
   const formatDate = (dateString) => {
-    const date = moment(dateString, "YYYY-MM-DDTHH:mm:ss.SSS[Z]");
-    const formattedDate = `${date.format("jYYYY/jMM/jDD")} ${date.format(
-      "(HH:mm)"
-    )}`;
+    const date = moment.tz(dateString, "UTC").tz("Asia/Tehran");
+    const formattedDate = jalaliMoment(date).format("jYYYY/jMM/jDD (HH:mm)");
     return formattedDate;
   };
+  
 
   return (
     <>
@@ -60,7 +58,7 @@ export default function UserTickets({ tickets }) {
           <div className="flex flex-col gap-y-1.5 md:gap-y-2 text-white">
             <span className="text-sm font-danaMedium">تیکت های باز</span>
             <span className="font-IRANSNumber text-sm md:text-lg">
-              { ticket.length > 0 ? openTickets : '0'}&nbsp;
+              { tickets.length > 0 ? openTickets : '0'}&nbsp;
               <span className="slms-price_symbol font-danaDemibold">تیکت</span>
             </span>
           </div>

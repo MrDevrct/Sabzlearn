@@ -79,7 +79,7 @@ export default function MenuNav({ platform }) {
                     <>
                       {articles.map((article) => (
                         <a key={article.id} href={`/course/${article.path}`}>
-                          <div className="text-[15px] font-danaLight text-slate-500 py-1 my-2 text-right hover:text-[#2bce56] line-clamp-1">
+                          <div className="text-[15px] font-danaMedium text-slate-400 py-1 my-2 text-right hover:text-[#2bce56] line-clamp-1">
                             {article.title}
                           </div>
                         </a>
@@ -89,8 +89,8 @@ export default function MenuNav({ platform }) {
                     <>
                       {getFilteredItems(menuItem.title).map((item) => (
                         <a key={item.id} href={`/course/${item.name}`}>
-                          <div className="text-[15px] font-danaLight text-slate-500 py-1 my-2 text-right hover:text-[#2bce56] line-clamp-1">
-                            {item.title}
+                          <div className="text-[15px] font-danaMedium text-slate-400 py-1 my-2 text-right hover:text-[#2bce56] line-clamp-1">
+                          آموزش {item.name} 
                           </div>
                         </a>
                       ))}

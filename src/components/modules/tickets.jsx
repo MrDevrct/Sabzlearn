@@ -37,7 +37,7 @@ export default function Tickets() {
           const userFind = await dataUsers.find((user) => user.id === Token);
           setUsers(userFind);
           const ticketFind = await apiRequest(
-            `/tickets/?fullName=${userFind.id}`
+            `/tickets/?userId=${userFind.id}`
           );
           setTickets(ticketFind.data);
         }
