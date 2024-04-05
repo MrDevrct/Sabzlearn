@@ -5,6 +5,7 @@ import { fetchUsers } from "../../../services/Redux/actions";
 import Cookies from "js-cookie";
 import apiRequest from "../../../services/Axios/config";
 import Swal from 'sweetalert2'
+import '../../../css/ElementProprety/SwitAlert.css'
 
 export default function FormEditAccount() {
   const dispatch = useDispatch();
@@ -65,6 +66,9 @@ export default function FormEditAccount() {
           Swal.fire({
             icon: "success",
             text: "اطلاعات با موفقیت اپدیت شد",
+            customClass: {
+              confirmButton: 'custom-confirm-button-green',
+            }
           });
         }
       } else {
@@ -72,6 +76,9 @@ export default function FormEditAccount() {
             icon: "error",
             title: "خطا!",
             text: "این ایمیل قبلاً استفاده شده است",
+            customClass: {
+              confirmButton: 'custom-confirm-button-red'
+            }
           });
       }
     } catch (error) {
@@ -92,8 +99,13 @@ export default function FormEditAccount() {
         if (response.status === 200) {
           Swal.fire({
             icon: "success",
-            text: "رمز شما با موفقغیت تغییر کرد",
+            text: "رمز شما با موفقیت تغییر کرد",
+            customClass: {
+              confirmButton: 'custom-confirm-button-green',
+            }
           });
+          
+          
           setUpdatePassword('');
           setCurrentPassword('');
           setUser(updatedPasswordUser); // بروزرسانی اطلاعات کاربر با رمز جدید
@@ -103,6 +115,9 @@ export default function FormEditAccount() {
           icon: "error",
           title: "خطا!",
           text: "رمز فعلی شما اشتباه است",
+          customClass: {
+            confirmButton: 'custom-confirm-button-red',
+          }
         });
       }
     } catch (error) {

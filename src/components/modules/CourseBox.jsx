@@ -91,7 +91,7 @@ export default function CardBox(props) {
 
           <div className="flex flex-col">
             {props.price == 0 ? null : (
-              <span className="flex items-center justify-center text-sm text-slate-500 dark:text-white/70 -mb-1 line-through">
+              <span className="flex items-center justify-center font-IRANSNumber text-sm text-slate-500 dark:text-white/70 -mb-1 line-through">
                 {addCommas(props.price)}{" "}
               </span>
             )}
