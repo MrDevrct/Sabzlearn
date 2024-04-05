@@ -14,106 +14,7 @@
       "tickets": [],
       "wallet": 0,
       "paid": 1000000,
-      "courses": [
-        {
-          "id": "5",
-          "name": "typescript",
-          "title": "آموزش کاربردی Typescript بصورت پروژه محور",
-          "description": "ایپ اسکریپت یه زبون برنامه نویسیه که توسط مایکروسافت ارائه شده و یسری قابلیت و فیچر های جدید رو با هدف افزایش پرفورمنس و کاهش احتمال خطا به جاوا اسکریپت اضافه کرده. بنا به آمار استک‌اور‌فلو و بازار کار جاوا اسکریت، امروزه تایپ اسکریپت به یکی از زبان های مهم، پراستفاده و محبوب تبدیل شده",
-          "img": "https://sabzlearn.ir/wp-content/uploads/2023/12/ezgif.com-jpg-to-webp-converted-23-1-768x432.webp",
-          "ProjectCourseImg": "https://sabzlearn.ir/wp-content/uploads/2024/01/تایپ-اسکریپت.webp",
-          "price": 1000000,
-          "participants": 8000,
-          "teacher": "سعید راد",
-          "satisfaction": 500,
-          "timeHours": "40",
-          "timeMin": "15",
-          "time": "2024-02-01T10:30",
-          "category": "فرانت اند",
-          "complate": 100,
-          "prerequisite": "HTML CSS JS",
-          "session": [
-            {
-              "id": 1,
-              "name": "معرفی",
-              "Episode": [
-                {
-                  "id": 1,
-                  "name": "کتابخانه ها به چه کاری می آیند",
-                  "description": "",
-                  "video": "/"
-                },
-                {
-                  "id": 2,
-                  "name": "کتابخانه ها ایا در بهبود و غملکرد تاثیر دارند",
-                  "description": "",
-                  "video": "/"
-                }
-              ]
-            },
-            {
-              "id": 2,
-              "name": "پیش نیاز ها",
-              "Episode": []
-            }
-          ],
-          "comment": [
-            {
-              "id": 1,
-              "adminId": 1,
-              "comment": "لینک",
-              "timeCreated": "1403/1/10",
-              "answar": ""
-            }
-          ],
-          "lastTimeAdded": "2024-04-04T21:12:35.187Z"
-        },
-        {
-          "id": "1",
-          "name": "LibraryReact",
-          "title": "۲۰ کتابخانه کاربردی ReactJS برای بازارکار",
-          "description": "‌کتابخانه‌ها باعث افزایش سرعت کدنویسی میشن. در حدی که تو بازار کار هم از کتابخانه های مختلفی برای توسعه پروژه‌ها استفاده میشه. تو این دوره 20 کتابخانه پرکاربرد و پراستفاده ری‌اکت که تو بازار کار برای توسعه پروژه های مختلفی استفاده میشه رو بصورت پروژه محور یاد میگیری. این موضوع هم",
-          "img": "https://sabzlearn.ir/wp-content/uploads/2023/12/ezgif.com-jpg-to-webp-converted-29-1-768x432.webp",
-          "ProjectCourseImg": "https://sabzlearn.ir/wp-content/uploads/2024/01/20REACT.webp",
-          "price": 0,
-          "participants": 2000,
-          "teacher": "سعید راد",
-          "satisfaction": 280,
-          "timeHours": "30",
-          "timeMin": "00",
-          "time": "2024-01-30T12:30",
-          "category": "فرانت اند",
-          "complate": 100,
-          "prerequisite": "React",
-          "session": [
-            {
-              "id": 1,
-              "name": "معرفی",
-              "Episode": [
-                {
-                  "id": 1,
-                  "name": "معرفی",
-                  "description": "",
-                  "video": "/"
-                },
-                {
-                  "id": 2,
-                  "name": "کتابخانه ها ایا در بهبود و غملکرد تاثیر دارند",
-                  "description": "",
-                  "video": "/"
-                }
-              ]
-            },
-            {
-              "id": 2,
-              "name": "پیش نیاز ها",
-              "Episode": []
-            }
-          ],
-          "comment": [],
-          "lastTimeAdded": "2024-04-05T01:27:15.035Z"
-        }
-      ]
+      "courses": []
     },
     {
       "id": "37b6e1a0-42ad-43ba-9416-15ff68a2b5fa",
@@ -555,6 +456,7 @@
       "img": "https://sabzlearn.ir/wp-content/uploads/2023/12/ezgif.com-jpg-to-webp-converted-29-1-768x432.webp",
       "ProjectCourseImg": "https://sabzlearn.ir/wp-content/uploads/2024/01/20REACT.webp",
       "price": 0,
+      "Discount": 10,
       "participants": 2000,
       "teacher": "سعید راد",
       "satisfaction": 280,
@@ -599,6 +501,7 @@
       "img": "https://sabzlearn.ir/wp-content/uploads/2023/12/ezgif.com-jpg-to-webp-converted-27-1-768x432.webp",
       "ProjectCourseImg": "https://sabzlearn.ir/wp-content/uploads/2024/01/next.webp",
       "price": 290000,
+      "Discount": 100,
       "participants": 10000,
       "teacher": "سعید راد",
       "satisfaction": 400,
@@ -697,6 +600,7 @@
       "img": "https://sabzlearn.ir/wp-content/uploads/2023/12/Com_react-1-768x432.webp",
       "ProjectCourseImg": "https://sabzlearn.ir/wp-content/uploads/2024/01/REACTjs.webp",
       "price": 1290000,
+      "Discount": 100,
       "participants": 12000,
       "teacher": "سعید راد",
       "satisfaction": 210,
@@ -752,6 +656,7 @@
       "img": "https://sabzlearn.ir/wp-content/uploads/2023/12/Com_npm-1-768x432.webp",
       "ProjectCourseImg": "",
       "price": 0,
+      "Discount": 10,
       "participants": 8000,
       "teacher": "سعید راد",
       "satisfaction": 100,
@@ -804,6 +709,7 @@
       "img": "https://sabzlearn.ir/wp-content/uploads/2023/12/ezgif.com-jpg-to-webp-converted-23-1-768x432.webp",
       "ProjectCourseImg": "https://sabzlearn.ir/wp-content/uploads/2024/01/تایپ-اسکریپت.webp",
       "price": 1000000,
+      "Discount": 10,
       "participants": 8000,
       "teacher": "سعید راد",
       "satisfaction": 500,
@@ -856,6 +762,7 @@
       "img": "https://sabzlearn.ir/wp-content/uploads/2024/01/0h1-768x432.webp",
       "ProjectCourseImg": "",
       "price": 0,
+      "Discount": 10,
       "participants": 2000,
       "teacher": "حسین عبادی",
       "satisfaction": 280,
@@ -900,6 +807,7 @@
       "img": "https://sabzlearn.ir/wp-content/uploads/2024/03/webpack-1-768x432.webp",
       "ProjectCourseImg": "",
       "price": 290000,
+      "Discount": 10,
       "participants": 10000,
       "teacher": "آرمین هوشمند",
       "satisfaction": 400,
@@ -944,6 +852,7 @@
       "img": "https://sabzlearn.ir/wp-content/uploads/2023/12/ezgif.com-jpg-to-webp-converted-35-1-768x432.webp",
       "ProjectCourseImg": "https://sabzlearn.ir/wp-content/uploads/2024/02/پروژهphp.webp",
       "price": 0,
+      "Discount": 10,
       "participants": 12000,
       "teacher": "حسین عبادی",
       "satisfaction": 210,
@@ -1012,6 +921,7 @@
       "img": "https://sabzlearn.ir/wp-content/uploads/2023/12/IMAGE-1402-09-30-20_33_36-1-768x432.webp",
       "ProjectCourseImg": "https://sabzlearn.ir/wp-content/uploads/2024/02/livewire.webp",
       "price": 1920000,
+      "Discount": 10,
       "participants": 8000,
       "teacher": "حسین عبادی",
       "satisfaction": 100,
@@ -1056,6 +966,7 @@
       "img": "https://sabzlearn.ir/wp-content/uploads/2023/12/ezgif.com-jpg-to-webp-converted-20-1-768x432.webp",
       "ProjectCourseImg": "https://sabzlearn.ir/wp-content/uploads/2024/01/جنگو2.webp",
       "price": 1000000,
+      "Discount": 10,
       "participants": 8000,
       "teacher": "حسین عبادی",
       "satisfaction": 500,
@@ -1074,7 +985,7 @@
               "id": 1,
               "name": "کتابخانه ها به چه کاری می آیند",
               "description": "",
-              "path": "11-22"
+              "video": "/"
             },
             {
               "id": 2,
@@ -1100,6 +1011,7 @@
       "img": "https://sabzlearn.ir/wp-content/uploads/2024/03/Docker1-1-1-768x432.webp",
       "ProjectCourseImg": "",
       "price": 400000,
+      "Discount": 10,
       "participants": 8000,
       "teacher": "آرمین هوشمند",
       "satisfaction": 100,
@@ -1144,6 +1056,7 @@
       "img": "https://sabzlearn.ir/wp-content/uploads/2023/12/ezgif.com-jpg-to-webp-converted-22-1-768x432.webp",
       "ProjectCourseImg": "https://sabzlearn.ir/wp-content/uploads/2024/02/nodejs.webp",
       "price": 200000,
+      "Discount": 10,
       "participants": 8000,
       "teacher": "حسین عبادی",
       "satisfaction": 500,

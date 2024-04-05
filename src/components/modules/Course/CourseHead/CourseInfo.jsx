@@ -3,10 +3,29 @@ import { HiOutlineAcademicCap } from "react-icons/hi2";
 import { FiBookOpen } from "react-icons/fi";
 import { HiOutlineUser } from "react-icons/hi2";
 
-
-export default function CourseInfo({ title , description , name , price , student , onClick }) {
+export default function CourseInfo({
+  title,
+  description,
+  name,
+  price,
+  student,
+  onClick,
+  Discount,
+}) {
   const addCommas = (num) => {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+
+  const transformedNum = (num) => {
+    // تبدیل عدد به 2/4
+    const transformedNum = num / 100;
+    return transformedNum.toString();
+  };
+
+  // محاسبه مبلغ با تخفیف
+  const calculateDiscountedPrice = () => {
+    const discountPrice = price * (1 - Discount / 100);
+    return discountPrice;
   };
 
   return (
@@ -28,11 +47,13 @@ export default function CourseInfo({ title , description , name , price , studen
                 className="button-2xl button-primary w-full mb-2 sm:w-auto font-danaMedium order-2"
               >
                 <FiBookOpen className="text-[30px]" />
-								مشاهده دوره
+                مشاهده دوره
               </a>
               <div className="flex items-center justify-between gap-x-1 mb-1">
-                <HiOutlineUser className="text-[30px] mb-1"/>
-                <p className="font-danaDemibold text-lg">شما دانشجوی دوره هستید</p>
+                <HiOutlineUser className="text-[30px] mb-1" />
+                <p className="font-danaDemibold text-lg">
+                  شما دانشجوی دوره هستید
+                </p>
               </div>
             </>
           ) : (
@@ -45,7 +66,46 @@ export default function CourseInfo({ title , description , name , price , studen
                 ثبت نام در دوره
               </button>
               <div className="flex items-center justify-between gap-x-2 mb-3">
-                {price !== 0 ? (
+
+                <div className="flex flex-row gap-x-3">
+                  {price == 0 ? null : (
+                    <span className="flex items-center justify-center text-xl text-slate-500 dark:text-white/70 -mb-1 line-through font-IRANSNumber">
+                      {addCommas(price)}{" "}
+                    </span>
+                  )}
+
+                  {price === 0 ? (
+                    <span className="text-green-500 font-danaDemibold text-2xl">
+                      رایگان!{" "}
+                    </span>
+                  ) : (
+                    <>
+                      <span className="hidden sm:flex text-green-500 font-danaDemibold text-2xl mt-2 lg:mb-0">
+                        {calculateDiscountedPrice() === 0
+                          ? "رایگان!"
+                          : addCommas(calculateDiscountedPrice())}{" "}
+                        {calculateDiscountedPrice() !== 0 && (
+                          <img
+                            src="../../../public/toman.svg"
+                            className="w-6 h-6 mr-1"
+                            alt="toman-icon"
+                          />
+                        )}
+                      </span>
+                    </>
+                  )}
+                </div>
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+{
+  /* {price !== 0 ? (
                   <>
                     <span className="text-green-500 text-2xl ml-1 font-IRANSNumber">
                       {addCommas(price)}{" "}
@@ -60,12 +120,5 @@ export default function CourseInfo({ title , description , name , price , studen
                   <span className="hidden sm:block text-green-500 font-danaDemibold text-2xl mt-2 lg:mb-0">
                     رایگان!{" "}
                   </span>
-                )}
-              </div>
-            </>
-          )}
-        </div>
-      </div>
-    </div>
-  );
+                )} */
 }

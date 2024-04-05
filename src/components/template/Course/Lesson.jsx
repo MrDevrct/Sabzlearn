@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
-import { useParams } from "react-router-dom";
+import { useParams  } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCourses, fetchUsers } from "../../../services/Redux/actions";
 import Breadcrumb from "../../modules/Categoreis/Breadcrumb";
@@ -25,7 +25,7 @@ export default function CourseParts() {
   const dataUsers = useSelector((state) => state.users);
   const token = Cookies.get("Token");
 
-  // params in pgae route
+  // params in page route
   const { courseInfo } = useParams();
 
   // validate the course
@@ -40,36 +40,51 @@ export default function CourseParts() {
   // validate the category path
   const [categoryPath, setCategoryPath] = useState(null);
 
-  // validate open menu chapter
-
   // Fetch courses on component mount
   useEffect(() => {
     dispatch(fetchCourses());
     dispatch(fetchUsers());
   }, [dispatch]);
 
-  
   useEffect(() => {
-    const foundCourse = dataCourses.find(
-      (c) => c.name === courseInfo.split("-")[0]
-    );
-    if (foundCourse) {
-      setCourse(foundCourse);
-      setChapterCourse(foundCourse.session);
-      const chapterId = parseInt(courseInfo.split("-")[1]);
-      const foundChapter = foundCourse.session.find(
-        (chap) => chap.id === chapterId
-      );
-
-      if (foundChapter) {
-        const episodeId = parseInt(courseInfo.split(":")[1]);
-        const foundEpisode = foundChapter.Episode.find(
-          (epsid) => epsid.id === episodeId
-        );
-        setEpisodeCourse(foundEpisode);
+    const fetchData = async () => {
+      // درخواست اطلاعات کاربر از سرور
+      const userDataResponse = await apiRequest(`/users/${token}`);
+      if (userDataResponse && userDataResponse.data) {
+        const userData = userDataResponse.data;
+        console.log(userData);
+        // پیدا کردن دوره مورد نظر در داده‌های کاربر
+        const courseInUsers = userData.courses.find((course) => course.name === courseInfo.split("-")[0]);
+        if (courseInUsers) {
+          // پیدا کردن دوره مورد نظر در داده‌های Redux
+          const foundCourse = dataCourses.find((c) => c.name === courseInfo.split("-")[0]);
+          console.log(courseInUsers, foundCourse);
+          if (foundCourse) {
+            setCourse(foundCourse);
+            setChapterCourse(foundCourse.session);
+            const chapterId = parseInt(courseInfo.split("-")[1]);
+            const foundChapter = foundCourse.session.find(
+              (chap) => chap.id === chapterId
+            );
+  
+            if (foundChapter) {
+              const episodeId = parseInt(courseInfo.split(":")[1]);
+              const foundEpisode = foundChapter.Episode.find(
+                (epsid) => epsid.id === episodeId
+              );
+              setEpisodeCourse(foundEpisode);
+            }
+          }
+        } else {
+          location.pathname='/';
+        }
+      } else {
+        return <dir>loadin</dir>
       }
-    }
-  }, [dataCourses, courseInfo]);
+    };
+    fetchData();
+  }, [dataCourses, courseInfo, token, history]);
+  
 
   // Get Path Categoreis
   useEffect(() => {
@@ -84,12 +99,6 @@ export default function CourseParts() {
     };
     fetchData();
   }, [course]);
-
-
-  if(!token){
-    location.pathname = '/'
-  }
-
 
   return (
     <section className="mx-auto overflow-x-hidden mt-8 sm:mt-10">

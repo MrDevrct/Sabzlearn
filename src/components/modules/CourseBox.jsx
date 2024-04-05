@@ -12,6 +12,12 @@ export default function CardBox(props) {
     return transformedNum.toString();
   };
 
+  // محاسبه مبلغ با تخفیف
+  const calculateDiscountedPrice = () => {
+    const discountPrice = props.price * (1 - props.Discount / 100);
+    return discountPrice;
+  };
+
   return (
     //  CardBox
     <div className="course sm:h-[27rem] sm:max-w-[19rem] w-full h-fit flex flex-col bg-white shadow-sm rounded-2xl leading-normal">
@@ -29,6 +35,15 @@ export default function CardBox(props) {
             loading="lazy"
           />
         </a>
+        {props.price === 0 ? null : (
+          <>
+            {props.Discount > 0 && (
+              <span className="absolute right-3 top-3 pt-1.5 flex items-center justify-center w-[3rem] h-6 bg-green-500 text-white font-danaMedium text-sm rounded-full">
+                {props.Discount}%
+              </span>
+            )}
+          </>
+        )}
       </div>
 
       {/* title and description */}
@@ -74,23 +89,31 @@ export default function CardBox(props) {
             </span>
           </div>
 
-          <div className="flex flex-row items-center mt-2">
+          <div className="flex flex-col">
+            {props.price == 0 ? null : (
+              <span className="flex items-center justify-center text-sm text-slate-500 dark:text-white/70 -mb-1 line-through">
+                {addCommas(props.price)}{" "}
+              </span>
+            )}
+
             {props.price === 0 ? (
-              <>
-                <span className="text-green-500 font-danaDemibold text-lg">
-                  رایگان!{" "}
-                </span>
-              </>
+              <span className="text-green-500 font-danaDemibold text-lg">
+                رایگان!{" "}
+              </span>
             ) : (
               <>
-                <span className="text-green-500 text-xl ml-1 font-IRANSNumber">
-                  {addCommas(props.price)}{" "}
+                <span className="flex items-center justify-center text-green-500 font-IRANSNumber text-lg">
+                  {calculateDiscountedPrice() === 0
+                    ? "رایگان!"
+                    : addCommas(calculateDiscountedPrice())}{" "}
+                  {calculateDiscountedPrice() !== 0 && (
+                    <img
+                      src="../../../public/toman.svg"
+                      className="w-5 h-5 mr-1"
+                      alt="toman-icon"
+                    />
+                  )}
                 </span>
-                <img
-                  src="../../../public/toman.svg"
-                  className="w-5 h-5"
-                  alt="toman-icon"
-                />
               </>
             )}
           </div>

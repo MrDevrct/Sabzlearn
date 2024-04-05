@@ -209,6 +209,7 @@ export default function CourseView() {
             title={courseInfo.title}
             description={courseInfo.description}
             price={courseInfo.price}
+            Discount={courseInfo.Discount}
             student={student}
             onClick={addCourseHandler}
           />
