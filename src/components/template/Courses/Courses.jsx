@@ -176,7 +176,10 @@ export default function Courses() {
           <div className="col-span-full lg:col-span-4 xl:col-span-3 lg:sticky top-6 space-y-6 px-2 md:px-0">
             <form className="space-y-6">
               {/* <!-- search box --> */}
-              <SearchBox placeholder="جستجو بین دورها" />
+              <SearchBox
+                courses='search courses'
+                placeholder="جستجو بین دورها"
+              />
 
               {/* <!-- toggle filters --> */}
               <FilterBox

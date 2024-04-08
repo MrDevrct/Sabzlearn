@@ -1,7 +1,7 @@
 import React from "react";
 import Caver from './CoverImg'
 import LinkBtn from './Link'
-import Icon from './Icon'
+import Icon from './icon'
 import '../../../css/ElementProprety/Blog-Banner.css'
 import TitleAndDescription from "./TitleAndDescription";
 

@@ -194,7 +194,8 @@ export default function Category() {
             <form className="space-y-6">
               {/* search */}
               <SearchBox
-                category={categoryPath}
+                category = 'search Category' 
+                categoryPath={categoryPath}
                 placeholder={`جستجو بین دورهای ${categoryTitle}`}
               />
 

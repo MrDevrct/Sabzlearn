@@ -14,7 +14,7 @@ import { HiOutlineCurrencyDollar } from "react-icons/hi";
 import { HiOutlineBars3BottomRight } from "react-icons/hi2";
 import { IoArrowBack } from "react-icons/io5";
 import Profile from "../../modules/Navbar/userProfile";
-import FormEditAccount from "./FormEditAccount";
+import FormEditAccount from "./formEditAccount";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUsers } from "../../../services/Redux/actions";
 import UserCourse from "./UserCourse";

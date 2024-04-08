@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HiOutlineUser, HiOutlineUsers } from "react-icons/hi2";
 import { FaStarHalfAlt } from "react-icons/fa";
 
@@ -13,10 +13,14 @@ export default function CardBox(props) {
   };
 
   // محاسبه مبلغ با تخفیف
-  const calculateDiscountedPrice = () => {
-    const discountPrice = props.price * (1 - props.Discount / 100);
-    return discountPrice;
-  };
+  const [discountedPrice, setDiscountedPrice] = useState(0);
+
+  useEffect(() => {
+    if (props.price.length > 0) {
+      const discountPrice = props.price * (1 - props.Discount / 100);
+      setDiscountedPrice(discountPrice);
+    }
+  },[props.price, props.Discount])
 
   return (
     //  CardBox
@@ -103,10 +107,10 @@ export default function CardBox(props) {
             ) : (
               <>
                 <span className="flex items-center justify-center text-green-500 font-IRANSNumber text-lg">
-                  {calculateDiscountedPrice() === 0
+                  {discountedPrice === 0
                     ? "رایگان!"
-                    : addCommas(calculateDiscountedPrice())}{" "}
-                  {calculateDiscountedPrice() !== 0 && (
+                    : addCommas(discountedPrice)}{" "}
+                  {discountedPrice !== 0 && (
                     <img
                       src="../../../public/toman.svg"
                       className="w-5 h-5 mr-1"
