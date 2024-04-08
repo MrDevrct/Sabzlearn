@@ -13,14 +13,7 @@ export default function CardBox(props) {
   };
 
   // محاسبه مبلغ با تخفیف
-  const [discountedPrice, setDiscountedPrice] = useState(0);
-
-  useEffect(() => {
-    if (props.price.length > 0) {
-      const discountPrice = props.price * (1 - props.Discount / 100);
-      setDiscountedPrice(discountPrice);
-    }
-  },[props.price, props.Discount])
+  const discountedPrice = props.price * (1 - props.Discount / 100);
 
   return (
     //  CardBox
@@ -112,7 +105,7 @@ export default function CardBox(props) {
                     : addCommas(discountedPrice)}{" "}
                   {discountedPrice !== 0 && (
                     <img
-                      src="../../../public/toman.svg"
+                      src="/toman.svg"
                       className="w-5 h-5 mr-1"
                       alt="toman-icon"
                     />

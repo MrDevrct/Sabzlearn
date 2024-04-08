@@ -7,7 +7,7 @@ const roadmap = [
   {
     id: 1,
     name: "فرانت اند",
-    img: "../public/front.svg",
+    img: "/front.svg",
     url: "",
     style:
       "block w-full h-full flex justify-center items-center relative bg-gradient-to-r from-[#FFB535] to-[#F2295B] group",
@@ -15,7 +15,7 @@ const roadmap = [
   {
     id: 2,
     name: " امنیت ",
-    img: "../public/security.svg",
+    img: "/security.svg",
     url: "",
     style:
       "block w-full h-full flex justify-center items-center relative bg-gradient-to-r from-[#30C4E5] to-[#27E55C] group",
@@ -23,7 +23,7 @@ const roadmap = [
   {
     id: 3,
     name: "پایتون ",
-    img: "../public/python.svg",
+    img: "/python.svg",
     url: "",
     style:
       "block w-full h-full flex justify-center items-center relative bg-gradient-to-r from-[#9C33F7] to-[#2B9FFF] group",
@@ -31,7 +31,7 @@ const roadmap = [
   {
     id: 4,
     name: "مهارت های نرم ",
-    img: "../public/soft.svg",
+    img: "/soft.svg",
     url: "",
     style:
       "block w-full h-full flex justify-center items-center relative bg-gradient-to-r from-[#FF3571] to-[#870075] group",

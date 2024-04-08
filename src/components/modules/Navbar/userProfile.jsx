@@ -46,10 +46,10 @@ export default function UserProfile({bgColor}) {
   };
 
   const LogoutHandler = () => {
-    Cookies.remove("Token");
+    Cookies.remove("Token", { domain: "sabzlearn-best.liara.run" }); // حذف توکن از کوکی‌ها با توجه به دامنه مشخص شده
     setIsProfileOpen(false);
   };
-
+  
   const addCommas = (num) => {
     if (num) {
       return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");

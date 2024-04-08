@@ -86,7 +86,7 @@ export default function CourseInfo({
                           : addCommas(calculateDiscountedPrice())}{" "}
                         {calculateDiscountedPrice() !== 0 && (
                           <img
-                            src="../../../public/toman.svg"
+                            src="/toman.svg"
                             className="w-6 h-6 mr-1"
                             alt="toman-icon"
                           />

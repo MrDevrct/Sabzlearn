@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiRequest = axios.create({
-    baseURL: 'http://localhost:7000'
+    baseURL: 'https://sabzlearn-server.liara.run'
 })
 
 export default apiRequest;

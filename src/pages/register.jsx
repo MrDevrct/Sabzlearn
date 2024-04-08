@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import apiRequset from "../services/Axios/config";
+import apiRequest from "../services/Axios/config";
 import { v4 as uuidv4 } from "uuid";
 
 // get data in redux
@@ -20,19 +20,12 @@ import { LuPhone } from "react-icons/lu";
 import { FaRegEnvelope } from "react-icons/fa";
 import { FiLock } from "react-icons/fi";
 import Cookies from "js-cookie";
-import apiRequest from "../services/Axios/config";
 import Button from "../components/modules/Button";
 
 export default function Login() {
-  // create id for user
-  const userId = uuidv4();
   const dispatch = useDispatch();
   const dataUsers = useSelector((state) => state.users);
-  const [users, SetUsers] = useState([]);
-  const token = Cookies.get("Token");
-  // form data new user
   const [formData, setFormData] = useState({
-    id: userId,
     username: "",
     lastname: "",
     firstname: "",
@@ -43,30 +36,14 @@ export default function Login() {
     createdAccount: "",
     updatedAccount: "",
     wallet: 0,
-    paid : 0,
+    paid: 0,
     courses: [],
   });
 
-
-  // Fetch courses on component mount
+  // Fetch users on component mount
   useEffect(() => {
     dispatch(fetchUsers());
   }, [dispatch]);
-
-  // Update courseInfo when courses or params change
-  useEffect(() => {
-    SetUsers(dataUsers);
-  }, [dataUsers]);
-
-  // get token
-  useEffect(() => {
-    if (token) {
-      const user = dataUsers.find((user) => user.id === token);
-      if (user) {
-        location.pathname = "/";
-      }
-    }
-  }, [token, users]);
 
   // set form data
   const handleInputChange = (event) => {
@@ -82,7 +59,7 @@ export default function Login() {
     const currentDate = new Date().toISOString();
 
     try {
-      // Checking emails are duplicates or not
+      // Checking if email is a duplicate
       const emailCheck = await apiRequest(`/users?email=${formData.email}`);
 
       if (emailCheck.data.length > 0) {
@@ -101,17 +78,23 @@ export default function Login() {
         return;
       }
 
-      // post data user new
-      const response = await apiRequset.post("/users", {
+      // post new user data
+      const response = await apiRequest.post("/users", {
         ...formData,
         createdAccount: currentDate,
       });
+
       console.log(response);
 
       if (response.status === 201) {
         // Set token in cookie
         window.location.pathname = "/";
-        Cookies.set("Token", formData.id, { expires: 7 });
+        Cookies.set("Token", response.data.id, {
+          expires: 7,
+          domain: "sabzlearn-best.liara.run",
+          httpOnly: false,
+        });        
+        
       }
     } catch (error) {
       console.error(error);

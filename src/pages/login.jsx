@@ -84,7 +84,7 @@ export default function Login() {
 
           Cookies.set("Token", isLogin.id, {
             expires: 7,
-            domain: "localhost",
+            domain: "sabzlearn-best.liara.run",
             httpOnly: false,
           });
           
