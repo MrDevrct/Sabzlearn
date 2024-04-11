@@ -57,34 +57,40 @@ export default function FormEditAccount() {
         firstname: updateUser.firstname,
         lastname: updateUser.lastname,
       };
-
-      const isEmailExists = dataUsers.some((existingUser) => existingUser.email === updateUser.email);
-
-      if (!isEmailExists) {
-        const response = await apiRequest.put(`/users/${user.id}`, updatedUser);
-        if (response.status === 200) {
-          Swal.fire({
-            icon: "success",
-            text: "اطلاعات با موفقیت اپدیت شد",
-            customClass: {
-              confirmButton: 'custom-confirm-button-green',
-            }
-          });
-        }
-      } else {
-          Swal.fire({
-            icon: "error",
-            title: "خطا!",
-            text: "این ایمیل قبلاً استفاده شده است",
-            customClass: {
-              confirmButton: 'custom-confirm-button-red'
-            }
-          });
+  
+      const response = await apiRequest.put(`/users/${user.id}`, updatedUser);
+      console.log(response);
+  
+      if (response.status === 200) {
+        Swal.fire({
+          icon: "success",
+          text: "اطلاعات با موفقیت اپدیت شد",
+          customClass: {
+            confirmButton: 'custom-confirm-button-green',
+          }
+        });
       }
     } catch (error) {
       console.error("Error updating user:", error);
     }
   };
+  
+  const isEmailExists = dataUsers.some((existingUser) => existingUser.email === updateUser.email);
+  
+  if (!isEmailExists || user.email === updateUser.email) {
+    // ایمیل جدید یا همان ایمیل قبلی کاربر منحصر به فرد است
+    // انجام عملیات بروزرسانی اطلاعات
+  } else {
+    Swal.fire({
+      icon: "error",
+      title: "خطا!",
+      text: "این ایمیل قبلاً استفاده شده است",
+      customClass: {
+        confirmButton: 'custom-confirm-button-red'
+      }
+    });
+  }
+  
 
   const updatePasswordHandler = async (event) => {
     event.preventDefault();

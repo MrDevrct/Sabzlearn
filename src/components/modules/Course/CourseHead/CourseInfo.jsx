@@ -67,9 +67,9 @@ export default function CourseInfo({
               </button>
               <div className="flex items-center justify-between gap-x-2 mb-3">
 
-                <div className="flex flex-row gap-x-3">
+                <div className="flex sm:flex-row flex-col gap-x-3">
                   {price == 0 ? null : (
-                    <span className="flex items-center justify-center text-xl text-slate-500 dark:text-white/70 -mb-1 line-through font-IRANSNumber">
+                    <span className="hidden sm:flex items-center justify-center text-xl text-slate-500 dark:text-white/70 -mb-1 line-through font-IRANSNumber">
                       {addCommas(price)}{" "}
                     </span>
                   )}
@@ -80,7 +80,7 @@ export default function CourseInfo({
                     </span>
                   ) : (
                     <>
-                      <span className="hidden sm:flex text-green-500 font-danaDemibold text-2xl mt-2 lg:mb-0">
+                      <span className="sm:flex text-green-500 font-IRANSNumber text-2xl mt-2 lg:mb-0">
                         {calculateDiscountedPrice() === 0
                           ? "رایگان!"
                           : addCommas(calculateDiscountedPrice())}{" "}
@@ -102,23 +102,4 @@ export default function CourseInfo({
       </div>
     </div>
   );
-}
-
-{
-  /* {price !== 0 ? (
-                  <>
-                    <span className="text-green-500 text-2xl ml-1 font-IRANSNumber">
-                      {addCommas(price)}{" "}
-                    </span>
-                    <img
-                      src="../../../public/toman.svg"
-                      className="hidden sm:block w-8 h-8"
-                      alt="toman-icon"
-                    />
-                  </>
-                ) : (
-                  <span className="hidden sm:block text-green-500 font-danaDemibold text-2xl mt-2 lg:mb-0">
-                    رایگان!{" "}
-                  </span>
-                )} */
 }

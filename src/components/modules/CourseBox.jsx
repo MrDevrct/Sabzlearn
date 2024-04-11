@@ -13,7 +13,10 @@ export default function CardBox(props) {
   };
 
   // محاسبه مبلغ با تخفیف
-  const discountedPrice = props.price * (1 - props.Discount / 100);
+  const discountedPrice =
+    typeof props.price === "number" && typeof props.Discount === "number"
+      ? props.price * (1 - props.Discount / 100)
+      : props.price;
 
   return (
     //  CardBox
