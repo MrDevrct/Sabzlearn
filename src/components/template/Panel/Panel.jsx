@@ -66,9 +66,9 @@ export default function dashboard() {
 
   const logout = (event) => {
     event.preventDefault();
-    Cookies.remove("Token");
+    Cookies.remove("Token", { domain: ".sabzlearn-best.liara.run" });
     location.pathname = "/";
-  };
+  };  
 
   const addCommas = (num) => {
     if (num) {
