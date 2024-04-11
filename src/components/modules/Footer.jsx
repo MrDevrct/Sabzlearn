@@ -1,6 +1,8 @@
 import React from "react";
 import { FaTelegramPlane } from "react-icons/fa";
 import { IoLogoInstagram } from "react-icons/io";
+import { FaGithub } from "react-icons/fa";
+
 
 export default function Footer() {
   return (
@@ -21,11 +23,11 @@ export default function Footer() {
               دسترسی سریع
             </h4>
             <div className="flex flex-col items-start gap-y-3">
-              <a href="https://sabzlearn.ir/terms-conditions/">
+              <a href="/terms-conditions/">
                 قوانین و مقررات
               </a>
-              <a href="https://sabzlearn.ir/my-account/tickets/">ارسال تیکت</a>
-              <a href="https://sabzlearn.ir/courses/">همه دوره ها</a>
+              <a href="/my-account/tickets/">ارسال تیکت</a>
+              <a href="/courses/">همه دوره ها</a>
             </div>
           </div>
           <div className="flex flex-col gap-y-5 flex-grow">
@@ -33,14 +35,14 @@ export default function Footer() {
               لینک های مفید
             </h4>
             <div className="flex flex-col items-start gap-y-3">
-              <a href="https://sabzlearn.ir/course/java-script-zero-to-hero/">
+              <a href="/course/java-script-zero-to-hero/">
                 آموزش جاوااسکریپت
               </a>
-              <a href="https://sabzlearn.ir/course/python/">آموزش پایتون</a>
-              <a href="https://sabzlearn.ir/course/html-tutorial/">
+              <a href="/course/python/">آموزش پایتون</a>
+              <a href="/course/html-tutorial/">
                 آموزش HTML
               </a>
-              <a href="https://sabzlearn.ir/product/css-tutorial/">آموزش CSS</a>
+              <a href="/course/css-tutorial/">آموزش CSS</a>
             </div>
           </div>
           <div className="flex flex-col gap-y-5 flex-grow">
@@ -53,10 +55,10 @@ export default function Footer() {
                   <IoLogoInstagram className="text-[25px]"/>
                 </div>
                 <a
-                  href="https://www.instagram.com/sabzlearn_"
+                  href=""
                   className="text-ltr text-hover font-danaDemibold"
                 >
-                  @sabzlearn
+                  @Devrct
                 </a>
               </div>
               <div className="flex items-center gap-x-4">
@@ -64,17 +66,29 @@ export default function Footer() {
                   <FaTelegramPlane />
                 </div>
                 <a
-                  href="https://t.me/sabzlearn"
+                  href="https://t.me/DevrctFront"
                   className="text-left font-danaDemibold"
                 >
-                  @sabzlearn
+                  @Devrct
+                </a>
+              </div>
+              <div className="flex items-center gap-x-4">
+                <div className="flex items-center justify-center rounded-full w-8 h-8 bg-black text-white">
+                  <FaGithub className="text-xl"/>
+                </div>
+                <a
+                  href="https://github.com/Devrct-Front"
+                  className="text-left font-danaDemibold"
+                >
+                  @Devrct
                 </a>
               </div>
             </div>
           </div>
         </div>
         <div className="flex justify-center xs:justify-between flex-wrap gap-x-3 gap-y-2 py-5 text-base">
-          <span>ساخته شده با ❤️ در سبزلرن</span>
+          <span dir="rtl">  ساخته شده توسط Devrct ❤️</span>
+
           <p className="text-ltr text-center">
             Copyright © 2019-2024 Sabzlearn. All rights reserved.
           </p>

@@ -11,6 +11,7 @@ import Articles from './pages/articles';
 import Teacher from './pages/teacher';
 import Login from './pages/login';
 import Register from './pages/register';
+import Contact from './pages/terms-conditions.jsx'
 
 const router = [
     {
@@ -82,6 +83,11 @@ const router = [
         name: 'Signup',
         path: '/register',
         component: Register
+    },
+    {
+        name: 'Contact',
+        path: '/terms-conditions',
+        component: Contact
     }
 ]
 
