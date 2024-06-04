@@ -3,7 +3,7 @@ This project is a website for selling programming courses. The front-end is buil
 
 
 # Here is the installation and setup guide for the project.
-## React + Vit 
+React + Vit 
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
