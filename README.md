@@ -1,4 +1,9 @@
-# React + Vite
+# Sabzlearn
+This project is a website for selling programming courses. The front-end is built using the React.js framework, and the back-end and database are developed using json-server.
+
+
+# Here is the installation and setup guide for the project.
+## React + Vit 
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
@@ -14,6 +19,8 @@ npm i
 
 ```bash
 npm run dev
+and
+npm run server
 ```
 
 
